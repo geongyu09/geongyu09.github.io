@@ -3,7 +3,7 @@ title: '[test-code] 테스트 코드의 중요성 _ 좋은 코드'
 thumbnail: '/assets/blog/importanceOfTest/thumbnail.png'
 description: '테스트 코드과 좋은 코드의 연관성에 대한 개인적인 생각을 정리해보았습니다.'
 date: '2024년 8월 3일'
-tags: '회고 2024'
+tags: 'test-code'
 timeStamps : 1722672000
 ---
 
