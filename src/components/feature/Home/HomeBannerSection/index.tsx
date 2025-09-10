@@ -16,7 +16,9 @@ function HomeBanner() {
         <div className="h-96 text-center flex flex-col justify-center group-hover:scale-105 transition-transform">
           <h1 className="text-4xl font-bold">&quot;Hello World!&quot; 👋</h1>
           <Gap size={4} />
-          <p className="text-lg">안녕하세요! 00하는 개발자 박건규입니다!</p>
+          <p className="text-lg">
+            안녕하세요! 함께하고싶은 개발자가 되고싶은 박건규입니다!
+          </p>
         </div>
         <span className="font-semibold opacity-70 group-hover:opacity-100 transition absolute right-10 bottom-10 cursor-pointer">
           Check Logs &rarr;
