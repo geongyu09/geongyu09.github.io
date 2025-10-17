@@ -1,0 +1,547 @@
+---
+title: '웹을 앱처럼 만들어 보자!'
+date: '2025년 7월 30일'
+description: '웹뷰 개발 중 웹에 앱 화면 전환 효과를 주기 위한 시도를 녹여보았습니다!'
+thumbnail: '/assets/blog/appLikeWeb/webAppComp.gif'
+tags: 'webview animation react next.js library'
+timeStamps: 1753833600000
+---
+
+# 웹을 앱처럼 만들어 보자! 
+
+> 해당 포스트는 설명을 위하여 다소 생략된 코드가 존재할 수 있습니다.
+> 모든 코드는 [여기](https://github.com/JNU-econovation/Sangyeol-FE/tree/develop/packages/stack-link)에서 확인할 수 있습니다!
+> 관련 pr : [Stack Link 라이브러리 구현](https://github.com/JNU-econovation/Soop-WEB/pull/60), [stack-link 개선](https://github.com/JNU-econovation/Sangyeol-FE/pull/30)
+
+그동안 웹 개발만 하던 내가 처음으로 앱 개발을 하면서 들었던 생각은 생각보다 앱은 사용성을 위하여 정말 디테일한 부분까지 신경을 써야 한다는 것이었다. 
+예를 들어 사용자가 특정 부분을 누르더라도 UI보다 더 큰 영역을 터치 가능한 영역으로 만들어 두어 쉽게 누를 수 있게 만든다든지, 화면 전환이나 모달을 띄우는 경우에도 소소하게 애니메이션이 들어간다든지, 다른 탭으로 이동할 때 햅틱과 같은 효과들로 사용자에게 인상을 강하게 줄 수도 있다. 
+
+이와 다르게 웹이 줄 수 있는 사용성은 그리 많지 않다고 느껴졌다.
+우리가 웹 브라우저와 소통하는 방식은 키보드와 마우스를 이용한 입력과 화면과 소리를 통한 출력뿐이다.
+그러다 보니 웹은 제한된 소통 환경 속에서 사용자와의 다방면의 인터랙팅 방식보다는 정보를 주고받는 비교적 정적인 형태로 발전해 나간 게 아닌가 생각한다.
+
+모두가 그러지는 않겠지만, 웹 개발만 해왔던 나의 경우 웹을 개발할 시 화면 전환을 할 때 렌더링 속도나 레이아웃 시프트 정도에만 집중을 하지, 화면 전환 애니메이션을 준다는 것은 단 한 번도 고려를 해본 적이 없었다. 
+
+그러다가 이번에 웹뷰로 프로젝트를 진행하면서 일반적인 웹의 네비게이션 방식은 정말로 정말로 사용성에 치명적이라는 생각이 들었다.
+
+![웹과 앱의 전환 효과 확인](/assets/blog/appLikeWeb/webAppComp.gif)
+
+위의 영상에서 볼 수 있듯 클릭을 한 시점에서 웹은 아래의 절차대로 화면을 보여준다.
+- 이전 화면이 잠시 보인다.
+- 이동하고자 하는 url로 이동한다. 이때 사용자는 잠시 비어있는 흰 화면을 본다.
+- 이후 컨텐츠들을 보게 된다. 이때 네트워크 상황 및 렌더링할 파일의 크기에 따라 요소들이 보이는 속도는 다를 수 있다.
+
+게다가 일반적인 웹은 뒤로가기가 없는 iOS에서 뒤로가기를 할 수가 없다는 문제도 존재한다. 🥲
+
+애초에 순수하게 앱 코드로만 개발을 했다면 전혀 고려하지 않아도 되는 문제겠지만, 웹뷰를 선택하다보니 웹을 개발함에 있어서 앱으로서의 동작을 강요받게 되었다. 
+
+처음에는 이 문제를 모든 스크린 네비게이션의 책임을 앱에 두면 되지 않을까?라고 생각했었다. 
+이에 따라서 하나의 라우트 위치마다 웹 url 하나를 매핑시킨 후, 앱에서 특정 라우트로 이동시키는 형식으로 구현하면 될 것이라 생각했다. 
+
+![네비게이션의 책임을 앱으로 둔 경우](/assets/blog/appLikeWeb/navigateWithBridge.gif)
+
+위의 사진처럼 네비게이션을 앱이 담당하게 되면서 웹뷰임에도 화면 전환에서 앱과 같은 사용자 경험을 줄 수 있었다. 
+하지만 개발을 진행해나감에 있어 해당 방법이 정말 큰 문제점이 있다는 것을 깨달았다. 
+
+
+1. **너무나도 방대한 양의 브리지 로직들**
+
+모든 페이지마다 브리지 로직을 만들어야 한다. 심지어 dynamic route 및 쿼리파람, 태그 등 다양한 조건을 고려한다면 너무나도 많은 양의 브리지 로직이 필요하다. 
+![스프린트 2까지의 라우트 테이블](/assets/blog/appLikeWeb/routeTable.png)
+이는 자연스럽게 개발의 병목 지점이 될 수 있으며, 양이 많아지게 되면 그만큼 관리 비용 또한 무시하지 못할 것이다.
+게다가 웹에서도 앱의, 앱에서 웹의 주소와 전환 효과, 모달 등을 모두 알고 있어야 하므로 그만큼 복잡도가 증가하게 된다.
+
+2. **캐싱에 대한 이점을 전혀 얻지 못한다.**
+
+모든 화면마다 하나의 <WebView>를 띄우는 방식이다 보니, 모두 다른 브라우저이다.
+이로 인해서 토큰이나 쿠키, 로컬 스토리지, 세션 스토리지 등 브라우저에 저장되는 모든 것들을 공유하지 못한다.
+게다가 tanstack/react-query와 같은 라이브러리를 사용하여 서버 상태를 캐싱하는 경우에도, 모든 화면마다 브라우저가 다르기 때문에 캐싱의 이점을 전혀 얻지 못한다. 
+
+3. **성능적으로 문제가 있을 수 있다.**
+
+매번 화면 전환마다 새로운 웹뷰 컴포넌트를 띄우는 방식이다 보니, 화면 전환마다 HTML, CSS, JS를 모두 새롭게 받아와야 한다.
+아무리 FCP를 빠르게 한다고 하더라도, 사용자는 매번 화면 전환마다 흰 화면을 조금이라도 볼 수밖에 없다.
+또한 매번 화면 전환마다 새로운 웹뷰 컴포넌트를 띄우는 방식이다 보니, 자연스럽게 메모리 사용량이 증가하게 된다.
+
+---
+
+이와 관련해서 레퍼런스를 찾아보게 되었다.
+내가 처음으로 앱 개발을 하면서, 그리고 웹뷰 개발을 하게 되면서 가장 많이 찾아봤던 영상은 당근 테크 밋업 영상들이었다.
+여기를 다시 둘러보다가 "[스택 플로우](https://stackflow.so/)"라는 당근에서 만든 웹뷰를 위한 라이브러리를 알게 되었다. 
+
+바로 우리 프로젝트에 적용을 시켜보려고 했다.
+하지만, 어째서인지 next.js를 사용하는 우리의 환경에서는 사용이 불가능했다.
+![스택 플로우 이슈](/assets/blog/appLikeWeb/image-285.png)
+
+아쉽기도 했지만, 기왕 이렇게 된 거 내가 만들어버려야겠다고 생각을 했다. 
+
+# 라이브러리를 만들자
+최종 개발 목표는 "앱과 같은 전환 효과를 줄 수 있는 웹 라이브러리"이다.
+그렇다면 어떤 것이 앱과 같은 전환 효과인지를 먼저 파악할 필요가 있다. 
+
+## 앱은 어떻게 전환할까? 🤔
+expo에서는 다음과 같은 값들로 전환 효과를 설정할 수 있다. 
+![expo 전환 효과들](/assets/blog/appLikeWeb/example.png)
+종류가 다양하지만, 가장 유용하게 사용하는 것을 추려보자면 
+
+![자주 사용하는 전환 효과](/assets/blog/appLikeWeb/useOften.gif)
+오른쪽에서 왼쪽으로 이동하는 default 효과(왼쪽으로 슬라이드)와 화면의 투명도가 변하는 fade 효과 이 두 가지 정도라고 생각하였다. 
+
+위의 두 전환 효과는 화면이 전환될 때 고유한 애니메이션이 존재한다.
+게다가 마치 미리 준비되어 있기라도 한 듯 다음 스크린 UI를 그리는 로딩 시간이 전혀 없다는 것을 알 수 있다. 슬라이딩 되고 있는 부분 또한 미리 UI가 그려진 화면이 이동한다. 
+
+이를 통해서 주로 다뤄야 하는 것들을 추리면 아래와 같다.
+- 화면 전환 시 적절한 애니메이션을 추가해야 한다.
+- 앞으로 전환할 화면은 미리 준비를 해두어 바로 보일 수 있도록 해야 한다. 
+
+위 두 개를 목표로 잡고 개발을 시작했다. 
+
+## 개발 시작
+
+나는 항상 무언가 개발을 할 때에는 이미 개발이 되어있다고 생각하고 사용하는 로직을 먼저 작성해둔다. 
+
+개발할 수 있는 다양한 방법이 존재하겠지만 next.js의 app router에서는 `<Link/>` 태그를 사용하여 많은 라우팅 처리를 한다.
+게다가 해당 태그는 pre-fetch 이점 또한 있어서 성능 개선에도 이점이 있다. 
+![Next 공식문서 Link 태그 설명 중](/assets/blog/appLikeWeb/image-287.png)
+그러다 보니 아래와 같이 사용하는 방식이 먼저 떠올랐다. 
+
+```tsx
+export default function Example() {
+  return (
+    <section className="flex grow gap-4">
+      <StackLink href="/list/1">
+        <Item1 />
+      </StackLink>
+      <div className="flex flex-col w-full h-fit gap-4">
+        <StackLink href="/list/1">
+          <Item2 />
+        </StackLink>
+        <StackLink href="/list/1">
+          <Item3 />
+        </StackLink>
+      </div>
+    </section>
+  );
+}
+```
+
+이름 또한 `<Link/>`에서 영감을 얻었다.
+
+### 전환 효과 만들기_slide
+
+우선 슬라이드 방식으로 전환되는 default 방식을 개발하려고 했다. 
+아이디어는 다음과 같다. 
+- 화면에 보이지 않도록 `<div />` 를 미리 만들어 둔다. 
+- 사용자가 StackLink태그를 선택하면 보이지 않던 `<div />`를 화면 중앙으로 슬라이드 한다. 
+- 화면을 새로고침하여 화면을 보여준다. 
+
+동적으로 요소를 움직이기 위해서는 transform-transition 를 사용하기로 했다.
+![transform-transition MDN](/assets/blog/appLikeWeb/64DE4F3E-9D76-4A28-B266-E1DF3809C1AB.gif)
+
+그리고 그 기준을 잡아주기 위하여, 그리고 각 컴포넌트에서 공통으로 사용하는 상태의 props-drilling을 피하기 위하여 Provider를 먼저 만들어 주었다. 
+
+```tsx
+export default function StackLinkProvider({ children }: PropsWithChildren) {
+  const [portalElement, setPortalElement] = useState<HTMLElement | null>(null);
+
+  useEffect(() => {
+    const element = document.getElementById("stack-root");
+    if (!element) {
+      console.error("[StackLinkProvider] stack-root element not found");
+    }
+    setPortalElement(element);
+  }, []);
+
+  return (
+    <StackContext.Provider value={{ portalElement }}>
+      <div
+        id="stack-main"
+        style={{
+          position: "relative",
+          backgroundColor: "white",
+          transform: "translateZ(0)",
+        }}
+      >
+        {children}
+      </div>
+      <div id="stack-root" />
+    </StackContext.Provider>
+  );
+}
+
+```
+
+다음 페이지를 stack-root, 현재 사용자가 보고 있는 화면을 stack-main으로 id 값을 가지는 div 요소 내에 위치시키기로 했다. 
+그리고 각각의 요소를 움직일 수 있도록 하면 되지 않을까 생각했다.
+
+전환 애니메이션에 대하여 생각하고 있는 형상그림을 실제 그림으로 그려보면 아래와 같다.
+
+![slide 전환 애니메이션 형상그림](/assets/blog/appLikeWeb/image-289.png)
+
+### 다음 화면 미리 준비하기
+앱의 목표 중 하나인 전환 도중에도 다음 화면이 보일 수 있도록 해야 했다.
+이를 위하여 iframe을 사용하도록 했다.
+다음 화면의 주소는 이미 `<StackLink />`에서 props로 받아오기 때문에 이 정보를 바탕으로 그려주면 될 것이다. 
+위의 사진에서 next page에 iframe을 스크린 크기만큼 보여주면 될 것이라 생각하였다. 
+
+### 구현하기_slide
+초기값을 현재 사용자가 보고 있는 화면이 담긴 stack-main을 translate-x-0으로, 다음 화면이 담긴 stack-root를 translate-x-100으로 잡았다.
+만약 사용자가 `<StackLink />`를 선택하게 되면 설정한 duration 동안 애니메이션을 보여주도록 하였다.
+또한 전환 이후에 언젠가는 iframe을 보고 있다가도 다시 실제 stack-main을 볼 수 있도록 전환 또한 해줘야 한다. 
+
+이 아이디어를 바탕으로 핵심 로직을 작성해보았다.
+
+```tsx
+"use client";
+
+const DEFAULT_DURATION = 240;
+
+export default function StackLink({
+  href,
+  children,
+  preLoad = false,
+  animation = "slide",
+}: StackLinkedProps) {
+  const preloadFrameRef = useRef<HTMLIFrameElement>(null);
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const router = useRouter();
+  
+  // 사용자가 <StackLink /> 를 클릭할 때 실행할 콜백 함수
+  const slideScreen = useCallback(() => {
+    // stack-main을 가져온다.
+    const main = document.getElementById("stack-main");
+
+    // 슬라이드 애니메이션을 선택했다면 
+    if (animation === "slide") {
+      
+      // stack-main을 살짝 왼쪽으로 이동시킨다.
+      main.style.transition = `transform ${animDuration}ms ease-in-out`;
+      main.style.transform = "translateX(-20%)";
+
+      // 보이지 않던 stack-root를 오른쪽에서 왼쪽으로 화면에 보이도록 이동시킨다.
+      preloadFrameRef.current.style.transform = "translateX(-100%)";
+      preloadFrameRef.current.style.transition = `transform ${animDuration}ms ease-in-out`;
+
+      // 전환 애니메이션이 끝나면 stack-main을 초기값으로 변경한다.
+      // 이때 새로운 주소로 이동시킨다. 
+      timerRef.current = setTimeout(() => {
+        main.style.transition = "";
+        main.style.transform = "translateX(0)";
+        main.style.zIndex = "-999";
+        router.push(href);
+      }, animDuration);
+    }
+
+  }, [animation, href, push, router]);
+
+  return (
+    <div onClick={slideScreen}>
+      {children}
+      {portalElement &&
+        createPortal(
+          <div
+            ref={preloadFrameRef}
+            style={{
+              width: "100%",
+              height: "100%",
+              position: "absolute",
+              top: 0,
+              left: 0,
+            }}
+          >
+            {preLoad && <Iframe src={href} />}
+          </div>,
+          portalElement,
+        )}
+    </div>
+  );
+}
+```
+
+![slide 구현](/assets/blog/appLikeWeb/slide.gif)
+
+전환 애니메이션이 올바르게 들어가는 것을 확인할 수 있었다. 
+오른쪽에서 왼쪽으로 슬라이딩 해오는 화면 또한 다음 화면으로 올바르게 보이는 것을 확인할 수 있다!
+
+## 전환 효과 만들기_fade
+fade 효과도 만들어보았다.
+이는 opacity 값을 변경하면 쉽게 만들 수 있을 것이라 생각하였다. 
+
+내가 그리고 있는 형상 그림을 표현하면 아래와 같다
+![fade 전환 애니메이션 형상그림](/assets/blog/appLikeWeb/image-290.png)
+
+### 구현하기_fade
+stack-main의 opacity 값을 duration 동안 1에서 0으로, stack-link의 opacity 값을 0에서 1로 바꿔주도록 하였다. 
+
+주요 로직은 아래와 같다. 
+```typescript
+if (animation === "fade") {
+  // stack-main의 opacity값이 animDuration동안 1 -> 0 되도록
+  main.style.transition = `opacity ${animDuration}ms ease-in-out`;
+  main.style.opacity = "0";
+
+  // stack-link의 opacity값이 animDuration동안 0 -> 1 되도록
+  preloadFrameRef.current.style.transform = "translateX(-100%)";
+  preloadFrameRef.current.style.transition = `opacity ${animDuration}ms ease-in-out`;
+  preloadFrameRef.current.style.opacity = "1";
+
+  timerRef.current = setTimeout(() => {
+    main.style.transition = "";
+    main.style.opacity = "1";
+    main.style.zIndex = "-999";
+    router.push(href);
+  }, animDuration);
+}
+```
+
+실제로도 잘 동작하는 것을 볼 수 있다!!
+
+![fade 구현](/assets/blog/appLikeWeb/fade.gif)
+
+## iOS 뒤로가기
+네비게이션/라우팅의 책임을 웹뷰에서는 웹에 넘긴 만큼 뒤로가는 것 또한 올바르게 동작할 수 있어야만 했다.
+특히나 뒤로가기 버튼이 있는 안드로이드의 경우 뒤로가기 버튼을 누르면 뒤로 갈 수 있지만(혹은 뒤로가기 제스처를 통해서 가능하지만),
+왼쪽에서 오른쪽으로 화면을 쓸어 뒤로가기를 하는 iOS의 경우, 뒤로 갈 수 있는 버튼 UI를 두지 않는 이상 뒤로 갈 수가 없다. 
+
+iOS에서 뒤로가기를 할 수 있도록 해보자
+
+기본적으로 iOS에서는 아래와 같이 화면 전환의 역순으로 동작한다. 
+
+![iOS 기본 뒤로가기 모션](/assets/blog/appLikeWeb/iosBack.gif)
+
+뒤로가기 시 현재 화면이 손가락을 따라 왼쪽에서 오른쪽으로 이동해야 하며, 이전 화면도 이를 따라 약간 왼쪽에서 오른쪽으로 이동한다. 또한 이전 화면은 미리 준비가 되어있는 모습이다. 
+
+### 구현_뒤로가기
+우선적으로 현재 화면이 사용자의 손가락을 따라갈 수 있도록 해야 했다.
+이때 사용자의 뒤로가기 제스처를 인식하기 위해서 해당 제스처의 시작 지점을 지정해야 했다.
+이를 위하여 왼쪽 가장 끝에 일반적인 앱 사용 환경에서 지장이 가지 않을 정도로 작고 투명한 제스처 트리거를 두었다. 
+
+![뒤로가기 제스처 트리거](/assets/blog/appLikeWeb/image.png)
+
+사용자가 이 제스처를 터치하게 되면, "뒤로가기 제스처를 하려고 한다"로 인식하여 사용자의 손가락을 따라 stack-main이 따라가도록 하였다.
+이때 stack-main의 transform 로직은 아래와 같다.
+```typescript
+// 사용자의 초기 터치 위치와 현재 터치 위치의 차이를 계산하여 stack-main이 따라오도록 한다.
+const handleMove = (clientX: number) => {
+  const deltaX = clientX - startX;
+  if (deltaX > 0) {
+    main.style.transform = `translateX(${deltaX}px)`;
+  }
+};
+
+// ...
+
+// 사용자가 터치를 시작했을 때 x 좌표를 저장한다.
+onTouchStart={(e) => {
+  e.stopPropagation();
+  e.preventDefault();
+  const touchX = e.touches[0].clientX;
+  setIsTouching(true);
+}}
+
+// 사용자가 터치를 움직일 때마다 handleMove를 호출하여 화면이 따라오도록 한다.
+onTouchMove={(e) => {
+  if (!isTouching) return;
+  e.stopPropagation();
+  handleMove(e.touches[0].clientX);
+}}
+```
+
+이에 더하여 사용자가 일정 수준 이상으로 드래그를 했을 때 뒤로가기가 동작되어야 한다.
+이 임계점을 위하여 터치를 시작한 위치와 터치를 종료한 위치의 차이를 계산할 수 있도록 하였다.
+만약 이 임계점을 넘게 되면 이후 전환 효과 애니메이션과 함께 화면이 전환된다(뒤로가기 동작).
+임계점을 넘지 않으면 초기값으로 다시 설정이 된다. 
+
+이를 구현한 핵심 로직은 아래와 같다. 
+
+```javascript
+const handleEnd = () => {
+  const previousScreenPreview = document.getElementById("stack-previous");
+  const main = document.getElementById("stack-main");
+
+  const deltaX = currentX - startX;
+
+  // 임계점을 넘었을 때 뒤로가기 전환 효과를 보여준다.
+  if (deltaX > 50) {
+    // 메인 화면을 오른쪽으로 끝까지 밀어내고
+    main.style.transform = "translateX(100%)";
+    main.style.transition = `transform ${DEFAULT_DURATION}ms ease-in-out`;
+
+    // 이전 화면을 중앙으로 가져온다.
+    previousScreenPreview.style.transform = "translateX(0%)";
+    previousScreenPreview.style.transition = `transform ${DEFAULT_DURATION}ms ease-in-out`;
+
+    setTimeout(() => {
+      setIsNavigating(false);
+      main.style.transition = "none";
+      main.style.transform = "translateX(0px)";
+      main.style.height = "0";
+
+      previousScreenPreview.style.transform = "translateX(-20%)";
+      previousScreenPreview.style.zIndex = "-1";
+
+      setStartX(0);
+      setCurrentX(0);
+      router.back();
+      pop();
+    }, DEFAULT_DURATION);
+  
+    return;
+  } 
+  
+  // 임계점을 넘지 못했을 때 초기 모습으로 복귀 애니메이션을 보여준다.
+  main.style.transform = "translateX(0px)";
+  main.style.transition = `transform ${DEFAULT_DURATION}ms ease`;
+  if (previousScreenPreview) {
+    previousScreenPreview.style.transform = "translateX(-20%)";
+  }
+  setIsTouching(false);
+  setStartX(0);
+  setCurrentX(0);
+  setTimeout(() => {
+    main.style.transition = "none";
+  }, DEFAULT_DURATION);
+  
+};
+```
+
+이전 화면을 띄우기 위하여 역시 iframe을 사용하고자 하였다.
+하지만 다음 화면의 경우 `<StackLink />`의 props로 받아올 수 있지만, 이전 화면은 직접 기록하고 추적해야만 했다.
+이에 따라서 Provider에 history 상태를 정의하고, 이동 시에 `[이전 주소, 이동할 주소]`를 스택으로 쌓도록 하였다.
+iframe에는 가장 최근에 쌓인 history의 이전 주소에 접근하여 보여주면 된다. 
+
+또한 이전 주소를 보여주는 iframe을 Provider 내에 위치시켰다.
+
+```typescript
+export default function StackLinkProvider({ children }: PropsWithChildren) {
+  const [history, setHistory] = useState<PathTuple[]>([]);
+
+  const push = useCallback((path: PathTuple) => {
+    setHistory((prev) => [...prev, path]);
+  }, []);
+
+  const pop = useCallback(() => {
+    setHistory((prev) => [...prev.filter((_, i) => i !== prev.length - 1)]);
+  }, []);
+
+  return (
+    <StackContext.Provider value={{ history, push, pop }}>
+      <div
+        id="stack-main"
+        style={{
+          position: "relative",
+          backgroundColor: "white",
+          transform: "translateZ(0)",
+          minHeight: "100vh",
+          minWidth: "100vw",
+          willChange: "transform",
+        }}
+      >
+        {children}
+      </div>
+      <div
+        id="stack-root"
+        style={{
+          position: "relative",
+          transform: "translateZ(0)",
+        }}
+      />
+      {history.length > 0 && <GoBackTrigger />}
+
+      <div
+        id="stack-previous"
+        style={{
+          position: "fixed",
+          width: "100vw",
+          height: "100vh",
+          top: 0,
+          left: 0,
+          transform: "translateX(-20%)",
+          backgroundColor: "#ffffff",
+          zIndex: -1,
+          pointerEvents: "none",
+          willChange: "transform",
+        }}
+      >
+        {history.length > 0 && history[history.length - 1][0] && (
+          <Iframe
+            key={history.map((h) => h[0]).join(",")}
+            src={history[history.length - 1][0]}
+            style={{
+              width: "100%",
+              height: "100%",
+              scrollbarWidth: "none",
+              msOverflowStyle: "none",
+              userSelect: "none",
+              pointerEvents: "none",
+            }}
+          />
+        )}
+      </div>
+    </StackContext.Provider>
+  );
+}
+```
+
+![구현한 뒤로가기 전환 효과](/assets/blog/appLikeWeb/back.gif)
+
+실제로 뒤로가기 동작이 전환 모션과 함께 잘 되는 것을 볼 수 있다!
+### 이슈 발생 _ query
+
+iframe은 각기 다른 브라우징 컨텍스트를 가진다.
+이에 따라서 tanstack/react-query의 queryclient를 공유하지 않게 된다.
+즉 iframe에서 가져온 query로 정상적인 UI를 보다가 stack-main으로 전환되면 다시 로딩 fallback을 보게 되는 경우가 생길 수 있다.
+게다가 토큰 등을 저장할 수 있는 로컬/세션 스토리지 또한 공유하지 못하므로 올바른 이전/다음 페이지를 보여주지 못한다.
+만약 토큰이 필요한 요청이 iframe에서 토큰이 없는 상태로 요청하여 응답이 거부되면 이전/다음 페이지는 에러 화면으로 보이게 될 것이다. 
+
+결론적으로 이를 그대로 서비스에 적용하기에는 무리가 있다.
+
+가장 좋은 방법은 iframe을 사용하지 않고 해결하는 것이겠지만, 현 상황에서 임시방편으로 해당 페이지가 iframe에서 실행되었는지를 확인하는 유틸 함수를 추가하였다. 
+
+```typescript
+export const isInStackFrame = () => {
+  try {
+    if (typeof window === "undefined" || !window.self || !window.top) {
+      return true;
+    }
+    return window.self !== window.top;
+  } catch (e) {
+    console.error("[isInIframe] Error checking if in iframe:", e);
+    return true;
+  }
+};
+```
+
+그리고 해당 유틸을 사용하여 요청 자체를 막는 방식으로 진행하면 로딩 fallback만이라도 보여줄 수 있지 않을까 싶었다!
+
+```typescript
+authenticatedApi.interceptors.request.use(
+  async (config) => {
+    // stackLink에서 미리 보여주는 페이지에서는 fallback만 보여주도록 하기 위한 코드
+    if (isInStackFrame()) {
+      await new Promise((resolve) => setTimeout(resolve, 99999));
+    }
+
+	// ...
+
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  },
+);
+```
+
+추가적으로 `<StackLink />`가 미리 만들어둔 iframe에서도 동일하게 `<StackLink />`가 존재할 수 있다. iframe의 `<StackLink />` 또한 다음 페이지를 미리 iframe으로 만들어 둘 것이고, 최악의 경우 당장 보이지도, 사용하지도 않는 많은 iframe이 만들어지게 될 것이다. 이는 자연스럽게 성능적인 영향을 주게 될 것이다. 
+
+이를 막기 위해서 iframe에 존재하는 `<StackLink />`는 새롭게 iframe을 만들지 않도록 할 필요가 있다. 결론적으로 아래의 코드를 추가하였다. 
+
+```typescript 
+if (typeof window === "undefined" || isInStackFrame()) return null;
+```
+
+# 결론
+
+이번 프로젝트를 하면서 정말 많은 시도를 할 수 있어서 좋은 것 같다. 이번에는 웹뷰에서 웹을 앱과 같은 사용 경험을 주기 위하여 문제 정의를 하고, 직접 개발에 옮기며 결과물을 내기까지 정말로 좋은 경험이었던 것 같다!
+사실 개발한 이후 너무 뿌듯해서 우리 동아리 사람들에게 정말 여기저기 자랑하고 다니기도 했다!
+아직 완벽하지는 않다. iOS에 맞추어서 개발을 했다 보니, 안드로이드에서 뒤로가기를 했을 때에 모션을 넣는 것을 TODO로 가져갈 예정이다. 
