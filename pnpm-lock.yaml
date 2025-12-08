@@ -8,6 +8,9 @@ dependencies:
   '@giscus/react':
     specifier: ^3.1.0
     version: 3.1.0(react-dom@18.3.1)(react@18.3.1)
+  '@ssgoi/react':
+    specifier: ^3.0.0
+    version: 3.0.0(react-dom@18.3.1)(react@18.3.1)
   class-variance-authority:
     specifier: ^0.7.0
     version: 0.7.0
@@ -382,6 +385,23 @@ packages:
   /@rushstack/eslint-patch@1.10.4:
     resolution: {integrity: sha512-WJgX9nzTqknM393q1QJDJmoW28kUfEnybeTfVNcNAPnIx210RXm2DiXiHzfNPJNIUUb1tJnz/l4QGtJ30PgWmA==}
     dev: true
+
+  /@ssgoi/core@3.0.0:
+    resolution: {integrity: sha512-VnXbs2JfCdl/dNVN968NQylcydH4w7B21RMWQR8CiJ/JlNt0enJOwaU6Mb4R6IzoCjBT2EOJ+VaTy+1AyiUeRw==}
+    engines: {node: '>=18.0.0'}
+    dev: false
+
+  /@ssgoi/react@3.0.0(react-dom@18.3.1)(react@18.3.1):
+    resolution: {integrity: sha512-HKEXrbj8TN6izs6hOXhK+OhnbgyCxXGOcrTdCcv5o+Yg2vTKI8GJ/IGr6EEUGpjVEVB4B4sHs2+KptgNmEH5+Q==}
+    engines: {node: '>=18.0.0'}
+    peerDependencies:
+      react: ^19.0.0
+      react-dom: ^19.0.0
+    dependencies:
+      '@ssgoi/core': 3.0.0
+      react: 18.3.1
+      react-dom: 18.3.1(react@18.3.1)
+    dev: false
 
   /@swc/counter@0.1.3:
     resolution: {integrity: sha512-e2BR4lsJkkRlKZ/qCHPw9ZaSxc0MVUd7gtbtaB7aMvHeJVYe8sOB8DBZkP2DtISHGSku9sCK6T6cnY0CtXrOCQ==}
