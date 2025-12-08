@@ -1,4 +1,5 @@
 import FadeEffectWrapper from '@/components/common/FadeEffectWrapper';
+import Container from '@/components/common/layout/Container';
 import LogBanner from '@/components/feature/Log/LogBanner';
 
 export default function LogPage() {
@@ -6,20 +7,11 @@ export default function LogPage() {
     <>
       <LogBanner />
       <FadeEffectWrapper transitionKey="log-content">
-        <div>asdfasdfsadfs</div>
-        <div>asdfasdfsadfs</div>
-        <div>asdfasdfsadfs</div>
-        <div>asdfasdfsadfs</div>
-        <div>asdfasdfsadfs</div>
-        <div>asdfasdfsadfs</div>
-        <div>asdfasdfsadfs</div>
-        <div>asdfasdfsadfs</div>
-        <div>asdfasdfsadfs</div>
-        <div>asdfasdfsadfs</div>
-        <div>asdfasdfsadfs</div>
-        <div>asdfasdfsadfs</div>
-        <div>asdfasdfsadfs</div>
-        Fade me!
+        <Container>
+          <section className="min-h-[50vh] py-20">
+            로그 콘텐츠 작성 예정
+          </section>
+        </Container>
       </FadeEffectWrapper>
     </>
   );

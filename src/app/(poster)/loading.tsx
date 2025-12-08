@@ -1,4 +1,4 @@
-import Gap from '../components/common/layout/Gap/index';
+import Gap from '@/components/common/layout/Gap';
 
 export default function loading() {
   return (
