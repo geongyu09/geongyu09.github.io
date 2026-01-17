@@ -3,30 +3,20 @@ import Container from '@/components/common/layout/Container';
 import Gap from '@/components/common/layout/Gap';
 import GitHubActivityGraph from '@/components/feature/Log/GitHubActivityGraph';
 import LogBanner from '@/components/feature/Log/LogBanner';
-import { STUDY_DATA } from '@/constants/log/studyData';
+// import { STUDY_DATA } from '@/constants/log/studyData';
 // import ROUTE_PATH from '@/constants/path/routePath';
-import { groupByYear, groupStudiesByYear } from '@/lib/log/groupByYear';
-import { getAllPosts } from '@/lib/post/post';
+import cn from '@/utils/cn';
 import Link from 'next/link';
+import getAllLogWithinYears from './_lib/getAllLogWithinYears';
 
-const YEARS_WITH_GITHUB_GRAPH = [2024, 2025];
+// TODO: 리팩토링 필요함. 책임 분리
 
 export default function LogPage() {
-  const allPosts = getAllPosts();
-  const postsByYear = groupByYear(allPosts);
-  const studiesByYear = groupStudiesByYear(STUDY_DATA);
-
-  // Get all unique years from both sources
-  const allYears = Array.from(
-    new Set([
-      ...postsByYear.map((g) => g.year),
-      ...studiesByYear.map((g) => g.year),
-      ...YEARS_WITH_GITHUB_GRAPH,
-    ]),
-  ).sort((a, b) => b - a);
+  const { allYears, postsByYear, studiesByYear, YEARS_WITH_GITHUB_GRAPH } =
+    getAllLogWithinYears();
 
   return (
-    <>
+    <main>
       <LogBanner />
       <FadeEffectWrapper transitionKey="log-content">
         <Gap size={14} />
@@ -58,14 +48,18 @@ export default function LogPage() {
                 >
                   {/* year */}
                   <div>
-                    <span className="text-3xl font-bold text-end">{year}</span>
+                    <span className="text-2xl font-bold text-end">{year}</span>
                   </div>
 
                   {hasGitHub && (
                     <>
                       {/* line:start */}
                       <div
-                        className={`flex flex-col items-center ${isFirstYear ? 'pt-4' : ''}`}
+                        // className={`flex flex-col items-center ${isFirstYear ? 'pt-4' : ''}`}
+                        className={cn(
+                          'flex flex-col items-center',
+                          isFirstYear && 'pt-4',
+                        )}
                       >
                         <div
                           className={`w-3 h-3 bg-slate-300 rounded-full ${!isFirstYear ? 'absolute translate-y-3' : ''}`}
@@ -74,9 +68,9 @@ export default function LogPage() {
                       </div>
 
                       {/* content : github */}
-                      <div>
+                      <div className="max-w-full overflow-hidden">
                         <Gap size={1} />
-                        <p className="text-xl font-semibold">Github</p>
+                        <p className="text-lg font-semibold">Github</p>
                         <Gap size={6} />
                         <GitHubActivityGraph year={year} />
                       </div>
@@ -101,7 +95,7 @@ export default function LogPage() {
                       {/* content : study */}
                       <div>
                         <Gap size={1} />
-                        <p className="text-xl font-semibold">Study</p>
+                        <p className="text-lg font-semibold">Study</p>
                         <Gap size={6} />
                         <ul className="flex flex-col gap-4">
                           {yearStudies.map((study) => (
@@ -114,9 +108,44 @@ export default function LogPage() {
                                   href={study.href}
                                   target="_blank"
                                   rel="noopener noreferrer"
-                                  className="font-medium hover:text-slate-700 transition-colors"
+                                  className="font-medium hover:text-slate-700 transition-colors flex justify-between items-center"
                                 >
-                                  {study.title}
+                                  <div>
+                                    <p>{study.title}</p>
+                                    <span className="text-sm">
+                                      {study.date}
+                                    </span>
+                                  </div>
+                                  <div className="flex gap-2">
+                                    {study.tags?.map((tag, idx) => (
+                                      <div
+                                        key={tag}
+                                        className={cn(
+                                          'rounded-lg px-2 py-1 text-xs',
+                                          idx === 0 && 'bg-amber-100',
+                                          idx === 1 && 'bg-sky-100',
+                                          idx === 2 && 'bg-green-100',
+                                        )}
+                                      >
+                                        {tag}
+                                      </div>
+                                    ))}
+                                    {/* <div className="rounded-lg bg-amber-200 px-2 py-1 text-xs">
+                                      js 스터디
+                                    </div>
+                                    <div className="rounded-lg bg-sky-200 px-2 py-1 text-xs">
+                                      TS 스터디
+                                    </div> */}
+                                    {/* <div className="rounded-lg bg-green-200 px-2 py-1 text-xs">
+                                      블로그
+                                    </div>
+                                    <div className="rounded-lg bg-indigo-200 px-2 py-1 text-xs">
+                                      블로그
+                                    </div>
+                                    <div className="rounded-lg bg-fuchsia-200 px-2 py-1 text-xs">
+                                      블로그
+                                    </div> */}
+                                  </div>
                                 </Link>
                               ) : (
                                 <span className="font-medium">
@@ -147,6 +176,6 @@ export default function LogPage() {
         </Container>
         <Gap size={24} />
       </FadeEffectWrapper>
-    </>
+    </main>
   );
 }

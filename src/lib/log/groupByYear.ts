@@ -13,8 +13,6 @@ export interface YearGroup<T> {
 export function groupByYear(items: Post[]): YearGroup<Post>[] {
   const grouped = items.reduce(
     (acc, item) => {
-      // Auto-detect if timestamp is in seconds or milliseconds
-      // If timestamp > 10000000000, it's in milliseconds
       const timestamp =
         item.data.timeStamps > 10000000000
           ? item.data.timeStamps
@@ -34,27 +32,25 @@ export function groupByYear(items: Post[]): YearGroup<Post>[] {
   return Object.entries(grouped)
     .map(([year, yearItems]) => ({
       year: parseInt(year, 10),
-      items: yearItems.sort((a, b) => b.data.timeStamps - a.data.timeStamps),
+      items: yearItems.sort(
+        (a, b) =>
+          new Date(b.data.date).getTime() - new Date(a.data.date).getTime(),
+      ),
     }))
     .sort((a, b) => b.year - a.year);
 }
 
 /**
- * Groups study/manual items by year based on timeStamps field
- * @param items - Array of items with timeStamps property (Unix timestamp in seconds or milliseconds)
+ * Groups study/manual items by year based on date field
+ * @param items - Array of items with date property (YYYY-MM-DD format)
  * @returns Array of YearGroup objects sorted by year descending
  */
-export function groupStudiesByYear<T extends { timeStamps: number }>(
+export function groupStudiesByYear<T extends { date: string }>(
   items: T[],
 ): YearGroup<T>[] {
   const grouped = items.reduce(
     (acc, item) => {
-      // Auto-detect if timestamp is in seconds or milliseconds
-      const timestamp =
-        item.timeStamps > 10000000000
-          ? item.timeStamps
-          : item.timeStamps * 1000;
-      const year = new Date(timestamp).getFullYear();
+      const year = new Date(item.date).getFullYear();
 
       if (!acc[year]) {
         acc[year] = [];
@@ -69,7 +65,9 @@ export function groupStudiesByYear<T extends { timeStamps: number }>(
   return Object.entries(grouped)
     .map(([year, yearItems]) => ({
       year: parseInt(year, 10),
-      items: yearItems.sort((a, b) => b.timeStamps - a.timeStamps),
+      items: yearItems.sort(
+        (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
+      ),
     }))
     .sort((a, b) => b.year - a.year);
 }
