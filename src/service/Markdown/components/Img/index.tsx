@@ -16,7 +16,10 @@ export default function Img({
       height={height ? Number(height) : 1000}
       src={src ?? ''}
       alt={alt ?? 'post content'}
-      className={cn('my-14 rounded-xl block shadow-sm select-none')}
+      className={cn(
+        'my-14 rounded-xl block shadow-sm select-none',
+        'max-h-[600px] w-auto object-contain mx-auto',
+      )}
     />
   );
 }
