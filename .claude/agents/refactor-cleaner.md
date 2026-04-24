@@ -1,7 +1,7 @@
 ---
 name: refactor-cleaner
 description: "Use this agent when you need to identify and remove unused code, dependencies, or duplicates from your codebase. This includes: detecting dead code with analysis tools (knip, depcheck, ts-prune), removing unused exports and imports, consolidating duplicate components or utilities, cleaning up unused npm packages, or performing periodic codebase maintenance to reduce technical debt.\\n\\nExamples:\\n\\n<example>\\nContext: User has just completed a major refactoring and wants to clean up leftover code.\\nuser: \"I just finished refactoring the authentication system. Can you help clean up any unused code?\"\\nassistant: \"I'll use the Task tool to launch the refactor-cleaner agent to analyze and remove unused code from the authentication refactoring.\"\\n<commentary>\\nSince the user completed a major refactoring, use the refactor-cleaner agent to identify and safely remove any dead code, unused imports, or leftover files.\\n</commentary>\\n</example>\\n\\n<example>\\nContext: User notices their bundle size has grown significantly.\\nuser: \"Our bundle size has increased by 200KB. Can you investigate?\"\\nassistant: \"Let me use the refactor-cleaner agent to analyze unused dependencies and code that might be bloating the bundle.\"\\n<commentary>\\nSince bundle size is a concern, use the refactor-cleaner agent to run analysis tools and identify unused dependencies or code contributing to the size increase.\\n</commentary>\\n</example>\\n\\n<example>\\nContext: Regular maintenance - agent should be used proactively.\\nuser: \"Can you review the recent changes to the components folder?\"\\nassistant: \"I'll review the components folder. I notice several new components were added recently. Let me also use the refactor-cleaner agent to check for any duplicate or unused code that may have been introduced.\"\\n<commentary>\\nAfter reviewing code changes, proactively use the refactor-cleaner agent to ensure no duplicate components or unused exports were introduced during development.\\n</commentary>\\n</example>"
-model: opus
+model: sonnet
 color: cyan
 ---
 
@@ -100,28 +100,34 @@ You must create or update `docs/DELETION_LOG.md` with this structure:
 ## [YYYY-MM-DD] Refactoring Session
 
 ### Removed Unused Dependencies
+
 - package-name@version - Last used: none, Size: XX KB
 - another-package@version - Replaced by: better-package
 
 ### Deleted Unused Files
+
 - src/old-component.tsx - Replaced by: src/new-component.tsx
 - lib/deprecated-util.ts - Functionality moved to: lib/utils.ts
 
 ### Consolidated Duplicate Code
+
 - src/components/Button1.tsx + Button2.tsx → Button.tsx
 - Reason: Both implementations were identical
 
 ### Removed Unused Exports
+
 - src/utils/helpers.ts - Functions: foo(), bar()
 - Reason: No references in codebase
 
 ### Impact
+
 - Files deleted: 15
 - Dependencies removed: 5
 - Lines of code removed: 2,300
 - Bundle size reduction: ~45 KB
 
 ### Testing
+
 - All unit tests passing: ✓
 - All integration tests passing: ✓
 - Manual testing completed: ✓
@@ -151,6 +157,7 @@ You must create or update `docs/DELETION_LOG.md` with this structure:
 ## Common Patterns to Remove
 
 ### 1. Unused Imports
+
 ```typescript
 // ❌ Remove unused imports
 import { useState, useEffect, useMemo } from 'react'; // only useState used
@@ -160,6 +167,7 @@ import { useState } from 'react';
 ```
 
 ### 2. Dead Code Branches
+
 ```typescript
 // ❌ Remove unreachable code
 if (false) {
@@ -173,23 +181,25 @@ export function unusedHelper() {
 ```
 
 ### 3. Duplicate Components
+
 ```typescript
 // ❌ Multiple similar components
-components/Button.tsx
-components/PrimaryButton.tsx
-components/NewButton.tsx
+components / Button.tsx;
+components / PrimaryButton.tsx;
+components / NewButton.tsx;
 
 // ✅ Consolidate to one
-components/Button.tsx // with variant prop
+components / Button.tsx; // with variant prop
 ```
 
 ### 4. Unused Dependencies
+
 ```json
 // ❌ Installed but never imported
 {
   "dependencies": {
     "lodash": "^4.17.21", // not used anywhere
-    "moment": "^2.29.4"   // replaced by date-fns
+    "moment": "^2.29.4" // replaced by date-fns
   }
 }
 ```
