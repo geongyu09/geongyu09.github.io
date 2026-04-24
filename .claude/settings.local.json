@@ -27,7 +27,8 @@
       "Bash(gh issue view:*)",
       "Bash(bun --version)",
       "Bash(bun install *)",
-      "Bash(bun run *)"
+      "Bash(bun run *)",
+      "Bash(bunx tsc *)"
     ],
     "deny": [],
     "ask": []

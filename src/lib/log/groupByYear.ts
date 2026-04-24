@@ -1,3 +1,4 @@
+import { ActivityItem } from '@/types/log';
 import { Post } from '@/types/post';
 
 export interface YearGroup<T> {
@@ -67,6 +68,34 @@ export function groupStudiesByYear<T extends { date: string }>(
       year: parseInt(year, 10),
       items: yearItems.sort(
         (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
+      ),
+    }))
+    .sort((a, b) => b.year - a.year);
+}
+
+export function groupActivitiesByYear(
+  items: ActivityItem[],
+): YearGroup<ActivityItem>[] {
+  const grouped = items.reduce(
+    (acc, item) => {
+      const year = new Date(item.startDate).getFullYear();
+
+      if (!acc[year]) {
+        acc[year] = [];
+      }
+      acc[year].push(item);
+
+      return acc;
+    },
+    {} as Record<number, ActivityItem[]>,
+  );
+
+  return Object.entries(grouped)
+    .map(([year, yearItems]) => ({
+      year: parseInt(year, 10),
+      items: yearItems.sort(
+        (a, b) =>
+          new Date(b.startDate).getTime() - new Date(a.startDate).getTime(),
       ),
     }))
     .sort((a, b) => b.year - a.year);
