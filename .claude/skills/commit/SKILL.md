@@ -2,7 +2,6 @@
 name: commit
 description: 현재 워킹 디렉토리의 변경사항을 확인하여 커밋 메시지를 제안하고, 사용자 승인을 받은 후 커밋 및 푸시를 수행합니다.
 user-invocable: true
-disable-model-invocation: true
 allowed-tools:
   - Bash(git diff:*)
   - Bash(git status:*)
@@ -45,11 +44,13 @@ allowed-tools:
 ## 작동 방식
 
 - 변경사항을 명확하고 정확하게 파악합니다.
+
   - `git status` 명령어로 변경 파일 목록 확인
   - `git diff` 및 `git diff --staged` 명령어로 실제 코드 변경사항 확인
   - `git log -n 5 --oneline` 명령어로 기존 커밋 컨벤션 확인
 
 - 확인된 변경사항을 기반으로 커밋 대상 파일과 커밋 메시지를 제안합니다.
+
   - 기존 커밋 로그의 스타일(예: Conventional Commits, gitmoji 등)을 우선적으로 따릅니다.
   - 변경사항이 서로 다른 맥락을 포함하는 경우 사용자에게 커밋 분리 여부를 질문합니다.
 
