@@ -5,8 +5,8 @@ import GitHubActivityGraph from '@/components/feature/Log/GitHubActivityGraph';
 import LogBanner from '@/components/feature/Log/LogBanner';
 // import { STUDY_DATA } from '@/constants/log/studyData';
 // import ROUTE_PATH from '@/constants/path/routePath';
+import StudySection from '@/components/feature/Log/StudySection';
 import cn from '@/utils/cn';
-import Link from 'next/link';
 import getAllLogWithinYears from './_lib/getAllLogWithinYears';
 
 // TODO: 리팩토링 필요함. 책임 분리
@@ -138,69 +138,7 @@ export default function LogPage() {
                         <div className="w-0.5 bg-slate-300 min-h-0 h-full" />
                       </div>
                       {/* content : study */}
-                      <div>
-                        <Gap size={1} />
-                        <p className="text-lg font-semibold">Study</p>
-                        <Gap size={6} />
-                        <ul className="flex flex-col gap-4">
-                          {yearStudies.map((study) => (
-                            <li
-                              key={`${study.title}-${study.date}`}
-                              className="text-gray-500"
-                            >
-                              {study.href ? (
-                                <Link
-                                  href={study.href}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  className="font-medium hover:text-slate-700 transition-colors flex justify-between items-center"
-                                >
-                                  <div>
-                                    <p>{study.title}</p>
-                                    <span className="text-sm">
-                                      {study.date}
-                                    </span>
-                                  </div>
-                                  <div className="flex gap-2">
-                                    {study.tags?.map((tag, idx) => (
-                                      <div
-                                        key={tag}
-                                        className={cn(
-                                          'rounded-lg px-2 py-1 text-xs',
-                                          idx === 0 && 'bg-amber-100',
-                                          idx === 1 && 'bg-sky-100',
-                                          idx === 2 && 'bg-green-100',
-                                        )}
-                                      >
-                                        {tag}
-                                      </div>
-                                    ))}
-                                    {/* <div className="rounded-lg bg-amber-200 px-2 py-1 text-xs">
-                                      js 스터디
-                                    </div>
-                                    <div className="rounded-lg bg-sky-200 px-2 py-1 text-xs">
-                                      TS 스터디
-                                    </div> */}
-                                    {/* <div className="rounded-lg bg-green-200 px-2 py-1 text-xs">
-                                      블로그
-                                    </div>
-                                    <div className="rounded-lg bg-indigo-200 px-2 py-1 text-xs">
-                                      블로그
-                                    </div>
-                                    <div className="rounded-lg bg-fuchsia-200 px-2 py-1 text-xs">
-                                      블로그
-                                    </div> */}
-                                  </div>
-                                </Link>
-                              ) : (
-                                <span className="font-medium">
-                                  {study.title}
-                                </span>
-                              )}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
+                      <StudySection studies={yearStudies} />
                     </>
                   )}
                 </section>
