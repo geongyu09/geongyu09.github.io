@@ -5,7 +5,9 @@
       "Bash(pnpm dev)",
       "Bash(pnpm lint:*)",
       "Bash(curl:*)",
-      "Bash(git commit *)"
+      "Bash(git commit *)",
+      "Bash(git add *)",
+      "Bash(git push *)"
     ],
     "deny": [],
     "ask": []
