@@ -12,8 +12,13 @@ import getAllLogWithinYears from './_lib/getAllLogWithinYears';
 // TODO: 리팩토링 필요함. 책임 분리
 
 export default function LogPage() {
-  const { allYears, postsByYear, studiesByYear, YEARS_WITH_GITHUB_GRAPH } =
-    getAllLogWithinYears();
+  const {
+    allYears,
+    postsByYear,
+    studiesByYear,
+    experiencesByYear,
+    YEARS_WITH_GITHUB_GRAPH,
+  } = getAllLogWithinYears();
 
   return (
     <main>
@@ -26,12 +31,15 @@ export default function LogPage() {
               postsByYear.find((g) => g.year === year)?.items || [];
             const yearStudies =
               studiesByYear.find((g) => g.year === year)?.items || [];
+            const yearExperiences =
+              experiencesByYear.find((g) => g.year === year)?.items || [];
             const hasGitHub = YEARS_WITH_GITHUB_GRAPH.includes(year);
 
             // Skip year if no content
             if (
               yearPosts.length === 0 &&
               yearStudies.length === 0 &&
+              yearExperiences.length === 0 &&
               !hasGitHub
             ) {
               return null;
@@ -73,6 +81,43 @@ export default function LogPage() {
                         <p className="text-lg font-semibold">Github</p>
                         <Gap size={6} />
                         <GitHubActivityGraph year={year} />
+                      </div>
+                    </>
+                  )}
+
+                  {yearExperiences.length > 0 && (
+                    <>
+                      {/* line:space */}
+                      <div />
+                      <div className="flex flex-col items-center h-10">
+                        <div className="w-0.5 bg-slate-300 min-h-0 h-full" />
+                      </div>
+                      <div />
+
+                      <div />
+                      {/* line:middle */}
+                      <div className="flex flex-col items-center relative">
+                        <div className="w-3 h-3 bg-slate-300 rounded-full absolute translate-y-4" />
+                        <div className="w-0.5 bg-slate-300 min-h-0 h-full" />
+                      </div>
+                      {/* content : experience */}
+                      <div>
+                        <Gap size={1} />
+                        <p className="text-lg font-semibold">Experience</p>
+                        <Gap size={6} />
+                        <ul className="flex flex-col gap-4">
+                          {yearExperiences.map((exp) => (
+                            <li
+                              key={`${exp.title}-${exp.startDate}`}
+                              className="text-gray-500 flex justify-between items-center"
+                            >
+                              <p className="font-medium">{exp.title}</p>
+                              <span className="text-sm">
+                                {exp.startDate} ~ {exp.endDate}
+                              </span>
+                            </li>
+                          ))}
+                        </ul>
                       </div>
                     </>
                   )}

@@ -10,5 +10,11 @@ export interface LogListItem {
   title: string;
   date: string; // YYYY-MM-DD 형식
   href?: string;
-  tags?: LogTag[];
+  tags?: LogTag[]; // 태그는 스터디의 경우에만 답니다. 태그 순서 : 스터디명 > 책 제목
+}
+
+export interface ActivityItem {
+  title: string;
+  startDate: string; // YYYY-MM-DD
+  endDate: string; // YYYY-MM-DD 또는 '현재'
 }
