@@ -24,7 +24,10 @@
       "Bash(git checkout:*)",
       "Bash(git branch:*)",
       "Bash(gh issue list:*)",
-      "Bash(gh issue view:*)"
+      "Bash(gh issue view:*)",
+      "Bash(bun --version)",
+      "Bash(bun install *)",
+      "Bash(bun run *)"
     ],
     "deny": [],
     "ask": []

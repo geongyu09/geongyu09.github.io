@@ -10,20 +10,20 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ```bash
 # Development
-pnpm dev                                      # Start dev server (http://localhost:3000)
+bun dev                                        # Start dev server (http://localhost:3000)
 
 # Building
-pnpm build                                    # Development build
-NEXT_PUBLIC_ENVIRONMENT=PRODUCTION pnpm build # Production build (SSG mode)
+bun run build                                  # Development build
+NEXT_PUBLIC_ENVIRONMENT=PRODUCTION bun run build # Production build (SSG mode)
 
 # Linting
-pnpm lint                                     # Run ESLint
+bun run lint                                   # Run ESLint
 
 # Deployment
-pnpm deploy                                   # Build and deploy to GitHub Pages
+bun run deploy                                 # Build and deploy to GitHub Pages
 ```
 
-**Important**: This project uses **pnpm 8.15.1** as the package manager. Do not use npm or yarn.
+**Important**: This project uses **bun 1.1.27** as the package manager. Do not use npm, yarn, or pnpm.
 
 ## Architecture Overview
 
