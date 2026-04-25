@@ -89,7 +89,7 @@ async function fetchYearContributions(
   }
 
   const data = await response.json();
-  const contributions = data.contributions;
+  const { contributions } = data;
 
   // 캐시에 저장
   setCachedContributions(username, targetYear, contributions);

@@ -25,8 +25,7 @@ const SplitLayoutVariants = cva(`grid`, {
 });
 
 interface SplitLayoutProps
-  extends PropsWithChildren,
-    VariantProps<typeof SplitLayoutVariants> {
+  extends PropsWithChildren, VariantProps<typeof SplitLayoutVariants> {
   sidebar: React.ReactNode;
   styles?: string;
 }

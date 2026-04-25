@@ -19,7 +19,8 @@ const DefaultButtonVariants = cva(
 );
 
 interface DefaultButtonProps
-  extends React.HTMLProps<HTMLButtonElement>,
+  extends
+    React.HTMLProps<HTMLButtonElement>,
     VariantProps<typeof DefaultButtonVariants> {
   classname?: string;
   text?: string;

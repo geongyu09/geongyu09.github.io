@@ -13,8 +13,7 @@ export const SideFixedPositionerVariants = cva('fixed top-64 right-0 w-64', {
 });
 
 interface SideFixedPositionerProps
-  extends PropsWithChildren,
-    VariantProps<typeof SideFixedPositionerVariants> {}
+  extends PropsWithChildren, VariantProps<typeof SideFixedPositionerVariants> {}
 
 export default function SideFixedPositioner({
   children,

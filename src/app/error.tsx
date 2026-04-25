@@ -16,6 +16,7 @@ export default function Error({
   const codingCat = '/assets/error/Designer.jpeg';
 
   useEffect(() => {
+    // eslint-disable-next-line no-console
     console.error(error);
   }, [error]);
 

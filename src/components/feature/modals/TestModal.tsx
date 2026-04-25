@@ -22,6 +22,7 @@ export default function TestModal() {
             e.preventDefault();
             setResponse(text);
             closeModal(() => {
+              // eslint-disable-next-line no-alert
               alert('submit');
             });
           }}

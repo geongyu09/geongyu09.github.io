@@ -16,8 +16,7 @@ const ContainerVariants = cva('mx-auto', {
 });
 
 interface ContainerProps
-  extends PropsWithChildren,
-    VariantProps<typeof ContainerVariants> {}
+  extends PropsWithChildren, VariantProps<typeof ContainerVariants> {}
 
 export default function Container({
   width = 'default',
