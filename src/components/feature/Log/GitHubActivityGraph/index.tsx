@@ -123,11 +123,11 @@ function groupByWeeks(contributions: Contribution[]) {
 
 // Level에 따른 색상
 const COLORS = {
-  0: '#ebedf0',
-  1: '#9be9a8',
-  2: '#40c463',
-  3: '#30a14e',
-  4: '#216e39',
+  0: '#f1f1f1',
+  1: '#d4d4d4',
+  2: '#a0a0a0',
+  3: '#606060',
+  4: '#1a1a1a',
 };
 
 export default function GitHubActivityGraph({
