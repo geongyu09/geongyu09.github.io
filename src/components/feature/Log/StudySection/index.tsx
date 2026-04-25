@@ -44,12 +44,12 @@ export default function StudySection({ studies }: Props) {
         />
         <p className="text-lg font-semibold">Study</p>
         {!isOpen && (
-          <div className="flex gap-2 flex-wrap">
+          <div className="flex gap-2 flex-nowrap shrink-0">
             {uniqueTags.map(([tag, idx]) => (
               <div
                 key={tag}
                 className={cn(
-                  'rounded-lg px-2 py-1 text-xs',
+                  'rounded-lg px-2 py-1 text-xs shrink-0 whitespace-nowrap',
                   idx === 0 && 'bg-amber-100',
                   idx === 1 && 'bg-sky-100',
                   idx === 2 && 'bg-green-100',
@@ -86,12 +86,12 @@ export default function StudySection({ studies }: Props) {
                       <p>{study.title}</p>
                       <span className="text-sm">{study.date}</span>
                     </div>
-                    <div className="flex gap-2">
+                    <div className="flex gap-2 flex-nowrap shrink-0">
                       {study.tags?.map((tag, idx) => (
                         <div
                           key={tag}
                           className={cn(
-                            'rounded-lg px-2 py-1 text-xs',
+                            'rounded-lg px-2 py-1 text-xs shrink-0 whitespace-nowrap',
                             idx === 0 && 'bg-amber-100',
                             idx === 1 && 'bg-sky-100',
                             idx === 2 && 'bg-green-100',

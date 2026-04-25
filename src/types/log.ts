@@ -9,8 +9,10 @@ type LogTag =
   | '운영체제 아주 쉬운 세 가지 이야기'
   //
   | '모던 자바스크립트 스터디'
-  | '모던 JavaScript 튜토리얼';
-
+  | '모던 JavaScript 튜토리얼'
+  //
+  | '타입스크립트 스터디'
+  | '한 입 크기로 잘라먹는 타입스크립트';
 export interface LogListItem {
   title: string;
   date: string; // YYYY-MM-DD 형식
