@@ -76,14 +76,23 @@ export function groupStudiesByYear<T extends { date: string }>(
 export function groupActivitiesByYear(
   items: ActivityItem[],
 ): YearGroup<ActivityItem>[] {
+  const currentYear = new Date().getFullYear();
   const grouped = items.reduce(
     (acc, item) => {
-      const year = new Date(item.startDate).getFullYear();
+      const startYear = new Date(item.startDate).getFullYear();
+      const endYear =
+        item.endDate === '현재'
+          ? currentYear
+          : new Date(item.endDate).getFullYear();
 
-      if (!acc[year]) {
-        acc[year] = [];
+      for (let year = startYear; year <= endYear; year += 1) {
+        if (!acc[year]) {
+          acc[year] = [];
+        }
+        if (!acc[year].some((a) => a.title === item.title)) {
+          acc[year].push(item);
+        }
       }
-      acc[year].push(item);
 
       return acc;
     },

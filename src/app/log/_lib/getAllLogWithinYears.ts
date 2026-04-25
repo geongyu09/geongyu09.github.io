@@ -7,7 +7,7 @@ import {
 } from '@/lib/log/groupByYear';
 import { getAllPosts } from '@/lib/post/post';
 
-const START_YEAR = 2024;
+const START_YEAR = 2023;
 const currentYear = new Date().getFullYear();
 const YEARS_WITH_GITHUB_GRAPH = Array.from(
   { length: currentYear - START_YEAR + 1 },
