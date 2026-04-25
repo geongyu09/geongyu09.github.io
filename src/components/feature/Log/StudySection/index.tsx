@@ -44,7 +44,7 @@ export default function StudySection({ studies }: Props) {
         />
         <p className="text-lg font-semibold">Study</p>
         {!isOpen && (
-          <div className="flex gap-2 flex-nowrap shrink-0">
+          <div className="flex gap-2 flex-wrap">
             {uniqueTags.map(([tag, idx]) => (
               <div
                 key={tag}
