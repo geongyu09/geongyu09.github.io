@@ -59,11 +59,28 @@ export default function LogPage() {
                     <span className="text-2xl font-bold text-end">{year}</span>
                   </div>
 
+                  {!hasGitHub && (
+                    <>
+                      {/* line:start (no github) */}
+                      <div
+                        className={cn(
+                          'flex flex-col items-center',
+                          isFirstYear && 'pt-4',
+                        )}
+                      >
+                        <div
+                          className={`w-3 h-3 bg-slate-300 rounded-full ${!isFirstYear ? 'absolute translate-y-3' : ''}`}
+                        />
+                        <div className="w-0.5 bg-slate-300 min-h-0 h-full" />
+                      </div>
+                      <div />
+                    </>
+                  )}
+
                   {hasGitHub && (
                     <>
                       {/* line:start */}
                       <div
-                        // className={`flex flex-col items-center ${isFirstYear ? 'pt-4' : ''}`}
                         className={cn(
                           'flex flex-col items-center',
                           isFirstYear && 'pt-4',
