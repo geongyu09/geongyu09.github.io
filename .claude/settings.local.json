@@ -31,7 +31,19 @@
       "Bash(bunx tsc *)",
       "Bash(grep -E \"\\\\.\\(tsx?|json\\)$\")",
       "Bash(bun dev *)",
-      "Bash(echo \"Server PID: $!\")"
+      "Bash(echo \"Server PID: $!\")",
+      "Bash(cp '/Users/baggeongyu/Documents/Coding/geongyu09-blog/context/post/[태그] 우테코 1주차 회고/image.png' /Users/baggeongyu/Documents/Coding/geongyu09-blog/public/assets/blog/wootecoWeek1Review/thumbnail.png)",
+      "Bash(cp '/Users/baggeongyu/Documents/Coding/geongyu09-blog/context/post/[태그] 우테코 1주차 회고/image.png' /Users/baggeongyu/Documents/Coding/geongyu09-blog/public/assets/blog/wootecoWeek1Review/0.png)",
+      "Bash(cp '/Users/baggeongyu/Documents/Coding/geongyu09-blog/context/post/[태그] 우테코 1주차 회고/IMG_4784.jpeg' /Users/baggeongyu/Documents/Coding/geongyu09-blog/public/assets/blog/wootecoWeek1Review/1.jpeg)",
+      "Bash(cp '/Users/baggeongyu/Documents/Coding/geongyu09-blog/context/post/[태그] 우테코 1주차 회고/image_\\(1\\).png' /Users/baggeongyu/Documents/Coding/geongyu09-blog/public/assets/blog/wootecoWeek1Review/2.png)",
+      "Bash(cp '/Users/baggeongyu/Documents/Coding/geongyu09-blog/context/post/[태그] 우테코 1주차 회고/image 1.png' /Users/baggeongyu/Documents/Coding/geongyu09-blog/public/assets/blog/wootecoWeek1Review/3.png)",
+      "Bash(rm -rf '/Users/baggeongyu/Documents/Coding/geongyu09-blog/context/post/[태그] 우테코 1주차 회고')",
+      "Bash(rm '/Users/baggeongyu/Documents/Coding/geongyu09-blog/context/post/[태그] 우테코 1주차 회고.md')",
+      "Bash(cp '/Users/baggeongyu/Documents/Coding/geongyu09-blog/context/post/ExportBlock-1aed85aa-802b-4d8f-8917-784c64f30589-Part-1/[태그] 우테코 2주차 회고/우테코썸네일.png' /Users/baggeongyu/Documents/Coding/geongyu09-blog/public/assets/blog/wootecoWeek2Review/thumbnail.png)",
+      "Bash(cp '/Users/baggeongyu/Documents/Coding/geongyu09-blog/context/post/ExportBlock-1aed85aa-802b-4d8f-8917-784c64f30589-Part-1/[태그] 우테코 2주차 회고/IMG_4154.jpg' /Users/baggeongyu/Documents/Coding/geongyu09-blog/public/assets/blog/wootecoWeek2Review/0.jpg)",
+      "Bash(cp '/Users/baggeongyu/Documents/Coding/geongyu09-blog/context/post/ExportBlock-1aed85aa-802b-4d8f-8917-784c64f30589-Part-1/[태그] 우테코 2주차 회고/image.png' /Users/baggeongyu/Documents/Coding/geongyu09-blog/public/assets/blog/wootecoWeek2Review/1.png)",
+      "Bash(cp '/Users/baggeongyu/Documents/Coding/geongyu09-blog/context/post/ExportBlock-1aed85aa-802b-4d8f-8917-784c64f30589-Part-1/[태그] 우테코 2주차 회고/image 1.png' /Users/baggeongyu/Documents/Coding/geongyu09-blog/public/assets/blog/wootecoWeek2Review/2.png)",
+      "Bash(cp '/Users/baggeongyu/Documents/Coding/geongyu09-blog/context/post/ExportBlock-1aed85aa-802b-4d8f-8917-784c64f30589-Part-1/[태그] 우테코 2주차 회고/image 2.png' /Users/baggeongyu/Documents/Coding/geongyu09-blog/public/assets/blog/wootecoWeek2Review/3.png)"
     ],
     "deny": [],
     "ask": []
