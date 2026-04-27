@@ -13,6 +13,11 @@ import './globals.css';
 export const metadata: Metadata = {
   title: '건규의 블로그 | Blog',
   description: '박건규의 블로그',
+  alternates: {
+    types: {
+      'application/rss+xml': 'https://geongyu09.github.io/rss.xml',
+    },
+  },
 };
 
 export default function RootLayout({ children }: Readonly<PropsWithChildren>) {
