@@ -43,7 +43,14 @@
       "Bash(cp '/Users/baggeongyu/Documents/Coding/geongyu09-blog/context/post/ExportBlock-1aed85aa-802b-4d8f-8917-784c64f30589-Part-1/[태그] 우테코 2주차 회고/IMG_4154.jpg' /Users/baggeongyu/Documents/Coding/geongyu09-blog/public/assets/blog/wootecoWeek2Review/0.jpg)",
       "Bash(cp '/Users/baggeongyu/Documents/Coding/geongyu09-blog/context/post/ExportBlock-1aed85aa-802b-4d8f-8917-784c64f30589-Part-1/[태그] 우테코 2주차 회고/image.png' /Users/baggeongyu/Documents/Coding/geongyu09-blog/public/assets/blog/wootecoWeek2Review/1.png)",
       "Bash(cp '/Users/baggeongyu/Documents/Coding/geongyu09-blog/context/post/ExportBlock-1aed85aa-802b-4d8f-8917-784c64f30589-Part-1/[태그] 우테코 2주차 회고/image 1.png' /Users/baggeongyu/Documents/Coding/geongyu09-blog/public/assets/blog/wootecoWeek2Review/2.png)",
-      "Bash(cp '/Users/baggeongyu/Documents/Coding/geongyu09-blog/context/post/ExportBlock-1aed85aa-802b-4d8f-8917-784c64f30589-Part-1/[태그] 우테코 2주차 회고/image 2.png' /Users/baggeongyu/Documents/Coding/geongyu09-blog/public/assets/blog/wootecoWeek2Review/3.png)"
+      "Bash(cp '/Users/baggeongyu/Documents/Coding/geongyu09-blog/context/post/ExportBlock-1aed85aa-802b-4d8f-8917-784c64f30589-Part-1/[태그] 우테코 2주차 회고/image 2.png' /Users/baggeongyu/Documents/Coding/geongyu09-blog/public/assets/blog/wootecoWeek2Review/3.png)",
+      "Bash(cp \"/Users/baggeongyu/Documents/Coding/geongyu09-blog/context/post/ExportBlock-a0d986a0-406b-49f0-b69f-5fd0df0263cf-Part-1/[태그] 우테코 3, 4주 회고/image.png\" /Users/baggeongyu/Documents/Coding/geongyu09-blog/public/assets/blog/wootecoWeek3And4Review/thumbnail.png)",
+      "Bash(cp \"/Users/baggeongyu/Documents/Coding/geongyu09-blog/context/post/ExportBlock-a0d986a0-406b-49f0-b69f-5fd0df0263cf-Part-1/[태그] 우테코 3, 4주 회고/image.png\" /Users/baggeongyu/Documents/Coding/geongyu09-blog/public/assets/blog/wootecoWeek3And4Review/0.png)",
+      "Bash(cp \"/Users/baggeongyu/Documents/Coding/geongyu09-blog/context/post/ExportBlock-a0d986a0-406b-49f0-b69f-5fd0df0263cf-Part-1/[태그] 우테코 3, 4주 회고/image 1.png\" /Users/baggeongyu/Documents/Coding/geongyu09-blog/public/assets/blog/wootecoWeek3And4Review/1.png)",
+      "Bash(cp \"/Users/baggeongyu/Documents/Coding/geongyu09-blog/context/post/ExportBlock-6d311589-27e7-4feb-be99-fefabb83172e-Part-1/[기술블로그] LLM은 어떻게 개발자가 되는가 — Claude Code 해부해보기/image.png\" /Users/baggeongyu/Documents/Coding/geongyu09-blog/public/assets/blog/claudeCodeHarness/0.png)",
+      "Bash(cp \"/Users/baggeongyu/Documents/Coding/geongyu09-blog/context/post/ExportBlock-6d311589-27e7-4feb-be99-fefabb83172e-Part-1/[기술블로그] LLM은 어떻게 개발자가 되는가 — Claude Code 해부해보기/image 1.png\" /Users/baggeongyu/Documents/Coding/geongyu09-blog/public/assets/blog/claudeCodeHarness/1.png)",
+      "Bash(cp \"/Users/baggeongyu/Documents/Coding/geongyu09-blog/context/post/ExportBlock-6d311589-27e7-4feb-be99-fefabb83172e-Part-1/[기술블로그] LLM은 어떻게 개발자가 되는가 — Claude Code 해부해보기/image.png\" /Users/baggeongyu/Documents/Coding/geongyu09-blog/public/assets/blog/claudeCodeHarness/thumbnail.png)",
+      "Bash(sort -t: -k2 -n -r)"
     ],
     "deny": [],
     "ask": []

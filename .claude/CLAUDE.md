@@ -105,6 +105,19 @@ pushModal({
 });
 ```
 
+### App Router Structure
+
+```
+src/app/
+├── layout.tsx           # Root layout: ModalProvider > Header > SsgoiProvider > main > Footer
+├── page.tsx             # Home page
+├── log/                 # Activity log page (/log)
+└── (poster)/            # Route group (no URL segment)
+    ├── loading.tsx      # Shared loading UI for post routes
+    ├── post/[slug]/     # Individual post page
+    └── posts/[tag]/     # Tag-filtered post list page
+```
+
 ### Component Organization
 
 ```
@@ -246,7 +259,7 @@ All routes are pre-generated at build time for static deployment.
 
 ## GitHub Pages Deployment
 
-The `pnpm deploy` command:
+The `bun run deploy` command:
 1. Sets `NEXT_PUBLIC_ENVIRONMENT=PRODUCTION`
 2. Builds with `output: 'export'`
 3. Creates `out/.nojekyll` file (allows `_next` directory)
@@ -257,20 +270,36 @@ The `pnpm deploy` command:
 - `images: { unoptimized: true }` (no server-side optimization)
 - `.nojekyll` file in output directory
 
-## Creating New Blog Posts
+## Blog Post Authoring Workflow
 
-1. Create a new `.md` file in `_posts/` directory
-2. Add front-matter with all required fields (see front-matter format above)
-3. Write content using GitHub Flavored Markdown
-4. Place images in `public/assets/` and reference as `/assets/image.png`
-5. Rebuild to generate static pages
+The project supports a structured draft-to-publish pipeline using `on-writing/` and `context/post/` directories (both gitignored).
+
+**Writing flow**:
+1. Draft content is placed in `context/post/*.md`
+2. The `post-writing-from-context` skill converts the draft into a proper `_posts/*.md` file with front-matter, moves assets to `public/assets/blog/[글제목]/`, and cleans up `context/post/`
+
+**Front-matter required fields**:
+```yaml
+---
+title: '[제목]'
+date: 'YYYY년 MM월 DD일'
+description: '글을 요약하는 한 두 문장의 높힘말 문장'
+thumbnail: '/assets/blog/[글제목]/thumbnail.{ext}'
+tags: 'Tag1 Tag2'          # Space-separated
+timeStamps: 1735650000000  # Unix ms timestamp
+---
+```
+
+**Asset naming convention** inside `public/assets/blog/[글제목]/`:
+- Thumbnail: `thumbnail.{png,jpg,...}`
+- Inline images: `0.{ext}`, `1.{ext}`, ... (top-down order)
 
 **Validation**: `src/lib/post/utils/validator.ts` checks post data integrity at build time.
 
-## Current Branch Context
+## Branch Strategy
 
 - **Main branch**: `main` (production)
-- **Current branch**: `feat/log-page` (log page feature development)
+- **Development branch**: `dev` (integration branch, merge here before main)
 - **Deploy branch**: `gh-pages` (auto-generated, do not edit directly)
 
 ## Key Dependencies
@@ -279,10 +308,13 @@ The `pnpm deploy` command:
 - **React 18**: UI library
 - **TypeScript 5**: Type system
 - **Tailwind CSS 3.4.1**: Styling
-- **react-markdown**: Markdown rendering with custom components
+- **react-markdown + remark-gfm**: Markdown rendering with custom components
 - **gray-matter**: Front-matter parsing
+- **@ssgoi/react**: Page transition animations wrapping `<main>`
 - **@giscus/react**: GitHub Discussions-based comments
 - **react-github-calendar**: GitHub contribution calendar
+- **react-icons**: Icon components
+- **clsx + tailwind-merge**: Class name merging utility (`src/utils/cn.ts`)
 
 ---
 
