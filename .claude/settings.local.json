@@ -50,7 +50,8 @@
       "Bash(cp \"/Users/baggeongyu/Documents/Coding/geongyu09-blog/context/post/ExportBlock-6d311589-27e7-4feb-be99-fefabb83172e-Part-1/[기술블로그] LLM은 어떻게 개발자가 되는가 — Claude Code 해부해보기/image.png\" /Users/baggeongyu/Documents/Coding/geongyu09-blog/public/assets/blog/claudeCodeHarness/0.png)",
       "Bash(cp \"/Users/baggeongyu/Documents/Coding/geongyu09-blog/context/post/ExportBlock-6d311589-27e7-4feb-be99-fefabb83172e-Part-1/[기술블로그] LLM은 어떻게 개발자가 되는가 — Claude Code 해부해보기/image 1.png\" /Users/baggeongyu/Documents/Coding/geongyu09-blog/public/assets/blog/claudeCodeHarness/1.png)",
       "Bash(cp \"/Users/baggeongyu/Documents/Coding/geongyu09-blog/context/post/ExportBlock-6d311589-27e7-4feb-be99-fefabb83172e-Part-1/[기술블로그] LLM은 어떻게 개발자가 되는가 — Claude Code 해부해보기/image.png\" /Users/baggeongyu/Documents/Coding/geongyu09-blog/public/assets/blog/claudeCodeHarness/thumbnail.png)",
-      "Bash(sort -t: -k2 -n -r)"
+      "Bash(sort -t: -k2 -n -r)",
+      "Bash(NEXT_PUBLIC_ENVIRONMENT=PRODUCTION bun run build)"
     ],
     "deny": [],
     "ask": []
