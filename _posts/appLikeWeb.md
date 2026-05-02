@@ -3,7 +3,7 @@ title: '웹을 앱처럼 만들어 보자!'
 date: '2025년 7월 30일'
 description: '웹뷰 개발 중 웹에 앱 화면 전환 효과를 주기 위한 시도를 녹여보았습니다!'
 thumbnail: '/assets/blog/appLikeWeb/webAppComp.gif'
-tags: 'webview animation react next.js library'
+tags: 'webview animation react next.js library project'
 timeStamps: 1753833600000
 ---
 
