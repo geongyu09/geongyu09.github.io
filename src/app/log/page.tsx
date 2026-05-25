@@ -1,43 +1,83 @@
 import FadeEffectWrapper from '@/components/common/FadeEffectWrapper';
-import Container from '@/components/common/layout/Container';
-import Gap from '@/components/common/layout/Gap';
+import Eyebrow from '@/components/ds/Eyebrow';
+import SectionHeading from '@/components/ds/SectionHeading';
 import GitHubActivityGraph from '@/components/feature/Log/GitHubActivityGraph';
-import LogBanner from '@/components/feature/Log/LogBanner';
-// import { STUDY_DATA } from '@/constants/log/studyData';
-// import ROUTE_PATH from '@/constants/path/routePath';
 import StudySection from '@/components/feature/Log/StudySection';
 import cn from '@/utils/cn';
 import getAllLogWithinYears from './_lib/getAllLogWithinYears';
 
-// TODO: 리팩토링 필요함. 책임 분리
+const SKILLS = [
+  'Frontend',
+  'TypeScript',
+  'React',
+  'Next.js',
+  'Functional',
+  'LLM tools',
+];
+
+const START_YEAR = 2023;
+
+const formatYearMonth = (date: string) => {
+  if (date === '현재') return '현재';
+  return date.slice(0, 7).replace('-', '.');
+};
+
+const formatRange = (startDate: string, endDate: string) =>
+  `${formatYearMonth(startDate)} ~ ${formatYearMonth(endDate)}`;
 
 export default function LogPage() {
   const {
     allYears,
-    postsByYear,
     studiesByYear,
     experiencesByYear,
     YEARS_WITH_GITHUB_GRAPH,
   } = getAllLogWithinYears();
 
+  const yearsSince = new Date().getFullYear() - START_YEAR + 1;
+
   return (
     <main>
-      <LogBanner />
-      <FadeEffectWrapper transitionKey="log-content">
-        <Gap size={14} />
-        <Container>
-          {allYears.map((year, index) => {
-            const yearPosts =
-              postsByYear.find((g) => g.year === year)?.items || [];
+      <FadeEffectWrapper transitionKey="log-hero">
+        <section className="border-b border-ink-200">
+          <div className="max-w-container mx-auto px-s-5 lg:px-s-7 pt-s-7 pb-s-7 md:pt-s-9 md:pb-s-8">
+            <Eyebrow className="mb-s-4 md:mb-s-5">
+              about · 박건규 / geongyu
+            </Eyebrow>
+            <h1 className="text-[36px] leading-[1.1] tracking-[-0.03em] font-semibold md:text-[56px] md:leading-[1.1] m-0 max-w-[800px]">
+              함께하고 싶은 개발자가 되는 일에 — 오래 머무르고 싶습니다.
+            </h1>
+            <p className="text-[15px] leading-[1.6] md:text-lead text-ink-500 mt-s-4 md:mt-s-6 max-w-reading">
+              프론트엔드를 중심으로, 함수형 사고와 AI 기반 도구 사이에서 일하는
+              법을 배워가는 중. 우아한테크코스 8기, 카카오 테크 캠퍼스 2기 수료.
+            </p>
+            <div className="mt-s-5 md:mt-s-6 flex flex-wrap gap-s-3">
+              {SKILLS.map((skill) => (
+                <span
+                  key={skill}
+                  className="inline-flex items-center px-[14px] py-[6px] rounded-pill border border-ink-950 text-[13px] font-medium text-ink-950"
+                >
+                  {skill}
+                </span>
+              ))}
+            </div>
+          </div>
+        </section>
+      </FadeEffectWrapper>
+
+      <FadeEffectWrapper transitionKey="log-journal">
+        <section className="max-w-container mx-auto px-s-5 lg:px-s-7 pt-s-7 md:pt-s-9 pb-s-9">
+          <SectionHeading meta={`${yearsSince} years · since ${START_YEAR}`}>
+            Journal — by year
+          </SectionHeading>
+
+          {allYears.map((year, idx) => {
             const yearStudies =
               studiesByYear.find((g) => g.year === year)?.items || [];
             const yearExperiences =
               experiencesByYear.find((g) => g.year === year)?.items || [];
             const hasGitHub = YEARS_WITH_GITHUB_GRAPH.includes(year);
 
-            // Skip year if no content
             if (
-              yearPosts.length === 0 &&
               yearStudies.length === 0 &&
               yearExperiences.length === 0 &&
               !hasGitHub
@@ -45,136 +85,65 @@ export default function LogPage() {
               return null;
             }
 
-            const isLastYear = index === allYears.length - 1;
-            const isFirstYear = index === 0;
-
             return (
-              <>
-                <section
-                  key={year}
-                  className="grid grid-cols-[100px_40px_1fr] text-slate-700 gap-x-4"
-                >
-                  {/* year */}
-                  <div>
-                    <span className="text-2xl font-bold text-end">{year}</span>
+              <div
+                key={year}
+                className={cn(
+                  'grid grid-cols-1 md:grid-cols-[140px_1fr] gap-s-4 md:gap-s-7 py-s-6 md:py-s-7',
+                  idx > 0 && 'border-t border-ink-200',
+                )}
+              >
+                <div>
+                  <div className="text-[36px] md:text-[48px] font-semibold tracking-[-0.04em] leading-none text-ink-950">
+                    {year}
                   </div>
+                  <div className="font-mono text-[11px] text-ink-500 mt-s-2 tracking-[0.05em] uppercase">
+                    Year / {String(year).slice(-2)}
+                  </div>
+                </div>
 
-                  {!hasGitHub && (
-                    <>
-                      {/* line:start (no github) */}
-                      <div
-                        className={cn(
-                          'flex flex-col items-center',
-                          isFirstYear && 'pt-4',
-                        )}
-                      >
-                        <div
-                          className={`w-3 h-3 bg-slate-300 rounded-full ${!isFirstYear ? 'absolute translate-y-3' : ''}`}
-                        />
-                        <div className="w-0.5 bg-slate-300 min-h-0 h-full" />
-                      </div>
-                      <div />
-                    </>
-                  )}
-
+                <div className="flex flex-col gap-s-6 min-w-0">
                   {hasGitHub && (
-                    <>
-                      {/* line:start */}
-                      <div
-                        className={cn(
-                          'flex flex-col items-center',
-                          isFirstYear && 'pt-4',
-                        )}
-                      >
-                        <div
-                          className={`w-3 h-3 bg-slate-300 rounded-full ${!isFirstYear ? 'absolute translate-y-3' : ''}`}
-                        />
-                        <div className="w-0.5 bg-slate-300 min-h-0 h-full" />
-                      </div>
-
-                      {/* content : github */}
-                      <div className="max-w-full overflow-hidden">
-                        <Gap size={1} />
-                        <p className="text-lg font-semibold">Github</p>
-                        <Gap size={6} />
+                    <div className="min-w-0">
+                      <Eyebrow className="mb-s-3">
+                        Github · contributions
+                      </Eyebrow>
+                      <div className="overflow-x-auto">
                         <GitHubActivityGraph year={year} />
                       </div>
-                    </>
+                    </div>
                   )}
 
                   {yearExperiences.length > 0 && (
-                    <>
-                      {/* line:space */}
-                      <div />
-                      <div className="flex flex-col items-center h-10">
-                        <div className="w-0.5 bg-slate-300 min-h-0 h-full" />
-                      </div>
-                      <div />
-
-                      <div />
-                      {/* line:middle */}
-                      <div className="flex flex-col items-center relative">
-                        <div className="w-3 h-3 bg-slate-300 rounded-full absolute translate-y-4" />
-                        <div className="w-0.5 bg-slate-300 min-h-0 h-full" />
-                      </div>
-                      {/* content : experience */}
-                      <div>
-                        <Gap size={1} />
-                        <p className="text-lg font-semibold">Experience</p>
-                        <Gap size={6} />
-                        <ul className="flex flex-col gap-4">
-                          {yearExperiences.map((exp) => (
-                            <li
-                              key={`${exp.title}-${exp.startDate}`}
-                              className="text-gray-500 flex justify-between items-center"
-                            >
-                              <p className="font-medium">{exp.title}</p>
-                              <span className="text-sm">
-                                {exp.startDate} ~ {exp.endDate}
-                              </span>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    </>
+                    <div>
+                      <Eyebrow className="mb-s-3">Experience</Eyebrow>
+                      <ul className="flex flex-col">
+                        {yearExperiences.map((exp, i) => (
+                          <li
+                            key={`${exp.title}-${exp.startDate}`}
+                            className={cn(
+                              'flex justify-between items-baseline gap-s-3 py-s-3 text-[15px]',
+                              i > 0 && 'border-t border-ink-200',
+                            )}
+                          >
+                            <span className="text-ink-950">{exp.title}</span>
+                            <span className="font-mono text-xs text-ink-500 shrink-0">
+                              {formatRange(exp.startDate, exp.endDate)}
+                            </span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
                   )}
 
                   {yearStudies.length > 0 && (
-                    <>
-                      {/* line:space */}
-                      <div />
-                      <div className="flex flex-col items-center h-10">
-                        <div className="w-0.5 bg-slate-300 min-h-0 h-full" />
-                      </div>
-                      <div />
-
-                      <div />
-                      {/* line:middle */}
-                      <div className="flex flex-col items-center relative">
-                        <div className="w-3 h-3 bg-slate-300 rounded-full absolute translate-y-4" />
-                        <div className="w-0.5 bg-slate-300 min-h-0 h-full" />
-                      </div>
-                      {/* content : study */}
-                      <StudySection studies={yearStudies} />
-                    </>
+                    <StudySection studies={yearStudies} />
                   )}
-                </section>
-
-                {/* Year connector line */}
-                {!isLastYear && (
-                  <div className="grid grid-cols-[100px_40px_1fr] gap-x-4 h-24">
-                    <div />
-                    <div className="flex flex-col items-center">
-                      <div className="w-0.5 bg-slate-300 min-h-0 h-full" />
-                    </div>
-                    <div />
-                  </div>
-                )}
-              </>
+                </div>
+              </div>
             );
           })}
-        </Container>
-        <Gap size={24} />
+        </section>
       </FadeEffectWrapper>
     </main>
   );

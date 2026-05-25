@@ -1,6 +1,6 @@
 'use client';
 
-import Gap from '@/components/common/layout/Gap';
+import Eyebrow from '@/components/ds/Eyebrow';
 import { LogListItem } from '@/types/log';
 import cn from '@/utils/cn';
 import Link from 'next/link';
@@ -14,99 +14,98 @@ interface Props {
 export default function StudySection({ studies }: Props) {
   const [isOpen, setIsOpen] = useState(false);
 
-  const uniqueTagColorMap = new Map<string, number>();
-  studies.forEach((study) => {
-    study.tags?.forEach((tag, idx) => {
-      if (!uniqueTagColorMap.has(tag)) {
-        uniqueTagColorMap.set(tag, idx);
-      }
-    });
-  });
-
-  const uniqueTags = Array.from(uniqueTagColorMap.entries()).sort(
-    ([, a], [, b]) => a - b,
+  const uniqueTags = Array.from(
+    studies.reduce((acc, study) => {
+      study.tags?.forEach((tag) => acc.add(tag));
+      return acc;
+    }, new Set<string>()),
   );
 
   return (
     <div>
-      <Gap size={1} />
       <button
         type="button"
-        className="flex items-center gap-2 w-full text-left group"
+        className="flex items-center gap-s-2 group"
         onClick={() => setIsOpen((prev) => !prev)}
+        aria-expanded={isOpen}
       >
         <FiChevronDown
           className={cn(
-            'text-slate-400 transition-transform duration-200 shrink-0',
+            'text-ink-400 transition-transform duration-200 shrink-0',
             isOpen && 'rotate-180',
           )}
-          size={16}
+          size={14}
         />
-        <p className="text-lg font-semibold">Study</p>
-        {!isOpen && (
-          <div className="flex gap-2 flex-wrap">
-            {uniqueTags.map(([tag, idx]) => (
-              <div
-                key={tag}
-                className={cn(
-                  'rounded-lg px-2 py-1 text-xs shrink-0 whitespace-nowrap',
-                  idx === 0 && 'bg-amber-100',
-                  idx === 1 && 'bg-sky-100',
-                  idx === 2 && 'bg-green-100',
-                )}
-              >
-                {tag}
-              </div>
-            ))}
-          </div>
-        )}
+        <Eyebrow>Study</Eyebrow>
       </button>
+
+      {!isOpen && uniqueTags.length > 0 && (
+        <div className="mt-s-3 flex flex-wrap gap-s-2">
+          {uniqueTags.map((tag) => (
+            <span
+              key={tag}
+              className="inline-flex items-center px-[10px] py-[4px] text-xs rounded-pill border border-ink-200 bg-white text-ink-700"
+            >
+              {tag}
+            </span>
+          ))}
+        </div>
+      )}
+
       <div
         className={cn(
-          'grid transition-[grid-template-rows] duration-150 ease-out',
-          isOpen ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]',
+          'grid transition-[grid-template-rows] duration-200 ease-out',
+          isOpen ? 'grid-rows-[1fr] mt-s-3' : 'grid-rows-[0fr]',
         )}
       >
         <div className="overflow-hidden">
-          <Gap size={6} />
-          <ul className="flex flex-col gap-4">
-            {studies.map((study) => (
-              <li
-                key={`${study.title}-${study.date}`}
-                className="text-gray-500"
-              >
-                {study.href ? (
-                  <Link
-                    href={study.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="font-medium hover:text-slate-700 transition-colors flex justify-between items-center"
-                  >
-                    <div>
-                      <p>{study.title}</p>
-                      <span className="text-sm">{study.date}</span>
-                    </div>
-                    <div className="flex gap-2 flex-nowrap shrink-0">
-                      {study.tags?.map((tag, idx) => (
-                        <div
+          <ul className="flex flex-col">
+            {studies.map((study, i) => {
+              const body = (
+                <div className="flex justify-between items-baseline gap-s-4">
+                  <div>
+                    <p className="text-[15px] text-ink-950 font-medium">
+                      {study.title}
+                    </p>
+                    <span className="font-mono text-[11px] text-ink-500 mt-[2px] block">
+                      {study.date}
+                    </span>
+                  </div>
+                  {study.tags && study.tags.length > 0 && (
+                    <div className="flex gap-s-2 flex-wrap shrink-0 justify-end">
+                      {study.tags.map((tag) => (
+                        <span
                           key={tag}
-                          className={cn(
-                            'rounded-lg px-2 py-1 text-xs shrink-0 whitespace-nowrap',
-                            idx === 0 && 'bg-amber-100',
-                            idx === 1 && 'bg-sky-100',
-                            idx === 2 && 'bg-green-100',
-                          )}
+                          className="inline-flex items-center px-[10px] py-[4px] text-xs rounded-pill border border-ink-200 bg-white text-ink-700"
                         >
                           {tag}
-                        </div>
+                        </span>
                       ))}
                     </div>
-                  </Link>
-                ) : (
-                  <span className="font-medium">{study.title}</span>
-                )}
-              </li>
-            ))}
+                  )}
+                </div>
+              );
+
+              return (
+                <li
+                  key={`${study.title}-${study.date}`}
+                  className={cn('py-s-3', i > 0 && 'border-t border-ink-200')}
+                >
+                  {study.href ? (
+                    <Link
+                      href={study.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block hover:opacity-70 transition-opacity"
+                    >
+                      {body}
+                    </Link>
+                  ) : (
+                    body
+                  )}
+                </li>
+              );
+            })}
           </ul>
         </div>
       </div>

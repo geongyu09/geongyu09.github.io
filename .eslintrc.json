@@ -12,5 +12,17 @@
   "rules": {
     "react/react-in-jsx-scope": "off",
     "react/jsx-props-no-spreading": "off"
-  }
+  },
+  "overrides": [
+    {
+      "files": ["src/components/ds/**/*.{ts,tsx}", "src/app/design-system/**/*.{ts,tsx}"],
+      "rules": {
+        "react/require-default-props": "off",
+        "react/function-component-definition": "off",
+        "react/jsx-no-useless-fragment": "off",
+        "jsx-a11y/label-has-associated-control": "off",
+        "prettier/prettier": "warn"
+      }
+    }
+  ]
 }
