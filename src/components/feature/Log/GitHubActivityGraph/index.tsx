@@ -121,13 +121,13 @@ function groupByWeeks(contributions: Contribution[]) {
   return weeks;
 }
 
-// Level에 따른 색상
+// Level에 따른 색상 (editorial · blue accent)
 const COLORS = {
-  0: '#f1f1f1',
-  1: '#d4d4d4',
-  2: '#a0a0a0',
-  3: '#606060',
-  4: '#1a1a1a',
+  0: '#f4f4f4',
+  1: '#d6e1ff',
+  2: '#97aeff',
+  3: '#4f73ff',
+  4: '#2c5eff',
 };
 
 export default function GitHubActivityGraph({
@@ -148,7 +148,7 @@ export default function GitHubActivityGraph({
 
   if (error) {
     return (
-      <div className="w-full rounded-lg border border-gray-200 p-4">
+      <div className="w-full">
         <p className="text-red-500">Failed to load GitHub contributions</p>
       </div>
     );
@@ -156,7 +156,7 @@ export default function GitHubActivityGraph({
 
   if (!contributions) {
     return (
-      <div className="w-full rounded-lg border border-gray-200 p-4">
+      <div className="w-full">
         <p className="text-gray-500">Loading...</p>
       </div>
     );
@@ -165,7 +165,7 @@ export default function GitHubActivityGraph({
   const weeks = groupByWeeks(contributions);
 
   return (
-    <div className="w-full rounded-lg border border-gray-200 p-4">
+    <div className="w-full">
       <div className="flex gap-1 overflow-x-auto">
         {weeks.map((week) => (
           <div key={week[0].date} className="flex flex-col gap-1">
