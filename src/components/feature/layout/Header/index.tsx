@@ -1,6 +1,6 @@
 'use client';
 
-import { IGithub, IRss } from '@/components/common/icons';
+import { IGithub } from '@/components/common/icons';
 import EXTERNAL_PATH from '@/constants/path/externalPath';
 import ROUTE_PATH from '@/constants/path/routePath';
 import cn from '@/utils/cn';
@@ -78,15 +78,6 @@ export default function Header() {
             className="text-ink-500 hover:text-ink-950 transition-colors flex"
           >
             <IGithub size={18} />
-          </Link>
-          <Link
-            href={EXTERNAL_PATH.RSS}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="RSS"
-            className="text-ink-500 hover:text-ink-950 transition-colors flex"
-          >
-            <IRss size={16} />
           </Link>
         </nav>
       </div>
