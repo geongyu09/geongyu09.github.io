@@ -165,10 +165,10 @@ export default function GitHubActivityGraph({
   const weeks = groupByWeeks(contributions);
 
   return (
-    <div className="w-full">
-      <div className="flex gap-1 overflow-x-auto">
+    <div className="w-full overflow-x-auto">
+      <div className="flex gap-1 w-max">
         {weeks.map((week) => (
-          <div key={week[0].date} className="flex flex-col gap-1">
+          <div key={week[0].date} className="flex flex-col gap-1 shrink-0">
             {week.map((day) => (
               <div
                 key={day.date}
