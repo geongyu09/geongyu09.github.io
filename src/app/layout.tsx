@@ -1,4 +1,5 @@
 import SsgoiProvider from '@/components/common/SsgoiProvider';
+import ThemeScript from '@/components/common/Theme/ThemeScript';
 import Footer from '@/components/feature/layout/Footer';
 import Header from '@/components/feature/layout/Header';
 import ModalProvider from '@/lib/modal/provider';
@@ -24,6 +25,7 @@ export default function RootLayout({ children }: Readonly<PropsWithChildren>) {
   return (
     <html lang="ko">
       <head>
+        <ThemeScript />
         <Analytics />
         {process.env.NODE_ENV === 'development' && (
           <Script
@@ -37,7 +39,7 @@ export default function RootLayout({ children }: Readonly<PropsWithChildren>) {
         <body>
           <Header />
           <SsgoiProvider>
-            <main className="bg-white min-h-fit-to-screen relative">
+            <main className="bg-ink-0 min-h-fit-to-screen relative">
               {children}
             </main>
           </SsgoiProvider>
