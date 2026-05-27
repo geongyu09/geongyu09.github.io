@@ -26,7 +26,7 @@ export const FeaturedPostCard = ({
 }: FeaturedProps) => (
   <Link
     href={href}
-    className="block py-s-5 md:py-s-6 grid grid-cols-1 md:grid-cols-[180px_1fr] gap-s-3 md:gap-s-8 group"
+    className="block py-s-5 md:py-s-6 grid grid-cols-1 md:grid-cols-[140px_1fr] gap-s-3 md:gap-s-6 group"
   >
     <div className="order-2 md:order-1 flex items-center gap-s-3 md:block">
       <div className="font-mono text-[11px] md:text-xs text-ink-500">

@@ -12,7 +12,7 @@ export default function Ul({
   ...rest
 }: UlProps): JSX.Element {
   return (
-    <ul className={cn('list-disc my-4 pl-8', className)} {...rest}>
+    <ul className={cn('list-disc my-4 pl-4', className)} {...rest}>
       {children}
     </ul>
   );

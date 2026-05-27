@@ -12,7 +12,7 @@ export default function Ol({
   ...rest
 }: OlProps): JSX.Element {
   return (
-    <ol className={cn('list-decimal my-4', className)} {...rest}>
+    <ol className={cn('list-decimal my-4 pl-4', className)} {...rest}>
       {children}
     </ol>
   );

@@ -12,9 +12,11 @@ export default function Table({
   ...rest
 }: TableProps): JSX.Element {
   return (
-    <table className={cn('w-full my-4', className)} {...rest}>
-      {children}
-    </table>
+    <div className="my-4 w-full overflow-x-auto">
+      <table className={cn('w-max min-w-full', className)} {...rest}>
+        {children}
+      </table>
+    </div>
   );
 }
 

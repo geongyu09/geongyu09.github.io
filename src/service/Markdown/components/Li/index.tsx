@@ -13,7 +13,10 @@ export default function Li({
 }: LiProps): JSX.Element {
   return (
     <li
-      className={cn('text-lg my-2 ml-5 marker:m-0 marker:p-0', className)}
+      className={cn(
+        'text-lg my-2 ml-1 marker:m-0 marker:p-0 marker:text-sm',
+        className,
+      )}
       {...rest}
     >
       {children}
