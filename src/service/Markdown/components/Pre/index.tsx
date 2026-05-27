@@ -12,8 +12,10 @@ export default function Pre({
   ...rest
 }: PreProps): JSX.Element {
   return (
-    <pre className={cn('my-4 rounded-lg overflow-hidden', className)} {...rest}>
-      <div className="rounded-lg !p-8 !text-base">{children}</div>
+    <pre className={cn('my-4 rounded-lg overflow-x-auto', className)} {...rest}>
+      <div className="rounded-lg !p-8 !text-base w-max min-w-full">
+        {children}
+      </div>
     </pre>
   );
 }

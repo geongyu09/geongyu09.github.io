@@ -23,7 +23,7 @@ export default function Page({ params: { slug } }: PageProps) {
 
   return (
     <SsgoiTransition id="/post/[slug]">
-      <article className="max-w-[860px] mx-auto px-s-7 pt-s-9 pb-s-7">
+      <article className="max-w-[860px] mx-auto px-[20px] md:px-s-7 pt-s-9 pb-s-7">
         <div className="flex items-center gap-s-4 text-[13px] text-ink-500 mb-s-5">
           <span className="font-mono">{displayDate}</span>
           {primaryTag && (
@@ -45,11 +45,11 @@ export default function Page({ params: { slug } }: PageProps) {
         <div className="pb-s-6 border-b border-ink-200" />
       </article>
 
-      <div className="max-w-[860px] mx-auto px-s-7 pb-s-8">
+      <div className="max-w-[860px] mx-auto px-[20px] md:px-s-7 pb-s-8">
         <MarkdownViewer markdown={content} />
       </div>
 
-      <div className="max-w-[860px] mx-auto px-s-7 pb-s-8">
+      <div className="max-w-[860px] mx-auto px-[20px] md:px-s-7 pb-s-8">
         <div className="ds-hairline pt-s-6 flex justify-between items-center">
           <div className="text-[13px] text-ink-500">
             이 글이 도움이 되었다면 —{' '}

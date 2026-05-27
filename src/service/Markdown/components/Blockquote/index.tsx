@@ -6,11 +6,11 @@ import './styled.css'; // 적용이 안됨
 export type QuoteStyle = 'default' | 'info' | 'warning' | 'success' | 'error';
 
 const styleClasses: Record<QuoteStyle, string> = {
-  default: 'border-gray-300 bg-slate-100 px-8',
-  info: 'border-blue-300 bg-blue-50 flex px-8 gap-8 items-center',
-  warning: 'border-yellow-300 bg-yellow-50 flex px-8 gap-8 items-center',
-  success: 'border-green-300 bg-green-50 flex px-8 gap-8 items-center',
-  error: 'border-red-300 bg-red-50 flex px-8 gap-8 items-center',
+  default: 'border-ink-950',
+  info: 'border-blue-600 flex gap-6 items-center',
+  warning: 'border-yellow-500 flex gap-6 items-center',
+  success: 'border-emerald-500 flex gap-6 items-center',
+  error: 'border-red-500 flex gap-6 items-center',
 };
 
 interface BlockquoteProps extends React.HTMLAttributes<HTMLQuoteElement> {
@@ -40,7 +40,7 @@ export default function Blockquote({
   return (
     <blockquote
       className={cn(
-        'border-l-4 border-gray-300 my-12 bg-slate-100 py-2 rounded-md whitespace-pre-wrap',
+        'border-l-[3px] my-8 py-4 px-6 text-body text-ink-900 not-italic whitespace-pre-wrap',
         'blockquote',
         styleClasses[styleType],
         className,
