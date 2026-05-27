@@ -4,7 +4,7 @@ thumbnail: '/assets/blog/remind2024/thumbnail.png'
 description: '2024년도를 되돌아보았습니다.'
 date: '2024년 12월 22일'
 tags: '회고 2024'
-timeStamps : 1734793200
+timeStamps: 1734793200000
 ---
 
 
