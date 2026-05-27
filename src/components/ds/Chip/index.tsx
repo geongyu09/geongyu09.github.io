@@ -10,8 +10,8 @@ const Chip = ({ active = false, className, ...rest }: ChipProps) => (
     className={cn(
       'inline-flex items-center px-3 py-[5px] text-xs rounded-pill border transition-colors',
       active
-        ? 'bg-ink-950 text-white border-ink-950 font-medium'
-        : 'bg-white text-ink-700 border-ink-200 hover:border-ink-950',
+        ? 'bg-ink-950 text-ink-0 border-ink-950 font-medium'
+        : 'bg-ink-0 text-ink-700 border-ink-200 hover:border-ink-950',
       className,
     )}
     {...rest}

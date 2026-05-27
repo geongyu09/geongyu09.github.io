@@ -26,8 +26,8 @@ const PageButton = ({
     className={cn(
       'w-8 h-8 text-[13px] rounded-r-1 border transition-colors',
       active
-        ? 'bg-ink-950 text-white border-ink-950 font-semibold'
-        : 'bg-white text-ink-700 border-ink-200 hover:border-ink-950 disabled:opacity-30 disabled:hover:border-ink-200',
+        ? 'bg-ink-950 text-ink-0 border-ink-950 font-semibold'
+        : 'bg-ink-0 text-ink-700 border-ink-200 hover:border-ink-950 disabled:opacity-30 disabled:hover:border-ink-200',
     )}
   >
     {children}

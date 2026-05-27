@@ -13,7 +13,7 @@ const SearchField = forwardRef<HTMLInputElement, Props>(
     <label
       className={cn(
         'flex items-center gap-2 px-[14px] py-[10px] w-full md:min-w-[280px]',
-        'border border-ink-200 rounded-[10px] bg-white text-sm text-ink-500',
+        'border border-ink-200 rounded-[10px] bg-ink-0 text-sm text-ink-500',
         'focus-within:border-ink-950 transition-colors',
         className,
       )}

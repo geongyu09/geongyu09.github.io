@@ -24,7 +24,7 @@ const Nav = ({
   slug = '/notes',
   items = DEFAULT_ITEMS,
 }: Props) => (
-  <header className="h-16 sticky top-0 z-10 bg-white border-b border-ink-200">
+  <header className="h-16 sticky top-0 z-10 bg-ink-0 border-b border-ink-200">
     <div className="h-full max-w-container mx-auto px-s-7 flex items-center justify-between">
       <Link
         href="/"

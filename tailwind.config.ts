@@ -5,9 +5,10 @@ const LAYOUT = require('./src/constants/layout').default;
 /**
  * geongyu · Design System v1.0
  * 토큰 정의는 src/app/globals.css :root 와 일치합니다.
- * Tailwind 유틸로 노출하기 위해 동일 값을 여기서 매핑합니다.
+ * 컬러는 CSS 변수 참조 — .dark 클래스에서 변수를 뒤집어 다크모드를 전환합니다.
  */
 const config: Config = {
+  darkMode: 'class',
   content: [
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
@@ -20,23 +21,23 @@ const config: Config = {
     extend: {
       colors: {
         ink: {
-          0: '#ffffff',
-          50: '#fafafa',
-          100: '#f4f4f4',
-          200: '#e8e8e8',
-          300: '#d4d4d4',
-          400: '#a3a3a3',
-          500: '#737373',
-          600: '#525252',
-          700: '#404040',
-          800: '#262626',
-          900: '#171717',
-          950: '#0a0a0a',
+          0: 'var(--ink-0)',
+          50: 'var(--ink-50)',
+          100: 'var(--ink-100)',
+          200: 'var(--ink-200)',
+          300: 'var(--ink-300)',
+          400: 'var(--ink-400)',
+          500: 'var(--ink-500)',
+          600: 'var(--ink-600)',
+          700: 'var(--ink-700)',
+          800: 'var(--ink-800)',
+          900: 'var(--ink-900)',
+          950: 'var(--ink-950)',
         },
         blue: {
-          50: '#e8eeff',
-          600: '#2c5eff',
-          800: '#1f43c2',
+          50: 'var(--blue-50)',
+          600: 'var(--blue-600)',
+          800: 'var(--blue-800)',
         },
       },
       fontFamily: {

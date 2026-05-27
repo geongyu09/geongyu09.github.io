@@ -58,6 +58,33 @@
   --r-1: 6px;
   --r-2: 12px;
   --r-pill: 999px;
+
+  color-scheme: light;
+}
+
+/* =========================================================
+   Dark mode — html.dark 가 적용되면 ink 스케일을 반전하고
+   blue 액센트를 한 단계 밝게(#7a96ff) 사용합니다.
+   ========================================================= */
+html.dark {
+  --ink-0: #0a0a0a;
+  --ink-50: #131313;
+  --ink-100: #1c1c1c;
+  --ink-200: #2a2a2a;
+  --ink-300: #404040;
+  --ink-400: #525252;
+  --ink-500: #a3a3a3;
+  --ink-600: #c4c4c4;
+  --ink-700: #d4d4d4;
+  --ink-800: #e8e8e8;
+  --ink-900: #f4f4f4;
+  --ink-950: #fafafa;
+
+  --blue-50: #1a2240;
+  --blue-600: #7a96ff;
+  --blue-800: #aab8ff;
+
+  color-scheme: dark;
 }
 
 @layer base {
@@ -74,6 +101,8 @@
   body {
     width: 100vw;
     overflow-x: hidden;
+    background-color: var(--ink-0);
+    color: var(--ink-950);
   }
 }
 
@@ -128,6 +157,11 @@
     align-items: center;
     justify-content: center;
     border-radius: var(--r-1);
+  }
+  html.dark .ds-ph {
+    background:
+      repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.04) 0 8px, transparent 8px 16px),
+      var(--ink-100);
   }
 }
 
