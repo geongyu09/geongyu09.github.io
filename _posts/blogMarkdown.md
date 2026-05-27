@@ -4,7 +4,7 @@ date: '2024년 9월 8일'
 description: '블로그를 만들면서 고민했던 내용들 중, 마크다운과 관련한 트러블 슈팅 내용이 담겨있습니다'
 thumbnail: '/assets/blog/blogMarkdown/image.png'
 tags: 'blog markdown react-markdown'
-timeStamps: 1725408000
+timeStamps: 1725408000000
 ---
 
 # 글 보여주기_detail 페이지

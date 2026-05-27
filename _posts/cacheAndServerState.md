@@ -4,7 +4,7 @@ date: '2024년 7월 28일'
 description: '캐시와 서버 상태 개념을 react-query에 대입하여 설명하는 글입니다.'
 thumbnail: '/assets/blog/cacheAndServerState/thumbnail.png'
 tags: 'cache react-query'
-timeStamps : 1722124800
+timeStamps: 1722124800000
 ---
 
 > ❗️

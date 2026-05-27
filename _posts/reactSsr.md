@@ -4,7 +4,7 @@ thumbnail: '/assets/blog/reactSsr/SSR결과.gif'
 description: 'React를 사용해 SSR을 구현하는 방법에 대해 정리했습니다. CSR과 SSR의 차이점, React에서의 SSR 구현 방법, 그리고 간단한 카운터 기능을 가진 페이지를 SSR로 구현해보았습니다!'
 date: '2025년 2월 10일'
 tags: React SSR
-timeStamps : 1739145600
+timeStamps: 1739145600000
 ---
 
 ## csr과 ssr

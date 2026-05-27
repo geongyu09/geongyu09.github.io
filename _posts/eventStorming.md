@@ -4,7 +4,7 @@ date: '2024년 10월 09일'
 description: 'Econovation 동아리 Recruit 개발팀의 이벤트스토밍 워크숍 활동을 정리한 글입니다.'
 thumbnail: '/assets/blog/eventStorming/thumbnail.png'
 tags: 'next.js coding concept project'
-timeStamps : 1728432000
+timeStamps: 1728432000000
 ---
 
 

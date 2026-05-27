@@ -4,7 +4,7 @@ date: '2024년 03월 16일'
 description: '이 사이트를 만들게 된 동기 및 기획 내용을 담고 있습니다!'
 thumbnail: '/assets/blog/blogStart/Untitled.png'
 tags: 'next.js coding concept'
-timeStamps : 1710566107
+timeStamps: 1710566107000
 ---
 
 # 개요
