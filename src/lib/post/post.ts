@@ -75,3 +75,46 @@ export function getCurrentPosts(amount: number): Post[] {
 
   return allPosts.slice(0, amount);
 }
+
+/**
+ * @description 가장 최근에 발행된 포스트 한 개를 반환합니다.
+ */
+export function getLatestPost(): Post {
+  return getAllPosts()[0];
+}
+
+/**
+ * @description 특정 연도에 발행된 포스트의 개수를 반환합니다.
+ */
+export function getPostsCountByYear(year: number): number {
+  return getAllPosts().filter(
+    (post) => new Date(post.data.timeStamps).getFullYear() === year,
+  ).length;
+}
+
+/**
+ * @description 가장 처음 발행된 포스트의 연도를 반환합니다.
+ */
+export function getStartYear(): number {
+  const posts = getAllPosts();
+  return new Date(posts[posts.length - 1].data.timeStamps).getFullYear();
+}
+
+/**
+ * @description 전체 포스트에서 가장 많이 사용된 태그 상위 N개를 반환합니다.
+ */
+export function getTopTags(limit: number): string[] {
+  const counts = new Map<string, number>();
+
+  getAllPosts().forEach((post) => {
+    post.data.tags
+      .split(' ')
+      .filter(Boolean)
+      .forEach((tag) => counts.set(tag, (counts.get(tag) ?? 0) + 1));
+  });
+
+  return Array.from(counts.entries())
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, limit)
+    .map(([tag]) => tag);
+}

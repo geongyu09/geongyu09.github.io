@@ -18,7 +18,7 @@ export default function HomeContentSection() {
       >
         Recent · 최근 포스트
       </SectionHeading>
-      <CurrentPostsSection amount={4} />
+      <CurrentPostsSection amount={6} />
       <div className="mt-s-7 flex justify-center">
         <Link href={ROUTE_PATH.POSTS({})}>
           <Button variant="default">
