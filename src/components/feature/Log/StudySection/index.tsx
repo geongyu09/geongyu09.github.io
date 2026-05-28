@@ -1,5 +1,6 @@
 'use client';
 
+import Chip from '@/components/ds/Chip';
 import Eyebrow from '@/components/ds/Eyebrow';
 import { LogListItem } from '@/types/log';
 import cn from '@/utils/cn';
@@ -42,12 +43,7 @@ export default function StudySection({ studies }: Props) {
       {!isOpen && uniqueTags.length > 0 && (
         <div className="mt-s-3 flex flex-wrap gap-s-2">
           {uniqueTags.map((tag) => (
-            <span
-              key={tag}
-              className="inline-flex items-center px-[10px] py-[4px] text-xs rounded-pill border border-ink-200 bg-white text-ink-700"
-            >
-              {tag}
-            </span>
+            <Chip key={tag}>{tag}</Chip>
           ))}
         </div>
       )}
@@ -74,12 +70,7 @@ export default function StudySection({ studies }: Props) {
                   {study.tags && study.tags.length > 0 && (
                     <div className="flex gap-s-2 flex-wrap sm:shrink-0 sm:justify-end">
                       {study.tags.map((tag) => (
-                        <span
-                          key={tag}
-                          className="inline-flex items-center px-[10px] py-[4px] text-xs rounded-pill border border-ink-200 bg-white text-ink-700"
-                        >
-                          {tag}
-                        </span>
+                        <Chip key={tag}>{tag}</Chip>
                       ))}
                     </div>
                   )}
