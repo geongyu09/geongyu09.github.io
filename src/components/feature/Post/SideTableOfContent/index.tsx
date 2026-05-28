@@ -24,7 +24,7 @@ export default function SideTableOfContent({
         hoverComponent={
           <MarkdownNav
             markdown={content}
-            className="bg-white rounded-xl border p-4 shadow-md max-h-96 overflow-y-auto scrollbar-hidden overscroll-contain"
+            className="bg-ink-0 border border-ink-200 rounded-r-2 p-s-5 shadow-lg max-h-[480px] overflow-y-auto scrollbar-hidden overscroll-contain"
           />
         }
       />
