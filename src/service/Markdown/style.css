@@ -1,75 +1,25 @@
-/* .typhography h1 {
-  @apply text-3xl font-bold mt-12 mb-8;
-} */
-
-/* .typhography h2 {
-  @apply text-2xl font-bold mt-12 mb-8;
-} */
-
-/* .typhography h3 {
-  @apply text-xl font-bold mt-12 mb-8;
-} */
-
-/* .typhography p {
-  @apply text-lg my-4 leading-relaxed;
-} */
-
-/* .typhography ul {
-  @apply list-disc my-4 pl-8;
-} */
-
-/* .typhography ol {
-  @apply list-decimal my-4;
-} */
-
-/* .typhography li {
-  @apply text-lg my-2;
-} */
-
-/* .typhography blockquote {
-  @apply border-l-4 border-gray-300 my-12 pl-4 bg-slate-100 p-2 rounded-md;
-} */
-
-/* .typhography a {
-  @apply text-blue-500 underline;
-} */
-
-/* .typhography img {
-  @apply my-4;
-} */
-
-/* .typhography table {
-  @apply w-full my-4;
-} */
-
-/* .typhography th {
-  @apply text-lg font-bold;
-} */
-
-/* .typhography td {
-  @apply text-lg;
-} */
-
-/* .typhography code {
-  @apply bg-gray-100 p-1 rounded-md text-sm;
-} */
-
-/* .typhography pre {
-  @apply my-4 rounded-lg overflow-hidden;
-} */
-
-.typhography pre > div > div {
-  @apply rounded-lg !p-8 !text-base;
+/* rehype-pretty-code: 라인 블록화 */
+.typhography pre [data-line] {
+  display: block;
+  min-height: 1em;
 }
 
-/* .typhography pre code {
-  @apply bg-gray-200 rounded-md;
-} */
+/* 듀얼 테마 (min-light ↔ min-dark)
+   v0.14는 토큰 span 에 --shiki-light / --shiki-dark CSS 변수만 부여하므로
+   실제 color 속성으로 변환해 줘야 한다. */
+.typhography code[data-theme] span,
+.typhography code[data-theme] {
+  color: var(--shiki-light);
+}
+.dark .typhography code[data-theme] span,
+.dark .typhography code[data-theme] {
+  color: var(--shiki-dark);
+}
 
-/* .typhography hr {
-  @apply my-4;
-} */
-
-/* .typhography em {
-  @apply italic mx-1;
-} */
+/* Table — 행 구분선과 zebra 패턴 (디자인 토큰 사용) */
+.typhography tbody tr {
+  border-top: 1px solid var(--ink-200);
+}
+.typhography tbody tr:nth-child(even) {
+  background-color: var(--ink-50);
+}

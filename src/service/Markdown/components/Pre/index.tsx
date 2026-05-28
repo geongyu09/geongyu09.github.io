@@ -12,10 +12,16 @@ export default function Pre({
   ...rest
 }: PreProps): JSX.Element {
   return (
-    <pre className={cn('my-4 rounded-lg overflow-x-auto', className)} {...rest}>
-      <div className="rounded-lg !p-8 !text-base w-max min-w-full">
-        {children}
-      </div>
+    <pre
+      className={cn(
+        'my-s-5 overflow-x-auto rounded-r-1 border border-ink-200',
+        'bg-ink-50 text-code font-mono leading-[1.6]',
+        'py-s-4 px-s-5',
+        className,
+      )}
+      {...rest}
+    >
+      {children}
     </pre>
   );
 }

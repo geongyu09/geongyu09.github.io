@@ -12,7 +12,16 @@ export default function Td({
   ...rest
 }: TdProps): JSX.Element {
   return (
-    <td className={cn('text-lg', className)} {...rest}>
+    <td
+      className={cn('align-top', className)}
+      style={{
+        color: 'var(--ink-800)',
+        padding: 'var(--s-3) var(--s-4)',
+        fontSize: '0.9375rem',
+        lineHeight: 1.6,
+      }}
+      {...rest}
+    >
       {children}
     </td>
   );
