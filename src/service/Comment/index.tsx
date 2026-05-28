@@ -2,7 +2,11 @@
 
 import Giscus from '@giscus/react';
 
+import useTheme from '@/components/common/Theme/useTheme';
+
 export default function Comment() {
+  const { theme } = useTheme();
+
   return (
     <Giscus
       id="comments"
@@ -15,7 +19,7 @@ export default function Comment() {
       reactionsEnabled="1"
       emitMetadata="0"
       inputPosition="top"
-      theme="light"
+      theme={theme === 'dark' ? 'dark_dimmed' : 'light'}
       lang="ko"
       loading="lazy"
     />
