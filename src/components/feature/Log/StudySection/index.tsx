@@ -62,7 +62,7 @@ export default function StudySection({ studies }: Props) {
           <ul className="flex flex-col">
             {studies.map((study, i) => {
               const body = (
-                <div className="flex justify-between items-baseline gap-s-4">
+                <div className="flex flex-col gap-s-2 sm:flex-row sm:justify-between sm:items-baseline sm:gap-s-4">
                   <div>
                     <p className="text-[15px] text-ink-950 font-medium">
                       {study.title}
@@ -72,7 +72,7 @@ export default function StudySection({ studies }: Props) {
                     </span>
                   </div>
                   {study.tags && study.tags.length > 0 && (
-                    <div className="flex gap-s-2 flex-wrap shrink-0 justify-end">
+                    <div className="flex gap-s-2 flex-wrap sm:shrink-0 sm:justify-end">
                       {study.tags.map((tag) => (
                         <span
                           key={tag}
