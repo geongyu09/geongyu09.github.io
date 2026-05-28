@@ -12,7 +12,17 @@ export default function Th({
   ...rest
 }: ThProps): JSX.Element {
   return (
-    <th className={cn('text-lg font-bold', className)} {...rest}>
+    <th
+      className={cn('text-left font-semibold', className)}
+      style={{
+        backgroundColor: 'var(--ink-100)',
+        color: 'var(--ink-900)',
+        borderBottom: '1px solid var(--ink-300)',
+        padding: 'var(--s-3) var(--s-4)',
+        fontSize: '0.9375rem',
+      }}
+      {...rest}
+    >
       {children}
     </th>
   );

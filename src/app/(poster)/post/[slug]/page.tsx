@@ -11,7 +11,7 @@ interface PageProps {
   };
 }
 
-export default function Page({ params: { slug } }: PageProps) {
+export default async function Page({ params: { slug } }: PageProps) {
   const {
     content,
     data: { date, title, description, tags },

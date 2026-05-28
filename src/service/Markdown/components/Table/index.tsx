@@ -12,8 +12,18 @@ export default function Table({
   ...rest
 }: TableProps): JSX.Element {
   return (
-    <div className="my-4 w-full overflow-x-auto">
-      <table className={cn('w-max min-w-full', className)} {...rest}>
+    <div
+      className="my-6 w-full overflow-x-auto"
+      style={{
+        border: '1px solid var(--ink-200)',
+        borderRadius: 'var(--r-1)',
+      }}
+    >
+      <table
+        className={cn('w-max min-w-full border-collapse', className)}
+        style={{ fontFamily: 'var(--font-sans)' }}
+        {...rest}
+      >
         {children}
       </table>
     </div>

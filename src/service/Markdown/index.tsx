@@ -1,5 +1,11 @@
+import { Fragment } from 'react';
+import * as jsxRuntime from 'react/jsx-runtime';
+import { unified } from 'unified';
+import remarkParse from 'remark-parse';
 import remarkGfm from 'remark-gfm';
-import Markdown from 'react-markdown';
+import remarkRehype from 'remark-rehype';
+import rehypeReact from 'rehype-react';
+import rehypePrettyCode, { type Options } from 'rehype-pretty-code';
 import {
   H1,
   H2,
@@ -21,35 +27,50 @@ import {
 } from './components';
 import './style.css';
 
+const prettyCodeOptions: Options = {
+  theme: {
+    light: 'min-light',
+    dark: 'min-dark',
+  },
+  keepBackground: false,
+  defaultLang: 'plaintext',
+};
+
+const processor = unified()
+  .use(remarkParse)
+  .use(remarkGfm)
+  .use(remarkRehype, { allowDangerousHtml: false })
+  .use(rehypePrettyCode, prettyCodeOptions)
+  .use(rehypeReact, {
+    Fragment,
+    jsx: (jsxRuntime as any).jsx,
+    jsxs: (jsxRuntime as any).jsxs,
+    components: {
+      code: Code as any,
+      h1: H1 as any,
+      h2: H2 as any,
+      h3: H3 as any,
+      p: P as any,
+      ul: UL as any,
+      ol: OL as any,
+      li: LI as any,
+      a: A as any,
+      img: Img as any,
+      table: Table as any,
+      th: TH as any,
+      td: TD as any,
+      pre: Pre as any,
+      hr: HR as any,
+      em: EM as any,
+      blockquote: Blockquote as any,
+    },
+  } as any);
+
 interface MarkdownProps {
   markdown: string;
 }
-export default function MarkdownViewer({ markdown }: MarkdownProps) {
-  return (
-    <Markdown
-      className="typhography"
-      remarkPlugins={[remarkGfm]}
-      components={{
-        code: Code,
-        h1: H1,
-        h2: H2,
-        h3: H3,
-        p: P,
-        ul: UL,
-        ol: OL,
-        li: LI,
-        a: A,
-        img: Img,
-        table: Table,
-        th: TH,
-        td: TD,
-        pre: Pre,
-        hr: HR,
-        em: EM,
-        blockquote: Blockquote as any,
-      }}
-    >
-      {markdown}
-    </Markdown>
-  );
+
+export default async function MarkdownViewer({ markdown }: MarkdownProps) {
+  const file = await processor.process(markdown);
+  return <div className="typhography">{file.result as React.ReactNode}</div>;
 }
