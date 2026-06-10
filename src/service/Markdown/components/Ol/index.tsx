@@ -6,11 +6,7 @@ interface OlProps extends React.HTMLAttributes<HTMLOListElement> {
   className?: string;
 }
 
-export default function Ol({
-  children,
-  className = '',
-  ...rest
-}: OlProps): JSX.Element {
+export default function Ol({ children, className = '', ...rest }: OlProps) {
   return (
     <ol className={cn('list-decimal my-4 pl-4', className)} {...rest}>
       {children}

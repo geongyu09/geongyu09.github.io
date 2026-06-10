@@ -6,11 +6,7 @@ interface EmProps extends React.HTMLAttributes<HTMLElement> {
   className?: string;
 }
 
-export default function Em({
-  children,
-  className = '',
-  ...rest
-}: EmProps): JSX.Element {
+export default function Em({ children, className = '', ...rest }: EmProps) {
   return (
     <em className={cn('italic mx-1', className)} {...rest}>
       {children}

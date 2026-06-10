@@ -8,11 +8,7 @@ interface H2Props extends React.HTMLAttributes<HTMLHeadingElement> {
   className?: string;
 }
 
-export default function H2({
-  children,
-  className = '',
-  ...rest
-}: H2Props): JSX.Element {
+export default function H2({ children, className = '', ...rest }: H2Props) {
   const headerId = decodeURIComponent(
     headerUtil.getHeaderHashText(children as string),
   );

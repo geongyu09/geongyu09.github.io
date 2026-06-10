@@ -24,7 +24,7 @@ export default function Blockquote({
   children,
   className = '',
   ...rest
-}: BlockquoteProps): JSX.Element {
+}: BlockquoteProps) {
   if (!node) return <div />;
 
   const contents = (node.children[1].children[0] as any).value?.split('\n');

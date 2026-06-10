@@ -6,11 +6,7 @@ interface ThProps extends React.ThHTMLAttributes<HTMLTableHeaderCellElement> {
   className?: string;
 }
 
-export default function Th({
-  children,
-  className = '',
-  ...rest
-}: ThProps): JSX.Element {
+export default function Th({ children, className = '', ...rest }: ThProps) {
   return (
     <th
       className={cn('text-left font-semibold', className)}

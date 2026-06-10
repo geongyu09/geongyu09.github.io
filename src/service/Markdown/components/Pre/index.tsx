@@ -6,11 +6,7 @@ interface PreProps extends React.HTMLAttributes<HTMLPreElement> {
   className?: string;
 }
 
-export default function Pre({
-  children,
-  className = '',
-  ...rest
-}: PreProps): JSX.Element {
+export default function Pre({ children, className = '', ...rest }: PreProps) {
   return (
     <pre
       className={cn(

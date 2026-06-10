@@ -27,11 +27,10 @@ export default function A({
   target,
   rel,
   ...rest
-}: AProps): JSX.Element {
+}: AProps) {
   const external = isExternalHref(href);
   const finalTarget = target ?? (external ? '_blank' : undefined);
-  const finalRel =
-    rel ?? (external ? 'noopener noreferrer' : undefined);
+  const finalRel = rel ?? (external ? 'noopener noreferrer' : undefined);
 
   return (
     <a

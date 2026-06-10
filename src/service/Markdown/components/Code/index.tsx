@@ -7,11 +7,7 @@ interface CodeProps extends React.HTMLAttributes<HTMLElement> {
   'data-language'?: string;
 }
 
-export default function Code({
-  children,
-  className = '',
-  ...rest
-}: CodeProps): JSX.Element {
+export default function Code({ children, className = '', ...rest }: CodeProps) {
   const isBlock =
     className?.includes('language-') ||
     (rest as { style?: React.CSSProperties }).style?.display === 'grid';

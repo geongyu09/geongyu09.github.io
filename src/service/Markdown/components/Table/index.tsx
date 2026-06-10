@@ -10,7 +10,7 @@ export default function Table({
   children,
   className = '',
   ...rest
-}: TableProps): JSX.Element {
+}: TableProps) {
   return (
     <div
       className="my-6 w-full overflow-x-auto"
