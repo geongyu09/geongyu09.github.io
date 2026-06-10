@@ -90,7 +90,7 @@ html.dark {
 @layer base {
   html {
     font-family: var(--font-sans);
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 400;
     color: var(--ink-950);
     background-color: var(--ink-0);
@@ -121,7 +121,7 @@ html.dark {
   }
   .ds-eyebrow {
     font-family: var(--font-mono);
-    font-size: 11px;
+    font-size: 13px;
     letter-spacing: 0.08em;
     text-transform: uppercase;
     color: var(--ink-500);
@@ -150,7 +150,7 @@ html.dark {
       var(--ink-100);
     color: var(--ink-500);
     font-family: var(--font-mono);
-    font-size: 11px;
+    font-size: 13px;
     letter-spacing: 0.05em;
     text-transform: uppercase;
     display: flex;
