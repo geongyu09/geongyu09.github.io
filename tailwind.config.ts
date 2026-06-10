@@ -46,10 +46,22 @@ const config: Config = {
         serif: ['var(--font-serif)'],
       },
       fontSize: {
-        display: ['64px', { lineHeight: '1.05', letterSpacing: '-0.035em', fontWeight: '600' }],
-        h1: ['44px', { lineHeight: '1.1', letterSpacing: '-0.03em', fontWeight: '600' }],
-        h2: ['28px', { lineHeight: '1.2', letterSpacing: '-0.025em', fontWeight: '600' }],
-        h3: ['20px', { lineHeight: '1.3', letterSpacing: '-0.015em', fontWeight: '600' }],
+        display: [
+          '64px',
+          { lineHeight: '1.05', letterSpacing: '-0.035em', fontWeight: '600' },
+        ],
+        h1: [
+          '44px',
+          { lineHeight: '1.1', letterSpacing: '-0.03em', fontWeight: '600' },
+        ],
+        h2: [
+          '28px',
+          { lineHeight: '1.2', letterSpacing: '-0.025em', fontWeight: '600' },
+        ],
+        h3: [
+          '20px',
+          { lineHeight: '1.3', letterSpacing: '-0.015em', fontWeight: '600' },
+        ],
         lead: ['18px', { lineHeight: '1.6', letterSpacing: '-0.01em' }],
         body: ['17px', { lineHeight: '1.75', letterSpacing: '-0.005em' }],
         sm: ['14px', { lineHeight: '1.55', letterSpacing: '-0.005em' }],

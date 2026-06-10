@@ -6,11 +6,7 @@ interface UlProps extends React.HTMLAttributes<HTMLUListElement> {
   className?: string;
 }
 
-export default function Ul({
-  children,
-  className = '',
-  ...rest
-}: UlProps): JSX.Element {
+export default function Ul({ children, className = '', ...rest }: UlProps) {
   return (
     <ul className={cn('list-disc my-4 pl-4', className)} {...rest}>
       {children}

@@ -6,11 +6,7 @@ interface TdProps extends React.TdHTMLAttributes<HTMLTableDataCellElement> {
   className?: string;
 }
 
-export default function Td({
-  children,
-  className = '',
-  ...rest
-}: TdProps): JSX.Element {
+export default function Td({ children, className = '', ...rest }: TdProps) {
   return (
     <td
       className={cn('align-top', className)}

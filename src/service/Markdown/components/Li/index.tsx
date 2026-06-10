@@ -6,11 +6,7 @@ interface LiProps extends React.HTMLAttributes<HTMLLIElement> {
   className?: string;
 }
 
-export default function Li({
-  children,
-  className = '',
-  ...rest
-}: LiProps): JSX.Element {
+export default function Li({ children, className = '', ...rest }: LiProps) {
   return (
     <li
       className={cn(

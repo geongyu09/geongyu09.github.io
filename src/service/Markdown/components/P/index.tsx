@@ -6,11 +6,7 @@ interface PProps extends React.HTMLAttributes<HTMLParagraphElement> {
   className?: string;
 }
 
-export default function P({
-  children,
-  className = '',
-  ...rest
-}: PProps): JSX.Element {
+export default function P({ children, className = '', ...rest }: PProps) {
   return (
     <p className={cn('text-lg my-4 leading-relaxed', className)} {...rest}>
       {children}

@@ -5,7 +5,7 @@ interface HrProps extends React.HTMLAttributes<HTMLHRElement> {
   className?: string;
 }
 
-export default function Hr({ className = '', ...rest }: HrProps): JSX.Element {
+export default function Hr({ className = '', ...rest }: HrProps) {
   return <hr className={cn('my-4', className)} {...rest} />;
 }
 

@@ -8,14 +8,9 @@ import React from 'react';
 
 interface ImgProps extends React.ImgHTMLAttributes<HTMLImageElement> {}
 
-export default function Img({
-  width,
-  height,
-  src,
-  alt,
-}: ImgProps): JSX.Element {
+export default function Img({ width, height, src, alt }: ImgProps) {
   const { pushModal } = useModal();
-  const imageSrc = src ?? '';
+  const imageSrc = typeof src === 'string' ? src : '';
   const imageAlt = alt ?? 'post content';
 
   const handleClick = () => {

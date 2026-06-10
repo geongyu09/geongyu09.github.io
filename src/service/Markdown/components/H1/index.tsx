@@ -10,11 +10,7 @@ interface H1Props extends React.HTMLAttributes<HTMLHeadingElement> {
   className?: string;
 }
 
-export default function H1({
-  children,
-  className = '',
-  ...rest
-}: H1Props): JSX.Element {
+export default function H1({ children, className = '', ...rest }: H1Props) {
   const headerId = decodeURIComponent(
     headerUtil.getHeaderHashText(children as string),
   );

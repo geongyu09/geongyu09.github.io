@@ -8,11 +8,7 @@ interface H3Props extends React.HTMLAttributes<HTMLHeadingElement> {
   className?: string;
 }
 
-export default function H3({
-  children,
-  className = '',
-  ...rest
-}: H3Props): JSX.Element {
+export default function H3({ children, className = '', ...rest }: H3Props) {
   const headerId = decodeURIComponent(
     headerUtil.getHeaderHashText(children as string),
   );
