@@ -1,3 +1,5 @@
+import { notFound } from 'next/navigation';
+
 import FadeEffectWrapper from '@/components/common/FadeEffectWrapper';
 import Eyebrow from '@/components/ds/Eyebrow';
 import SectionHeading from '@/components/ds/SectionHeading';
@@ -26,6 +28,8 @@ const formatRange = (startDate: string, endDate: string) =>
   `${formatYearMonth(startDate)} ~ ${formatYearMonth(endDate)}`;
 
 export default function LogPage() {
+  notFound();
+
   const {
     allYears,
     studiesByYear,
