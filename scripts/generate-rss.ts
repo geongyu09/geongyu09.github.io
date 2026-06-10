@@ -30,7 +30,7 @@ function isRssUpToDate(): boolean {
 
   const rssContent = fs.readFileSync(rssPath, 'utf-8');
   const registeredSlugs = new Set(
-    [...rssContent.matchAll(/<guid[^>]*>([^<]+)<\/guid>/g)].map((m) =>
+    Array.from(rssContent.matchAll(/<guid[^>]*>([^<]+)<\/guid>/g)).map((m) =>
       m[1].replace(`${SITE_URL}/post/`, '').replace(/\/$/, ''),
     ),
   );

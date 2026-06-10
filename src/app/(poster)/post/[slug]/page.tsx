@@ -6,12 +6,13 @@ import MarkdownViewer from '@/service/Markdown';
 import { SsgoiTransition } from '@ssgoi/react';
 
 interface PageProps {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 }
 
-export default async function Page({ params: { slug } }: PageProps) {
+export default async function Page({ params }: PageProps) {
+  const { slug } = await params;
   const {
     content,
     data: { date, title, description, tags },

@@ -2,14 +2,15 @@ import PostListView from '@/components/feature/Post/PostListView';
 import { getAllTags } from '@/lib/post/post';
 
 interface PostFilteredPageProps {
-  params: {
+  params: Promise<{
     tag: string;
-  };
+  }>;
 }
 
-export default function PostFilteredPage({
-  params: { tag },
+export default async function PostFilteredPage({
+  params,
 }: PostFilteredPageProps) {
+  const { tag } = await params;
   return <PostListView activeTag={tag} />;
 }
 
