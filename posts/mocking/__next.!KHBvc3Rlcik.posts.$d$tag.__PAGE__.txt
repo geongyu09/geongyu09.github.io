@@ -1,0 +1,321 @@
+1:"$Sreact.fragment"
+2:I[96052,["/_next/static/chunks/3pbb4kp0gy5k7.js","/_next/static/chunks/23mw1lj56lyzw.js","/_next/static/chunks/14mrh2-p_w84d.js","/_next/static/chunks/0-bo1z8dc7uf_.js","/_next/static/chunks/28xnx6g1r_fzd.js","/_next/static/chunks/0bunxc50h_7pk.js"],"default"]
+7:I[97367,["/_next/static/chunks/3pbb4kp0gy5k7.js","/_next/static/chunks/23mw1lj56lyzw.js","/_next/static/chunks/14mrh2-p_w84d.js","/_next/static/chunks/0-bo1z8dc7uf_.js"],"OutletBoundary"]
+8:"$Sreact.suspense"
+3:T283e,
+> **[테스트가 필요해 시리즈]**
+> 이전 글 : [\[eeos\] 테스트가 필요해 _ 1부](/post/eeosNeedTestPart1)
+
+기존에 말했듯 api 로직에 테스트를 작성하고자 하였다.
+
+```typescript
+// 행사 생성 api
+export const postProgram = async (
+  body: PostProgramRequest,
+): Promise<ProgramIdDto> => {
+  const { data } = await https({
+    url: API.PROGRAM.CREATE,
+    method: "POST",
+    data: body,
+  });
+
+  return new ProgramIdDto(data?.data);
+};
+```
+
+테스트를 할 때 중요한 요소들이 존재한다.
+
+## 좋은 테스트의 조건 _ FIRST
+
+- Fast
+	테스트는 빠르게 동작해야 한다. 느린 것에 대한 의존은 최소화해야 한다.
+- Isolated
+	직접적 혹은 간접적으로 테스트 코드와 상호 작용하는 코드가 많을 수록 문제가 발생할 소지가 늘어난다. 다른 단위 테스트에 의존하지 않는 결합도가 낮은 테스트 코드를 작성해야 한다. (테스트는 독립적이어야 한다.)
+- Repeatable
+	테스트는 실행할 때마다 결과가 같아야 한다.
+- Self-validating
+	테스트는 스스로 검증 가능할 뿐만 아니라 준비할 수 있어야 한다. 테스트에 필요한 설정 단계를 자동화 해야 한다.
+- Timely
+	언제라도 단위 테스트를 작성해야 한다. 대규모의 개발을 할수록 단위 테스트를 미루면 안된다.
+
+즉 좋은 테스트가 되기 위해서는 고립되어야 하며, 빠르게 동작해야하고, 반복할 때마다 같은 결과값을 가져야만 한다.
+다만 위와 같은 서버 요청의 경우, 테스트가 느릴 수 밖에 없으며, 요청에 실패하거나 서버(뒷 단)에서 가지고 있는 데이터가 변경되어버리면 기존에 성공하는 테스트가 상황에 따라서 실패해버리는 문제가 발생한다.
+
+이를 방지하기 위해 서버에서 요청 받는 부분을 임의의 값으로 대체할 필요성이 존재하였다.
+
+## 서버 응답을 mocking 하자
+
+사실 이미 EEOS는 mockoon이라는 툴을 사용하여 목서버를 사용하는 중이었다.
+
+![현재 사용중인 mockoon 툴 모습](/assets/blog/apiTestWithMocking/0.png)
+
+하지만 mockoon 이라는 외부 툴에 의존해서 테스트를 돌리게 되면, 다른 개발자들과 완전히 동일한 툴의 세팅이 있어야 테스트의 동일한 결과를 얻을 수 있을 것이고, 또한 로컬에서 툴을 실행시킨 상태에서만 테스트를 수행할 수 있다는 제약이 존재했다.
+
+이에 따라서 axios의 instance를 jest.mock으로 모킹해 반환값을 조절하도록 하였다.
+
+```typescript
+jest.mock("../instance"); // axios 인스턴스 모킹하기
+const mockHttps = https as jest.MockedFunction<typeof https>;
+
+// 행사 생성 api
+describe("postProgram", () => {
+  const mockReturnData = getResponse({
+    url: "/programs",
+    method: "POST",
+  });
+
+  beforeEach(() => {
+  // 인스턴스가 반환하는 값을 설정해준다.
+    mockHttps.mockReturnValue(mockReturnData);
+  });
+
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
+  it("행사를 생성한다", async () => {
+    const body: PostProgramRequest = {
+      category: "weekly",
+      content: "content",
+      deadLine: "2022-12-12",
+      programGithubUrl: "https://github.com",
+      title: "title",
+      type: "demand",
+      members: [{ memberId: 1 }],
+      teams: [{ teamId: 1 }],
+    };
+
+    const result = await postProgram(body);
+
+    expect(https).toHaveBeenCalledWith({
+      data: body,
+      method: "POST",
+      url: "/programs",
+    });
+
+    expect(result).toEqual({ programId: 1 });
+  });
+});
+```
+
+여기서 서버의 반환 데이터를 따로 한 곳에서 관리하는것이 유지보수적으로 유리하다고 판단하였다. 이에 따라서 이를 한 곳에서 관리하도록 하였다.
+
+![](/assets/blog/apiTestWithMocking/1.png)
+
+그리고 모든 response값에서 반복되는 status와 message를 따로 함수로서 빼서 반복을 줄이고자 하였다.
+
+```typescript
+interface CreateResponseStubParams<DataType> {
+  status?: number;
+  message?: string;
+  data: DataType;
+}
+export const createResponseStub = <DataType>({
+  status = 200,
+  message = "성공",
+  data,
+}: CreateResponseStubParams<DataType>) => {
+  return {
+    data: {
+      status,
+      message,
+      data,
+    },
+  };
+};
+
+```
+
+그리고 이렇게 만든 반환 데이터는 사용하는 곳에서 사용하기 쉽도록 “uri” 와 “method”로 접근할 수 있도록 하였다.
+
+```typescript
+import {
+  attendMembers,
+  deleteProgram,
+  guestProgram,
+  guestPrograms,
+  nonAbleProgramAccess,
+  program,
+  programAttend,
+  programMembers,
+  programs,
+  sendSlackMessage,
+  postProgram,
+  patchProgram,
+  changeProgramAttendMode,
+} from "./mockData/program";
+import { createResponseStub } from "./utils/responseStubWrapper";
+
+const programResponse = {
+  "/programs": {
+    GET: createResponseStub({ data: programs }),
+    POST: createResponseStub({ data: postProgram }),
+  },
+  "/programs/:programId": {
+    GET: createResponseStub({ data: program }),
+    DELETE: createResponseStub({ data: deleteProgram }),
+    PATCH: createResponseStub({ data: patchProgram }),
+    POST: createResponseStub({ data: changeProgramAttendMode }),
+  },
+  "/guest/programs/:programId": {
+    GET: createResponseStub({ data: guestProgram }),
+  },
+  "/guest/programs": {
+    GET: createResponseStub({ data: guestPrograms }),
+  },
+  "/programs/:programId/members": {
+    GET: createResponseStub({ data: programMembers }),
+  },
+  "/attend/programs/:programId": {
+    GET: createResponseStub({ data: programAttend }),
+  },
+  "/programs/:programId/accessRight": {
+    GET: createResponseStub({ data: nonAbleProgramAccess }),
+  },
+  "/attend/programs/:programId/members": {
+    GET: createResponseStub({ data: attendMembers }),
+  },
+  "/programs/:programId/slack/notification": {
+    POST: createResponseStub({ data: sendSlackMessage }),
+  },
+} as const;
+
+export default programResponse;
+
+```
+
+```typescript
+import memberResponse from "./member";
+import programResponse from "./program";
+
+interface GetResponseParams {
+  url: string;
+  method: string;
+}
+const getResponse = ({ url, method }: GetResponseParams) => {
+  // 만약 데이터를 추가하고 싶다면, 아래와 같이 추가하면 된다.
+  const responseData = {
+    ...programResponse,
+    ...memberResponse,
+  };
+
+  return responseData[url][method];
+};
+
+export default getResponse;
+```
+
+만약 반환값을 가져오고자 한다면 아래와 같이 `getResponse` 를 사용하여 url과 method를 통해 가져올 수 있다.
+
+```typescript
+  const mockReturnData = getResponse({
+    url: "/guest/programs",
+    method: "GET",
+  });
+```
+
+꽤나 괜찮은 로직이라고 생각이 들었다.
+
+## 테스트와 리팩토링
+
+기존 eeos는 React-Toastify 라이브러리를 사용하고 있었다.
+
+![](/assets/blog/apiTestWithMocking/2.gif)
+
+그리고 tostify에는 **toast.promise** 라는비동기 로직에 관하여 toast 상태 업데이트를 쉽게 해주는 api를 제공한다.
+
+> [react-toastify - Promise](https://fkhadra.github.io/react-toastify/promise)
+
+이전에는 공식문서에 나온대로 그대로 사용을 했었다.
+
+```javascript
+// 기존 프로그램 업데이트 api 로직
+export const patchProgram = async ({
+  programId,
+  body,
+}: PatchProgramRequest): Promise<ProgramIdDto> => {
+  const { data } = await toast.promise(
+    https({
+      url: API.PROGRAM.UPDATE(programId),
+      method: "PATCH",
+      data: body,
+    }),
+    {
+      pending: MESSAGE.EDIT.PENDING,
+      success: MESSAGE.EDIT.SUCCESS,
+      error: MESSAGE.EDIT.FAILED,
+    },
+  );
+
+  return new ProgramIdDto(data?.data);
+};
+```
+
+이전에는 큰 문제점을 느끼지 못했다고 생각하였다.
+(사실 느낀 적이 있었다. 이전에 어드민 로그인을 추가할 때 알수 없는 toast 창이 계속 떴었는데, ui 로직을 api 로직에서 관리하여서 문제 상황을 찾는데 어려움이 있었다.(해당 로직이 api 로직에 있을 줄을 상상도 못했다. 그리고 해당 페이지에서 요청하는 모든 api문을 봐야 했다.))
+
+다만 테스트를 작성하다보니 문제점이 보이기 시작했다. toast 로직과 api 로직이 완전히 섞여있다보니 어떻게 모킹을 해야하지에 대해서 바로 떠오르지도 않았고, 게다가 테스트를 작성한다고 해도 너무나도 많은 것들을 테스트 해야 할 것만 같았다. (책임이 너무 많은 함수..)
+
+이를 조금 더 테스트 하기 쉬운 코드로 변경해보려고 한다.
+
+### 신나는 리팩토링
+
+먼저 해당 api 로직에서는 두 책임이 섞여있으므로(ui / 서버 요청) 이를 분리해보고자 하였다. 원래의 본질은 서버요청이므로, ui 로직을 외부 의존성이라 생각하였다. 이를 받아오는 방법도 좋아보였으나, 그보다 해당 로직 자체를 컴포넌트에서 처리하도록 만들어주고 싶었다.
+
+```javascript
+// 이제는 서버 요청만 하는 함수가 되었다.
+
+export const postProgram = async (
+  body: PostProgramRequest,
+): Promise<ProgramIdDto> => {
+  const { data } = await https({
+    url: API.PROGRAM.CREATE,
+    method: "POST",
+    data: body,
+  });
+```
+
+그리고, 해당 api는 react-query 라이브러리를 통해서 사용이 되는데, 여기서 onSuccess / onError 상태를 통해서 해당 ui를 표시하도록 하였다.
+
+```javascript
+ const { mutate: updateProgramMutate } = useUpdateProgram({
+     programId
+ });
+
+ const toastId = toast.loading(MESSAGE.EDIT.PENDING);
+ updateProgramMutate(
+      {
+	      // 파라미터들..
+      },
+      {
+        onSuccess: () => {
+          toast.update(toastId, {
+            render: MESSAGE.EDIT.SUCCESS,
+            type: "success",
+            isLoading: false,
+            autoClose: 3000,
+          });
+
+          reset();
+          route.back();
+        },
+        onError: () => {
+          toast.error(MESSAGE.EDIT.FAILED);
+          toast.update(toastId, {
+            render: MESSAGE.EDIT.FAILED,
+            type: "error",
+            isLoading: false,
+            autoClose: 3000,
+          });
+        },
+      },
+    );
+```
+
+> **[테스트가 필요해 시리즈]**
+> 다음 글 : [\[eeos\] 테스트가 필요해 _ 3부](/post/eeosTestStrategy)
+0:{"rsc":["$","$1","c",{"children":[["$","$L2",null,{"posts":[{"data":{"title":"[eeos] 테스트가 필요해 _ 2부","date":"2024년 8월 13일","description":"api 로직에 단위 테스트를 작성하기 위해 jest로 서버 응답을 모킹하고, 테스트하기 쉬운 코드를 위해 ui와 서버 요청의 책임을 분리한 과정을 정리해보았습니다.","thumbnail":"/assets/blog/apiTestWithMocking/thumbnail.png","tags":"test-code jest mocking react-query refactoring","timeStamps":1723536000000},"slug":"apiTestWithMocking","content":"$3"}],"totalCount":24,"allTags":["회고","우테코","리액트","추상화","송곳원정대","함수형","프론트엔드","RxJS","자바스크립트","Claude-Code","LLM","에이전트","하네스","기술분석","소프트스킬","AI","함수형프로그래밍","TDD","페어프로그래밍","프롬프팅","webview","animation","react","next.js","library","project","2025","react-native","React","SSR","Webpack","Babel","TypeScript","2024","coding","concept","블로그","일지","modal","blog","markdown","react-markdown","test-code","eeos","컴포넌트테스트","모킹","jest","mocking","react-query","refactoring","테스트","cache"],"activeTag":"mocking"}],["$L4","$L5"],"$L6"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"W1x7eEt0DJW96rYPGFkKT"}
+4:["$","script","script-0",{"src":"/_next/static/chunks/28xnx6g1r_fzd.js","async":true}]
+5:["$","script","script-1",{"src":"/_next/static/chunks/0bunxc50h_7pk.js","async":true}]
+6:["$","$L7",null,{"children":["$","$8",null,{"name":"Next.MetadataOutlet","children":"$@9"}]}]
+9:null
