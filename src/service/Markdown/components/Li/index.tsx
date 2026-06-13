@@ -10,7 +10,7 @@ export default function Li({ children, className = '', ...rest }: LiProps) {
   return (
     <li
       className={cn(
-        'text-lg my-2 ml-1 marker:m-0 marker:p-0 marker:text-sm',
+        'text-[18.25px] leading-relaxed my-2 ml-1 marker:m-0 marker:p-0 marker:text-sm',
         className,
       )}
       {...rest}
