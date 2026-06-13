@@ -14,28 +14,43 @@ const styleClasses: Record<QuoteStyle, string> = {
 };
 
 interface BlockquoteProps extends React.HTMLAttributes<HTMLQuoteElement> {
-  node: Element | undefined;
   children?: React.ReactNode | React.ReactNode[];
   className?: string;
 }
 
+// children 트리에서 첫 번째 텍스트를 추출한다.
+// rehype-react v8부터 node prop이 기본 전달되지 않으므로, 스타일 판별을 children 기반으로 한다.
+function getFirstText(node: React.ReactNode): string {
+  if (typeof node === 'string') return node;
+  if (typeof node === 'number') return String(node);
+  if (Array.isArray(node)) {
+    for (const child of node) {
+      const text = getFirstText(child);
+      if (text.trim()) return text;
+    }
+    return '';
+  }
+  if (React.isValidElement(node)) {
+    return getFirstText(
+      (node.props as { children?: React.ReactNode }).children,
+    );
+  }
+  return '';
+}
+
 export default function Blockquote({
-  node,
   children,
   className = '',
   ...rest
 }: BlockquoteProps) {
-  if (!node) return <div />;
-
-  const contents = (node.children[1].children[0] as any).value?.split('\n');
+  const firstLine = getFirstText(children).split('\n')[0]?.trim();
 
   let styleType: QuoteStyle = 'default';
 
-  if (!contents) styleType = 'default';
-  if (contents?.[0] === '🍀') styleType = 'success';
-  if (contents?.[0] === '⚠️' || contents?.[0] === '❗️') styleType = 'warning';
-  if (contents?.[0] === '❌') styleType = 'error';
-  if (contents?.[0] === '💡') styleType = 'info';
+  if (firstLine === '🍀') styleType = 'success';
+  if (firstLine === '⚠️' || firstLine === '❗️') styleType = 'warning';
+  if (firstLine === '❌') styleType = 'error';
+  if (firstLine === '💡') styleType = 'info';
 
   return (
     <blockquote
