@@ -1,20 +1,64 @@
 ---
 name: post-writing-from-context
-description: `./context/post/*`에 있는 md파일과, 여기서 참조하고있는 파일을 바탕으로 `_posts/`에 실제 글을 작성합니다. 이 스킬을 "작성한 글을 바탕으로 블로그 글로 옮겨줘", "작성한 글로 블로그 글로 작성해줘"등의 프롬프트가 입력된 경우 실행하세요.
+description: '`./context/post/*`에 있는 md파일과, 여기서 참조하고있는 파일을 바탕으로 `_posts/`에 실제 글을 작성합니다. 또한 Notion URL(`https://*.notion.site/...` 또는 `https://www.notion.so/...`)을 함께 넘기면 해당 페이지를 Notion MCP로 읽어 글의 소스로 사용합니다. 이 스킬을 "작성한 글을 바탕으로 블로그 글로 옮겨줘", "작성한 글로 블로그 글로 작성해줘", "이 노션 글로 블로그 글 작성해줘 [URL]" 등의 프롬프트가 입력된 경우 실행하세요.'
 disable-model-invocation: false
 user-invocable: true
 ---
 
 # 작성한 문서를 실제 블로그 글로 옮기는 커맨드(스킬)
 
-이 커맨드는 `./context/post/*`에 있는 md파일과 참조하고있는 이미지 파일들을 바탕으로 실제 블로그에 올라갈 `_posts/`에 실제 글을 작성합니다.
+이 커맨드는 작성된 글의 소스를 바탕으로 실제 블로그에 올라갈 `_posts/`에 글을 작성합니다.
+글의 소스는 다음 두 가지 중 하나입니다.
+
+- **(A) 로컬 파일**: `./context/post/*`에 있는 md파일과 참조하고있는 이미지 파일들
+- **(B) Notion URL**: 프롬프트에 `https://*.notion.site/...` 또는 `https://www.notion.so/...` 형식의 URL이 포함된 경우, Notion MCP로 해당 페이지를 읽어옵니다.
 
 필요한 경우 `post-outline-summarizer` 에이전트를 적극 활용하세요
 
-## 작동 방식
+## 입력 소스 판별
+
+프롬프트를 먼저 확인하여 소스를 결정합니다.
+
+1. 프롬프트에 Notion URL(`notion.site` 또는 `notion.so` 도메인)이 포함되어 있으면 → **(B) Notion URL 처리** 절차를 먼저 수행해 `./context/post/`에 md + 에셋을 만든 뒤, 이후 공통 절차로 진행합니다.
+2. Notion URL이 없으면 → `./context/post/*`에 md 파일이 있는지 확인합니다.
+   - 있으면 → 그대로 공통 절차로 진행합니다.
+   - 없으면 → 사용자에게 "Notion URL을 넘겨주시거나 `./context/post/`에 글 파일을 넣어주세요."라고 말한 후 종료합니다.
+
+## (B) Notion URL 처리 절차
+
+Notion URL이 입력되면 Notion MCP(`claude.ai Notion` 서버, `https://mcp.notion.com/mcp`)를 사용해 페이지 내용을 가져옵니다.
+
+### 1. 인증 확인
+
+Notion MCP는 최초 1회 OAuth 인증이 필요합니다.
+
+- `fetch` 계열 도구가 보이지 않고 `mcp__claude_ai_Notion__authenticate`만 노출되어 있다면, **아직 미인증 상태**입니다.
+- 이 경우 `mcp__claude_ai_Notion__authenticate`를 호출해 인증 URL을 받아 사용자에게 안내하고, 사용자가 브라우저에서 인증을 마친 뒤 콜백 URL을 받으면 `mcp__claude_ai_Notion__complete_authentication`으로 완료합니다.
+- 인증이 완료되면 `search`/`fetch` 등 실제 도구가 자동으로 노출됩니다. (정확한 도구 이름은 인증 후 노출되는 것을 사용하세요. 예: `mcp__claude_ai_Notion__fetch`)
+
+### 2. 페이지 본문 가져오기
+
+- 입력받은 Notion URL을 Notion MCP의 `fetch` 계열 도구에 넘겨 페이지 본문을 **마크다운**으로 가져옵니다.
+- 하위 페이지나 토글로 분할된 내용이 있다면 필요한 범위까지 함께 가져옵니다.
+
+### 3. 이미지/에셋 다운로드
+
+- 본문 마크다운 안의 이미지 URL을 모두 식별합니다. (Notion 이미지는 보통 `prod-files-secure.s3...` 같은 **서명된 임시 URL**로 내려오며 만료될 수 있으므로, 식별 즉시 다운로드합니다.)
+- 각 이미지를 `curl`로 `./context/post/[페이지 제목]/` 아래에 내려받습니다. 파일명은 본문에서 등장하는 순서대로 `0`, `1`, ... 로 임시 저장하고, 썸네일로 쓸 대표 이미지는 `thumbnail`로 둡니다. (확장자는 원본을 따릅니다.)
+
+### 4. 임시 md 파일 작성
+
+- 가져온 마크다운 본문을 `./context/post/[페이지 제목].md`(또는 `./context/post/[페이지 제목]/index.md`)로 저장합니다.
+- 본문 안의 이미지 경로를 3번에서 내려받은 로컬 경로로 치환합니다.
+- 날짜 정보(작성일/수정일 등)가 Notion 페이지 속성이나 본문에 있으면 함께 기록해 둡니다. 없으면 사용자에게 발행 날짜를 확인합니다.
+
+> 이 단계까지 마치면 입력 소스가 (A) 로컬 파일인 경우와 동일한 상태가 됩니다. 이후는 아래 공통 절차를 그대로 따릅니다.
+
+[주의] Notion 본문의 **글 내용은 수정하지 않습니다.** MCP로 가져온 텍스트를 그대로 옮기며, 마크다운 변환 과정의 깨진 표기(과한 escape, 빈 줄 등) 정리만 허용됩니다.
+
+## 공통 작동 방식
 
 1. `./context/post/*`에 md 파일이 있는지 확인합니다.
-   1-1. 없다면 사용자에게 해당 위치에 파일을 넣어달라고 말한 후 종료합니다.
 2. md파일과 필요한 에셋 파일을 확인하여 아래의 사항을 정합니다.
 
 - 블로그 글의 제목
@@ -66,6 +110,8 @@ thubmnail 에셋의 경우 `thubmnail.{png, jpg, jpeg...} ` 형식으로, 글 �
 
 - date: 'YYYY년 MM월 DD일'
 - timeStamps: 날짜의 ms 단위 타임스탬프
+
+(Notion URL 소스인 경우, Notion 페이지 속성/본문에서 확인한 날짜를 사용합니다. 확인이 어려우면 사용자에게 발행 날짜를 묻습니다.)
 
 ## tags 프론트매터
 
