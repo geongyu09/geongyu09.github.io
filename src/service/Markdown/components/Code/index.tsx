@@ -25,6 +25,7 @@ export default function Code({ children, className = '', ...rest }: CodeProps) {
       className={cn(
         'font-mono text-[0.9em] px-1.5 py-0.5 rounded-r-1',
         'bg-ink-100 text-ink-800',
+        '[overflow-wrap:anywhere]',
         className,
       )}
       {...rest}
