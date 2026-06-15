@@ -2,10 +2,8 @@
 2:I[96052,["/_next/static/chunks/3pbb4kp0gy5k7.js","/_next/static/chunks/23mw1lj56lyzw.js","/_next/static/chunks/14mrh2-p_w84d.js","/_next/static/chunks/0-bo1z8dc7uf_.js","/_next/static/chunks/28xnx6g1r_fzd.js","/_next/static/chunks/0bunxc50h_7pk.js"],"default"]
 8:I[97367,["/_next/static/chunks/3pbb4kp0gy5k7.js","/_next/static/chunks/23mw1lj56lyzw.js","/_next/static/chunks/14mrh2-p_w84d.js","/_next/static/chunks/0-bo1z8dc7uf_.js"],"OutletBoundary"]
 9:"$Sreact.suspense"
-3:T65be,
+3:T6549,
 # 부수효과 가득한 프론트엔드에서 함수형으로 살아남기
-
-> 해당 포스트는 설명을 위하여 다소 생략되거나 단순화된 코드가 존재할 수 있습니다.
 
 이번에 우아한테크코스 레벨 1을 진행하며 함수형 원정대에 합류했고, 그 과정에서 미션에 함수형적 사고를 적용해보다 마주한 고민들을 정리해보았다.
 
@@ -654,7 +652,7 @@ TDD와 테스트 코드에 대한 이해, 더 나은 코드를 작성하기 위�
 이 모든 변화는 단순히 지식을 쌓는 것을 넘어, **함께 일하는 사람으로서의 나를 성장시켜준 경험**이었다.
 
 앞으로 남아 있는 과정들 속에서 또 어떤 경험을 하게 될지, 그리고 그 과정 속에서 내가 얼마나 더 성장하게 될지 기대된다.
-0:{"rsc":["$","$1","c",{"children":[["$","$L2",null,{"posts":[{"data":{"title":"부수효과 가득한 프론트엔드에서 함수형으로 살아남기","date":"2026년 04월 26일","description":"프론트엔드의 거의 모든 코드가 액션이라는 현실에서, 액션을 격리하고 계산을 넓혀가는 과정을 직접 도구를 만들어가며 정리해보았습니다.","thumbnail":"/assets/blog/survivingWithFunctional/thumbnail.png","tags":"함수형 프론트엔드 RxJS 우테코 자바스크립트","timeStamps":1777129200000},"slug":"survivingWithFunctional","content":"$3"},{"data":{"title":"우테코 3, 4주차 회고","date":"2026년 03월 22일","description":"함수형 원정대 활동과 공유회 준비를 통해 함수형 사고를 익히고, AI 기반 개발 도구를 직접 활용해본 한 달간의 성장 기록입니다.","thumbnail":"/assets/blog/wootecoWeek2Review/thumbnail.png","tags":"회고 우테코 함수형프로그래밍","timeStamps":1774137600000},"slug":"wootecoWeek3And4Review","content":"$4"}],"totalCount":24,"allTags":["회고","우테코","리액트","추상화","송곳원정대","함수형","프론트엔드","RxJS","자바스크립트","Claude-Code","LLM","에이전트","하네스","기술분석","소프트스킬","AI","함수형프로그래밍","TDD","페어프로그래밍","프롬프팅","webview","animation","react","next.js","library","project","2025","react-native","React","SSR","Webpack","Babel","TypeScript","2024","coding","concept","블로그","일지","modal","blog","markdown","react-markdown","test-code","eeos","컴포넌트테스트","모킹","jest","mocking","react-query","refactoring","테스트","cache"],"activeTag":"%ED%95%A8%EC%88%98%ED%98%95"}],["$L5","$L6"],"$L7"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"DafZW0HkrtF-BDCPSps9d"}
+0:{"rsc":["$","$1","c",{"children":[["$","$L2",null,{"posts":[{"data":{"title":"부수효과 가득한 프론트엔드에서 함수형으로 살아남기","date":"2026년 04월 26일","description":"프론트엔드의 거의 모든 코드가 액션이라는 현실에서, 액션을 격리하고 계산을 넓혀가는 과정을 직접 도구를 만들어가며 정리해보았습니다.","thumbnail":"/assets/blog/survivingWithFunctional/thumbnail.png","tags":"함수형 프론트엔드 RxJS 우테코 자바스크립트","timeStamps":1777129200000},"slug":"survivingWithFunctional","content":"$3"},{"data":{"title":"우테코 3, 4주차 회고","date":"2026년 03월 22일","description":"함수형 원정대 활동과 공유회 준비를 통해 함수형 사고를 익히고, AI 기반 개발 도구를 직접 활용해본 한 달간의 성장 기록입니다.","thumbnail":"/assets/blog/wootecoWeek2Review/thumbnail.png","tags":"회고 우테코 함수형프로그래밍","timeStamps":1774137600000},"slug":"wootecoWeek3And4Review","content":"$4"}],"totalCount":24,"allTags":["회고","우테코","리액트","추상화","송곳원정대","함수형","프론트엔드","RxJS","자바스크립트","Claude-Code","LLM","에이전트","하네스","기술분석","소프트스킬","AI","함수형프로그래밍","TDD","페어프로그래밍","프롬프팅","webview","animation","react","next.js","library","project","2025","react-native","React","SSR","Webpack","Babel","TypeScript","2024","coding","concept","블로그","일지","modal","blog","markdown","react-markdown","test-code","eeos","컴포넌트테스트","모킹","jest","mocking","react-query","refactoring","테스트","cache"],"activeTag":"%ED%95%A8%EC%88%98%ED%98%95"}],["$L5","$L6"],"$L7"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"RaEFUZsp_wNT3CrjO1k7e"}
 5:["$","script","script-0",{"src":"/_next/static/chunks/28xnx6g1r_fzd.js","async":true}]
 6:["$","script","script-1",{"src":"/_next/static/chunks/0bunxc50h_7pk.js","async":true}]
 7:["$","$L8",null,{"children":["$","$9",null,{"name":"Next.MetadataOutlet","children":"$@a"}]}]
