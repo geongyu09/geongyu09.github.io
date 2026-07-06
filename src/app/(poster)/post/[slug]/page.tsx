@@ -1,14 +1,53 @@
+import SITE from '@/constants/site';
 import InlineTag from '@/components/ds/InlineTag';
 import SideTableOfContent from '@/components/feature/Post/SideTableOfContent';
 import { getPostBySlug, getPostSlugs } from '@/lib/post/post';
 import Comment from '@/service/Comment';
 import MarkdownViewer from '@/service/Markdown';
 import { SsgoiTransition } from '@ssgoi/react';
+import type { Metadata } from 'next';
 
 interface PageProps {
   params: Promise<{
     slug: string;
   }>;
+}
+
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const {
+    data: { title, description, thumbnail, tags, timeStamps },
+  } = getPostBySlug(slug);
+
+  const url = `${SITE.URL}/post/${slug}/`;
+  const tagList = tags ? tags.split(' ').filter(Boolean) : [];
+  const images = thumbnail ? [thumbnail] : undefined;
+
+  return {
+    title,
+    description,
+    keywords: tagList,
+    alternates: { canonical: url },
+    openGraph: {
+      type: 'article',
+      url,
+      title,
+      description,
+      siteName: SITE.TITLE,
+      publishedTime: new Date(timeStamps).toISOString(),
+      authors: [SITE.AUTHOR.name],
+      tags: tagList,
+      images,
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images,
+    },
+  };
 }
 
 export default async function Page({ params }: PageProps) {

@@ -2,6 +2,7 @@ import SsgoiProvider from '@/components/common/SsgoiProvider';
 import ThemeScript from '@/components/common/Theme/ThemeScript';
 import Footer from '@/components/feature/layout/Footer';
 import Header from '@/components/feature/layout/Header';
+import SITE from '@/constants/site';
 import ModalProvider from '@/lib/modal/provider';
 import Analytics from '@/service/Analytics';
 import type { Metadata } from 'next';
@@ -12,12 +13,31 @@ import Gap from '../components/common/layout/Gap/index';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: '건규의 블로그 | Blog',
-  description: '박건규의 블로그',
+  metadataBase: new URL(SITE.URL),
+  title: {
+    default: '건규의 블로그 | Blog',
+    template: '%s | 건규의 블로그',
+  },
+  description: '박건규의 기술 블로그',
+  authors: [{ name: SITE.AUTHOR.name, url: SITE.AUTHOR.link }],
   alternates: {
+    canonical: '/',
     types: {
-      'application/rss+xml': 'https://geongyu09.github.io/rss.xml',
+      'application/rss+xml': `${SITE.URL}/rss.xml`,
     },
+  },
+  openGraph: {
+    type: 'website',
+    locale: 'ko_KR',
+    url: SITE.URL,
+    siteName: SITE.TITLE,
+    title: '건규의 블로그',
+    description: '박건규의 기술 블로그',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: '건규의 블로그',
+    description: '박건규의 기술 블로그',
   },
 };
 
