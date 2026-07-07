@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 424" width="1000" height="424" font-family="-apple-system, 'Apple SD Gothic Neo', 'Pretendard', 'Noto Sans KR', sans-serif">
+  <defs>
+    <marker id="a-grey" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#a1a1aa"/>
+    </marker>
+    <marker id="a-amber" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#f59e0b"/>
+    </marker>
+    <marker id="a-blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#3b82f6"/>
+    </marker>
+    <marker id="a-green" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#10b981"/>
+    </marker>
+  </defs>
+  <rect width="1000" height="424" fill="#fafafa" rx="12"/>
+
+  <!-- ═══ 왼쪽: 코드에 적힌 순서 ═══ -->
+  <text x="240" y="52" text-anchor="middle" font-size="18" font-weight="700" fill="#27272a">코드에 적힌 순서대로 실행하면</text>
+
+  <!-- (1) require -->
+  <rect x="40" y="84" width="200" height="92" rx="8" fill="#fef3c7" stroke="#f59e0b" stroke-width="1.5"/>
+  <text x="56" y="110" font-size="12" fill="#71717a">(1) 먼저 실행</text>
+  <text x="140" y="136" text-anchor="middle" font-size="13.5" font-weight="600" fill="#27272a" font-family="ui-monospace, 'SF Mono', Menlo, monospace">require("./math")</text>
+  <text x="140" y="160" text-anchor="middle" font-size="12" fill="#71717a">진짜 모듈이 로드돼 버린다</text>
+
+  <!-- (1) → 맵 확인 (dashed) -->
+  <line x1="240" y1="126" x2="300" y2="168" stroke="#a1a1aa" stroke-width="1.5" stroke-dasharray="5 4" marker-end="url(#a-grey)"/>
+  <text x="244" y="112" font-size="11" fill="#71717a">① 맵 확인</text>
+
+  <!-- 아래로 실행 흐름 -->
+  <line x1="140" y1="182" x2="140" y2="240" stroke="#a1a1aa" stroke-width="1.5" marker-end="url(#a-grey)"/>
+
+  <!-- (2) jest.mock -->
+  <rect x="40" y="246" width="200" height="92" rx="8" fill="#ffffff" stroke="#d4d4d8" stroke-width="1.5"/>
+  <text x="56" y="272" font-size="12" fill="#71717a">(2) 나중에 실행</text>
+  <text x="140" y="298" text-anchor="middle" font-size="13.5" font-weight="600" fill="#27272a" font-family="ui-monospace, 'SF Mono', Menlo, monospace">jest.mock('./math')</text>
+  <text x="140" y="322" text-anchor="middle" font-size="12" fill="#71717a">표시가 너무 늦다</text>
+
+  <!-- (2) → 맵에 기록 (solid) -->
+  <line x1="240" y1="292" x2="300" y2="272" stroke="#f59e0b" stroke-width="1.5" marker-end="url(#a-amber)"/>
+  <text x="244" y="330" font-size="11" fill="#d97706">② 표시 기록</text>
+
+  <!-- 왼쪽 map -->
+  <rect x="302" y="132" width="148" height="180" rx="8" fill="#ffffff" stroke="#a1a1aa" stroke-width="1.5"/>
+  <text x="376" y="158" text-anchor="middle" font-size="12.5" font-weight="700" fill="#27272a" font-family="ui-monospace, 'SF Mono', Menlo, monospace">explicitCjsMock</text>
+  <line x1="314" y1="170" x2="438" y2="170" stroke="#e4e4e7" stroke-width="1.5"/>
+  <text x="376" y="196" text-anchor="middle" font-size="11" fill="#71717a">(1) 확인 시점</text>
+  <text x="376" y="218" text-anchor="middle" font-size="13" font-style="italic" fill="#a1a1aa">비어 있음</text>
+  <text x="376" y="254" text-anchor="middle" font-size="11" fill="#71717a">(2)에서야 기록</text>
+  <text x="376" y="276" text-anchor="middle" font-size="12" font-weight="600" fill="#d97706" font-family="ui-monospace, 'SF Mono', Menlo, monospace">"./math" → true</text>
+  <text x="376" y="298" text-anchor="middle" font-size="11" fill="#71717a">이미 늦었다</text>
+
+  <text x="240" y="386" text-anchor="middle" font-size="15" font-weight="700" fill="#f59e0b">표시를 남기기 전에 모듈을 가져와 버린다</text>
+
+  <!-- ═══ 가운데: 변환 ═══ -->
+  <text x="500" y="200" text-anchor="middle" font-size="12" fill="#71717a">babel-plugin-</text>
+  <text x="500" y="217" text-anchor="middle" font-size="12" fill="#71717a">jest-hoist</text>
+  <line x1="458" y1="236" x2="546" y2="236" stroke="#a1a1aa" stroke-width="2" marker-end="url(#a-grey)"/>
+
+  <!-- ═══ 오른쪽: 호이스팅 후 ═══ -->
+  <text x="760" y="52" text-anchor="middle" font-size="18" font-weight="700" fill="#27272a">jest.mock을 끌어올린 후</text>
+
+  <!-- (1) jest.mock -->
+  <rect x="560" y="84" width="200" height="92" rx="8" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="576" y="110" font-size="12" fill="#71717a">(1) 먼저 실행</text>
+  <text x="660" y="136" text-anchor="middle" font-size="13.5" font-weight="600" fill="#27272a" font-family="ui-monospace, 'SF Mono', Menlo, monospace">jest.mock('./math')</text>
+  <text x="660" y="160" text-anchor="middle" font-size="12" fill="#71717a">mock 표시를 먼저 남긴다</text>
+
+  <!-- (1) → 맵에 기록 (solid) -->
+  <line x1="760" y1="126" x2="820" y2="168" stroke="#3b82f6" stroke-width="1.5" marker-end="url(#a-blue)"/>
+  <text x="764" y="112" font-size="11" fill="#2563eb">① 표시 기록</text>
+
+  <!-- 아래로 실행 흐름 -->
+  <line x1="660" y1="182" x2="660" y2="240" stroke="#a1a1aa" stroke-width="1.5" marker-end="url(#a-grey)"/>
+
+  <!-- (2) require -->
+  <rect x="560" y="246" width="200" height="92" rx="8" fill="#d1fae5" stroke="#10b981" stroke-width="1.5"/>
+  <text x="576" y="272" font-size="12" fill="#71717a">(2) 나중에 실행</text>
+  <text x="660" y="298" text-anchor="middle" font-size="13.5" font-weight="600" fill="#27272a" font-family="ui-monospace, 'SF Mono', Menlo, monospace">require("./math")</text>
+  <text x="660" y="322" text-anchor="middle" font-size="12" fill="#71717a">표시를 보고 mock을 돌려준다</text>
+
+  <!-- (2) → 맵 확인 (dashed) -->
+  <line x1="760" y1="292" x2="820" y2="272" stroke="#10b981" stroke-width="1.5" stroke-dasharray="5 4" marker-end="url(#a-green)"/>
+  <text x="764" y="330" font-size="11" fill="#059669">② 맵 확인</text>
+
+  <!-- 오른쪽 map -->
+  <rect x="822" y="132" width="148" height="180" rx="8" fill="#ffffff" stroke="#a1a1aa" stroke-width="1.5"/>
+  <text x="896" y="158" text-anchor="middle" font-size="12.5" font-weight="700" fill="#27272a" font-family="ui-monospace, 'SF Mono', Menlo, monospace">explicitCjsMock</text>
+  <line x1="834" y1="170" x2="958" y2="170" stroke="#e4e4e7" stroke-width="1.5"/>
+  <text x="896" y="196" text-anchor="middle" font-size="11" fill="#71717a">(1)에서 기록</text>
+  <text x="896" y="220" text-anchor="middle" font-size="12" font-weight="600" fill="#2563eb" font-family="ui-monospace, 'SF Mono', Menlo, monospace">"./math" → true</text>
+  <text x="896" y="256" text-anchor="middle" font-size="11" fill="#71717a">(2) 확인 결과</text>
+  <text x="896" y="280" text-anchor="middle" font-size="12.5" font-weight="600" fill="#059669">true → mock 반환</text>
+
+  <text x="760" y="386" text-anchor="middle" font-size="15" font-weight="700" fill="#10b981">require가 표시를 보고 mock을 돌려준다</text>
+</svg>

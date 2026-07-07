@@ -2,14 +2,14 @@
 2:I[96052,["/_next/static/chunks/3pbb4kp0gy5k7.js","/_next/static/chunks/23mw1lj56lyzw.js","/_next/static/chunks/14mrh2-p_w84d.js","/_next/static/chunks/0-bo1z8dc7uf_.js","/_next/static/chunks/28xnx6g1r_fzd.js","/_next/static/chunks/0bunxc50h_7pk.js"],"default"]
 7:I[97367,["/_next/static/chunks/3pbb4kp0gy5k7.js","/_next/static/chunks/23mw1lj56lyzw.js","/_next/static/chunks/14mrh2-p_w84d.js","/_next/static/chunks/0-bo1z8dc7uf_.js"],"OutletBoundary"]
 8:"$Sreact.suspense"
-3:T4be9,
+3:T4bf3,
 # Jest는 어떻게 import문을 mocking하는걸까? 2부
 
 > 이 글은 Jest가 import문을 mock으로 교체하기까지의 과정을 담은 시리즈물입니다. 그 중에서 이번 글은 Jest 내부 코드를 따라가며 CJS 환경에서 mock이 어떻게 동작하는지를 다룹니다.
 
 이전 글에서 Jest가 돌아가기 위한 (Node, CJS 모듈 시스템 등의) 배경 지식을 이야기했다.
 - 아직 해당 개념에 대해서 모른다면 [이전 글](/post/jestImportMocking1)을 확인해주세요!
-- Jest의 트랜스파일에 대해서 궁금하다면? 그 다음 글(3부)을 확인하세요! (추후 공개)
+- Jest의 트랜스파일에 대해서 궁금하다면? [그 다음 글(3부)](/post/jestImportMocking3)을 확인하세요!
 
 그럼 어떻게 CJS 환경에서 Jest가 mock을 적용하는지를 알아보자.
 
@@ -373,14 +373,14 @@ Jest의 `Runtime` 클래스는 각 테스트 파일을 `node:vm` 격리 컨텍�
 
 이런 문제점들을 어떻게 Jest가 풀어나갔을까?
 
-궁금하다면 다음 글(3부)에서 확인할 수 있다. (추후 공개)
+궁금하다면 다음 글로! → [3부 링크](/post/jestImportMocking3)
 
 ## 참고 자료
 
 - [VM (executing JavaScript) | Node.js Documentation](https://nodejs.org/api/vm.html#vm-executing-javascript)
 - [jest-runtime 소스 코드](https://github.com/jestjs/jest/blob/main/packages/jest-runtime/src/index.ts)
 - [Bending Jest to Our Will: Restoring Node's Require Behavior](https://www.petecorey.com/blog/2019/03/25/bending-jest-to-our-will-restoring-nodes-require-behavior/)
-0:{"rsc":["$","$1","c",{"children":[["$","$L2",null,{"posts":[{"data":{"title":"Jest는 어떻게 import문을 mocking하는걸까? 2부","date":"2026년 3월 20일","description":"Jest 내부 코드를 따라가며 jest-runtime이 어떻게 require를 갈아끼우고 mock 여부를 판단하는지 살펴봅니다!","thumbnail":"/assets/blog/jestImportMocking2/thumbnail.png","tags":"jest mocking node vm cjs jest-runtime","timeStamps":1773932400000},"slug":"jestImportMocking2","content":"$3"}],"totalCount":26,"allTags":["회고","우아한테크코스","react","추상화","송곳원정대","functional-programing","프론트엔드","RxJS","자바스크립트","Claude-Code","LLM","에이전트","하네스","기술분석","소프트스킬","AI","jest","mocking","node","vm","cjs","jest-runtime","node.js","commonjs","module","test-code","TDD","페어프로그래밍","프롬프팅","webview","animation","next.js","library","project","2025","react-native","SSR","webpack","babel","typescript","2024","coding","concept","modal","개발일지","markdown","react-markdown","eeos","컴포넌트테스트","react-query","refactoring","cache"],"activeTag":"vm"}],["$L4","$L5"],"$L6"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"NYvxgHQPDdcimu-__eqKy"}
+0:{"rsc":["$","$1","c",{"children":[["$","$L2",null,{"posts":[{"data":{"title":"Jest는 어떻게 import문을 mocking하는걸까? 2부","date":"2026년 3월 20일","description":"Jest 내부 코드를 따라가며 jest-runtime이 어떻게 require를 갈아끼우고 mock 여부를 판단하는지 살펴봅니다!","thumbnail":"/assets/blog/jestImportMocking2/thumbnail.png","tags":"jest mocking node vm cjs jest-runtime","timeStamps":1773932400000},"slug":"jestImportMocking2","content":"$3"}],"totalCount":27,"allTags":["회고","우아한테크코스","react","추상화","송곳원정대","functional-programing","프론트엔드","RxJS","자바스크립트","Claude-Code","LLM","에이전트","하네스","기술분석","소프트스킬","AI","jest","esm","commonjs","babel","transpile","hoisting","mocking","test","node","vm","cjs","jest-runtime","node.js","module","test-code","TDD","페어프로그래밍","프롬프팅","webview","animation","next.js","library","project","2025","react-native","SSR","webpack","typescript","2024","coding","concept","modal","개발일지","markdown","react-markdown","eeos","컴포넌트테스트","react-query","refactoring","cache"],"activeTag":"vm"}],["$L4","$L5"],"$L6"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"hmRIvYsiaOBYtl4PvDpr-"}
 4:["$","script","script-0",{"src":"/_next/static/chunks/28xnx6g1r_fzd.js","async":true}]
 5:["$","script","script-1",{"src":"/_next/static/chunks/0bunxc50h_7pk.js","async":true}]
 6:["$","$L7",null,{"children":["$","$8",null,{"name":"Next.MetadataOutlet","children":"$@9"}]}]
