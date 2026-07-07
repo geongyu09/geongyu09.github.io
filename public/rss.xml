@@ -4,7 +4,7 @@
         <title>건규의 블로그</title>
         <link>https://geongyu09.github.io</link>
         <description>박건규의 블로그</description>
-        <lastBuildDate>Tue, 07 Jul 2026 09:30:33 GMT</lastBuildDate>
+        <lastBuildDate>Tue, 07 Jul 2026 15:04:45 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>ko</language>
@@ -56,6 +56,21 @@
             <category>소프트스킬</category>
             <category>자바스크립트</category>
             <category>AI</category>
+        </item>
+        <item>
+            <title><![CDATA[Jest는 어떻게 import문을 mocking하는걸까? _3부]]></title>
+            <link>https://geongyu09.github.io/post/jestImportMocking3/</link>
+            <guid isPermaLink="false">https://geongyu09.github.io/post/jestImportMocking3/</guid>
+            <pubDate>Tue, 31 Mar 2026 15:00:00 GMT</pubDate>
+            <description><![CDATA[ESM 환경에서는 import를 런타임에 가로챌 수 없습니다. Jest가 babel-jest와 babel-plugin-jest-hoist로 이 문제를 우회하는 과정을 내부 코드와 함께 따라가 보았습니다!]]></description>
+            <category>jest</category>
+            <category>esm</category>
+            <category>commonjs</category>
+            <category>babel</category>
+            <category>transpile</category>
+            <category>hoisting</category>
+            <category>mocking</category>
+            <category>test</category>
         </item>
         <item>
             <title><![CDATA[[회고] 우아한테크코스 5, 6주차 회고]]></title>
