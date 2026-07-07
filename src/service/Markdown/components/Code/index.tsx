@@ -14,7 +14,7 @@ export default function Code({ children, className = '', ...rest }: CodeProps) {
 
   if (isBlock) {
     return (
-      <code className={className} {...rest}>
+      <code className={cn('block w-max min-w-full px-s-5', className)} {...rest}>
         {children}
       </code>
     );
