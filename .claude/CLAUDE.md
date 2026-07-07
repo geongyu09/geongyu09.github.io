@@ -44,8 +44,8 @@ bun run deploy                                 # 빌드 후 GitHub Pages 배포
 
 ## 주요 의존성
 
-- **Next.js 14.2.5**: 프레임워크 (App Router)
-- **React 18**: UI 라이브러리
+- **Next.js 16.2.9**: 프레임워크 (App Router, Turbopack)
+- **React 19**: UI 라이브러리
 - **TypeScript 5**: 타입 시스템
 - **Tailwind CSS 3.4.1**: 스타일링
 - **react-markdown + remark-gfm**: 커스텀 컴포넌트를 포함한 마크다운 렌더링
