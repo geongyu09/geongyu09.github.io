@@ -1,8 +1,172 @@
 1:"$Sreact.fragment"
 2:I[96052,["/_next/static/chunks/3pbb4kp0gy5k7.js","/_next/static/chunks/23mw1lj56lyzw.js","/_next/static/chunks/14mrh2-p_w84d.js","/_next/static/chunks/0-bo1z8dc7uf_.js","/_next/static/chunks/28xnx6g1r_fzd.js","/_next/static/chunks/0bunxc50h_7pk.js"],"default"]
-a:I[97367,["/_next/static/chunks/3pbb4kp0gy5k7.js","/_next/static/chunks/23mw1lj56lyzw.js","/_next/static/chunks/14mrh2-p_w84d.js","/_next/static/chunks/0-bo1z8dc7uf_.js"],"OutletBoundary"]
-b:"$Sreact.suspense"
-3:T2b5a,
+b:I[97367,["/_next/static/chunks/3pbb4kp0gy5k7.js","/_next/static/chunks/23mw1lj56lyzw.js","/_next/static/chunks/14mrh2-p_w84d.js","/_next/static/chunks/0-bo1z8dc7uf_.js"],"OutletBoundary"]
+c:"$Sreact.suspense"
+3:T2eac,
+# Jest는 어떻게 import문을 mocking하는걸까? \_1부
+
+우아한 테크 코스 level 1 페어프로그래밍 첫 미션은 로또 미션으로, TDD를 적용하는 것이 요구사항 중 하나였다. 나 포함 다른 크루들도 당시에 어떻게 테스트를 짜는게 좋을지에 대한 이야기를 하는 것을 들을 수 있었다.
+- 로또 미션 PR : https://github.com/woowacourse/javascript-lotto/pull/428
+
+그러다가 문득 좋은 테스트 코드 작성에서 벗어나서 동작 원리 자체에 궁금증이 생겼다. "우리가 사용하는 import문을 어떻게 import시키지 않게 하는거지? 어떻게 jest는 외부 의존성을 mock할 수 있는거지?"라는 생각이 들게 되었다. 한번 공부해보고, 테코톡때에도 발표해보면 좋겠다는 생각에 공부를 시작해보았다.
+
+> 이 글은 Jest의 import문을 mock으로 교체하기까지의 과정을 담은 시리즈물입니다. 그 중에서 기본적인 배경 지식을 다루는 글이며, jest 자체의 동작 방식은 그 다음 글부터 다룹니다. → [2부 링크](/post/jestImportMocking2)
+
+---
+
+## Jest란?
+
+[https://jestjs.io/](https://jestjs.io/)
+
+Jest는 단순함에 중점을 둔 자바스크립트 테스트 프레임워크이다. 별다른 복잡한 설정 없이 바로 테스트를 돌릴 수 있고, mocking·assertion·커버리지 측정까지 테스트에 필요한 도구들을 한 번에 제공해준다.
+
+![Jest 공식 홈페이지](/assets/blog/jestImportMocking1/jest-homepage.png)
+
+이런 Jest 라이브러리는 공식문서에 나와있듯 기본적으로 node환경을 기반으로 동작한다. ([Configuring Jest · Jest](https://jestjs.io/docs/configuration)) 그리고 기본적으로 CommonJS 기반에서 구성돼있다. ([ECMAScript Modules · Jest](https://jestjs.io/docs/ecmascript-modules))
+
+jest 동작을 이해하기 이전에 이 두 개에 대해서 먼저 이해할 필요가 있다.
+
+## 일단 Node.js부터
+
+node란 무엇일까?
+
+Node.js는 확장 가능한 네트워크 애플리케이션을 구축하도록 설계된 비동기 이벤트 기반의 JavaScript 런타임이다. ([Node.js — Node.js®에 대하여](https://nodejs.org/ko/about))
+
+간단히 이야기 하면 브라우저가 아닌 환경에서 js를 돌릴 수 있도록 해주는 JS 실행기라고 할 수 있다.
+
+## Node가 택한 모듈 시스템, CommonJS
+
+이전에는 js에 제대로된 모듈 시스템이 없었다. 이런 상황 속에서 node는 모듈 시스템을 도입하고 싶었고, 이때 자체적으로 CommonJS라는 모듈 시스템을 도입하게 됐다.
+
+CommonJS에서는 우리가 일반적으로 알고 있는 import export문과는 다른 문법인 `require` 함수와 `module.exports` 객체로 모듈을 주고 받는다.
+
+예시를 봐보자. 각 모듈은 아래와 같이 자신이 외부에 공개할 값을 `module.exports`에 담을 수 있다.
+
+```javascript
+// math.js
+function add(a, b) {
+  return a + b;
+}
+
+// 외부에 공개할 값을 module.exports에 담는다.
+module.exports = { add };
+```
+
+```javascript
+// main.js
+// math.js가 module.exports에 담아둔 객체를 돌려받는다.
+const math = require('./math');
+math.add(1, 2);
+```
+
+`require`가 반환하는 값은 math.js가 실행을 마친 뒤의 `module.exports` 객체 자체이다. 모듈을 가져온다는 동작은 다른 파일을 실행하고 그 파일이 exports에 담아둔 객체를 돌려받는 함수 호출이다.
+
+### module 객체란?
+
+[Modules: CommonJS modules | Node.js Documentation](https://nodejs.org/api/modules.html#the-module-wrapper)
+
+node.js api reference 문서를 보면 CommonJS 모듈 시스템이 어떻게 동작하는지를 어느정도 알 수 있다.
+
+CommonJS 모듈 시스템에 대해 알기 전에 모듈 이라는 단어가 무엇인지부터 짚고 넘어가자. 모듈은 코드에서 독립적인 하나의 단위로, 각 모듈은 자신만의 스코프를 가지고 필요한 값만 외부에 공개한다.
+
+실제로 Node에서는 각 파일 하나하나를 하나의 모듈이라고 부른다. 그렇다면 앞의 정의에 따라 각 파일은 저마다 독립된 스코프 안에서 실행되어야 하고, 한 파일에서 선언한 변수를 다른 파일이 마음대로 들여다보거나 공유할 수 없어야 한다. 이를 구현하기 위해서 Node에서는 module wrapper라는 함수를 만들어서 각 파일의 스코프를 제한한다. 실제로 코드를 실행할 때에는 모든 파일 하나하나를 아래와 같이 하나의 wrapper함수에 넣어서 실행을 하는 구조로 구성 후 실행한다.
+
+![Node.js 공식문서에 나오는 module wrapper 함수](/assets/blog/jestImportMocking1/module-wrapper.png)
+
+module wrapper 함수의 인자 이름들에 어딘가 익숙한 이름들이 있다.
+
+- `exports` : `module.exports` 를 가리키는 짧은 이름의 참조이다.
+- `require` : 다른 모듈을 불러올 때 사용하는 함수. 인자로 받기 때문에 모듈에서 require문을 사용 가능하다. 위에서 언급한 require와 동일한 함수
+- `module` : 현재 모듈을 나타내는 객체를 가리키는 참조이다. 모든 파일은 본인만의 module객체를 부여받는다. (module은 실제 전역변수가 아닌 각 모듈에 지역적으로 존재하는 값이라고 설명돼있다.)
+- `__filename` : 현재 모듈 파일의 절대 경로를 담은 문자열
+- `__dirname` : 현재 모듈이 위치한 디렉터리 경로를 담은 문자열. `__filename`에 `path.dirname()` 을 적용한 것과 동일하다. ref. [Node.js File Paths](https://nodejs.org/learn/manipulating-files/nodejs-file-paths)
+
+여기서 알 수 있듯 module객체는 현재 모듈, 즉 cjs or js 파일 하나하나에 할당된 지역 변수 객체이다. module 객체의 주요 프로퍼티는 아래와 같다.
+
+- `module.exports` : 그 모듈이 내보낼 값을 담는 프로퍼티. 기본값은 빈 객체이고, 여기에 값을 넣으면 다른 파일에서 `require`로 받을 수 있다.
+- `module.filename` : 심볼릭 링크가 아닌 그 파일의 완전히 해석된 경로를 담는다. ('./math'가 아닌 /Users/mjr/project/math.js)
+- `module.id` : 모듈을 구분하는 식별자이고, 보통 파일 경로와 같다.
+- `module.loaded` : 그 모듈의 로딩이 끝났는지를 나타내는 값이다.
+- `module.children` : 모듈이 `require`로 처음 불러온 모듈들의 목록이다.
+
+ref. [Modules: CommonJS modules | Node.js Documentation](https://nodejs.org/api/modules.html#the-module-object)
+
+`require` 가 반환하는 값은 `module.exports`의 참조값이다. 객체이기 때문에 필요한 값을 객체로 묶어서 export하고, 구조분해할당으로 import한 값을 가져오는 것이 자연스럽다.
+
+```javascript
+// math.js
+module.exports = { add: (a, b) => a + b };
+```
+
+```javascript
+// main.js
+// module.exports 객체에서 필요한 값만 구조분해할당으로 꺼낸다.
+const { add } = require('./math');
+add(1, 2);
+```
+
+### require() 는 동적으로 실행된다
+
+사실 앞전에 require를 하나의 문법이라고 소개했지만, `require`는 문법이 아니라 Node에서 제공하는 하나의 함수에 불과하다. 그래서 코드가 실행되는 도중에 그 줄을 만났을 때 비로소 호출된다. 그러다보니 조건문 안에 넣거나 함수 안에서 부르는 것도 가능하다.
+
+```javascript
+if (조건) {
+  const math = require('./math'); // 이 줄에 도달했을 때 실행
+}
+```
+
+우리에게 익숙한 import문은 파일이 실행되기 전에 정적으로 먼저 처리된다. 이러한 점이 ESM, CJS의 차이점 중 하나라고 볼 수 있다.
+
+require함수도 유용한 프로퍼티들을 제공한다. ([Modules: CommonJS modules | Node.js Documentation](https://nodejs.org/api/modules.html#requireid))
+
+- `require.resolve` : 모듈을 로드하지 않고 내부 require 기능을 써서 모듈의 위치만 찾아 해석된 파일명을 반환한다. 로딩과 경로 찾기를 분리해서, 경로만 필요할 때 쓰는 함수이다.
+- `require.cache` : 모듈이 require될 때 이 객체에 캐시되고, 객체에서 키를 지우면 다음 require가 모듈을 다시 로드한다. 로드된 모듈을 담아두는 전역 저장소이다.
+- `require.main` : Node 프로세스가 시작될 때 로드된 진입 스크립트를 나타내는 Module 객체이며, 진입점이 CommonJS 모듈이 아니면 undefined이다. 어떤 파일이 직접 실행되었는지 판별할 때 쓰인다.
+- (deprecated) `require.extensions` : require에게 특정 파일 확장자를 어떻게 처리할지 지시하는 객체
+
+그렇다면 동적으로 require를 처리하면 코드가 돌아가고 있는 런타임 환경에서 모듈 시스템이 동작하게 될 텐데, 성능적으로 방해가되지 않을까?
+
+런타임에 실행되는 이상 성능적으로 방해를 아예 안받을 수는 없을 것이다. 하지만 CommonJS는 이러한 오버헤드를 줄이기 위해서 캐시 시스템을 도입했다.
+
+어떤 모듈을 처음 require하게 되면, `module.exports` 객체를 해석된 경로(`require.resolve`의 응답값)와 매핑한 해시맵 형식의 캐시에 저장한다. (ref. [Caching | Node.js Documentation](https://nodejs.org/api/modules.html#caching))
+
+이후에 동일한 인자로 require함수를 실행하면 Node는 파일을 실행하지 않고 캐시에 저장해 둔 값을 그대로 돌려준다. 덕분에 런타임상에서 여러번 require문을 실행해도 동일한 값을 전달받을 수 있다.
+
+```javascript
+const a = require('./math'); // 파일 실행 + 캐시 저장
+const b = require('./math'); // 캐시에서 꺼냄 (파일 재실행 없음)
+console.log(a === b); // true
+```
+
+혹시 눈치 챘는가? CommonJS방식은 많은 허점이 존재한다.
+
+require 함수로 동적으로 모듈을 가져온다는 것, 그리고 가져올 때에도 파일에 직접적으로 접근을 하지 않는다는 것. 모듈 시스템이 JS 위에서 동적으로 돌아간다는 것은 정말 큰 허점이 될 수 있다.
+
+require는 결국 JS 함수이고 캐시는 결국 JS 객체이기 때문에, 흔히 monkey patch라고 부르는 방식으로 함수를 오버라이딩해서 기본 모듈의 동작을 조작할 수 있고, 원래 지원하지 않는 동작을 지원하게 만들 수도(폴리필) 있다.
+
+즉 node가 돌아가는 동작 자체를 우리가 원하는대로 수정이 가능하다. 이런 허점을 이용해 모듈 시스템의 동작을 커스터마이징 할 수 있지 않을까?
+
+## 핵심 아이디어, require() 함수 마음대로 조작하기
+
+앞에서 설명했듯 CommonJS에서 `require()`를 처음 호출하면 모듈을 실행하고 그 결과를 `require.cache`에 저장한다. 그 이후의 호출부터는 모듈을 실행하지 않고 캐시에서 꺼내온다.
+
+여기서 실제 모듈을 가져오기 이전에, 우리가 먼저 모조(mock) 모듈로 사용할 값을 기억해뒀다가, 만약 모조 모듈을 가져오려고 시도할 때, 실제 모듈이 아닌 mock을 전달하도록 `require()` 동작을 조작할 수 있지 않을까?
+
+그렇다면 어떻게 jest가 require문을 마음대로 수정을 하고, 이를 사용하도록 할 수 있을까?
+
+궁금하다면 다음 글로! → [2부 링크](/post/jestImportMocking2)
+
+---
+
+## 참고 자료
+
+- [Bending Jest to Our Will: Restoring Node's Require Behavior](https://www.petecorey.com/blog/2019/03/25/bending-jest-to-our-will-restoring-nodes-require-behavior/)
+- [Jest Architecture](https://jestjs.io/docs/architecture)
+- [Configuring Jest · Jest](https://jestjs.io/docs/configuration)
+- [ECMAScript Modules · Jest](https://jestjs.io/docs/ecmascript-modules)
+- [Node.js — Node.js®에 대하여](https://nodejs.org/ko/about)
+- [Modules: CommonJS modules | Node.js Documentation](https://nodejs.org/api/modules.html)
+4:T2b5a,
 # EEOS 테스트 전략
 
 ## api 로직에는 그닥..
@@ -192,7 +356,7 @@ describe("getQuestionsByTeam", () => {
 ```
 
 (getResponse 내용이 궁금하다면? [\[eeos\] 테스트가 필요해 _ 2부](/post/apiTestWithMocking))
-4:T283e,
+5:T283e,
 > **[테스트가 필요해 시리즈]**
 > 이전 글 : [\[eeos\] 테스트가 필요해 _ 1부](/post/eeosNeedTestPart1)
 
@@ -504,7 +668,7 @@ export const postProgram = async (
 
 > **[테스트가 필요해 시리즈]**
 > 다음 글 : [\[eeos\] 테스트가 필요해 _ 3부](/post/eeosTestStrategy)
-5:T1f7a,
+6:T1f7a,
 **[eeos] 테스트가 필요해** 시리즈 · **1부** (현재 글) · 다음 글 → [\[eeos\] 테스트가 필요해 _ 2부](/post/apiTestWithMocking)
 
 ---
@@ -619,7 +783,7 @@ export const postProgram = async (
 **다음 글** → [\[eeos\] 테스트가 필요해 _ 2부](/post/apiTestWithMocking)
 
 전체 시리즈 · 1부 (현재 글) · [2부](/post/apiTestWithMocking) · [3부](/post/eeosTestStrategy)
-6:T36a4,
+7:T36a4,
 # 좋은 코드?
 
 사실 좋은 코드에 대해서 정답은 없다. 작성된 코드에 대한 적절한 당위성이 뒷받침 된다면 어느 코드는 해당 상황에서 “그렇게 쓰여야만 하는 코드”였을 것이다. 즉 해당 상황에서 해당 코드가 정답이었을 것이다. 이러한 상황은 일반화 할 수 없을 정도로 다양할 것이고, 이에 대해서 명확히 어떤 코드가 정답이라고 할 수 없다.
@@ -909,8 +1073,8 @@ export default MovieListViewer;
 # 참고 자료
 
 - [https://velog.io/@jay/react-dependency-injection](https://velog.io/@jay/react-dependency-injection)
-- [https://martinfowler.com/articles/injection.html#FormsOfDependencyInjection](https://martinfowler.com/articles/injection.html#FormsOfDependencyInjection)0:{"rsc":["$","$1","c",{"children":[["$","$L2",null,{"posts":[{"data":{"title":"[eeos] 테스트가 필요해 _ 3부","date":"2024년 8월 31일","description":"api 로직과 컴포넌트에 어디까지, 어떻게 테스트를 작성할지 비용과 효용을 따져 eeos의 테스트 전략을 세워본 과정을 정리해보았습니다.","thumbnail":"/assets/blog/eeosTestStrategy/thumbnail.png","tags":"test-code eeos 컴포넌트테스트 모킹 jest next.js","timeStamps":1725062400000},"slug":"eeosTestStrategy","content":"$3"},{"data":{"title":"[eeos] 테스트가 필요해 _ 2부","date":"2024년 8월 13일","description":"api 로직에 단위 테스트를 작성하기 위해 jest로 서버 응답을 모킹하고, 테스트하기 쉬운 코드를 위해 ui와 서버 요청의 책임을 분리한 과정을 정리해보았습니다.","thumbnail":"/assets/blog/apiTestWithMocking/thumbnail.png","tags":"test-code jest mocking react-query refactoring","timeStamps":1723536000000},"slug":"apiTestWithMocking","content":"$4"},{"data":{"title":"[eeos] 테스트가 필요해 _ 1부","date":"2024년 08월 12일","description":"리팩토링에 대한 막연한 불안감에서 출발해 eeos 프로젝트에 테스트를 도입하며, 테스트의 종류와 어느 로직부터 테스트를 작성할지 기준을 세워본 과정을 정리해보았습니다.","thumbnail":"/assets/blog/eeosNeedTestPart1/thumbnail.png","tags":"test-code 테스트 eeos jest next.js","timeStamps":1723388400000},"slug":"eeosNeedTestPart1","content":"$5"},{"data":{"title":"[test-code] 테스트 코드의 중요성 _ 좋은 코드","thumbnail":"/assets/blog/importanceOfTest/thumbnail.png","description":"테스트 코드와 좋은 코드의 연관성에 대한 개인적인 생각을 정리해보았습니다.","date":"2024년 8월 3일","tags":"test-code","timeStamps":1722672000000},"slug":"importanceOfTest","content":"$6"}],"totalCount":24,"allTags":["회고","우아한테크코스","리액트","추상화","송곳원정대","함수형","프론트엔드","RxJS","자바스크립트","Claude-Code","LLM","에이전트","하네스","기술분석","소프트스킬","AI","함수형프로그래밍","TDD","페어프로그래밍","프롬프팅","webview","animation","react","next.js","library","project","2025","react-native","React","SSR","Webpack","Babel","TypeScript","2024","coding","concept","블로그","일지","modal","blog","markdown","react-markdown","test-code","eeos","컴포넌트테스트","모킹","jest","mocking","react-query","refactoring","테스트","cache"],"activeTag":"test-code"}],["$L7","$L8"],"$L9"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"WYUcriaUveXVDjh2gWUah"}
-7:["$","script","script-0",{"src":"/_next/static/chunks/28xnx6g1r_fzd.js","async":true}]
-8:["$","script","script-1",{"src":"/_next/static/chunks/0bunxc50h_7pk.js","async":true}]
-9:["$","$La",null,{"children":["$","$b",null,{"name":"Next.MetadataOutlet","children":"$@c"}]}]
-c:null
+- [https://martinfowler.com/articles/injection.html#FormsOfDependencyInjection](https://martinfowler.com/articles/injection.html#FormsOfDependencyInjection)0:{"rsc":["$","$1","c",{"children":[["$","$L2",null,{"posts":[{"data":{"title":"Jest는 어떻게 import문을 mocking하는걸까? _1부","date":"2026년 3월 13일","description":"Jest의 mocking 동작을 이해하기 위한 배경 지식으로 Node.js와 CommonJS 모듈 시스템을 정리해보았습니다!","thumbnail":"/assets/blog/jestImportMocking1/thumbnail.png","tags":"jest node.js commonjs module mocking test-code","timeStamps":1773327600000},"slug":"jestImportMocking1","content":"$3"},{"data":{"title":"[eeos] 테스트가 필요해 _ 3부","date":"2024년 8월 31일","description":"api 로직과 컴포넌트에 어디까지, 어떻게 테스트를 작성할지 비용과 효용을 따져 eeos의 테스트 전략을 세워본 과정을 정리해보았습니다.","thumbnail":"/assets/blog/eeosTestStrategy/thumbnail.png","tags":"test-code eeos 컴포넌트테스트 mocking jest next.js","timeStamps":1725062400000},"slug":"eeosTestStrategy","content":"$4"},{"data":{"title":"[eeos] 테스트가 필요해 _ 2부","date":"2024년 8월 13일","description":"api 로직에 단위 테스트를 작성하기 위해 jest로 서버 응답을 모킹하고, 테스트하기 쉬운 코드를 위해 ui와 서버 요청의 책임을 분리한 과정을 정리해보았습니다.","thumbnail":"/assets/blog/apiTestWithMocking/thumbnail.png","tags":"test-code jest mocking react-query refactoring","timeStamps":1723536000000},"slug":"apiTestWithMocking","content":"$5"},{"data":{"title":"[eeos] 테스트가 필요해 _ 1부","date":"2024년 08월 12일","description":"리팩토링에 대한 막연한 불안감에서 출발해 eeos 프로젝트에 테스트를 도입하며, 테스트의 종류와 어느 로직부터 테스트를 작성할지 기준을 세워본 과정을 정리해보았습니다.","thumbnail":"/assets/blog/eeosNeedTestPart1/thumbnail.png","tags":"test-code eeos jest next.js","timeStamps":1723388400000},"slug":"eeosNeedTestPart1","content":"$6"},{"data":{"title":"[test-code] 테스트 코드의 중요성 _ 좋은 코드","thumbnail":"/assets/blog/importanceOfTest/thumbnail.png","description":"테스트 코드와 좋은 코드의 연관성에 대한 개인적인 생각을 정리해보았습니다.","date":"2024년 8월 3일","tags":"test-code","timeStamps":1722672000000},"slug":"importanceOfTest","content":"$7"}],"totalCount":26,"allTags":["회고","우아한테크코스","react","추상화","송곳원정대","functional-programing","프론트엔드","RxJS","자바스크립트","Claude-Code","LLM","에이전트","하네스","기술분석","소프트스킬","AI","jest","mocking","node","vm","cjs","jest-runtime","node.js","commonjs","module","test-code","TDD","페어프로그래밍","프롬프팅","webview","animation","next.js","library","project","2025","react-native","SSR","webpack","babel","typescript","2024","coding","concept","modal","개발일지","markdown","react-markdown","eeos","컴포넌트테스트","react-query","refactoring","cache"],"activeTag":"test-code"}],["$L8","$L9"],"$La"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"NYvxgHQPDdcimu-__eqKy"}
+8:["$","script","script-0",{"src":"/_next/static/chunks/28xnx6g1r_fzd.js","async":true}]
+9:["$","script","script-1",{"src":"/_next/static/chunks/0bunxc50h_7pk.js","async":true}]
+a:["$","$Lb",null,{"children":["$","$c",null,{"name":"Next.MetadataOutlet","children":"$@d"}]}]
+d:null

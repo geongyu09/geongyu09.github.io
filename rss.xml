@@ -4,20 +4,20 @@
         <title>건규의 블로그</title>
         <link>https://geongyu09.github.io</link>
         <description>박건규의 블로그</description>
-        <lastBuildDate>Sat, 13 Jun 2026 12:02:03 GMT</lastBuildDate>
+        <lastBuildDate>Tue, 07 Jul 2026 09:30:33 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>ko</language>
         <copyright>All rights reserved 2026, 박건규</copyright>
         <item>
-            <title><![CDATA[우테코 Level 2 1~4주차 회고]]></title>
+            <title><![CDATA[[회고] 우아한테크코스 Level 2 1~4주차 회고]]></title>
             <link>https://geongyu09.github.io/post/wootecoLevel2Week1To4Review/</link>
             <guid isPermaLink="false">https://geongyu09.github.io/post/wootecoLevel2Week1To4Review/</guid>
             <pubDate>Wed, 27 May 2026 15:00:00 GMT</pubDate>
             <description><![CDATA[우아한테크코스 Level 2의 첫 4주를 돌아보며, 방학 동안의 글쓰기부터 송곳 원정대, 미션, 워킹그룹까지의 기록을 남깁니다.]]></description>
             <category>회고</category>
-            <category>우테코</category>
-            <category>리액트</category>
+            <category>우아한테크코스</category>
+            <category>react</category>
             <category>추상화</category>
             <category>송곳원정대</category>
         </item>
@@ -27,10 +27,10 @@
             <guid isPermaLink="false">https://geongyu09.github.io/post/survivingWithFunctional/</guid>
             <pubDate>Sat, 25 Apr 2026 15:00:00 GMT</pubDate>
             <description><![CDATA[프론트엔드의 거의 모든 코드가 액션이라는 현실에서, 액션을 격리하고 계산을 넓혀가는 과정을 직접 도구를 만들어가며 정리해보았습니다.]]></description>
-            <category>함수형</category>
+            <category>functional-programing</category>
             <category>프론트엔드</category>
             <category>RxJS</category>
-            <category>우테코</category>
+            <category>우아한테크코스</category>
             <category>자바스크립트</category>
         </item>
         <item>
@@ -46,56 +46,82 @@
             <category>기술분석</category>
         </item>
         <item>
-            <title><![CDATA[우테코 7, 8주차 회고]]></title>
+            <title><![CDATA[[회고] 우아한테크코스 7, 8주차 회고]]></title>
             <link>https://geongyu09.github.io/post/wootecoWeek7And8Review/</link>
             <guid isPermaLink="false">https://geongyu09.github.io/post/wootecoWeek7And8Review/</guid>
             <pubDate>Tue, 14 Apr 2026 15:00:00 GMT</pubDate>
             <description><![CDATA[비동기와 이벤트 루프를 다시 마주하고, 페어 프로그래밍과 AI 시대의 기본기를 고민하며 레벨 1을 마무리한 2주간의 기록입니다.]]></description>
             <category>회고</category>
-            <category>우테코</category>
+            <category>우아한테크코스</category>
             <category>소프트스킬</category>
             <category>자바스크립트</category>
             <category>AI</category>
         </item>
         <item>
-            <title><![CDATA[우테코 5, 6주차 회고]]></title>
+            <title><![CDATA[[회고] 우아한테크코스 5, 6주차 회고]]></title>
             <link>https://geongyu09.github.io/post/wootecoWeek5And6Review/</link>
             <guid isPermaLink="false">https://geongyu09.github.io/post/wootecoWeek5And6Review/</guid>
             <pubDate>Sat, 28 Mar 2026 15:00:00 GMT</pubDate>
             <description><![CDATA[테코톡 발표, 학습법을 다시 설계해본 미션, 그리고 페어와 부딪히며 소프트 스킬을 키워간 2주간의 기록입니다.]]></description>
             <category>회고</category>
-            <category>우테코</category>
+            <category>우아한테크코스</category>
             <category>소프트스킬</category>
         </item>
         <item>
-            <title><![CDATA[우테코 3, 4주차 회고]]></title>
+            <title><![CDATA[[회고] 우아한테크코스 3, 4주차 회고]]></title>
             <link>https://geongyu09.github.io/post/wootecoWeek3And4Review/</link>
             <guid isPermaLink="false">https://geongyu09.github.io/post/wootecoWeek3And4Review/</guid>
             <pubDate>Sun, 22 Mar 2026 00:00:00 GMT</pubDate>
             <description><![CDATA[함수형 원정대 활동과 공유회 준비를 통해 함수형 사고를 익히고, AI 기반 개발 도구를 직접 활용해본 한 달간의 성장 기록입니다.]]></description>
             <category>회고</category>
-            <category>우테코</category>
-            <category>함수형프로그래밍</category>
+            <category>우아한테크코스</category>
+            <category>functional-programing</category>
         </item>
         <item>
-            <title><![CDATA[[회고] 우테코 2주차 회고]]></title>
+            <title><![CDATA[Jest는 어떻게 import문을 mocking하는걸까? 2부]]></title>
+            <link>https://geongyu09.github.io/post/jestImportMocking2/</link>
+            <guid isPermaLink="false">https://geongyu09.github.io/post/jestImportMocking2/</guid>
+            <pubDate>Thu, 19 Mar 2026 15:00:00 GMT</pubDate>
+            <description><![CDATA[Jest 내부 코드를 따라가며 jest-runtime이 어떻게 require를 갈아끼우고 mock 여부를 판단하는지 살펴봅니다!]]></description>
+            <category>jest</category>
+            <category>mocking</category>
+            <category>node</category>
+            <category>vm</category>
+            <category>cjs</category>
+            <category>jest-runtime</category>
+        </item>
+        <item>
+            <title><![CDATA[Jest는 어떻게 import문을 mocking하는걸까? _1부]]></title>
+            <link>https://geongyu09.github.io/post/jestImportMocking1/</link>
+            <guid isPermaLink="false">https://geongyu09.github.io/post/jestImportMocking1/</guid>
+            <pubDate>Thu, 12 Mar 2026 15:00:00 GMT</pubDate>
+            <description><![CDATA[Jest의 mocking 동작을 이해하기 위한 배경 지식으로 Node.js와 CommonJS 모듈 시스템을 정리해보았습니다!]]></description>
+            <category>jest</category>
+            <category>node.js</category>
+            <category>commonjs</category>
+            <category>module</category>
+            <category>mocking</category>
+            <category>test-code</category>
+        </item>
+        <item>
+            <title><![CDATA[[회고] 우아한테크코스 2주차 회고]]></title>
             <link>https://geongyu09.github.io/post/wootecoWeek2Review/</link>
             <guid isPermaLink="false">https://geongyu09.github.io/post/wootecoWeek2Review/</guid>
             <pubDate>Sun, 08 Mar 2026 00:00:00 GMT</pubDate>
             <description><![CDATA[우아한 테크 코스의 두 번째 주를 돌아보며 연극, 첫 FE 수업, 페어 프로그래밍을 통해 배운 것들을 정리하였습니다.]]></description>
             <category>회고</category>
-            <category>우테코</category>
+            <category>우아한테크코스</category>
             <category>TDD</category>
             <category>페어프로그래밍</category>
         </item>
         <item>
-            <title><![CDATA[[회고] 우테코 1주차 회고]]></title>
+            <title><![CDATA[[회고] 우아한테크코스 1주차 회고]]></title>
             <link>https://geongyu09.github.io/post/wootecoWeek1Review/</link>
             <guid isPermaLink="false">https://geongyu09.github.io/post/wootecoWeek1Review/</guid>
             <pubDate>Sat, 28 Feb 2026 06:17:00 GMT</pubDate>
             <description><![CDATA[우아한 테크 코스의 첫 주를 돌아보며 새로운 환경에서 마주한 도전과 배움을 정리하였습니다.]]></description>
             <category>회고</category>
-            <category>우테코</category>
+            <category>우아한테크코스</category>
             <category>AI</category>
             <category>프롬프팅</category>
         </item>
@@ -142,7 +168,7 @@
             <description><![CDATA[웹뷰 브리지 라이브러리 개발 기록입니다. 웹뷰와 네이티브 앱 간의 통신을 위한 라이브러리를 개발하며 겪은 문제와 해결 과정을 공유합니다.]]></description>
             <category>react-native</category>
             <category>webview</category>
-            <category>React</category>
+            <category>react</category>
             <category>project</category>
         </item>
         <item>
@@ -151,7 +177,7 @@
             <guid isPermaLink="false">https://geongyu09.github.io/post/reactSsr/</guid>
             <pubDate>Mon, 10 Feb 2025 00:00:00 GMT</pubDate>
             <description><![CDATA[React를 사용해 SSR을 구현하는 방법에 대해 정리했습니다. CSR과 SSR의 차이점, React에서의 SSR 구현 방법, 그리고 간단한 카운터 기능을 가진 페이지를 SSR로 구현해보았습니다!]]></description>
-            <category>React</category>
+            <category>react</category>
             <category>SSR</category>
         </item>
         <item>
@@ -160,10 +186,10 @@
             <guid isPermaLink="false">https://geongyu09.github.io/post/withoutWebpack/</guid>
             <pubDate>Sun, 02 Feb 2025 00:00:00 GMT</pubDate>
             <description><![CDATA[해당 글은 CRA를 사용하지 않고 CSR 방식의 React 프로젝트를 구성하는 방법을 설명합니다.]]></description>
-            <category>React</category>
-            <category>Webpack</category>
-            <category>Babel</category>
-            <category>TypeScript</category>
+            <category>react</category>
+            <category>webpack</category>
+            <category>babel</category>
+            <category>typescript</category>
             <category>SSR</category>
         </item>
         <item>
@@ -192,9 +218,9 @@
             <guid isPermaLink="false">https://geongyu09.github.io/post/blogModal/</guid>
             <pubDate>Fri, 20 Sep 2024 00:00:00 GMT</pubDate>
             <description><![CDATA[모달 코드와 관련하여 조금 더 좋은 코드를 작성하는 방법에 대한 고민을 담았습니다]]></description>
-            <category>블로그</category>
-            <category>일지</category>
             <category>modal</category>
+            <category>react</category>
+            <category>개발일지</category>
         </item>
         <item>
             <title><![CDATA[[블로그] 블로그 마크다운]]></title>
@@ -202,9 +228,9 @@
             <guid isPermaLink="false">https://geongyu09.github.io/post/blogMarkdown/</guid>
             <pubDate>Wed, 04 Sep 2024 00:00:00 GMT</pubDate>
             <description><![CDATA[블로그를 만들면서 고민했던 내용들 중, 마크다운과 관련한 트러블 슈팅 내용이 담겨있습니다]]></description>
-            <category>blog</category>
             <category>markdown</category>
             <category>react-markdown</category>
+            <category>개발일지</category>
         </item>
         <item>
             <title><![CDATA[[eeos] 테스트가 필요해 _ 3부]]></title>
@@ -215,7 +241,7 @@
             <category>test-code</category>
             <category>eeos</category>
             <category>컴포넌트테스트</category>
-            <category>모킹</category>
+            <category>mocking</category>
             <category>jest</category>
             <category>next.js</category>
         </item>
@@ -238,7 +264,6 @@
             <pubDate>Sun, 11 Aug 2024 15:00:00 GMT</pubDate>
             <description><![CDATA[리팩토링에 대한 막연한 불안감에서 출발해 eeos 프로젝트에 테스트를 도입하며, 테스트의 종류와 어느 로직부터 테스트를 작성할지 기준을 세워본 과정을 정리해보았습니다.]]></description>
             <category>test-code</category>
-            <category>테스트</category>
             <category>eeos</category>
             <category>jest</category>
             <category>next.js</category>
@@ -248,7 +273,7 @@
             <link>https://geongyu09.github.io/post/importanceOfTest/</link>
             <guid isPermaLink="false">https://geongyu09.github.io/post/importanceOfTest/</guid>
             <pubDate>Sat, 03 Aug 2024 08:00:00 GMT</pubDate>
-            <description><![CDATA[테스트 코드과 좋은 코드의 연관성에 대한 개인적인 생각을 정리해보았습니다.]]></description>
+            <description><![CDATA[테스트 코드와 좋은 코드의 연관성에 대한 개인적인 생각을 정리해보았습니다.]]></description>
             <category>test-code</category>
         </item>
         <item>
