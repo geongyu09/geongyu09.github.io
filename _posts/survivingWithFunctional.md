@@ -3,7 +3,7 @@ title: '부수효과 가득한 프론트엔드에서 함수형으로 살아남�
 date: '2026년 04월 26일'
 description: '프론트엔드의 거의 모든 코드가 액션이라는 현실에서, 액션을 격리하고 계산을 넓혀가는 과정을 직접 도구를 만들어가며 정리해보았습니다.'
 thumbnail: '/assets/blog/survivingWithFunctional/thumbnail.png'
-tags: '함수형 프론트엔드 RxJS 우아한테크코스 자바스크립트'
+tags: 'functional-programing 프론트엔드 RxJS 우아한테크코스 자바스크립트'
 timeStamps: 1777129200000
 ---
 

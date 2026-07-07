@@ -3,7 +3,7 @@ title: '[회고] 우아한테크코스 Level 2 1~4주차 회고'
 date: '2026년 05월 28일'
 description: '우아한테크코스 Level 2의 첫 4주를 돌아보며, 방학 동안의 글쓰기부터 송곳 원정대, 미션, 워킹그룹까지의 기록을 남깁니다.'
 thumbnail: '/assets/blog/wootecoWeek2Review/thumbnail.png'
-tags: '회고 우아한테크코스 리액트 추상화 송곳원정대'
+tags: '회고 우아한테크코스 react 추상화 송곳원정대'
 timeStamps: 1779894000000
 ---
 

@@ -3,7 +3,7 @@ title: '[eeos] 테스트가 필요해 _ 1부'
 date: '2024년 08월 12일'
 description: '리팩토링에 대한 막연한 불안감에서 출발해 eeos 프로젝트에 테스트를 도입하며, 테스트의 종류와 어느 로직부터 테스트를 작성할지 기준을 세워본 과정을 정리해보았습니다.'
 thumbnail: '/assets/blog/eeosNeedTestPart1/thumbnail.png'
-tags: 'test-code 테스트 eeos jest next.js'
+tags: 'test-code eeos jest next.js'
 timeStamps: 1723388400000
 ---
 

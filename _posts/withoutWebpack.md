@@ -3,7 +3,7 @@ title: 'CRA 없이 React 프로젝트 구성하기: 웹팩과 바벨 설정부�
 thumbnail: '/assets/blog/withoutWebpack/cra.png'
 description: '해당 글은 CRA를 사용하지 않고 CSR 방식의 React 프로젝트를 구성하는 방법을 설명합니다.'
 date: '2025년 2월 2일'
-tags: 'React Webpack Babel TypeScript SSR'
+tags: 'react webpack babel typescript SSR'
 timeStamps: 1738454400000
 ---
 

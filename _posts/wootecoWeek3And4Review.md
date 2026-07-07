@@ -3,7 +3,7 @@ title: '[회고] 우아한테크코스 3, 4주차 회고'
 date: '2026년 03월 22일'
 description: '함수형 원정대 활동과 공유회 준비를 통해 함수형 사고를 익히고, AI 기반 개발 도구를 직접 활용해본 한 달간의 성장 기록입니다.'
 thumbnail: '/assets/blog/wootecoWeek2Review/thumbnail.png'
-tags: '회고 우아한테크코스 함수형프로그래밍'
+tags: '회고 우아한테크코스 functional-programing'
 timeStamps: 1774137600000
 ---
 

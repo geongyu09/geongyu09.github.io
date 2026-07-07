@@ -3,7 +3,7 @@ title: '[블로그] 모달 관리에 관한 고민점들'
 thumbnail: '/assets/blog/blogModal/image.png'
 description: '모달 코드와 관련하여 조금 더 좋은 코드를 작성하는 방법에 대한 고민을 담았습니다'
 date: '2024년 9월 23일'
-tags: '블로그 일지 modal'
+tags: 'modal react 개발일지'
 timeStamps: 1726790400000
 ---
 
