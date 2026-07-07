@@ -18,7 +18,8 @@
 
 /* min-light 테마의 주석 색(#c2c3c5)은 흰 배경에서 대비가 부족해 진하게 보정 */
 .typhography code[data-theme] span[style*='#c2c3c5' i] {
-  --shiki-light: #8e9196;
+  /* 인라인 style로 박힌 --shiki-light 변수를 이기기 위해 !important 필요 */
+  --shiki-light: #5f6368 !important;
 }
 
 /* Table — 행 구분선과 zebra 패턴 (디자인 토큰 사용) */
