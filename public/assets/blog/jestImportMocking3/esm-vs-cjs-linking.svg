@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 460" width="800" height="460" font-family="-apple-system, 'Apple SD Gothic Neo', 'Pretendard', 'Noto Sans KR', sans-serif">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#a1a1aa"/>
+    </marker>
+  </defs>
+  <rect width="800" height="460" fill="#fafafa" rx="12"/>
+
+  <!-- 왼쪽: CommonJS -->
+  <text x="210" y="56" text-anchor="middle" font-size="21" font-weight="700" fill="#27272a">CommonJS</text>
+
+  <text x="70" y="92" font-size="13" fill="#71717a">① 실행 전</text>
+  <rect x="60" y="102" width="300" height="88" rx="8" fill="#ffffff" stroke="#d4d4d8" stroke-width="1.5" stroke-dasharray="6 4"/>
+  <text x="210" y="152" text-anchor="middle" font-size="15" fill="#71717a">아무 연결도 하지 않는다</text>
+
+  <line x1="210" y1="196" x2="210" y2="226" stroke="#a1a1aa" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <text x="70" y="248" font-size="13" fill="#71717a">② 실행 중</text>
+  <rect x="60" y="258" width="300" height="98" rx="8" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="210" y="298" text-anchor="middle" font-size="15" font-weight="600" fill="#27272a" font-family="ui-monospace, 'SF Mono', Menlo, monospace">require('./math') 호출</text>
+  <text x="210" y="328" text-anchor="middle" font-size="13" fill="#71717a">이 줄에 도달했을 때 모듈이 연결된다</text>
+
+  <text x="210" y="404" text-anchor="middle" font-size="16" font-weight="700" fill="#3b82f6">런타임에 가로챌 수 있다</text>
+
+  <!-- 가운데 구분선 -->
+  <line x1="400" y1="40" x2="400" y2="420" stroke="#d4d4d8" stroke-width="1" stroke-dasharray="4 6"/>
+
+  <!-- 오른쪽: ESM -->
+  <text x="590" y="56" text-anchor="middle" font-size="21" font-weight="700" fill="#27272a">ESM</text>
+
+  <text x="450" y="92" font-size="13" fill="#71717a">① 실행 전</text>
+  <rect x="440" y="102" width="300" height="88" rx="8" fill="#fef3c7" stroke="#f59e0b" stroke-width="1.5"/>
+  <text x="590" y="138" text-anchor="middle" font-size="15" font-weight="600" fill="#27272a">import 링크가 정적으로 확정</text>
+  <text x="590" y="166" text-anchor="middle" font-size="13" fill="#71717a">모듈 연결이 이미 끝난다</text>
+
+  <line x1="590" y1="196" x2="590" y2="226" stroke="#a1a1aa" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <text x="450" y="248" font-size="13" fill="#71717a">② 실행 중</text>
+  <rect x="440" y="258" width="300" height="98" rx="8" fill="#ffffff" stroke="#d4d4d8" stroke-width="1.5"/>
+  <text x="590" y="298" text-anchor="middle" font-size="15" fill="#27272a">코드가 한 줄씩 실행된다</text>
+  <text x="590" y="328" text-anchor="middle" font-size="13" fill="#71717a">연결을 바꿀 방법이 없다</text>
+
+  <text x="590" y="404" text-anchor="middle" font-size="16" font-weight="700" fill="#71717a">런타임에 끼어들 자리가 없다</text>
+</svg>
