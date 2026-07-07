@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 430" width="920" height="430" font-family="-apple-system, 'Apple SD Gothic Neo', 'Pretendard', 'Noto Sans KR', sans-serif">
+  <defs>
+    <marker id="arrow2" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L8,4 L0,8 z" fill="#a1a1aa"/>
+    </marker>
+    <marker id="arrow2b" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L8,4 L0,8 z" fill="#3b82f6"/>
+    </marker>
+  </defs>
+  <rect width="920" height="430" fill="#fafafa" rx="12"/>
+
+  <text x="155" y="52" text-anchor="middle" font-size="14" font-weight="bold" fill="#71717a">쓰기 · 표시를 남긴다</text>
+  <text x="770" y="52" text-anchor="middle" font-size="14" font-weight="bold" fill="#71717a">읽기 · 표시를 참조한다</text>
+
+  <!-- 쓰기(왼쪽) -->
+  <rect x="30" y="80" width="250" height="70" rx="8" fill="#ffffff" stroke="#d4d4d8" stroke-width="1.5"/>
+  <text x="45" y="107" font-size="14" font-weight="bold" fill="#27272a">jest.mock('./math')</text>
+  <text x="45" y="132" font-size="12" fill="#71717a">factory 없음 → set(id, true)</text>
+
+  <rect x="30" y="190" width="250" height="70" rx="8" fill="#ffffff" stroke="#d4d4d8" stroke-width="1.5"/>
+  <text x="45" y="217" font-size="14" font-weight="bold" fill="#27272a">jest.mock('./math', factory)</text>
+  <text x="45" y="242" font-size="12" fill="#71717a">set(id, true) + factory 저장</text>
+
+  <rect x="30" y="300" width="250" height="70" rx="8" fill="#ffffff" stroke="#d4d4d8" stroke-width="1.5"/>
+  <text x="45" y="327" font-size="14" font-weight="bold" fill="#27272a">jest.unmock('./math')</text>
+  <text x="45" y="352" font-size="12" fill="#71717a">unmockCjs → set(id, false)</text>
+
+  <line x1="280" y1="115" x2="334" y2="180" stroke="#a1a1aa" stroke-width="1.5" marker-end="url(#arrow2)"/>
+  <line x1="280" y1="225" x2="334" y2="235" stroke="#a1a1aa" stroke-width="1.5" marker-end="url(#arrow2)"/>
+  <line x1="280" y1="335" x2="334" y2="300" stroke="#a1a1aa" stroke-width="1.5" marker-end="url(#arrow2)"/>
+
+  <!-- 중앙: MockState -->
+  <rect x="340" y="80" width="250" height="310" rx="8" fill="#ffffff" stroke="#d4d4d8" stroke-width="1.5"/>
+  <text x="465" y="108" text-anchor="middle" font-size="16" font-weight="bold" fill="#27272a">MockState 클래스</text>
+  <text x="465" y="128" text-anchor="middle" font-size="12" fill="#71717a">(테스트 파일마다 하나)</text>
+
+  <rect x="360" y="145" width="210" height="105" rx="8" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="465" y="172" text-anchor="middle" font-size="14" font-weight="bold" fill="#27272a">explicitCjsMock 맵</text>
+  <text x="465" y="200" text-anchor="middle" font-size="13" fill="#27272a">math 의 id → true</text>
+  <text x="465" y="222" text-anchor="middle" font-size="13" fill="#71717a">... 의 id → false</text>
+
+  <rect x="360" y="275" width="210" height="90" rx="8" fill="#ffffff" stroke="#d4d4d8" stroke-width="1.5"/>
+  <text x="465" y="302" text-anchor="middle" font-size="14" font-weight="bold" fill="#27272a">cjsFactories 맵</text>
+  <text x="465" y="330" text-anchor="middle" font-size="13" fill="#71717a">math 의 id → factory 함수</text>
+
+  <!-- 읽기(오른쪽) -->
+  <rect x="650" y="80" width="240" height="56" rx="8" fill="#ffffff" stroke="#d4d4d8" stroke-width="1.5"/>
+  <text x="770" y="103" text-anchor="middle" font-size="13" fill="#71717a">테스트 코드의</text>
+  <text x="770" y="123" text-anchor="middle" font-size="14" font-weight="bold" fill="#27272a">require('./math')</text>
+
+  <line x1="770" y1="136" x2="770" y2="162" stroke="#a1a1aa" stroke-width="1.5" marker-end="url(#arrow2)"/>
+
+  <rect x="650" y="166" width="240" height="56" rx="8" fill="#ffffff" stroke="#d4d4d8" stroke-width="1.5"/>
+  <text x="770" y="189" text-anchor="middle" font-size="14" font-weight="bold" fill="#27272a">requireModuleOrMock</text>
+  <text x="770" y="209" text-anchor="middle" font-size="12" fill="#71717a">→ decideSync 가 판단</text>
+
+  <line x1="590" y1="197" x2="646" y2="197" stroke="#3b82f6" stroke-width="1.5" marker-end="url(#arrow2b)"/>
+  <text x="618" y="186" text-anchor="middle" font-size="11" fill="#3b82f6">맵을 읽는다</text>
+
+  <line x1="770" y1="222" x2="770" y2="242" stroke="#a1a1aa" stroke-width="1.5"/>
+  <text x="770" y="262" text-anchor="middle" font-size="14" font-weight="bold" fill="#27272a">shouldMock ?</text>
+  <line x1="770" y1="272" x2="710" y2="294" stroke="#a1a1aa" stroke-width="1.5" marker-end="url(#arrow2)"/>
+  <line x1="770" y1="272" x2="830" y2="294" stroke="#a1a1aa" stroke-width="1.5" marker-end="url(#arrow2)"/>
+
+  <rect x="650" y="298" width="114" height="72" rx="8" fill="#d1fae5" stroke="#10b981" stroke-width="1.5"/>
+  <text x="707" y="320" text-anchor="middle" font-size="12" font-weight="bold" fill="#10b981">true</text>
+  <text x="707" y="340" text-anchor="middle" font-size="13" fill="#27272a">mock 모듈 반환</text>
+  <text x="707" y="359" text-anchor="middle" font-size="10" fill="#71717a">_requireMockWithId</text>
+
+  <rect x="776" y="298" width="114" height="72" rx="8" fill="#ffffff" stroke="#d4d4d8" stroke-width="1.5"/>
+  <text x="833" y="320" text-anchor="middle" font-size="12" font-weight="bold" fill="#71717a">false</text>
+  <text x="833" y="340" text-anchor="middle" font-size="13" fill="#27272a">진짜 모듈 실행</text>
+  <text x="833" y="359" text-anchor="middle" font-size="10" fill="#71717a">requireModule</text>
+
+  <!-- factory 읽기 -->
+  <path d="M590,330 C620,330 630,334 646,334" fill="none" stroke="#a1a1aa" stroke-width="1.5" stroke-dasharray="4 4" marker-end="url(#arrow2)"/>
+  <text x="465" y="408" text-anchor="middle" font-size="12" fill="#71717a">mock 반환 시 cjsFactories에 factory가 있으면 읽어 실행 (없으면 __mocks__ / 자동 mock)</text>
+</svg>
