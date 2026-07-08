@@ -162,7 +162,7 @@ export default function PostListClient({
             aria-hidden
             className="shrink-0 self-stretch w-px bg-ink-200 mx-s-1"
           />
-          <div className="flex gap-s-2 overflow-x-auto -mr-s-5 pr-s-5 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden md:contents">
+          <div className="flex min-w-0 gap-s-2 overflow-x-auto -mr-s-5 pr-s-5 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden md:contents">
             <Link href={ROUTE_PATH.POSTS()} className="shrink-0">
               <Chip active={!decodedActive}>전체 · {totalCount}</Chip>
             </Link>
