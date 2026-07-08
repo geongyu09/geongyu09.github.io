@@ -29,7 +29,7 @@ export const FeaturedPostCard = ({
     className="block py-s-5 md:py-s-6 grid grid-cols-1 md:grid-cols-[140px_1fr] gap-s-3 md:gap-s-6 group"
   >
     <div className="order-2 md:order-1 flex items-center gap-s-3 md:block">
-      <div className="font-mono text-[11px] md:text-xs text-ink-500">
+      <div className="font-mono text-[13px] md:text-xs text-ink-500">
         {date}
       </div>
       {readingTime && (
@@ -48,7 +48,7 @@ export const FeaturedPostCard = ({
         {title}
       </h3>
       {excerpt && (
-        <p className="text-[14px] md:text-[15px] text-ink-500 leading-[1.6] max-w-[620px] m-0 mb-s-3 md:mb-s-4">
+        <p className="text-[15px] text-ink-500 leading-[1.6] max-w-[620px] m-0 mb-s-3 md:mb-s-4">
           {excerpt}
         </p>
       )}
@@ -76,20 +76,20 @@ const PostCard = ({
     href={href}
     className="grid grid-cols-1 md:grid-cols-[140px_1fr_80px] gap-s-2 md:gap-s-6 md:items-baseline py-s-4 md:py-s-5 border-t border-ink-200 group"
   >
-    <div className="font-mono text-[11px] md:text-xs text-ink-500 order-1">
+    <div className="font-mono text-[13px] md:text-xs text-ink-500 order-1">
       {date}
     </div>
     <div className="order-2">
-      <h3 className="text-[17px] md:text-h3 m-0 mb-[6px] leading-[1.3] group-hover:text-blue-600 transition-colors">
+      <h3 className="text-[19px] font-semibold tracking-[-0.01em] md:text-h3 m-0 mb-[6px] leading-[1.4] md:leading-[1.3] group-hover:text-blue-600 transition-colors">
         {title}
       </h3>
       {excerpt && (
-        <p className="text-[13px] md:text-sm text-ink-500 leading-[1.55] m-0">
+        <p className="text-[14px] md:text-sm text-ink-500 leading-[1.55] m-0">
           {excerpt}
         </p>
       )}
       {tags && tags.length > 0 && (
-        <div className="flex flex-wrap gap-s-3 md:gap-[14px] mt-[8px] md:mt-[10px] text-[11px] md:text-xs text-ink-500">
+        <div className="flex flex-wrap gap-s-3 md:gap-[14px] mt-[8px] md:mt-[10px] text-[14px] md:text-xs text-ink-500">
           {tags.map((t) => (
             <span key={t}>#{t}</span>
           ))}
