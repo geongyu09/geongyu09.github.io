@@ -149,7 +149,7 @@ export default function PostListClient({
           </form>
         </div>
 
-        <div className="mt-s-4 md:mt-s-5 flex gap-s-2 overflow-x-auto md:flex-wrap -mx-s-5 md:mx-0 px-s-5 md:px-0 [&::-webkit-scrollbar]:hidden">
+        <div className="mt-s-4 md:mt-s-5 flex gap-s-2 md:flex-wrap -mx-s-5 md:mx-0 px-s-5 md:px-0">
           <button
             type="button"
             onClick={toggleTechOnly}
@@ -162,18 +162,20 @@ export default function PostListClient({
             aria-hidden
             className="shrink-0 self-stretch w-px bg-ink-200 mx-s-1"
           />
-          <Link href={ROUTE_PATH.POSTS()} className="shrink-0">
-            <Chip active={!decodedActive}>전체 · {totalCount}</Chip>
-          </Link>
-          {allTags.map((tag) => (
-            <Link
-              key={tag}
-              href={ROUTE_PATH.POSTS({ tag })}
-              className="shrink-0"
-            >
-              <Chip active={decodedActive === tag}>{tag}</Chip>
+          <div className="flex gap-s-2 overflow-x-auto md:flex-wrap md:overflow-visible -mr-s-5 md:mr-0 pr-s-5 md:pr-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+            <Link href={ROUTE_PATH.POSTS()} className="shrink-0">
+              <Chip active={!decodedActive}>전체 · {totalCount}</Chip>
             </Link>
-          ))}
+            {allTags.map((tag) => (
+              <Link
+                key={tag}
+                href={ROUTE_PATH.POSTS({ tag })}
+                className="shrink-0"
+              >
+                <Chip active={decodedActive === tag}>{tag}</Chip>
+              </Link>
+            ))}
+          </div>
         </div>
       </section>
 
