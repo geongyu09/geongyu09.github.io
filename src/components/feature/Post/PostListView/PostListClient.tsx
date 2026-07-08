@@ -199,17 +199,17 @@ export default function PostListClient({
                           idx > 0 ? 'border-t border-ink-200' : ''
                         }`}
                       >
-                        <span className="font-mono text-[10px] md:text-xs text-ink-500">
+                        <span className="font-mono text-[13px] md:text-xs text-ink-500">
                           {formatMonthDay(post.data.date)}
                         </span>
                         <Link
                           href={ROUTE_PATH.POST_DETAIL({ slug: post.slug })}
                           className="block group"
                         >
-                          <h3 className="text-[15px] font-medium tracking-[-0.01em] leading-[1.35] md:text-h3 text-ink-950 mb-s-1 group-hover:text-blue-600 transition-colors">
+                          <h3 className="text-[19px] font-semibold tracking-[-0.01em] leading-[1.4] md:text-h3 text-ink-950 mb-s-1 group-hover:text-blue-600 transition-colors">
                             {post.data.title}
                           </h3>
-                          <div className="flex flex-wrap gap-s-3 text-[11px] md:text-xs text-ink-500">
+                          <div className="flex flex-wrap gap-s-3 text-[14px] md:text-xs text-ink-500">
                             {tagList.map((t) => (
                               <span key={t}>#{t}</span>
                             ))}
