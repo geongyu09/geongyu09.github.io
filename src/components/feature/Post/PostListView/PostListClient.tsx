@@ -52,6 +52,12 @@ const matchesQuery = (post: Post, query: string): boolean => {
   return haystack.includes(query);
 };
 
+const RETROSPECT_TAG = '회고';
+const TECH_ONLY_STORAGE_KEY = 'posts-tech-only';
+
+const isTechPost = (post: Post): boolean =>
+  !post.data.tags.split(' ').includes(RETROSPECT_TAG);
+
 export default function PostListClient({
   posts,
   totalCount,
@@ -60,6 +66,19 @@ export default function PostListClient({
 }: PostListClientProps) {
   const inputRef = useRef<HTMLInputElement>(null);
   const [query, setQuery] = useState('');
+  const [techOnly, setTechOnly] = useState(false);
+
+  useEffect(() => {
+    setTechOnly(sessionStorage.getItem(TECH_ONLY_STORAGE_KEY) === 'true');
+  }, []);
+
+  const toggleTechOnly = () => {
+    setTechOnly((prev) => {
+      const next = !prev;
+      sessionStorage.setItem(TECH_ONLY_STORAGE_KEY, String(next));
+      return next;
+    });
+  };
 
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
@@ -75,10 +94,11 @@ export default function PostListClient({
   }, []);
 
   const filtered = useMemo(() => {
+    const base = techOnly ? posts.filter(isTechPost) : posts;
     const normalized = query.trim().toLowerCase();
-    if (!normalized) return posts;
-    return posts.filter((post) => matchesQuery(post, normalized));
-  }, [posts, query]);
+    if (!normalized) return base;
+    return base.filter((post) => matchesQuery(post, normalized));
+  }, [posts, query, techOnly]);
 
   const grouped = groupPostsByYear(filtered);
   const decodedActive = activeTag ? decodeURIComponent(activeTag) : null;
@@ -142,13 +162,25 @@ export default function PostListClient({
               <Chip active={decodedActive === tag}>{tag}</Chip>
             </Link>
           ))}
+          <span
+            aria-hidden
+            className="shrink-0 self-stretch w-px bg-ink-200 mx-s-1"
+          />
+          <button
+            type="button"
+            onClick={toggleTechOnly}
+            aria-pressed={techOnly}
+            className="shrink-0"
+          >
+            <Chip active={techOnly}>기술 글만 보기</Chip>
+          </button>
         </div>
       </section>
 
       <section className="max-w-container mx-auto px-s-5 md:px-s-7 pt-s-5 md:pt-s-6 pb-s-8 md:pb-s-9">
         {filtered.length === 0 ? (
           <p className="text-ink-500 text-body py-s-8 text-center">
-            검색 결과가 없습니다.
+            {query ? '검색 결과가 없습니다.' : '조건에 맞는 글이 없습니다.'}
           </p>
         ) : (
           grouped.map(([year, yearPosts]) => (
