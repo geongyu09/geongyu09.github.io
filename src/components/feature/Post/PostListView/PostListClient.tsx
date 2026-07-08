@@ -150,6 +150,18 @@ export default function PostListClient({
         </div>
 
         <div className="mt-s-4 md:mt-s-5 flex gap-s-2 overflow-x-auto md:flex-wrap -mx-s-5 md:mx-0 px-s-5 md:px-0 [&::-webkit-scrollbar]:hidden">
+          <button
+            type="button"
+            onClick={toggleTechOnly}
+            aria-pressed={techOnly}
+            className="shrink-0"
+          >
+            <Chip active={techOnly}>기술 글만 보기</Chip>
+          </button>
+          <span
+            aria-hidden
+            className="shrink-0 self-stretch w-px bg-ink-200 mx-s-1"
+          />
           <Link href={ROUTE_PATH.POSTS()} className="shrink-0">
             <Chip active={!decodedActive}>전체 · {totalCount}</Chip>
           </Link>
@@ -162,18 +174,6 @@ export default function PostListClient({
               <Chip active={decodedActive === tag}>{tag}</Chip>
             </Link>
           ))}
-          <span
-            aria-hidden
-            className="shrink-0 self-stretch w-px bg-ink-200 mx-s-1"
-          />
-          <button
-            type="button"
-            onClick={toggleTechOnly}
-            aria-pressed={techOnly}
-            className="shrink-0"
-          >
-            <Chip active={techOnly}>기술 글만 보기</Chip>
-          </button>
         </div>
       </section>
 
