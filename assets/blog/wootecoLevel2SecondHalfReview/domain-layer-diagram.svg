@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600" width="900" height="600" font-family="-apple-system, 'Apple SD Gothic Neo', 'Pretendard', 'Noto Sans KR', sans-serif">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#a1a1aa"/>
+    </marker>
+  </defs>
+
+  <rect width="900" height="600" fill="#fafafa" rx="12"/>
+
+  <!-- 열 제목 -->
+  <text x="215" y="52" font-size="18" font-weight="700" fill="#27272a" text-anchor="middle">컴포넌트</text>
+  <text x="505" y="52" font-size="18" font-weight="700" fill="#27272a" text-anchor="middle">훅</text>
+  <text x="765" y="52" font-size="18" font-weight="700" fill="#27272a" text-anchor="middle">일반 로직</text>
+
+  <!-- 행 레이블 -->
+  <text x="46" y="168" font-size="14" font-weight="700" fill="#3b82f6" text-anchor="middle">도메인</text>
+  <text x="46" y="188" font-size="14" font-weight="700" fill="#3b82f6" text-anchor="middle">O</text>
+  <text x="46" y="438" font-size="14" font-weight="700" fill="#71717a" text-anchor="middle">도메인</text>
+  <text x="46" y="458" font-size="14" font-weight="700" fill="#71717a" text-anchor="middle">X</text>
+
+  <!-- 도메인 O : 컨테이너 -->
+  <rect x="80" y="70" width="270" height="215" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.5" rx="8"/>
+  <rect x="390" y="70" width="230" height="215" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.5" rx="8"/>
+  <rect x="660" y="70" width="210" height="215" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.5" rx="8"/>
+
+  <!-- 도메인 O : 컴포넌트 내부 -->
+  <rect x="110" y="95" width="210" height="46" fill="#ffffff" stroke="#d4d4d8" stroke-width="1.5" rx="8"/>
+  <text x="215" y="124" font-size="15" fill="#27272a" text-anchor="middle">pages / screens</text>
+  <line x1="215" y1="141" x2="215" y2="188" stroke="#a1a1aa" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <rect x="110" y="192" width="210" height="46" fill="#ffffff" stroke="#d4d4d8" stroke-width="1.5" rx="8"/>
+  <text x="215" y="221" font-size="15" fill="#27272a" text-anchor="middle">widget</text>
+
+  <!-- 도메인 O : 훅 -->
+  <text x="505" y="160" font-size="16" font-weight="700" fill="#27272a" text-anchor="middle">feature</text>
+  <text x="505" y="185" font-size="13" fill="#71717a" text-anchor="middle">useUserAuth,</text>
+  <text x="505" y="204" font-size="13" fill="#71717a" text-anchor="middle">useLoginForm</text>
+
+  <!-- 도메인 O : 일반 로직 -->
+  <text x="765" y="160" font-size="16" font-weight="700" fill="#27272a" text-anchor="middle">libs</text>
+  <text x="765" y="185" font-size="13" fill="#71717a" text-anchor="middle">checkIsValidUsername</text>
+
+  <!-- 호출 화살표 (컴포넌트 → 훅) -->
+  <line x1="350" y1="177" x2="386" y2="177" stroke="#a1a1aa" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="368" y="165" font-size="13" fill="#71717a" text-anchor="middle">호출</text>
+
+  <!-- 의존 화살표 (위 → 아래) -->
+  <line x1="215" y1="285" x2="215" y2="336" stroke="#a1a1aa" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="232" y="316" font-size="13" fill="#71717a">의존</text>
+  <line x1="505" y1="285" x2="505" y2="336" stroke="#a1a1aa" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="522" y="316" font-size="13" fill="#71717a">의존</text>
+  <line x1="765" y1="285" x2="765" y2="336" stroke="#a1a1aa" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="782" y="316" font-size="13" fill="#71717a">의존</text>
+
+  <!-- 도메인 X : 컨테이너 -->
+  <rect x="80" y="340" width="270" height="230" fill="#ffffff" stroke="#d4d4d8" stroke-width="1.5" rx="8"/>
+  <rect x="390" y="340" width="230" height="230" fill="#ffffff" stroke="#d4d4d8" stroke-width="1.5" rx="8"/>
+  <rect x="660" y="340" width="210" height="230" fill="#ffffff" stroke="#d4d4d8" stroke-width="1.5" rx="8"/>
+
+  <!-- 도메인 X : 컴포넌트 내부 -->
+  <rect x="110" y="365" width="210" height="46" fill="#fafafa" stroke="#d4d4d8" stroke-width="1.5" rx="8"/>
+  <text x="215" y="394" font-size="15" fill="#27272a" text-anchor="middle">entities</text>
+  <line x1="215" y1="411" x2="215" y2="458" stroke="#a1a1aa" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <rect x="110" y="462" width="210" height="66" fill="#fafafa" stroke="#d4d4d8" stroke-width="1.5" rx="8"/>
+  <text x="215" y="489" font-size="15" fill="#27272a" text-anchor="middle">shared</text>
+  <text x="215" y="512" font-size="13" fill="#71717a" text-anchor="middle">layout, ui</text>
+
+  <!-- 도메인 X : 훅 -->
+  <text x="505" y="435" font-size="16" font-weight="700" fill="#27272a" text-anchor="middle">common</text>
+  <text x="505" y="460" font-size="13" fill="#71717a" text-anchor="middle">useQuery,</text>
+  <text x="505" y="479" font-size="13" fill="#71717a" text-anchor="middle">useForm ...</text>
+
+  <!-- 도메인 X : 일반 로직 -->
+  <text x="765" y="435" font-size="16" font-weight="700" fill="#27272a" text-anchor="middle">utils</text>
+  <text x="765" y="460" font-size="13" fill="#71717a" text-anchor="middle">isString,</text>
+  <text x="765" y="479" font-size="13" fill="#71717a" text-anchor="middle">isInARange</text>
+</svg>

@@ -4,11 +4,23 @@
         <title>건규의 블로그</title>
         <link>https://geongyu09.github.io</link>
         <description>박건규의 블로그</description>
-        <lastBuildDate>Tue, 07 Jul 2026 15:04:45 GMT</lastBuildDate>
+        <lastBuildDate>Thu, 09 Jul 2026 09:11:30 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>ko</language>
         <copyright>All rights reserved 2026, 박건규</copyright>
+        <item>
+            <title><![CDATA[[회고] 우아한테크코스 Level 2 후반기 회고]]></title>
+            <link>https://geongyu09.github.io/post/wootecoLevel2SecondHalfReview/</link>
+            <guid isPermaLink="false">https://geongyu09.github.io/post/wootecoLevel2SecondHalfReview/</guid>
+            <pubDate>Sat, 27 Jun 2026 15:00:00 GMT</pubDate>
+            <description><![CDATA[객체지향의 진가를 체험하고, 풀스택 미션으로 시스템 전체를 설계하며, 함께 자라는 순환을 직접 겪은 레벨 2 후반기의 기록입니다.]]></description>
+            <category>회고</category>
+            <category>우아한테크코스</category>
+            <category>객체지향</category>
+            <category>아키텍처</category>
+            <category>백엔드</category>
+        </item>
         <item>
             <title><![CDATA[[회고] 우아한테크코스 Level 2 1~4주차 회고]]></title>
             <link>https://geongyu09.github.io/post/wootecoLevel2Week1To4Review/</link>
