@@ -26,7 +26,7 @@ timeStamps: 1782572400000
 
 수업을 듣고 또 미션을 진행하면서 아직까지 아키텍쳐에 대한 궁금증이 다 풀리지 않았었다. 이런 아키텍쳐는 어느정도 정답이 존재하고, 그게 Spring Boot나 Nest와 같은 프레임워크가 지정한 틀이라는 생각을 하게 되어 틈틈이 nest 공부를 하면서 미션을 다시 구현해봤다. 
 
-> nest로 구현해본 레포 : 
+> nest로 구현해본 레포(공부 내용 정리 문서) : [geongyu09/-nest-shopping-cart-full-stack/docs](https://github.com/geongyu09/-nest-shopping-cart-full-stack/tree/main/docs)
 
 그러면서 라이프사이클이나 모듈 간 작업 처리 방식(CQRS 같은 것들)을 알게 됐다. 결과적으로 백엔드에 정말 큰 흥미가 생겼다. 객체지향도 너무 좋고, 앞으로도 관심을 가지고 쭉 공부해보고 싶다.
 
