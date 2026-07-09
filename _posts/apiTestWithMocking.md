@@ -2,7 +2,7 @@
 title: '[eeos] 테스트가 필요해 _ 2부'
 date: '2024년 8월 13일'
 description: 'api 로직에 단위 테스트를 작성하기 위해 jest로 서버 응답을 모킹하고, 테스트하기 쉬운 코드를 위해 ui와 서버 요청의 책임을 분리한 과정을 정리해보았습니다.'
-thumbnail: '/assets/blog/apiTestWithMocking/thumbnail.png'
+thumbnail: '/assets/blog/apiTestWithMocking/thumbnail.webp'
 tags: 'test-code jest mocking react-query refactoring'
 timeStamps: 1723536000000
 ---

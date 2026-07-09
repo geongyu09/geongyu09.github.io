@@ -2,7 +2,7 @@
 title: 'LLM은 어떻게 개발자가 되는가 — Claude Code라는 하네스의 해부'
 date: '2026년 04월 23일'
 description: 'Claude Code가 LLM 모델을 어떻게 코딩 에이전트로 변환하는지, 공식 문서와 소스 코드를 분석하여 살펴보았습니다.'
-thumbnail: '/assets/blog/claudeCodeHarness/thumbnail.png'
+thumbnail: '/assets/blog/claudeCodeHarness/thumbnail.webp'
 tags: 'Claude-Code LLM 에이전트 하네스 기술분석'
 timeStamps: 1776902400000
 ---

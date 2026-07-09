@@ -2,7 +2,7 @@
 title: 'Jest는 어떻게 import문을 mocking하는걸까? _1부'
 date: '2026년 3월 13일'
 description: 'Jest의 mocking 동작을 이해하기 위한 배경 지식으로 Node.js와 CommonJS 모듈 시스템을 정리해보았습니다!'
-thumbnail: '/assets/blog/jestImportMocking1/thumbnail.png'
+thumbnail: '/assets/blog/jestImportMocking1/thumbnail.webp'
 tags: 'jest node.js commonjs module mocking test-code'
 timeStamps: 1773327600000
 ---

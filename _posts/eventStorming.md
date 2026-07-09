@@ -2,7 +2,7 @@
 title: "[RECRUIT] 리크루트 개발팀의 이벤트스토밍"
 date: '2024년 10월 09일'
 description: 'Econovation 동아리 Recruit 개발팀의 이벤트스토밍 워크숍 활동을 정리한 글입니다.'
-thumbnail: '/assets/blog/eventStorming/thumbnail.png'
+thumbnail: '/assets/blog/eventStorming/thumbnail.webp'
 tags: 'next.js coding concept project'
 timeStamps: 1728432000000
 ---

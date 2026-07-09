@@ -2,7 +2,7 @@
 title: '[eeos] 테스트가 필요해 _ 3부'
 date: '2024년 8월 31일'
 description: 'api 로직과 컴포넌트에 어디까지, 어떻게 테스트를 작성할지 비용과 효용을 따져 eeos의 테스트 전략을 세워본 과정을 정리해보았습니다.'
-thumbnail: '/assets/blog/eeosTestStrategy/thumbnail.png'
+thumbnail: '/assets/blog/eeosTestStrategy/thumbnail.webp'
 tags: 'test-code eeos 컴포넌트테스트 mocking jest next.js'
 timeStamps: 1725062400000
 ---

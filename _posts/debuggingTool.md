@@ -2,7 +2,7 @@
 title: '웹뷰 디버깅 환경을 만들기까지의 여정'
 date: '2026년 2월 10일'
 description: '웹뷰 개발 중 웹에 앱 화면 전환 효과를 주기 위한 시도를 녹여보았습니다!'
-thumbnail: '/assets/blog/debuggingTool/thumbnail.png'
+thumbnail: '/assets/blog/debuggingTool/thumbnail.webp'
 tags: 'webview animation react next.js library project'
 timeStamps: 1770700621469
 ---

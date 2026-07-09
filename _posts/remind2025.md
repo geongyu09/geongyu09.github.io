@@ -1,6 +1,6 @@
 ---
 title: '[회고] 2025 회고'
-thumbnail: '/assets/blog/remind2025/thumbnail.png'
+thumbnail: '/assets/blog/remind2025/thumbnail.webp'
 description: '2025년도를 되돌아보았습니다.'
 date: '2026년 1월 20일'
 tags: '회고 2025'

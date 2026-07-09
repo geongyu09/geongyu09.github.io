@@ -2,7 +2,7 @@
 title: '[회고] 우아한테크코스 5, 6주차 회고'
 date: '2026년 03월 29일'
 description: '테코톡 발표, 학습법을 다시 설계해본 미션, 그리고 페어와 부딪히며 소프트 스킬을 키워간 2주간의 기록입니다.'
-thumbnail: '/assets/blog/wootecoWeek2Review/thumbnail.png'
+thumbnail: '/assets/blog/wootecoWeek2Review/thumbnail.webp'
 tags: '회고 우아한테크코스 소프트스킬'
 timeStamps: 1774710000000
 ---

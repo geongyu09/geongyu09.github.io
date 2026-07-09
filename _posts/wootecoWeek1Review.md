@@ -2,7 +2,7 @@
 title: '[회고] 우아한테크코스 1주차 회고'
 date: '2026년 2월 28일'
 description: '우아한 테크 코스의 첫 주를 돌아보며 새로운 환경에서 마주한 도전과 배움을 정리하였습니다.'
-thumbnail: '/assets/blog/wootecoWeek1Review/thumbnail.png'
+thumbnail: '/assets/blog/wootecoWeek1Review/thumbnail.webp'
 tags: '회고 우아한테크코스 AI 프롬프팅'
 timeStamps: 1772259420000
 ---

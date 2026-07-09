@@ -2,7 +2,7 @@
 title: 'Jest는 어떻게 import문을 mocking하는걸까? _3부'
 date: '2026년 4월 1일'
 description: 'ESM 환경에서는 import를 런타임에 가로챌 수 없습니다. Jest가 babel-jest와 babel-plugin-jest-hoist로 이 문제를 우회하는 과정을 내부 코드와 함께 따라가 보았습니다!'
-thumbnail: '/assets/blog/jestImportMocking3/thumbnail.png'
+thumbnail: '/assets/blog/jestImportMocking3/thumbnail.webp'
 tags: 'jest esm commonjs babel transpile hoisting mocking test'
 timeStamps: 1774969200000
 ---

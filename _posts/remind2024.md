@@ -1,6 +1,6 @@
 ---
 title: '[회고] 2024 회고'
-thumbnail: '/assets/blog/remind2024/thumbnail.png'
+thumbnail: '/assets/blog/remind2024/thumbnail.webp'
 description: '2024년도를 되돌아보았습니다.'
 date: '2024년 12월 22일'
 tags: '회고 2024'

@@ -1,6 +1,6 @@
 ---
 title: '웹뷰 브리지 라이브러리 개발 기록'
-thumbnail: '/assets/blog/webviewThreeWayHandshake/thumbnail.png'
+thumbnail: '/assets/blog/webviewThreeWayHandshake/thumbnail.webp'
 description: '웹뷰 브리지 라이브러리 개발 기록입니다. 웹뷰와 네이티브 앱 간의 통신을 위한 라이브러리를 개발하며 겪은 문제와 해결 과정을 공유합니다.'
 date: '2025년 5월 3일'
 tags: 'react-native webview react project'

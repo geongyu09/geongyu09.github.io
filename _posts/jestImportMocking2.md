@@ -2,7 +2,7 @@
 title: 'Jest는 어떻게 import문을 mocking하는걸까? 2부'
 date: '2026년 3월 20일'
 description: 'Jest 내부 코드를 따라가며 jest-runtime이 어떻게 require를 갈아끼우고 mock 여부를 판단하는지 살펴봅니다!'
-thumbnail: '/assets/blog/jestImportMocking2/thumbnail.png'
+thumbnail: '/assets/blog/jestImportMocking2/thumbnail.webp'
 tags: 'jest mocking node vm cjs jest-runtime'
 timeStamps: 1773932400000
 ---

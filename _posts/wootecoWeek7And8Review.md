@@ -2,7 +2,7 @@
 title: '[회고] 우아한테크코스 7, 8주차 회고'
 date: '2026년 04월 15일'
 description: '비동기와 이벤트 루프를 다시 마주하고, 페어 프로그래밍과 AI 시대의 기본기를 고민하며 레벨 1을 마무리한 2주간의 기록입니다.'
-thumbnail: '/assets/blog/wootecoWeek2Review/thumbnail.png'
+thumbnail: '/assets/blog/wootecoWeek2Review/thumbnail.webp'
 tags: '회고 우아한테크코스 소프트스킬 자바스크립트 AI'
 timeStamps: 1776178800000
 ---

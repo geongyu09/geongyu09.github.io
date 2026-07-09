@@ -2,7 +2,7 @@
 title: '[회고] 우아한테크코스 2주차 회고'
 date: '2026년 3월 8일'
 description: '우아한 테크 코스의 두 번째 주를 돌아보며 연극, 첫 FE 수업, 페어 프로그래밍을 통해 배운 것들을 정리하였습니다.'
-thumbnail: '/assets/blog/wootecoWeek2Review/thumbnail.png'
+thumbnail: '/assets/blog/wootecoWeek2Review/thumbnail.webp'
 tags: '회고 우아한테크코스 TDD 페어프로그래밍'
 timeStamps: 1772928000000
 ---
