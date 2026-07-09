@@ -1,14 +1,14 @@
 ---
 name: post-thumbnail
-description: '블로그 글의 썸네일 이미지를 생성합니다. 글의 프론트매터(title, tags, date)를 읽어 기존 썸네일들과 통일된 스타일의 SVG를 디자인하고, Chrome headless로 PNG 변환하여 `public/assets/blog/[글 제목]/thumbnail.png`로 저장한 뒤 프론트매터의 thumbnail 필드를 갱신합니다. "썸네일 만들어줘", "이 글 썸네일 생성해줘" 등의 요청 시 이 스킬을 사용하세요.'
+description: '블로그 글의 썸네일 이미지를 생성합니다. 글의 프론트매터(title, tags, date)를 읽어 기존 썸네일들과 통일된 스타일의 SVG를 디자인하고, Chrome headless로 PNG 변환 후 cwebp로 webp 변환하여 `public/assets/blog/[글 제목]/thumbnail.webp`로 저장한 뒤 프론트매터의 thumbnail 필드를 갱신합니다. "썸네일 만들어줘", "이 글 썸네일 생성해줘" 등의 요청 시 이 스킬을 사용하세요.'
 disable-model-invocation: false
 user-invocable: true
 ---
 
 # 블로그 글 썸네일 생성
 
-이 스킬은 `_posts/`의 글에 대해 기존 썸네일들과 통일된 스타일의 썸네일 PNG를 생성합니다.
-썸네일은 글 목록 카드와 **OG 이미지(og:image, 트위터 카드)**로 쓰이기 때문에 SVG가 아닌 **PNG**로 최종 저장해야 합니다. (SNS 크롤러는 SVG를 지원하지 않음)
+이 스킬은 `_posts/`의 글에 대해 기존 썸네일들과 통일된 스타일의 썸네일 **webp**를 생성합니다.
+썸네일은 글 목록 카드와 **OG 이미지(og:image, 트위터 카드)**로 쓰이기 때문에 SVG가 아닌 래스터 이미지로 최종 저장해야 합니다. (SNS 크롤러는 SVG를 지원하지 않음) 용량을 위해 최종 포맷은 **webp**를 사용합니다.
 
 ## [금지] 글 본문 수정 금지
 
@@ -23,29 +23,33 @@ user-invocable: true
 - 사용자가 글을 지정하지 않았다면 어떤 글인지 확인합니다.
 - 프론트매터에서 `title`, `tags`, `date`를 읽습니다.
 - 에셋 폴더명을 확인합니다: 기존 `public/assets/blog/[글 제목]/` 폴더가 있으면 그대로 사용, 없으면 글 파일명과 동일하게 만듭니다.
-- 이미 `thumbnail.png`가 존재하면 덮어쓰기 전에 사용자에게 확인합니다.
+- 이미 `thumbnail.webp`(또는 예전 관례의 `thumbnail.png`)가 존재하면 덮어쓰기 전에 사용자에게 확인합니다.
 
 ### 2. SVG 디자인
 
 아래 [썸네일 스타일 가이드]를 따라 SVG를 스크래치패드(세션 임시 디렉토리)에 작성합니다. SVG 소스는 저장소에 커밋하지 않습니다.
 
-### 3. PNG 변환
+### 3. PNG 변환 → webp 변환
 
 **Chrome headless를 사용합니다.** (rsvg-convert는 이모지를 흑백으로 깨뜨리므로 이모지가 없는 경우에만 대체 수단으로 사용)
+Chrome은 webp로 직접 스크린샷을 찍을 수 없으므로, 중간 PNG는 스크래치패드에 만들고 cwebp로 최종 webp를 생성합니다. 중간 PNG는 저장소에 커밋하지 않습니다.
 
 ```bash
 "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" \
   --headless --disable-gpu --hide-scrollbars \
   --window-size=1920,960 \
-  --screenshot=public/assets/blog/[글 제목]/thumbnail.png \
+  --screenshot=[스크래치패드]/thumbnail.png \
   "file://[SVG 절대경로]"
+
+cwebp -q 90 [스크래치패드]/thumbnail.png -o public/assets/blog/[글 제목]/thumbnail.webp
 ```
 
 - `--window-size`는 SVG의 `width`/`height` 속성과 **정확히 일치**해야 잘림/여백 없이 변환됩니다.
+- 기존 `thumbnail.png`가 남아 있다면 webp 저장 후 삭제합니다.
 
 ### 4. 결과 검증
 
-- 생성된 PNG를 Read 도구로 직접 열어 확인합니다: 제목이 잘리거나 넘치지 않는지, **배지 텍스트가 배지 사각형 안에 여유 있게 들어가는지**, 텍스트 줄바꿈이 어색하지 않은지, 한글·이모지가 올바르게 렌더링됐는지.
+- 생성된 webp(또는 중간 PNG)를 Read 도구로 직접 열어 확인합니다: 제목이 잘리거나 넘치지 않는지, **배지 텍스트가 배지 사각형 안에 여유 있게 들어가는지**, 텍스트 줄바꿈이 어색하지 않은지, 한글·이모지가 올바르게 렌더링됐는지.
 - 배지 폭 계산 기준: 대략 `이모지(70px) + 영문 글자당 32px + 한글 글자당 54px + 좌우 패딩 64px`. 넉넉하게 잡습니다.
 - 문제가 있으면 SVG를 수정하고 다시 변환합니다.
 
@@ -54,7 +58,7 @@ user-invocable: true
 프론트매터의 `thumbnail:` 필드를 갱신합니다.
 
 ```yaml
-thumbnail: '/assets/blog/[글 제목]/thumbnail.png'
+thumbnail: '/assets/blog/[글 제목]/thumbnail.webp'
 ```
 
 ### 6. 보고
@@ -63,7 +67,7 @@ thumbnail: '/assets/blog/[글 제목]/thumbnail.png'
 
 ## 썸네일 스타일 가이드
 
-기존 썸네일들과 통일감을 유지합니다. 기준 예시는 `public/assets/blog/cacheAndServerState/thumbnail.png`입니다.
+기존 썸네일들과 통일감을 유지합니다. 기준 예시는 `public/assets/blog/cacheAndServerState/thumbnail.webp`입니다.
 
 ### 캔버스
 
