@@ -63,7 +63,7 @@ export default async function Page({ params }: PageProps) {
 
   return (
     <SsgoiTransition id="/post/[slug]">
-      <article className="max-w-[860px] mx-auto px-[20px] md:px-s-7 pt-s-9 pb-s-7">
+      <article className="max-w-[860px] mx-auto px-[20px] md:px-s-7 pt-s-9 pb-s-5">
         <div className="flex items-center gap-s-4 text-[13px] text-ink-500 mb-s-5">
           <span className="font-mono">{displayDate}</span>
           {primaryTag && (
@@ -84,7 +84,7 @@ export default async function Page({ params }: PageProps) {
           </p>
         )}
 
-        <div className="pb-s-6 border-b border-ink-200" />
+        <div className="pb-s-4 border-b border-ink-200" />
       </article>
 
       <div className="max-w-[860px] mx-auto px-[20px] md:px-s-7 pb-s-8">
