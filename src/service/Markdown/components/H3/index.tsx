@@ -17,7 +17,7 @@ export default function H3({ children, className = '', ...rest }: H3Props) {
       <h6
         id={headerId}
         className={cn(
-          'text-xl font-bold mt-10 mb-4 scroll-mt-20',
+          'text-[18px] font-bold mt-10 mb-4 scroll-mt-20',
           'hover:opacity-80',
           className,
         )}

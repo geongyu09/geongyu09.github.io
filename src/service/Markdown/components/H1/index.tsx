@@ -19,7 +19,7 @@ export default function H1({ children, className = '', ...rest }: H1Props) {
       <h4
         id={headerId}
         className={cn(
-          'text-3xl font-bold mt-10 mb-8 scroll-mt-20',
+          'text-[25px] font-bold mt-10 mb-8 scroll-mt-20',
           'hover:opacity-80 hover:',
           className,
         )}

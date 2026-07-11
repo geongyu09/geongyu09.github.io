@@ -74,10 +74,12 @@ export default async function Page({ params }: PageProps) {
           )}
         </div>
 
-        <h1 className="text-h1 m-0 mb-s-5">{title}</h1>
+        <h1 className="text-[30px] leading-[1.18] tracking-[-0.02em] font-semibold md:text-h1 m-0 mb-s-5">
+          {title}
+        </h1>
 
         {description && (
-          <p className="text-[20px] leading-[1.55] text-ink-500 font-normal m-0 mb-s-7">
+          <p className="text-[17px] md:text-[19px] leading-[1.55] text-ink-500 font-normal m-0 mb-s-7">
             {description}
           </p>
         )}
