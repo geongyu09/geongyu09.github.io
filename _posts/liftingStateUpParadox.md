@@ -7,7 +7,7 @@ tags: 'react 객체지향 컴포넌트설계 FACC 상태관리'
 timeStamps: 1784905200000
 ---
 
-> 조영호 저자의 『Object』 1장을 읽고, 책에서 배운 객체지향 개념을 리액트에 맞춰 적용해보며 쓴 글이다. 객체지향의 시각으로 리액트를 해석한 시도인 만큼, 반박 의견은 언제나 환영한다.
+> 조영호 저자의 『Object』 1장을 읽고, 책에서 배운 객체지향 개념을 리액트에 맞춰 적용해보며 쓴 글입니다. 객체지향의 시각으로 리액트를 해석한 시도인 만큼, 반박 의견은 언제나 환영합니다!
 
 리액트의 데이터는 부모에서 자식으로, 위에서 아래로만 이동한다. 이로 인해서 데이터가 어디에서 만들어져 어디로 전달되는지 추적하기 쉬워진다는 장점이 있지만 실제로 개발하다 보면 컴포넌트별로 공유가 필요한 데이터가 반드시 생기고 단방향으로만 흐르는 리액트의 특성 때문에 부모-자식 관계가 아닌 컴포넌트끼리는 데이터를 직접 주고받을 수 없다. 리액트 공식 문서는 이런 상태 공유 문제를 [상태 끌어올리기(Lifting State Up)](https://ko.react.dev/learn/sharing-state-between-components)로 해결하라고 안내하는데, 공유가 필요한 상태를 가장 가까운 공통 부모로 올린 다음 부모가 props로 각 자식에게 내려주는 방식이다.
 
@@ -59,12 +59,12 @@ function OrderPage() {
 }
 
 function TabContent(props) {
-	return (
-		<>
-		  {props.activeTab === "delivery" && <DeliveryPanel />}
+  return (
+    <>
+      {props.activeTab === "delivery" && <DeliveryPanel />}
       {props.activeTab === "pickup" && <PickupPanel />}
     </>
-	)
+  );
 }
 
 function TabBar({ items, activeTab, onChange }: TabBarProps) {
