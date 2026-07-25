@@ -3,11 +3,16 @@
     <channel>
         <title>건규의 블로그</title>
         <link>https://geongyu09.github.io</link>
-        <description>박건규의 블로그</description>
-        <lastBuildDate>Sat, 25 Jul 2026 14:21:30 GMT</lastBuildDate>
+        <description>프론트엔드·함수형 프로그래밍·AI 기반 개발 도구를 다루는 박건규의 기술 블로그입니다.</description>
+        <lastBuildDate>Sat, 25 Jul 2026 15:31:02 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>ko</language>
+        <image>
+            <title>건규의 블로그</title>
+            <url>https://geongyu09.github.io/icon-512.png</url>
+            <link>https://geongyu09.github.io</link>
+        </image>
         <copyright>All rights reserved 2026, 박건규</copyright>
         <item>
             <title><![CDATA[상태 끌어올리기의 역설]]></title>
@@ -20,6 +25,7 @@
             <category>컴포넌트설계</category>
             <category>FACC</category>
             <category>상태관리</category>
+            <enclosure url="https://geongyu09.github.io/assets/blog/liftingStateUpParadox/thumbnail.webp" length="0" type="image/webp"/>
         </item>
         <item>
             <title><![CDATA[[회고] 우아한테크코스 Level 2 후반기 회고]]></title>
@@ -32,6 +38,7 @@
             <category>객체지향</category>
             <category>아키텍처</category>
             <category>백엔드</category>
+            <enclosure url="https://geongyu09.github.io/assets/blog/wootecoLevel2SecondHalfReview/thumbnail.webp" length="0" type="image/webp"/>
         </item>
         <item>
             <title><![CDATA[[회고] 우아한테크코스 Level 2 1~4주차 회고]]></title>
@@ -44,6 +51,7 @@
             <category>react</category>
             <category>추상화</category>
             <category>송곳원정대</category>
+            <enclosure url="https://geongyu09.github.io/assets/blog/wootecoWeek2Review/thumbnail.webp" length="0" type="image/webp"/>
         </item>
         <item>
             <title><![CDATA[부수효과 가득한 프론트엔드에서 함수형으로 살아남기]]></title>
@@ -56,6 +64,7 @@
             <category>RxJS</category>
             <category>우아한테크코스</category>
             <category>자바스크립트</category>
+            <enclosure url="https://geongyu09.github.io/assets/blog/survivingWithFunctional/thumbnail.webp" length="0" type="image/webp"/>
         </item>
         <item>
             <title><![CDATA[LLM은 어떻게 개발자가 되는가 — Claude Code라는 하네스의 해부]]></title>
@@ -68,6 +77,7 @@
             <category>에이전트</category>
             <category>하네스</category>
             <category>기술분석</category>
+            <enclosure url="https://geongyu09.github.io/assets/blog/claudeCodeHarness/thumbnail.webp" length="0" type="image/webp"/>
         </item>
         <item>
             <title><![CDATA[[회고] 우아한테크코스 7, 8주차 회고]]></title>
@@ -80,6 +90,7 @@
             <category>소프트스킬</category>
             <category>자바스크립트</category>
             <category>AI</category>
+            <enclosure url="https://geongyu09.github.io/assets/blog/wootecoWeek2Review/thumbnail.webp" length="0" type="image/webp"/>
         </item>
         <item>
             <title><![CDATA[Jest는 어떻게 import문을 mocking하는걸까? _3부]]></title>
@@ -95,6 +106,7 @@
             <category>hoisting</category>
             <category>mocking</category>
             <category>test</category>
+            <enclosure url="https://geongyu09.github.io/assets/blog/jestImportMocking3/thumbnail.webp" length="0" type="image/webp"/>
         </item>
         <item>
             <title><![CDATA[[회고] 우아한테크코스 5, 6주차 회고]]></title>
@@ -105,6 +117,7 @@
             <category>회고</category>
             <category>우아한테크코스</category>
             <category>소프트스킬</category>
+            <enclosure url="https://geongyu09.github.io/assets/blog/wootecoWeek2Review/thumbnail.webp" length="0" type="image/webp"/>
         </item>
         <item>
             <title><![CDATA[[회고] 우아한테크코스 3, 4주차 회고]]></title>
@@ -115,6 +128,7 @@
             <category>회고</category>
             <category>우아한테크코스</category>
             <category>functional-programing</category>
+            <enclosure url="https://geongyu09.github.io/assets/blog/wootecoWeek2Review/thumbnail.webp" length="0" type="image/webp"/>
         </item>
         <item>
             <title><![CDATA[Jest는 어떻게 import문을 mocking하는걸까? 2부]]></title>
@@ -128,6 +142,7 @@
             <category>vm</category>
             <category>cjs</category>
             <category>jest-runtime</category>
+            <enclosure url="https://geongyu09.github.io/assets/blog/jestImportMocking2/thumbnail.webp" length="0" type="image/webp"/>
         </item>
         <item>
             <title><![CDATA[Jest는 어떻게 import문을 mocking하는걸까? _1부]]></title>
@@ -141,6 +156,7 @@
             <category>module</category>
             <category>mocking</category>
             <category>test-code</category>
+            <enclosure url="https://geongyu09.github.io/assets/blog/jestImportMocking1/thumbnail.webp" length="0" type="image/webp"/>
         </item>
         <item>
             <title><![CDATA[[회고] 우아한테크코스 2주차 회고]]></title>
@@ -152,6 +168,7 @@
             <category>우아한테크코스</category>
             <category>TDD</category>
             <category>페어프로그래밍</category>
+            <enclosure url="https://geongyu09.github.io/assets/blog/wootecoWeek2Review/thumbnail.webp" length="0" type="image/webp"/>
         </item>
         <item>
             <title><![CDATA[[회고] 우아한테크코스 1주차 회고]]></title>
@@ -163,6 +180,7 @@
             <category>우아한테크코스</category>
             <category>AI</category>
             <category>프롬프팅</category>
+            <enclosure url="https://geongyu09.github.io/assets/blog/wootecoWeek1Review/thumbnail.webp" length="0" type="image/webp"/>
         </item>
         <item>
             <title><![CDATA[웹뷰 디버깅 환경을 만들기까지의 여정]]></title>
@@ -176,6 +194,7 @@
             <category>next.js</category>
             <category>library</category>
             <category>project</category>
+            <enclosure url="https://geongyu09.github.io/assets/blog/debuggingTool/thumbnail.webp" length="0" type="image/webp"/>
         </item>
         <item>
             <title><![CDATA[[회고] 2025 회고]]></title>
@@ -185,6 +204,7 @@
             <description><![CDATA[2025년도를 되돌아보았습니다.]]></description>
             <category>회고</category>
             <category>2025</category>
+            <enclosure url="https://geongyu09.github.io/assets/blog/remind2025/thumbnail.webp" length="0" type="image/webp"/>
         </item>
         <item>
             <title><![CDATA[웹을 앱처럼 만들어 보자!]]></title>
@@ -198,6 +218,7 @@
             <category>next.js</category>
             <category>library</category>
             <category>project</category>
+            <enclosure url="https://geongyu09.github.io/assets/blog/appLikeWeb/webAppComp.gif" length="0" type="image/gif"/>
         </item>
         <item>
             <title><![CDATA[웹뷰 브리지 라이브러리 개발 기록]]></title>
@@ -209,6 +230,7 @@
             <category>webview</category>
             <category>react</category>
             <category>project</category>
+            <enclosure url="https://geongyu09.github.io/assets/blog/webviewThreeWayHandshake/thumbnail.webp" length="0" type="image/webp"/>
         </item>
         <item>
             <title><![CDATA[React를 사용해 SSR을 구현해보자!]]></title>
@@ -218,6 +240,7 @@
             <description><![CDATA[React를 사용해 SSR을 구현하는 방법에 대해 정리했습니다. CSR과 SSR의 차이점, React에서의 SSR 구현 방법, 그리고 간단한 카운터 기능을 가진 페이지를 SSR로 구현해보았습니다!]]></description>
             <category>react</category>
             <category>SSR</category>
+            <enclosure url="https://geongyu09.github.io/assets/blog/reactSsr/SSR결과.gif" length="0" type="image/gif"/>
         </item>
         <item>
             <title><![CDATA[CRA 없이 React 프로젝트 구성하기: 웹팩과 바벨 설정부터 SSR 준비까지]]></title>
@@ -230,6 +253,7 @@
             <category>babel</category>
             <category>typescript</category>
             <category>SSR</category>
+            <enclosure url="https://geongyu09.github.io/assets/blog/withoutWebpack/cra.png" length="0" type="image/png"/>
         </item>
         <item>
             <title><![CDATA[[회고] 2024 회고]]></title>
@@ -239,6 +263,7 @@
             <description><![CDATA[2024년도를 되돌아보았습니다.]]></description>
             <category>회고</category>
             <category>2024</category>
+            <enclosure url="https://geongyu09.github.io/assets/blog/remind2024/thumbnail.webp" length="0" type="image/webp"/>
         </item>
         <item>
             <title><![CDATA[[RECRUIT] 리크루트 개발팀의 이벤트스토밍]]></title>
@@ -250,6 +275,7 @@
             <category>coding</category>
             <category>concept</category>
             <category>project</category>
+            <enclosure url="https://geongyu09.github.io/assets/blog/eventStorming/thumbnail.webp" length="0" type="image/webp"/>
         </item>
         <item>
             <title><![CDATA[[블로그] 모달 관리에 관한 고민점들]]></title>
@@ -260,6 +286,7 @@
             <category>modal</category>
             <category>react</category>
             <category>개발일지</category>
+            <enclosure url="https://geongyu09.github.io/assets/blog/blogModal/image.png" length="0" type="image/png"/>
         </item>
         <item>
             <title><![CDATA[[블로그] 블로그 마크다운]]></title>
@@ -270,6 +297,7 @@
             <category>markdown</category>
             <category>react-markdown</category>
             <category>개발일지</category>
+            <enclosure url="https://geongyu09.github.io/assets/blog/blogMarkdown/image.png" length="0" type="image/png"/>
         </item>
         <item>
             <title><![CDATA[[eeos] 테스트가 필요해 _ 3부]]></title>
@@ -283,6 +311,7 @@
             <category>mocking</category>
             <category>jest</category>
             <category>next.js</category>
+            <enclosure url="https://geongyu09.github.io/assets/blog/eeosTestStrategy/thumbnail.webp" length="0" type="image/webp"/>
         </item>
         <item>
             <title><![CDATA[[eeos] 테스트가 필요해 _ 2부]]></title>
@@ -295,6 +324,7 @@
             <category>mocking</category>
             <category>react-query</category>
             <category>refactoring</category>
+            <enclosure url="https://geongyu09.github.io/assets/blog/apiTestWithMocking/thumbnail.webp" length="0" type="image/webp"/>
         </item>
         <item>
             <title><![CDATA[[eeos] 테스트가 필요해 _ 1부]]></title>
@@ -306,6 +336,7 @@
             <category>eeos</category>
             <category>jest</category>
             <category>next.js</category>
+            <enclosure url="https://geongyu09.github.io/assets/blog/eeosNeedTestPart1/thumbnail.webp" length="0" type="image/webp"/>
         </item>
         <item>
             <title><![CDATA[[test-code] 테스트 코드의 중요성 _ 좋은 코드]]></title>
@@ -314,6 +345,7 @@
             <pubDate>Sat, 03 Aug 2024 08:00:00 GMT</pubDate>
             <description><![CDATA[테스트 코드와 좋은 코드의 연관성에 대한 개인적인 생각을 정리해보았습니다.]]></description>
             <category>test-code</category>
+            <enclosure url="https://geongyu09.github.io/assets/blog/importanceOfTest/thumbnail.webp" length="0" type="image/webp"/>
         </item>
         <item>
             <title><![CDATA[캐시와 서버 상태]]></title>
@@ -323,6 +355,7 @@
             <description><![CDATA[캐시와 서버 상태 개념을 react-query에 대입하여 설명하는 글입니다.]]></description>
             <category>cache</category>
             <category>react-query</category>
+            <enclosure url="https://geongyu09.github.io/assets/blog/cacheAndServerState/thumbnail.webp" length="0" type="image/webp"/>
         </item>
         <item>
             <title><![CDATA[블로그를 만들어야겠다..!]]></title>
@@ -333,6 +366,7 @@
             <category>next.js</category>
             <category>coding</category>
             <category>concept</category>
+            <enclosure url="https://geongyu09.github.io/assets/blog/blogStart/Untitled.png" length="0" type="image/png"/>
         </item>
     </channel>
 </rss>

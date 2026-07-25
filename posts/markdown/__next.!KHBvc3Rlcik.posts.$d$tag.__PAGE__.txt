@@ -1,6 +1,6 @@
 1:"$Sreact.fragment"
-2:I[96052,["/_next/static/chunks/3pbb4kp0gy5k7.js","/_next/static/chunks/23mw1lj56lyzw.js","/_next/static/chunks/14mrh2-p_w84d.js","/_next/static/chunks/0-bo1z8dc7uf_.js","/_next/static/chunks/0d3cqhenwx-a8.js","/_next/static/chunks/0bunxc50h_7pk.js"],"default"]
-7:I[97367,["/_next/static/chunks/3pbb4kp0gy5k7.js","/_next/static/chunks/23mw1lj56lyzw.js","/_next/static/chunks/14mrh2-p_w84d.js","/_next/static/chunks/0-bo1z8dc7uf_.js"],"OutletBoundary"]
+2:I[96052,["/_next/static/chunks/2_dsqurvo5pg_.js","/_next/static/chunks/3v30ib8ezgcz_.js","/_next/static/chunks/14mrh2-p_w84d.js","/_next/static/chunks/0-bo1z8dc7uf_.js","/_next/static/chunks/0d3cqhenwx-a8.js","/_next/static/chunks/0bunxc50h_7pk.js"],"default"]
+7:I[97367,["/_next/static/chunks/2_dsqurvo5pg_.js","/_next/static/chunks/3v30ib8ezgcz_.js","/_next/static/chunks/14mrh2-p_w84d.js","/_next/static/chunks/0-bo1z8dc7uf_.js"],"OutletBoundary"]
 8:"$Sreact.suspense"
 3:T2538,
 # 글 보여주기_detail 페이지
@@ -319,7 +319,7 @@ H1.defaultProps = {
   children: null,
   className: '',
 };
-```0:{"rsc":["$","$1","c",{"children":[["$","$L2",null,{"posts":[{"data":{"title":"[블로그] 블로그 마크다운","date":"2024년 9월 8일","description":"블로그를 만들면서 고민했던 내용들 중, 마크다운과 관련한 트러블 슈팅 내용이 담겨있습니다","thumbnail":"/assets/blog/blogMarkdown/image.png","tags":"markdown react-markdown 개발일지","timeStamps":1725408000000},"slug":"blogMarkdown","content":"$3"}],"totalCount":29,"allTags":["react","객체지향","컴포넌트설계","FACC","상태관리","회고","우아한테크코스","아키텍처","백엔드","추상화","송곳원정대","functional-programing","프론트엔드","RxJS","자바스크립트","Claude-Code","LLM","에이전트","하네스","기술분석","소프트스킬","AI","jest","esm","commonjs","babel","transpile","hoisting","mocking","test","node","vm","cjs","jest-runtime","node.js","module","test-code","TDD","페어프로그래밍","프롬프팅","webview","animation","next.js","library","project","2025","react-native","SSR","webpack","typescript","2024","coding","concept","modal","개발일지","markdown","react-markdown","eeos","컴포넌트테스트","react-query","refactoring","cache"],"activeTag":"markdown"}],["$L4","$L5"],"$L6"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"7L6O15Xh_TuOmHpRcm3ct"}
+```0:{"rsc":["$","$1","c",{"children":[["$","$L2",null,{"posts":[{"data":{"title":"[블로그] 블로그 마크다운","date":"2024년 9월 8일","description":"블로그를 만들면서 고민했던 내용들 중, 마크다운과 관련한 트러블 슈팅 내용이 담겨있습니다","thumbnail":"/assets/blog/blogMarkdown/image.png","tags":"markdown react-markdown 개발일지","timeStamps":1725408000000},"slug":"blogMarkdown","content":"$3"}],"totalCount":29,"allTags":["react","객체지향","컴포넌트설계","FACC","상태관리","회고","우아한테크코스","아키텍처","백엔드","추상화","송곳원정대","functional-programing","프론트엔드","RxJS","자바스크립트","Claude-Code","LLM","에이전트","하네스","기술분석","소프트스킬","AI","jest","esm","commonjs","babel","transpile","hoisting","mocking","test","node","vm","cjs","jest-runtime","node.js","module","test-code","TDD","페어프로그래밍","프롬프팅","webview","animation","next.js","library","project","2025","react-native","SSR","webpack","typescript","2024","coding","concept","modal","개발일지","markdown","react-markdown","eeos","컴포넌트테스트","react-query","refactoring","cache"],"activeTag":"markdown"}],["$L4","$L5"],"$L6"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"W-2mncXsQlLz_pfydNn8x"}
 4:["$","script","script-0",{"src":"/_next/static/chunks/0d3cqhenwx-a8.js","async":true}]
 5:["$","script","script-1",{"src":"/_next/static/chunks/0bunxc50h_7pk.js","async":true}]
 6:["$","$L7",null,{"children":["$","$8",null,{"name":"Next.MetadataOutlet","children":"$@9"}]}]
