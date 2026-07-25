@@ -15,11 +15,13 @@ import './globals.css';
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.URL),
   title: {
-    default: '건규의 블로그 | Blog',
-    template: '%s | 건규의 블로그',
+    default: `${SITE.TITLE} | Blog`,
+    template: `%s | ${SITE.TITLE}`,
   },
-  description: '박건규의 기술 블로그',
+  description: SITE.DESCRIPTION,
   authors: [{ name: SITE.AUTHOR.name, url: SITE.AUTHOR.link }],
+  creator: SITE.AUTHOR.name,
+  publisher: SITE.AUTHOR.name,
   alternates: {
     canonical: '/',
     types: {
@@ -31,13 +33,23 @@ export const metadata: Metadata = {
     locale: 'ko_KR',
     url: SITE.URL,
     siteName: SITE.TITLE,
-    title: '건규의 블로그',
-    description: '박건규의 기술 블로그',
+    title: SITE.TITLE,
+    description: SITE.DESCRIPTION,
   },
   twitter: {
     card: 'summary_large_image',
-    title: '건규의 블로그',
-    description: '박건규의 기술 블로그',
+    title: SITE.TITLE,
+    description: SITE.DESCRIPTION,
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
   },
 };
 
