@@ -2,13 +2,15 @@ import { Feed } from 'feed';
 import fs from 'node:fs';
 import path from 'node:path';
 import matter from 'gray-matter';
+import SITE from '../src/constants/site';
 
-const SITE_URL = 'https://geongyu09.github.io';
+const SITE_URL = SITE.URL;
 
 interface PostData {
   title: string;
   description: string;
   tags: string;
+  thumbnail?: string;
   timeStamps: number;
 }
 
@@ -53,17 +55,15 @@ async function generateRss() {
   const posts = getAllPosts();
 
   const feed = new Feed({
-    title: '건규의 블로그',
-    description: '박건규의 블로그',
+    title: SITE.TITLE,
+    description: SITE.DESCRIPTION,
     id: SITE_URL,
     link: SITE_URL,
     language: 'ko',
-    copyright: `All rights reserved ${new Date().getFullYear()}, 박건규`,
-    author: {
-      name: '박건규',
-      email: 'geongyu09@gmail.com',
-      link: 'https://github.com/geongyu09',
-    },
+    image: `${SITE_URL}/icon-512.png`,
+    favicon: `${SITE_URL}/favicon.ico`,
+    copyright: `All rights reserved ${new Date().getFullYear()}, ${SITE.AUTHOR.name}`,
+    author: SITE.AUTHOR,
   });
 
   posts.forEach((post) => {
@@ -74,6 +74,9 @@ async function generateRss() {
       description: post.data.description,
       date: new Date(post.data.timeStamps),
       category: post.data.tags.split(' ').map((name: string) => ({ name })),
+      ...(post.data.thumbnail && {
+        image: `${SITE_URL}${post.data.thumbnail}`,
+      }),
     });
   });
 
