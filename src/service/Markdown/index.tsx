@@ -25,6 +25,7 @@ import {
   Table,
   UL,
 } from './components';
+import rehypeUnwrapImages from './plugins/rehypeUnwrapImages';
 import './style.css';
 
 const prettyCodeOptions: Options = {
@@ -40,6 +41,7 @@ const processor = unified()
   .use(remarkParse)
   .use(remarkGfm)
   .use(remarkRehype, { allowDangerousHtml: false })
+  .use(rehypeUnwrapImages)
   .use(rehypePrettyCode, prettyCodeOptions)
   .use(rehypeReact, {
     Fragment,
