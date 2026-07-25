@@ -1,4 +1,5 @@
 import SITE from '@/constants/site';
+import JsonLd from '@/components/common/JsonLd';
 import InlineTag from '@/components/ds/InlineTag';
 import SideTableOfContent from '@/components/feature/Post/SideTableOfContent';
 import { getPostBySlug, getPostSlugs } from '@/lib/post/post';
@@ -54,15 +55,42 @@ export default async function Page({ params }: PageProps) {
   const { slug } = await params;
   const {
     content,
-    data: { date, title, description, tags },
+    data: { date, title, description, tags, thumbnail, timeStamps },
   } = getPostBySlug(slug);
 
   const tagList = tags ? tags.split(' ').filter(Boolean) : [];
   const [primaryTag] = tagList;
   const displayDate = date.split('T')[0];
 
+  const url = `${SITE.URL}/post/${slug}/`;
+  const publishedISO = new Date(timeStamps).toISOString();
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: title,
+    description,
+    ...(thumbnail && { image: `${SITE.URL}${thumbnail}` }),
+    datePublished: publishedISO,
+    dateModified: publishedISO,
+    author: {
+      '@type': 'Person',
+      name: SITE.AUTHOR.name,
+      url: SITE.AUTHOR.link,
+    },
+    publisher: {
+      '@type': 'Person',
+      name: SITE.AUTHOR.name,
+      url: SITE.AUTHOR.link,
+    },
+    mainEntityOfPage: { '@type': 'WebPage', '@id': url },
+    url,
+    ...(tagList.length > 0 && { keywords: tagList.join(', ') }),
+    inLanguage: 'ko-KR',
+  };
+
   return (
     <SsgoiTransition id="/post/[slug]">
+      <JsonLd data={jsonLd} />
       <article className="max-w-[860px] mx-auto px-[20px] md:px-s-7 pt-s-9 pb-s-5">
         <div className="flex items-center gap-s-4 text-[13px] text-ink-500 mb-s-5">
           <span className="font-mono">{displayDate}</span>
