@@ -19,12 +19,19 @@ export async function generateMetadata({
 }: PageProps): Promise<Metadata> {
   const { slug } = await params;
   const {
-    data: { title, description, thumbnail, tags, timeStamps },
+    data: {
+      title,
+      description,
+      thumbnail,
+      tags,
+      timeStamps,
+      updatedTimeStamps,
+    },
   } = getPostBySlug(slug);
 
   const url = `${SITE.URL}/post/${slug}/`;
   const tagList = tags ? tags.split(' ').filter(Boolean) : [];
-  const images = thumbnail ? [thumbnail] : undefined;
+  const images = [thumbnail || SITE.OG_IMAGE];
 
   return {
     title,
@@ -38,6 +45,7 @@ export async function generateMetadata({
       description,
       siteName: SITE.TITLE,
       publishedTime: new Date(timeStamps).toISOString(),
+      modifiedTime: new Date(updatedTimeStamps ?? timeStamps).toISOString(),
       authors: [SITE.AUTHOR.name],
       tags: tagList,
       images,
@@ -55,7 +63,15 @@ export default async function Page({ params }: PageProps) {
   const { slug } = await params;
   const {
     content,
-    data: { date, title, description, tags, thumbnail, timeStamps },
+    data: {
+      date,
+      title,
+      description,
+      tags,
+      thumbnail,
+      timeStamps,
+      updatedTimeStamps,
+    },
   } = getPostBySlug(slug);
 
   const tagList = tags ? tags.split(' ').filter(Boolean) : [];
@@ -64,6 +80,7 @@ export default async function Page({ params }: PageProps) {
 
   const url = `${SITE.URL}/post/${slug}/`;
   const publishedISO = new Date(timeStamps).toISOString();
+  const modifiedISO = new Date(updatedTimeStamps ?? timeStamps).toISOString();
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',
@@ -71,7 +88,7 @@ export default async function Page({ params }: PageProps) {
     description,
     ...(thumbnail && { image: `${SITE.URL}${thumbnail}` }),
     datePublished: publishedISO,
-    dateModified: publishedISO,
+    dateModified: modifiedISO,
     author: {
       '@type': 'Person',
       name: SITE.AUTHOR.name,
