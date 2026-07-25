@@ -3,8 +3,8 @@
     <channel>
         <title>건규의 블로그</title>
         <link>https://geongyu09.github.io</link>
-        <description>프론트엔드·함수형 프로그래밍·AI 기반 개발 도구를 다루는 박건규의 기술 블로그입니다.</description>
-        <lastBuildDate>Sat, 25 Jul 2026 15:31:02 GMT</lastBuildDate>
+        <description>프론트엔드 개발자 박건규의 기술 블로그입니다.</description>
+        <lastBuildDate>Sat, 25 Jul 2026 15:49:14 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>ko</language>
