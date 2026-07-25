@@ -29,6 +29,9 @@ export async function generateMetadata({
       title,
       description,
       siteName: SITE.TITLE,
+      images: [
+        { url: SITE.OG_IMAGE, width: 1200, height: 630, alt: SITE.TITLE },
+      ],
     },
   };
 }

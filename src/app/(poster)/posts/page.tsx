@@ -14,6 +14,7 @@ export const metadata: Metadata = {
     description:
       '박건규가 프론트엔드·함수형·AI 도구에 대해 쓴 기술 글 모음입니다.',
     siteName: SITE.TITLE,
+    images: [{ url: SITE.OG_IMAGE, width: 1200, height: 630, alt: SITE.TITLE }],
   },
 };
 
