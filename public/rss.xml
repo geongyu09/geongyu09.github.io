@@ -4,11 +4,23 @@
         <title>건규의 블로그</title>
         <link>https://geongyu09.github.io</link>
         <description>박건규의 블로그</description>
-        <lastBuildDate>Thu, 09 Jul 2026 09:11:30 GMT</lastBuildDate>
+        <lastBuildDate>Sat, 25 Jul 2026 14:21:30 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>ko</language>
         <copyright>All rights reserved 2026, 박건규</copyright>
+        <item>
+            <title><![CDATA[상태 끌어올리기의 역설]]></title>
+            <link>https://geongyu09.github.io/post/liftingStateUpParadox/</link>
+            <guid isPermaLink="false">https://geongyu09.github.io/post/liftingStateUpParadox/</guid>
+            <pubDate>Fri, 24 Jul 2026 15:00:00 GMT</pubDate>
+            <description><![CDATA[공유가 필요하다는 까닭만으로 상태를 부모로 올렸을 때 생기는 문제를 객체지향 관점으로 확인하고, FACC(Function As Child Component)로 개선해보았습니다.]]></description>
+            <category>react</category>
+            <category>객체지향</category>
+            <category>컴포넌트설계</category>
+            <category>FACC</category>
+            <category>상태관리</category>
+        </item>
         <item>
             <title><![CDATA[[회고] 우아한테크코스 Level 2 후반기 회고]]></title>
             <link>https://geongyu09.github.io/post/wootecoLevel2SecondHalfReview/</link>
