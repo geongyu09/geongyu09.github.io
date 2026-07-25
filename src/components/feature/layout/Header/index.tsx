@@ -29,12 +29,6 @@ const NAV_ITEMS: NavItem[] = [
     href: ROUTE_PATH.POSTS({}),
     match: (p) => p.startsWith('/posts') || p.startsWith('/post/'),
   },
-  {
-    id: 'about',
-    label: 'About',
-    href: ROUTE_PATH.ABOUT,
-    match: (p) => p.startsWith(ROUTE_PATH.ABOUT),
-  },
 ];
 
 interface MobileDrawerProps {

@@ -16,7 +16,6 @@ interface Props {
 const DEFAULT_ITEMS: NavItem[] = [
   { label: 'Writing', href: '/', active: true },
   { label: 'Archive', href: '/posts' },
-  { label: 'About', href: '/about' },
 ];
 
 const Nav = ({
