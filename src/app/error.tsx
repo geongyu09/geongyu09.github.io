@@ -1,6 +1,6 @@
 'use client';
 
-import DefaultButton from '@/components/common/Button/DefaultButton';
+import Button from '@/components/ds/Button';
 import Gap from '@/components/common/layout/Gap';
 import ROUTE_PATH from '@/constants/path/routePath';
 import Link from 'next/link';
@@ -31,26 +31,25 @@ export default function Error({
           backgroundSize: 'cover',
           backgroundPosition: 'center',
         }}
-        className="bg-cover rounded-xl"
+        className="bg-cover rounded-r-2 bg-ink-100"
       />
       <Gap size={10} />
-      <h2 className="text-4xl font-semibold">아니 이럴수가..</h2>
+      <h2 className="text-4xl font-semibold text-ink-950">아니 이럴수가..</h2>
       <Gap size={8} />
-      <p className="text-lg text-center">
+      <p className="text-lg text-center text-ink-700">
         에러가 발생했습니다 🤦‍♂️ 다시 한번 시도해주세요! 혹은 홈으로 가서 다른
         페이지를 확인해보세요. 🙇‍♂️
       </p>
       <Gap size={12} />
 
-      <DefaultButton
-        text="다시 시도하기"
-        onClick={reset}
-        theme="primary"
-        widthStyle="auto"
-      />
+      <Button variant="primary" onClick={reset}>
+        다시 시도하기
+      </Button>
 
       <Gap size={4} />
-      <Link href={ROUTE_PATH.HOME}>홈으로 가기</Link>
+      <Link href={ROUTE_PATH.HOME} className="ds-link text-sm">
+        홈으로 가기
+      </Link>
     </section>
   );
 }
