@@ -1,4 +1,6 @@
 import EXPERIENCE_DATA from '@/constants/log/experienceData';
+import PRESENTATION_DATA from '@/constants/log/presentationData';
+import PROJECT_DATA from '@/constants/log/projectData';
 import STUDY_DATA from '@/constants/log/studyData';
 import {
   groupActivitiesByYear,
@@ -19,6 +21,8 @@ const getAllLogWithinYears = () => {
   const postsByYear = groupByYear(allPosts);
   const studiesByYear = groupStudiesByYear(STUDY_DATA);
   const experiencesByYear = groupActivitiesByYear(EXPERIENCE_DATA);
+  const projectsByYear = groupActivitiesByYear(PROJECT_DATA);
+  const presentationsByYear = groupStudiesByYear(PRESENTATION_DATA);
 
   // Get all unique years from both sources
   const allYears = Array.from(
@@ -26,6 +30,8 @@ const getAllLogWithinYears = () => {
       ...postsByYear.map((g) => g.year),
       ...studiesByYear.map((g) => g.year),
       ...experiencesByYear.map((g) => g.year),
+      ...projectsByYear.map((g) => g.year),
+      ...presentationsByYear.map((g) => g.year),
       ...YEARS_WITH_GITHUB_GRAPH,
     ]),
   ).sort((a, b) => b - a);
@@ -35,6 +41,8 @@ const getAllLogWithinYears = () => {
     postsByYear,
     studiesByYear,
     experiencesByYear,
+    projectsByYear,
+    presentationsByYear,
     YEARS_WITH_GITHUB_GRAPH,
   };
 };

@@ -1,4 +1,3 @@
-import { ActivityItem } from '@/types/log';
 import { Post } from '@/types/post';
 
 export interface YearGroup<T> {
@@ -73,30 +72,26 @@ export function groupStudiesByYear<T extends { date: string }>(
     .sort((a, b) => b.year - a.year);
 }
 
-export function groupActivitiesByYear(
-  items: ActivityItem[],
-): YearGroup<ActivityItem>[] {
-  const currentYear = new Date().getFullYear();
+/**
+ * Groups items spanning a period by the year they started
+ * @param items - Array of items with startDate and endDate ('현재' means ongoing)
+ * @returns Array of YearGroup objects sorted by year descending
+ */
+export function groupActivitiesByYear<
+  T extends { title: string; startDate: string; endDate: string },
+>(items: T[]): YearGroup<T>[] {
   const grouped = items.reduce(
     (acc, item) => {
       const startYear = new Date(item.startDate).getFullYear();
-      const endYear =
-        item.endDate === '현재'
-          ? currentYear
-          : new Date(item.endDate).getFullYear();
 
-      for (let year = startYear; year <= endYear; year += 1) {
-        if (!acc[year]) {
-          acc[year] = [];
-        }
-        if (!acc[year].some((a) => a.title === item.title)) {
-          acc[year].push(item);
-        }
+      if (!acc[startYear]) {
+        acc[startYear] = [];
       }
+      acc[startYear].push(item);
 
       return acc;
     },
-    {} as Record<number, ActivityItem[]>,
+    {} as Record<number, T[]>,
   );
 
   return Object.entries(grouped)

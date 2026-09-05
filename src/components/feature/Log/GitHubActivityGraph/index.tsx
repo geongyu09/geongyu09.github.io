@@ -121,13 +121,15 @@ function groupByWeeks(contributions: Contribution[]) {
   return weeks;
 }
 
-// Level에 따른 색상 (editorial · blue accent)
+// Level에 따른 색상 (editorial · ink scale)
+// blue 액센트는 링크 강조에만 남겨두고, 기여 그래프는 중립 ink 단계로 그립니다.
+// ink 변수는 html.dark 에서 반전되므로 다크모드에서도 진할수록 밝아집니다.
 const COLORS = {
-  0: '#f4f4f4',
-  1: '#d6e1ff',
-  2: '#97aeff',
-  3: '#4f73ff',
-  4: '#2c5eff',
+  0: 'var(--ink-100)',
+  1: 'var(--ink-300)',
+  2: 'var(--ink-500)',
+  3: 'var(--ink-700)',
+  4: 'var(--ink-900)',
 };
 
 export default function GitHubActivityGraph({
