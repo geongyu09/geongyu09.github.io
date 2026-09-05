@@ -11,6 +11,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const staticUrls: MetadataRoute.Sitemap = [
     { url: `${SITE.URL}/`, changeFrequency: 'weekly', priority: 1 },
     { url: `${SITE.URL}/posts/`, changeFrequency: 'weekly', priority: 0.7 },
+    { url: `${SITE.URL}/log/`, changeFrequency: 'monthly', priority: 0.6 },
   ];
 
   const postUrls: MetadataRoute.Sitemap = posts.map((post) => ({
