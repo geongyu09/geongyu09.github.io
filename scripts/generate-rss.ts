@@ -26,32 +26,15 @@ function getAllPosts() {
     .sort((a, b) => b.data.timeStamps - a.data.timeStamps);
 }
 
-function isRssUpToDate(): boolean {
-  const rssPath = path.join(process.cwd(), 'public/rss.xml');
-  if (!fs.existsSync(rssPath)) return false;
-
-  const rssContent = fs.readFileSync(rssPath, 'utf-8');
-  const registeredSlugs = new Set(
-    Array.from(rssContent.matchAll(/<guid[^>]*>([^<]+)<\/guid>/g)).map((m) =>
-      m[1].replace(`${SITE_URL}/post/`, '').replace(/\/$/, ''),
-    ),
-  );
-
-  const postsDir = path.join(process.cwd(), '_posts');
-  const currentSlugs = fs
-    .readdirSync(postsDir)
-    .filter((f) => f.endsWith('.md'))
-    .map((f) => f.replace(/\.md$/, ''));
-
-  return currentSlugs.every((slug) => registeredSlugs.has(slug));
+/**
+ * 빌드할 때마다 바뀌는 lastBuildDate를 지워서 실제 내용만 비교합니다.
+ * 이렇게 해야 글의 제목이나 설명을 고쳤을 때도 피드가 다시 만들어집니다.
+ */
+function withoutBuildDate(xml: string): string {
+  return xml.replace(/<lastBuildDate>[^<]*<\/lastBuildDate>/, '');
 }
 
 async function generateRss() {
-  if (isRssUpToDate()) {
-    console.log('RSS 피드가 최신 상태입니다. 건너뜁니다.');
-    return;
-  }
-
   const posts = getAllPosts();
 
   const feed = new Feed({
@@ -80,7 +63,18 @@ async function generateRss() {
     });
   });
 
-  fs.writeFileSync(path.join(process.cwd(), 'public/rss.xml'), feed.rss2());
+  const rssPath = path.join(process.cwd(), 'public/rss.xml');
+  const nextXml = feed.rss2();
+  const currentXml = fs.existsSync(rssPath)
+    ? fs.readFileSync(rssPath, 'utf-8')
+    : '';
+
+  if (withoutBuildDate(currentXml) === withoutBuildDate(nextXml)) {
+    console.log('RSS 피드가 최신 상태입니다. 건너뜁니다.');
+    return;
+  }
+
+  fs.writeFileSync(rssPath, nextXml);
   console.log('RSS 피드 생성 완료: public/rss.xml');
 }
 

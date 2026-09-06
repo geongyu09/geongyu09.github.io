@@ -3,8 +3,8 @@
     <channel>
         <title>건규의 블로그</title>
         <link>https://geongyu09.github.io</link>
-        <description>프론트엔드 개발자 박건규의 기술 블로그입니다.</description>
-        <lastBuildDate>Sat, 25 Jul 2026 15:49:14 GMT</lastBuildDate>
+        <description>프론트엔드 개발자 박건규가 React, 테스트 코드, 함수형 프로그래밍, 웹뷰를 공부하며 남긴 기록입니다.</description>
+        <lastBuildDate>Sat, 05 Sep 2026 15:59:56 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>ko</language>
@@ -187,12 +187,12 @@
             <link>https://geongyu09.github.io/post/debuggingTool/</link>
             <guid isPermaLink="false">https://geongyu09.github.io/post/debuggingTool/</guid>
             <pubDate>Tue, 10 Feb 2026 05:17:01 GMT</pubDate>
-            <description><![CDATA[웹뷰 개발 중 웹에 앱 화면 전환 효과를 주기 위한 시도를 녹여보았습니다!]]></description>
+            <description><![CDATA[웹뷰 QA를 하다 보니 Safari, Chrome, Expo DevTools로 디버깅 환경이 흩어져 있었습니다. CDP를 파고들어 웹과 앱의 콘솔과 네트워크를 한 화면에서 보는 도구를 만든 과정을 정리했습니다.]]></description>
             <category>webview</category>
-            <category>animation</category>
-            <category>react</category>
-            <category>next.js</category>
-            <category>library</category>
+            <category>디버깅</category>
+            <category>devtools</category>
+            <category>CDP</category>
+            <category>react-native</category>
             <category>project</category>
             <enclosure url="https://geongyu09.github.io/assets/blog/debuggingTool/thumbnail.webp" length="0" type="image/webp"/>
         </item>
