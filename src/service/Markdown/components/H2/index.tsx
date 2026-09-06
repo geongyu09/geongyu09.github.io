@@ -1,7 +1,5 @@
-import cn from '@/utils/cn';
-import headerUtil from '@/utils/contentHeader';
-import Link from 'next/link';
 import React from 'react';
+import Heading from '../Heading';
 
 interface H2Props extends React.HTMLAttributes<HTMLHeadingElement> {
   children?: React.ReactNode;
@@ -9,23 +7,14 @@ interface H2Props extends React.HTMLAttributes<HTMLHeadingElement> {
 }
 
 export default function H2({ children, className = '', ...rest }: H2Props) {
-  const headerId = decodeURIComponent(
-    headerUtil.getHeaderHashText(children as string),
-  );
   return (
-    <Link href={`#${headerId}`}>
-      <h5
-        id={headerId}
-        className={cn(
-          'text-[21px] font-bold mt-10 mb-6 scroll-mt-20',
-          'hover:opacity-80',
-          className,
-        )}
-        {...rest}
-      >
-        {children}
-      </h5>
-    </Link>
+    <Heading
+      level={3}
+      className={`text-[21px] font-bold mt-10 mb-6 ${className}`}
+      {...rest}
+    >
+      {children}
+    </Heading>
   );
 }
 

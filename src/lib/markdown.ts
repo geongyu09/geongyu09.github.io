@@ -2,6 +2,15 @@ export interface Headers {
   text: string;
   level: 1 | 2 | 3 | number;
 }
+
+/**
+ * @description 마크다운 이스케이프(`\_`)를 제거해 실제 렌더링되는 텍스트와 맞춥니다.
+ * 목차 링크의 해시와 본문 헤딩의 id를 동일하게 유지하기 위해 필요합니다.
+ */
+function unescapeMarkdown(text: string): string {
+  return text.replace(/\\([\\`*_{}[\]()#+\-.!])/g, '$1');
+}
+
 export function parseMarkdown(markdown: string) {
   const lines = markdown.split('\n');
   const headers: Headers[] = [];
@@ -22,7 +31,7 @@ export function parseMarkdown(markdown: string) {
       const match = line.match(/^(#{1,6})\s+(.+)$/);
       if (match) {
         const level = match[1].length;
-        const text = match[2].trim();
+        const text = unescapeMarkdown(match[2].trim());
         headers.push({ text, level });
       }
     }

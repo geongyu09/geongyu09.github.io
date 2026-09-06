@@ -1,7 +1,5 @@
-import cn from '@/utils/cn';
-import headerUtil from '@/utils/contentHeader';
-import Link from 'next/link';
 import React from 'react';
+import Heading from '../Heading';
 
 interface H3Props extends React.HTMLAttributes<HTMLHeadingElement> {
   children?: React.ReactNode;
@@ -9,23 +7,14 @@ interface H3Props extends React.HTMLAttributes<HTMLHeadingElement> {
 }
 
 export default function H3({ children, className = '', ...rest }: H3Props) {
-  const headerId = decodeURIComponent(
-    headerUtil.getHeaderHashText(children as string),
-  );
   return (
-    <Link href={`#${headerId}`}>
-      <h6
-        id={headerId}
-        className={cn(
-          'text-[18px] font-bold mt-10 mb-4 scroll-mt-20',
-          'hover:opacity-80',
-          className,
-        )}
-        {...rest}
-      >
-        {children}
-      </h6>
-    </Link>
+    <Heading
+      level={4}
+      className={`text-[18px] font-bold mt-10 mb-4 ${className}`}
+      {...rest}
+    >
+      {children}
+    </Heading>
   );
 }
 
