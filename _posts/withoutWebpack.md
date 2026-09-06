@@ -400,7 +400,7 @@ app.listen(3000, () => {
 node ./server/index.js
 ```
 
-![](/assets/blog/withoutWebpack/craFirst.png)
+![CRA 없이 구성한 React 프로젝트에서 Hello World가 렌더링된 브라우저 화면](/assets/blog/withoutWebpack/craFirst.png)
 
 짱이죠?
 

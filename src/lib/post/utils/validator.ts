@@ -13,6 +13,11 @@ export function checkPostData(post: Post) {
       throw new Error(`"${post.slug}" 포스트에 제목이 없습니다.`);
     if (!post.data.tags)
       throw new Error(`"${post.slug}" 포스트에 태그가 없습니다.`);
+    // 아래 두 값은 발행일과 og:image로 그대로 나가기 때문에 비어 있으면 검색 노출이 망가집니다.
+    if (!post.data.timeStamps)
+      throw new Error(`"${post.slug}" 포스트에 timeStamps가 없습니다.`);
+    if (!post.data.thumbnail)
+      throw new Error(`"${post.slug}" 포스트에 썸네일이 없습니다.`);
   } catch (e: any) {
     throw new Error(`올바르지 않은 포스트입니다. \n - ${e.message}`);
   }

@@ -104,7 +104,7 @@ describe("postProgram", () => {
 
 여기서 서버의 반환 데이터를 따로 한 곳에서 관리하는것이 유지보수적으로 유리하다고 판단하였다. 이에 따라서 이를 한 곳에서 관리하도록 하였다.
 
-![](/assets/blog/apiTestWithMocking/1.png)
+![서버 응답 스텁을 한 파일에 모아 관리하도록 정리한 코드](/assets/blog/apiTestWithMocking/1.png)
 
 그리고 모든 response값에서 반복되는 status와 message를 따로 함수로서 빼서 반복을 줄이고자 하였다.
 
@@ -224,7 +224,7 @@ export default getResponse;
 
 기존 eeos는 React-Toastify 라이브러리를 사용하고 있었다.
 
-![](/assets/blog/apiTestWithMocking/2.gif)
+![React-Toastify로 비동기 요청 상태에 따라 토스트가 바뀌는 화면](/assets/blog/apiTestWithMocking/2.gif)
 
 그리고 tostify에는 **toast.promise** 라는비동기 로직에 관하여 toast 상태 업데이트를 쉽게 해주는 api를 제공한다.
 

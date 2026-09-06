@@ -1,9 +1,9 @@
 ---
 title: '웹뷰 디버깅 환경을 만들기까지의 여정'
 date: '2026년 2월 10일'
-description: '웹뷰 개발 중 웹에 앱 화면 전환 효과를 주기 위한 시도를 녹여보았습니다!'
+description: '웹뷰 QA를 하다 보니 Safari, Chrome, Expo DevTools로 디버깅 환경이 흩어져 있었습니다. CDP를 파고들어 웹과 앱의 콘솔과 네트워크를 한 화면에서 보는 도구를 만든 과정을 정리했습니다.'
 thumbnail: '/assets/blog/debuggingTool/thumbnail.webp'
-tags: 'webview animation react next.js library project'
+tags: 'webview 디버깅 devtools CDP react-native project'
 timeStamps: 1770700621469
 ---
 

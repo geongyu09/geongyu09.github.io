@@ -31,9 +31,9 @@ api 로직에 테스트를 작성할 때 어떻게 구조화를 할지에 대해
 
 사실 정답은 없는 문제인 것 같았다. 전자의 경우 스팩을 조금 더 구분해서 볼 수 있다는 장점이 있다. 다만, 위에서 말한 대로 설명할만한 스팩 자체가 얼마 없다. 굳이 (request, response) 둘을 분리해서 적을 필요가 있을까? 게다가 response가 필요하지 않는 경우도 존재했다(post 요청 등). 이에 따라 나는 단순히 스팩을 나열하는 방식을 택하기로 했다.
 
-![](/assets/blog/eeosTestStrategy/0.png)
+![스펙을 나열하는 방식으로 작성한 api 테스트 코드](/assets/blog/eeosTestStrategy/0.png)
 
-![](/assets/blog/eeosTestStrategy/1.png)
+![스펙 나열 방식으로 작성한 테스트의 실행 결과](/assets/blog/eeosTestStrategy/1.png)
 
 ## 컴포넌트는 어디까지 테스트 해야 할까? _ (모킹의 범위 및 어느 컴포넌트까지 테스트를 작성해야 할까?)
 
