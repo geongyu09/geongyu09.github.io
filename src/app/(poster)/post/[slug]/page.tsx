@@ -2,7 +2,12 @@ import SITE from '@/constants/site';
 import JsonLd from '@/components/common/JsonLd';
 import InlineTag from '@/components/ds/InlineTag';
 import SideTableOfContent from '@/components/feature/Post/SideTableOfContent';
-import { getPostBySlug, getPostSlugs } from '@/lib/post/post';
+import ROUTE_PATH from '@/constants/path/routePath';
+import { getPostBySlug, getPostSlugs, splitTags } from '@/lib/post/post';
+import {
+  buildBlogPostingJsonLd,
+  buildBreadcrumbJsonLd,
+} from '@/lib/seo/jsonLd';
 import Comment from '@/service/Comment';
 import MarkdownViewer from '@/service/Markdown';
 import { SsgoiTransition } from '@ssgoi/react';
@@ -30,13 +35,14 @@ export async function generateMetadata({
   } = getPostBySlug(slug);
 
   const url = `${SITE.URL}/post/${slug}/`;
-  const tagList = tags ? tags.split(' ').filter(Boolean) : [];
+  const tagList = splitTags(tags);
   const images = [thumbnail || SITE.OG_IMAGE];
 
   return {
     title,
     description,
     keywords: tagList,
+    authors: [{ name: SITE.AUTHOR.name, url: SITE.AUTHOR.link }],
     alternates: { canonical: url },
     openGraph: {
       type: 'article',
@@ -44,6 +50,7 @@ export async function generateMetadata({
       title,
       description,
       siteName: SITE.TITLE,
+      locale: 'ko_KR',
       publishedTime: new Date(timeStamps).toISOString(),
       modifiedTime: new Date(updatedTimeStamps ?? timeStamps).toISOString(),
       authors: [SITE.AUTHOR.name],
@@ -61,56 +68,45 @@ export async function generateMetadata({
 
 export default async function Page({ params }: PageProps) {
   const { slug } = await params;
+  const post = getPostBySlug(slug);
   const {
     content,
-    data: {
-      date,
-      title,
-      description,
-      tags,
-      thumbnail,
-      timeStamps,
-      updatedTimeStamps,
-    },
-  } = getPostBySlug(slug);
+    data: { date, title, description, tags, timeStamps, updatedTimeStamps },
+  } = post;
 
-  const tagList = tags ? tags.split(' ').filter(Boolean) : [];
+  const tagList = splitTags(tags);
   const [primaryTag] = tagList;
   const displayDate = date.split('T')[0];
 
-  const url = `${SITE.URL}/post/${slug}/`;
-  const publishedISO = new Date(timeStamps).toISOString();
-  const modifiedISO = new Date(updatedTimeStamps ?? timeStamps).toISOString();
-  const jsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'BlogPosting',
-    headline: title,
-    description,
-    ...(thumbnail && { image: `${SITE.URL}${thumbnail}` }),
-    datePublished: publishedISO,
-    dateModified: modifiedISO,
-    author: {
-      '@type': 'Person',
-      name: SITE.AUTHOR.name,
-      url: SITE.AUTHOR.link,
-    },
-    publisher: {
-      '@type': 'Person',
-      name: SITE.AUTHOR.name,
-      url: SITE.AUTHOR.link,
-    },
-    mainEntityOfPage: { '@type': 'WebPage', '@id': url },
-    url,
-    ...(tagList.length > 0 && { keywords: tagList.join(', ') }),
-    inLanguage: 'ko-KR',
-  };
+  const publishedDate = new Date(timeStamps).toISOString().split('T')[0];
+  const modifiedDate = new Date(updatedTimeStamps ?? timeStamps)
+    .toISOString()
+    .split('T')[0];
+
+  const blogPostingJsonLd = buildBlogPostingJsonLd(post);
+  const breadcrumbJsonLd = buildBreadcrumbJsonLd([
+    { name: '홈', url: '/' },
+    { name: '글 목록', url: '/posts/' },
+    ...(primaryTag
+      ? [
+          {
+            name: `#${primaryTag}`,
+            url: `/posts/${encodeURIComponent(primaryTag)}/`,
+          },
+        ]
+      : []),
+    { name: title, url: `/post/${slug}/` },
+  ]);
 
   return (
     <SsgoiTransition id="/post/[slug]">
-      <JsonLd data={jsonLd} />
+      <JsonLd data={blogPostingJsonLd} />
+      <JsonLd data={breadcrumbJsonLd} />
       <article className="max-w-[860px] mx-auto px-[20px] md:px-s-7 pt-s-9 pb-s-5">
         <div className="flex items-center gap-s-4 text-[13px] text-ink-500 mb-s-5">
-          <span className="font-mono">{displayDate}</span>
+          <time dateTime={publishedDate} className="font-mono">
+            {displayDate}
+          </time>
           {primaryTag && (
             <>
               <span>·</span>
@@ -144,15 +140,18 @@ export default async function Page({ params }: PageProps) {
               RSS 구독하기
             </a>
           </div>
-          <div className="font-mono text-[11px] text-ink-500">
+          <time
+            dateTime={modifiedDate}
+            className="font-mono text-[11px] text-ink-500"
+          >
             {displayDate.replace(/-/g, '.')}
-          </div>
+          </time>
         </div>
 
         {tagList.length > 0 && (
           <div className="mt-s-6 flex flex-wrap gap-s-3">
             {tagList.map((t) => (
-              <InlineTag key={t} href={`/posts/${t}`}>
+              <InlineTag key={t} href={ROUTE_PATH.POSTS({ tag: t })}>
                 {t}
               </InlineTag>
             ))}

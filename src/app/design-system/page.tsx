@@ -11,6 +11,14 @@ import SearchField from '@/components/ds/SearchField';
 import SectionHeading from '@/components/ds/SectionHeading';
 import YearHeader from '@/components/ds/YearHeader';
 
+import type { Metadata } from 'next';
+
+// 내부 확인용 페이지이므로 검색 결과에 노출하지 않습니다.
+export const metadata: Metadata = {
+  title: '디자인 시스템',
+  robots: { index: false, follow: false },
+};
+
 const INK = [0, 50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950] as const;
 
 const Swatch = ({ token, hex }: { token: string; hex: string }) => (

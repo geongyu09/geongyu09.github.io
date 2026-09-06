@@ -33,7 +33,7 @@ const NAV_ITEMS: NavItem[] = [
     id: 'log',
     label: 'Log',
     href: ROUTE_PATH.LOG,
-    match: (p) => p.startsWith(ROUTE_PATH.LOG),
+    match: (p) => p.startsWith('/log'),
   },
 ];
 

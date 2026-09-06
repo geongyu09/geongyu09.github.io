@@ -43,14 +43,25 @@ export function getAllPosts(): Post[] {
 }
 
 /**
+ * @description 공백으로 구분된 태그 문자열을 태그 배열로 변환합니다.
+ */
+export function splitTags(rawTags: string): string[] {
+  return rawTags
+    .split(' ')
+    .map((tag) => tag.trim())
+    .filter(Boolean);
+}
+
+/**
  * @description 인자로 주어진 태그에 해당하는 포스트들을 반환합니다.
+ * 부분 문자열이 아니라 태그 하나가 정확히 일치하는 글만 골라냅니다.
  * @param tag 태그
  * @returns Post[]
  */
 export function getFilteredPostsByTag(tag: string): Post[] {
   const allPosts = getAllPosts();
 
-  return allPosts.filter((post) => post.data.tags.includes(tag));
+  return allPosts.filter((post) => splitTags(post.data.tags).includes(tag));
 }
 
 export function getAllTags() {
@@ -60,7 +71,7 @@ export function getAllTags() {
 
   allPosts
     .map((post) => post.data.tags)
-    .forEach((tag) => tag.split(' ').forEach((t) => tags.add(t)));
+    .forEach((rawTags) => splitTags(rawTags).forEach((tag) => tags.add(tag)));
 
   return Array.from(tags);
 }
@@ -107,10 +118,9 @@ export function getTopTags(limit: number): string[] {
   const counts = new Map<string, number>();
 
   getAllPosts().forEach((post) => {
-    post.data.tags
-      .split(' ')
-      .filter(Boolean)
-      .forEach((tag) => counts.set(tag, (counts.get(tag) ?? 0) + 1));
+    splitTags(post.data.tags).forEach((tag) =>
+      counts.set(tag, (counts.get(tag) ?? 0) + 1),
+    );
   });
 
   return Array.from(counts.entries())
