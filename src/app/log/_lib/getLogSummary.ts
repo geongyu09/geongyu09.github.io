@@ -2,7 +2,7 @@ import EXPERIENCE_DATA from '@/constants/log/experienceData';
 import PRESENTATION_DATA from '@/constants/log/presentationData';
 import PROJECT_DATA from '@/constants/log/projectData';
 import { formatYearMonth } from '@/lib/log/formatLogDate';
-import { LogEntry, LogSummary, LogYearCount } from '@/types/log';
+import { LogEntry, LogSummary } from '@/types/log';
 import getAllLogEntries from './getAllLogEntries';
 import getLogOverview from './getLogOverview';
 
@@ -21,32 +21,22 @@ const getProjectDetail = () => {
     .join(' · ');
 };
 
-const getYearCounts = (entries: LogEntry[]): LogYearCount[] => {
-  const countByYear = entries.reduce((acc, entry) => {
-    const year = getYear(entry.date);
-
-    acc.set(year, (acc.get(year) ?? 0) + 1);
-    return acc;
-  }, new Map<number, number>());
-
-  return Array.from(countByYear, ([year, count]) => ({ year, count })).sort(
-    (a, b) => b.year - a.year,
-  );
-};
+/** 기록이 하나라도 있는 해가 몇 개인지 셉니다. */
+const getYearSpan = (entries: LogEntry[]) =>
+  new Set(entries.map(({ date }) => getYear(date))).size;
 
 /** 히어로 아래 총 정리 패널이 쓰는 값을 한 번에 만듭니다. */
 const getLogSummary = (): LogSummary => {
   const entries = getAllLogEntries();
   const { presentationPlaces, studyGroups, experienceTitles } =
     getLogOverview();
-  const yearCounts = getYearCounts(entries);
   const firstRecord = entries[entries.length - 1].date;
   const latestRecord = entries[0].date;
 
   return {
     firstRecordDate: formatYearMonth(firstRecord),
     latestRecordDate: formatYearMonth(latestRecord),
-    yearSpan: yearCounts.length,
+    yearSpan: getYearSpan(entries),
     total: entries.length,
     groups: [
       {
@@ -72,7 +62,6 @@ const getLogSummary = (): LogSummary => {
           .join(' · '),
       },
     ],
-    yearCounts,
   };
 };
 

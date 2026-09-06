@@ -45,15 +45,26 @@ export type ProjectCategory =
   // Contribution 섹션
   | '오픈소스 기여';
 
+/** 프로젝트가 걸 수 있는 바깥 주소의 종류입니다. 종류에 따라 모달의 아이콘과 기본 문구가 정해집니다. */
+export type ProjectLinkType = 'repo' | 'npm' | 'site' | 'docs';
+
+export interface ProjectLink {
+  type: ProjectLinkType;
+  href: string;
+  label?: string; // 종류별 기본 문구 대신 적고 싶을 때만 씁니다
+}
+
 export interface ProjectItem {
   title: string;
   startDate: string; // YYYY-MM-DD
   endDate: string; // YYYY-MM-DD 또는 '현재'
   category: ProjectCategory;
-  role: string; // 소속과 맡은 역할
+  org: string; // 소속 (동아리, 학교, 회사, 개인 등)
+  role: string; // 그 안에서 맡은 역할
   description: string; // 목록에 적는 한두 문장 소개
   details: string[]; // 모달에서 펼쳐 보여 주는 상세 내용
-  href?: string; // 공개된 레포나 서비스 주소만 답니다
+  thumbnail?: string; // 모달 왼쪽 열에 거는 대표 이미지. public 기준 절대 경로로 적습니다
+  links?: ProjectLink[]; // 레포와 npm, 배포 주소처럼 공개된 주소만 답니다
 }
 
 export type LogEntryType = 'experience' | 'project' | 'presentation' | 'study';
@@ -76,16 +87,10 @@ export interface LogSummaryGroup {
   detail: string; // 세부 내역. '팀 프로젝트 3 · 개인 프로젝트 6'처럼 적습니다
 }
 
-export interface LogYearCount {
-  year: number;
-  count: number;
-}
-
 export interface LogSummary {
   firstRecordDate: string; // YYYY.MM
   latestRecordDate: string; // YYYY.MM
   yearSpan: number; // 기록한 해의 수
   total: number;
   groups: LogSummaryGroup[];
-  yearCounts: LogYearCount[]; // 최신 연도부터
 }

@@ -7,7 +7,8 @@ const PROJECT_DATA: ProjectItem[] = [
     startDate: '2026-08-01',
     endDate: '현재',
     category: '팀 프로젝트',
-    role: '우아한테크코스 도넛 팀 · FE',
+    org: '우아한테크코스 도넛 팀',
+    role: 'FE',
     description:
       '팀 프로젝트에서 흩어진 문서를 뒤져 과거 결정을 다시 찾는 비용을 줄여 주는 문서 탐색 서비스입니다.',
     details: [
@@ -16,28 +17,32 @@ const PROJECT_DATA: ProjectItem[] = [
       '라우팅 초기 설정과 타입 안전한 경로 유틸, Input과 Input field, Spacing 레이아웃, 워크스페이스 생성과 참여 페이지를 머지했습니다.',
       'Core가 로드맵을 정하고 Silo가 FE 한 명과 BE 한 명의 임시 TF로 붙는 구조에서 1주 스프린트를 돌리며 동료 FE PR 리뷰와 QA 유저 플로우 정리를 병행합니다.',
     ],
-    href: 'https://github.com/woowacourse-teams/2026-Knot',
+    links: [
+      { type: 'repo', href: 'https://github.com/woowacourse-teams/2026-Knot' },
+    ],
   },
   {
     title: 'toss/suspensive 기여',
     startDate: '2026-08-01',
     endDate: '현재',
     category: '오픈소스 기여',
-    role: '오픈소스 · 외부 기여자',
+    org: '오픈소스',
+    role: '외부 기여자',
     description:
       '산결에서 실제로 쓰는 라이브러리에 낸 첫 외부 기여입니다. @suspensive/react의 with로 만든 컴포넌트가 key 속성을 받도록 고치는 PR을 올렸습니다.',
     details: [
       '@suspensive/react의 with로 감싼 컴포넌트에 key를 넘겨도 전달되지 않던 문제를 고치는 PR을 올렸고 메인테이너 리뷰를 기다리고 있습니다.',
       '산결에서 매일 쓰던 라이브러리라 문제를 사용 중에 발견했고, 남이 만든 코드에 직접 고쳐 넣은 첫 사례가 됐습니다.',
     ],
-    href: 'https://github.com/toss/suspensive',
+    links: [{ type: 'repo', href: 'https://github.com/toss/suspensive' }],
   },
   {
     title: 'stack-link',
     startDate: '2026-07-01',
     endDate: '2026-07-31',
     category: 'npm 패키지',
-    role: '개인 · 단독',
+    org: '개인',
+    role: '단독',
     description:
       'View Transitions 기반 전환 엔진과 뒤로가기 인터랙티브 스크럽 제스처를 제공하는 React 스택 네비게이션 라이브러리입니다.',
     details: [
@@ -46,14 +51,18 @@ const PROJECT_DATA: ProjectItem[] = [
       'iframe이 별도 브라우징 컨텍스트라 queryClient와 스토리지를 공유하지 못하는 문제가 있었고, iframe 안에서 나가는 요청을 막는 유틸로 임시 대응했습니다.',
       '산결 워크스페이스에서 독립 레포로 옮기며 View Transitions 기반 전환 엔진으로 다시 썼고, 1.0.0까지 올린 뒤 제스처 레이스와 플링 판정을 고친 프리릴리스를 마지막으로 종료했습니다.',
     ],
-    href: 'https://github.com/geongyu09/stack-link',
+    links: [
+      { type: 'repo', href: 'https://github.com/geongyu09/stack-link' },
+      { type: 'npm', href: 'https://www.npmjs.com/package/stack-link' },
+    ],
   },
   {
     title: 'who-tech (iftype)',
     startDate: '2026-05-01',
     endDate: '현재',
     category: '오픈소스 기여',
-    role: '오픈소스 · FE + BE 컬래버레이터',
+    org: '오픈소스',
+    role: 'FE + BE 컬래버레이터',
     description:
       '산결과 EEOS에서 쌓은 웹뷰 앱 패턴을 외부 프로젝트에 적용한 사례입니다.',
     details: [
@@ -61,14 +70,17 @@ const PROJECT_DATA: ProjectItem[] = [
       '피드 우선 진입과 블로그 웹뷰, 기수 탐색을 개선한 v0.0.3을 이어 머지하면서 FE에 이어 BE 컬래버레이터 권한까지 받았습니다.',
       '웹뷰 통신에는 산결에서 만든 @geongyu/bridge를 그대로 가져다 썼습니다.',
     ],
-    href: 'https://github.com/iftype/who-tech-frontend',
+    links: [
+      { type: 'repo', href: 'https://github.com/iftype/who-tech-frontend' },
+    ],
   },
   {
     title: '@geongyu/bridge',
     startDate: '2026-02-01',
     endDate: '현재',
     category: 'npm 패키지',
-    role: '개인 · 단독',
+    org: '개인',
+    role: '단독',
     description:
       '이벤트 기반 단방향 브리지로는 응답을 확인할 수 없어서 요청과 응답을 짝지어 주고받도록 만든 웹뷰 브리지입니다.',
     details: [
@@ -78,14 +90,21 @@ const PROJECT_DATA: ProjectItem[] = [
       '메시지는 id와 ack, syn 플래그, body로 구성해 ack로 요청과 응답을 구분합니다. 보낸 id를 수신 윈도우 버퍼에 넣었다가 응답이 오면 제거하고 예약해 둔 콜백을 실행합니다.',
       '산결에서 npm 배포 환경을 잡은 뒤 개인 레포로 분리했고 v0.2.1에서 웹뷰 핸드셰이크 재시도와 Inspector 디버그를 더했으며 EEOS 앱과 who-tech 웹뷰 앱에서 재사용했습니다.',
     ],
-    href: 'https://github.com/geongyu09/react-native-bridge',
+    links: [
+      {
+        type: 'repo',
+        href: 'https://github.com/geongyu09/react-native-bridge',
+      },
+      { type: 'npm', href: 'https://www.npmjs.com/package/@geongyu/bridge' },
+    ],
   },
   {
     title: 'Auth-Econovation',
     startDate: '2026-01-01',
     endDate: '2026-06-30',
     category: '팀 프로젝트',
-    role: '에코노베이션 · FE 단독',
+    org: '에코노베이션',
+    role: 'FE 단독',
     description:
       '에코노베이션 서비스들에 통합 로그인(SSO)을 제공하는 인증 프론트엔드입니다.',
     details: [
@@ -96,14 +115,20 @@ const PROJECT_DATA: ProjectItem[] = [
       'SPA의 fetch가 cross-origin 302를 따라가며 CORS 오류를 내는 바람에, BE가 200과 바디의 redirectUrl로 응답하고 프론트가 window.location.assign으로 이동하도록 리다이렉트 책임을 옮겼습니다. URL 조립은 단위 테스트가 가능한 순수 함수로, 이동은 부수효과로 분리했습니다.',
       '레포를 열자마자 .claude 하네스(TDD 워크플로우, 에이전트, 규칙)를 먼저 세우고 개발을 시작한 첫 프로젝트이기도 합니다.',
     ],
-    href: 'https://github.com/JNU-econovation/Auth-Econovation-FE',
+    links: [
+      {
+        type: 'repo',
+        href: 'https://github.com/JNU-econovation/Auth-Econovation-FE',
+      },
+    ],
   },
   {
     title: 'Unified Debugger',
     startDate: '2025-11-01',
     endDate: '2026-07-31',
     category: '개발 도구',
-    role: '개인 · 단독',
+    org: '개인',
+    role: '단독',
     description:
       'React Native 앱과 그 안의 WebView를 한 화면에서 동시에 디버깅하는 Tauri 데스크탑 도구입니다.',
     details: [
@@ -111,14 +136,17 @@ const PROJECT_DATA: ProjectItem[] = [
       'Chrome DevTools Frontend 소스 빌드, Expo DevTools 플러그인, 멀티 CDP 구조로 세 번 방향을 바꿨습니다.',
       '콘솔과 네트워크 통합 화면을 블로그에 기록한 뒤 cdp-proxy와 web을 단일 포트로 합친 server.js와 포트 자동 선택, Metro 타겟 API, 분할 보기를 갖춘 Tauri 앱으로 패키징해 v0.1.0을 냈습니다.',
     ],
-    href: 'https://github.com/geongyu09/multi-devtool',
+    links: [
+      { type: 'repo', href: 'https://github.com/geongyu09/multi-devtool' },
+    ],
   },
   {
     title: '산결 (Sangyeol)',
     startDate: '2025-04-01',
     endDate: '현재',
     category: '팀 프로젝트',
-    role: '에코노베이션 → san-gyeol · 앱 + 웹 FE 전담',
+    org: '에코노베이션',
+    role: '앱 + 웹 FE 전담',
     description:
       '등산 코스 검색과 실시간 위치 추적, 긴급 신고를 제공하는 크로스 플랫폼 등산 앱입니다.',
     details: [
@@ -130,28 +158,30 @@ const PROJECT_DATA: ProjectItem[] = [
       '백그라운드로 갔다가 복귀하면 산행이 멈추던 문제는 AppState로 백그라운드에서 interval을 정지해 고쳤고, 네이버 맵 카메라 변경 시 필수 오버레이 외 렌더링을 막아 줌 변경 시 헤딩 폴리곤이 멈추던 문제를 없앴습니다.',
       'v1 리뉴얼에서는 기존 앱을 app-legacy로 밀어내고 새 앱을 초기화했으며 bridge와 stack-link를 npm 패키지로 바꿔 참조합니다. 기상청과 국립공원공단 정보는 Next.js Route Handler가 HTML을 받아 기온과 체감과 습도와 통제 상황을 파싱하고 revalidate로 캐싱합니다.',
     ],
-    href: 'https://github.com/san-gyeol/Sangyeol-FE',
+    links: [{ type: 'repo', href: 'https://github.com/san-gyeol/Sangyeol-FE' }],
   },
   {
     title: '캡스톤 · CSI 기반 낙상 감지',
     startDate: '2025-03-01',
     endDate: '2025-06-30',
     category: '인턴 · 학교',
-    role: '전남대 소프트웨어공학과 · 팀원',
+    org: '전남대 소프트웨어공학과',
+    role: '팀원',
     description:
       '박태준 교수님 지도로 멘토링을 받으며 중간 발표와 최종 발표를 마쳤습니다.',
     details: [
       '전남대 소프트웨어공학과 캡스톤 디자인 과제로 진행했고 박태준 교수님이 지도하셨습니다.',
       '"데이터셋 및 전처리" 발표자료를 만들어 맡았고 코드는 capstone 레포에 남아 있습니다.',
     ],
-    href: 'https://github.com/geongyu09/capstone',
+    links: [{ type: 'repo', href: 'https://github.com/geongyu09/capstone' }],
   },
   {
     title: 'ABAS-FE',
     startDate: '2025-01-01',
     endDate: '2025-05-31',
     category: '인턴 · 학교',
-    role: 'bigdata-insight · 인턴 FE',
+    org: 'bigdata-insight',
+    role: '인턴 FE',
     description:
       '농업 빅데이터 연구실 인턴으로 데이터 처리와 업로드 페이지의 요구사항 대응을 맡았습니다.',
     details: [
@@ -164,7 +194,8 @@ const PROJECT_DATA: ProjectItem[] = [
     startDate: '2024-08-01',
     endDate: '현재',
     category: '개인 프로젝트',
-    role: '개인 · 단독',
+    org: '개인',
+    role: '단독',
     description:
       'Next.js와 GitHub Pages 배포 파이프라인을 직접 구축해 단독 운영하는 기술 블로그입니다.',
     details: [
@@ -172,14 +203,21 @@ const PROJECT_DATA: ProjectItem[] = [
       '_posts 디렉토리의 마크다운 파일로 글을 관리하는 파일 시스템 기반 CMS를 씁니다.',
       '주요 글로 「웹뷰 개발을 하면서 고민했던 성능 문제들」, 「부수효과 가득한 프론트엔드에서 함수형으로 살아남기」, 「LLM은 어떻게 개발자가 되는가, Claude Code 해부해보기」, 「Jest는 어떻게 import문을 mocking하는걸까?」 1 ~ 3부, 「상태 끌어올리기의 역설」을 썼습니다.',
     ],
-    href: 'https://github.com/geongyu09/geongyu09.github.io',
+    links: [
+      {
+        type: 'repo',
+        href: 'https://github.com/geongyu09/geongyu09.github.io',
+      },
+      { type: 'site', href: 'https://geongyu09.github.io' },
+    ],
   },
   {
     title: 'EEOS',
     startDate: '2024-02-01',
     endDate: '2026-06-30',
     category: '팀 프로젝트',
-    role: '에코노베이션 Black-company · FE 전담',
+    org: '에코노베이션 Black-company',
+    role: 'FE 전담',
     description:
       '동아리 행사의 등록과 출석, 수요조사를 관리하는 서비스입니다. Next.js 웹과 Expo 네이티브를 모노레포로 묶어 FE를 사실상 전담했습니다.',
     details: [
@@ -190,14 +228,17 @@ const PROJECT_DATA: ProjectItem[] = [
       '3.1 배포 직후 admin 상세의 수정과 삭제 버튼이 간헐적으로 활성화되던 버그는, 프로그램 상세 조회 훅의 queryKey가 programId만 담고 isAbleToEdit을 빼먹어 guest 요청과 admin 요청이 같은 키로 캐싱된 탓이었습니다. 키에 isAbleToEdit을 넣고 기본값을 없애 같은 날 3.1.1로 배포했습니다.',
       'v4.0에서는 모노레포로 전환해 apps/web과 apps/native로 나누고 Expo Router 네 개 탭에 WebView를 연결했습니다. 푸시 알림은 권한 요청과 토큰 발급을 자동화하는 useNotification 훅으로 붙였고, 웹뷰 통신에는 산결에서 갓 npm으로 배포한 @geongyu/bridge를 들여왔습니다.',
     ],
-    href: 'https://github.com/JNU-econovation/EEOS-FE',
+    links: [
+      { type: 'repo', href: 'https://github.com/JNU-econovation/EEOS-FE' },
+    ],
   },
   {
     title: 'Econovation-recruit',
     startDate: '2024-02-01',
     endDate: '2025-03-31',
     category: '팀 프로젝트',
-    role: '에코노베이션 · FE',
+    org: '에코노베이션',
+    role: 'FE',
     description:
       '동아리 신입모집 플랫폼으로 지원서 작성과 제출, 면접관용 칸반보드, 관리자용 TF 선정과 합불 상태 관리를 제공합니다.',
     details: [
@@ -209,14 +250,20 @@ const PROJECT_DATA: ProjectItem[] = [
       '백엔드와 논의하던 수정을 개발용 대신 운영용에 배포해 실사용 중인 서비스가 잠시 멈춘 사고를 겪었고, 롤백한 뒤 main 머지와 배포를 분리하는 운영 배포 프로세스를 만들었습니다.',
       '29기 지원서 네비게이션 개편에서는 useEffect로 질문을 상태에 넣는 구조 때문에 서버와 클라이언트 렌더가 달라 navbar css가 틀어지는 hydration 버그가 있었고, Navbar와 Question을 dynamic import의 ssr false 옵션과 스켈레톤으로 바꿔 해결했습니다.',
     ],
-    href: 'https://github.com/JNU-econovation/econo-recruit-fe',
+    links: [
+      {
+        type: 'repo',
+        href: 'https://github.com/JNU-econovation/econo-recruit-fe',
+      },
+    ],
   },
   {
     title: '너와그린기린그림',
     startDate: '2023-11-01',
     endDate: '2024-06-30',
     category: '팀 프로젝트',
-    role: '에코노베이션 *23# · FE 단독',
+    org: '에코노베이션 *23#',
+    role: 'FE 단독',
     description:
       '학생 같은 비전문인도 펀딩을 열고 후원받을 수 있는 대학생 펀딩 중계 서비스입니다.',
     details: [
@@ -227,21 +274,24 @@ const PROJECT_DATA: ProjectItem[] = [
       '헤더의 대학 검색은 입력할 때마다 목록 요청이 나가서 useDebounce 커스텀 훅(500ms)을 만들어 붙였고, TanStack Query의 staleTime을 하루로 두어 같은 검색어의 재요청을 막았습니다.',
       '이슈를 먼저 발행하고 PR을 올려 팀원 approve를 받은 뒤 머지하는 흐름을 여기서 처음 익혔습니다. 기획이 방대해지며 회의마다 같은 논의를 반복한 경험은 "개발을 잘하는 것만으로는 좋은 개발자가 될 수 없다"는 인식으로 이어졌습니다.',
     ],
-    href: 'https://github.com/JNU-econovation/girin-grim',
+    links: [
+      { type: 'repo', href: 'https://github.com/JNU-econovation/girin-grim' },
+    ],
   },
   {
     title: 'Cache-Brain',
     startDate: '2023-09-01',
     endDate: '2023-11-30',
     category: '개인 프로젝트',
-    role: '개인 · 단독',
+    org: '개인',
+    role: '단독',
     description: '암기 과목 공부를 돕는 커뮤니티형 학습 플랫폼입니다.',
     details: [
       'DB 대신 Headless CMS(Sanity)를 쓰고 프론트엔드와 서버를 Next.js 하나로 통합했으며, 인증에는 NextAuth를 데이터 페칭에는 SWR 컨텍스트를 붙였습니다.',
       '유저와 카드 상세, 학습 페이지, 캐러셀, 진행도 구조로 뼈대를 먼저 만든 뒤 디렉토리 구조와 url 모듈을 리팩터링했습니다.',
       '마지막으로 검색 모달과 search API, useDebounce를 직접 구현했습니다.',
     ],
-    href: 'https://github.com/geongyu09/Cache-Brain',
+    links: [{ type: 'repo', href: 'https://github.com/geongyu09/Cache-Brain' }],
   },
 ];
 

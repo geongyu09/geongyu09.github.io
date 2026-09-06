@@ -49,7 +49,7 @@ export default function ProjectSection({ label, projects, year }: Props) {
                 </span>
               </div>
               <p className="m-0 mt-s-1 font-mono text-[12px] text-ink-500">
-                {project.role}
+                {project.org} · {project.role}
               </p>
               <p className="m-0 mt-s-2 text-[15px] leading-[1.7] text-ink-700">
                 {project.description}

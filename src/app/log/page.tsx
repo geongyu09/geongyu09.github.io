@@ -1,4 +1,5 @@
 import FadeEffectWrapper from '@/components/common/FadeEffectWrapper';
+import ScrollFadeIn from '@/components/common/ScrollFadeIn';
 import Eyebrow from '@/components/ds/Eyebrow';
 import GitHubActivityGraph from '@/components/feature/Log/GitHubActivityGraph';
 import LogSummary from '@/components/feature/Log/LogSummary';
@@ -67,7 +68,7 @@ export default function LogPage() {
   return (
     <main>
       <FadeEffectWrapper transitionKey="log-hero">
-        <section className="border-b border-ink-200">
+        <section>
           <div className="max-w-container mx-auto px-s-5 lg:px-s-7 pt-s-6 md:pt-s-7 pb-s-5 md:pb-s-6">
             <Eyebrow className="mb-s-3 text-[13px]">Log</Eyebrow>
 
@@ -98,7 +99,7 @@ export default function LogPage() {
                   },
                   idx,
                 ) => (
-                  <div
+                  <ScrollFadeIn
                     key={year}
                     id={`year-${year}`}
                     className={cn(
@@ -186,7 +187,7 @@ export default function LogPage() {
                         <StudySection studies={studies} year={year} />
                       )}
                     </div>
-                  </div>
+                  </ScrollFadeIn>
                 ),
               )}
             </section>

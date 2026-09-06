@@ -55,46 +55,44 @@ export default function LogViews({ years, entries, yearView }: Props) {
 
   return (
     <>
-      <div className="border-b border-ink-200">
-        <div className="max-w-container mx-auto flex flex-wrap items-center gap-s-3 px-s-5 py-s-4 lg:px-s-7">
-          <div className="flex gap-s-2">
-            {VIEW_TABS.map(({ key, label }) => (
-              <button key={key} type="button" onClick={() => setView(key)}>
-                <Chip active={view === key} className="text-[13px]">
-                  {label}
+      <div className="max-w-container mx-auto flex flex-wrap items-center gap-s-3 px-s-5 py-s-4 lg:px-s-7">
+        <div className="flex gap-s-2">
+          {VIEW_TABS.map(({ key, label }) => (
+            <button key={key} type="button" onClick={() => setView(key)}>
+              <Chip active={view === key} className="text-[13px]">
+                {label}
+              </Chip>
+            </button>
+          ))}
+        </div>
+
+        <span
+          aria-hidden
+          className="hidden h-[14px] w-px bg-ink-200 sm:block"
+        />
+
+        {view === 'year' ? (
+          <nav
+            aria-label="연도별 바로가기"
+            className="flex flex-wrap items-center gap-s-2"
+          >
+            {years.map((year) => (
+              <a key={year} href={`#year-${year}`} className="font-mono">
+                <Chip className="text-[13px]">{year}</Chip>
+              </a>
+            ))}
+          </nav>
+        ) : (
+          <div className="flex flex-wrap items-center gap-s-2">
+            {TYPE_FILTERS.map(({ key, label }) => (
+              <button key={key} type="button" onClick={() => setFilter(key)}>
+                <Chip active={filter === key} className="text-[13px]">
+                  {label} {countByFilter[key] ?? 0}
                 </Chip>
               </button>
             ))}
           </div>
-
-          <span
-            aria-hidden
-            className="hidden h-[14px] w-px bg-ink-200 sm:block"
-          />
-
-          {view === 'year' ? (
-            <nav
-              aria-label="연도별 바로가기"
-              className="flex flex-wrap items-center gap-s-2"
-            >
-              {years.map((year) => (
-                <a key={year} href={`#year-${year}`} className="font-mono">
-                  <Chip className="text-[13px]">{year}</Chip>
-                </a>
-              ))}
-            </nav>
-          ) : (
-            <div className="flex flex-wrap items-center gap-s-2">
-              {TYPE_FILTERS.map(({ key, label }) => (
-                <button key={key} type="button" onClick={() => setFilter(key)}>
-                  <Chip active={filter === key} className="text-[13px]">
-                    {label} {countByFilter[key] ?? 0}
-                  </Chip>
-                </button>
-              ))}
-            </div>
-          )}
-        </div>
+        )}
       </div>
 
       <div className={cn(view !== 'year' && 'hidden')}>{yearView}</div>
