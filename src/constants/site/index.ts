@@ -29,7 +29,7 @@ const SITE = {
    * search.google.com/search-console 에서 발급받은 content 값을 그대로 넣으면
    * 루트 레이아웃의 메타 태그로 자동 반영됩니다.
    */
-  GOOGLE_SITE_VERIFICATION: '',
+  GOOGLE_SITE_VERIFICATION: '4Vr5RCGKyaAI-Ch2HjWGZA8m4mTv5H_kuAxunrJQmU4',
   /** 네이버 서치어드바이저 소유 확인 코드. 비어 있으면 메타 태그를 넣지 않습니다. */
   NAVER_SITE_VERIFICATION: '',
 } as const;
