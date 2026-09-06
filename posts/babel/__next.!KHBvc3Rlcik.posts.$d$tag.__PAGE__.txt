@@ -1,6 +1,6 @@
 1:"$Sreact.fragment"
-2:I[96052,["/_next/static/chunks/2_dsqurvo5pg_.js","/_next/static/chunks/3v30ib8ezgcz_.js","/_next/static/chunks/14mrh2-p_w84d.js","/_next/static/chunks/0-bo1z8dc7uf_.js","/_next/static/chunks/0d3cqhenwx-a8.js","/_next/static/chunks/0bunxc50h_7pk.js"],"default"]
-8:I[97367,["/_next/static/chunks/2_dsqurvo5pg_.js","/_next/static/chunks/3v30ib8ezgcz_.js","/_next/static/chunks/14mrh2-p_w84d.js","/_next/static/chunks/0-bo1z8dc7uf_.js"],"OutletBoundary"]
+2:I[96052,["/_next/static/chunks/1bmrka0xo_314.js","/_next/static/chunks/0wt2uy4e851sz.js","/_next/static/chunks/14mrh2-p_w84d.js","/_next/static/chunks/0-bo1z8dc7uf_.js","/_next/static/chunks/1iyg3v79sm5j1.js","/_next/static/chunks/3nsm7w0603_62.js"],"default"]
+8:I[97367,["/_next/static/chunks/1bmrka0xo_314.js","/_next/static/chunks/0wt2uy4e851sz.js","/_next/static/chunks/14mrh2-p_w84d.js","/_next/static/chunks/0-bo1z8dc7uf_.js"],"OutletBoundary"]
 9:"$Sreact.suspense"
 3:T6656,
 # Jest는 어떻게 import문을 mocking하는걸까? \_3부
@@ -383,7 +383,7 @@ Jest는 개발자가 작성한 실제 모듈 대신 가짜 모듈(mock)을 쓰�
 - [Babel REPL](https://babeljs.io/repl)
 - [jest-runtime 소스 코드](https://github.com/jestjs/jest/tree/main/packages/jest-runtime)
 - [babel-plugin-jest-hoist 소스 코드](https://github.com/jestjs/jest/tree/main/packages/babel-plugin-jest-hoist)
-4:T428c,
+4:T42e9,
 > ❗️
 >
 > 해당 내용은 개인적으로 공부한 내용을 기록한 글입니다. 정확하지 않는 내용이 있을 수 있으며, 피드백은 언제나 환영입니다!
@@ -777,7 +777,7 @@ app.listen(3000, () => {
 node ./server/index.js
 ```
 
-![](/assets/blog/withoutWebpack/craFirst.png)
+![CRA 없이 구성한 React 프로젝트에서 Hello World가 렌더링된 브라우저 화면](/assets/blog/withoutWebpack/craFirst.png)
 
 짱이죠?
 
@@ -786,8 +786,8 @@ node ./server/index.js
 이번 포스트에서는 CSR 방식의 React 프로젝트 구성을 해보면서 간단히 React 프로젝트의 동작 방식에 대해 알아보았습니다.
 CSR이 가지는 여러가지 고질적인 문제들이 존재하는데, 이를 개선하기 위해서 SSR(Server Side Rendering)을 적용하기도 합니다.
 
-이후에 React를 사용하여 이러한 SSR을 적용하는 방법에 대하여 글을 작성해보겠습니다!0:{"rsc":["$","$1","c",{"children":[["$","$L2",null,{"posts":[{"data":{"title":"Jest는 어떻게 import문을 mocking하는걸까? _3부","date":"2026년 4월 1일","description":"ESM 환경에서는 import를 런타임에 가로챌 수 없습니다. Jest가 babel-jest와 babel-plugin-jest-hoist로 이 문제를 우회하는 과정을 내부 코드와 함께 따라가 보았습니다!","thumbnail":"/assets/blog/jestImportMocking3/thumbnail.webp","tags":"jest esm commonjs babel transpile hoisting mocking test","timeStamps":1774969200000},"slug":"jestImportMocking3","content":"$3"},{"data":{"title":"CRA 없이 React 프로젝트 구성하기: 웹팩과 바벨 설정부터 SSR 준비까지","thumbnail":"/assets/blog/withoutWebpack/cra.png","description":"해당 글은 CRA를 사용하지 않고 CSR 방식의 React 프로젝트를 구성하는 방법을 설명합니다.","date":"2025년 2월 2일","tags":"react webpack babel typescript SSR","timeStamps":1738454400000},"slug":"withoutWebpack","content":"$4"}],"totalCount":29,"allTags":["react","객체지향","컴포넌트설계","FACC","상태관리","회고","우아한테크코스","아키텍처","백엔드","추상화","송곳원정대","functional-programing","프론트엔드","RxJS","자바스크립트","Claude-Code","LLM","에이전트","하네스","기술분석","소프트스킬","AI","jest","esm","commonjs","babel","transpile","hoisting","mocking","test","node","vm","cjs","jest-runtime","node.js","module","test-code","TDD","페어프로그래밍","프롬프팅","webview","animation","next.js","library","project","2025","react-native","SSR","webpack","typescript","2024","coding","concept","modal","개발일지","markdown","react-markdown","eeos","컴포넌트테스트","react-query","refactoring","cache"],"activeTag":"babel"}],["$L5","$L6"],"$L7"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"-ujchAIOpZtXO4IINM2x9"}
-5:["$","script","script-0",{"src":"/_next/static/chunks/0d3cqhenwx-a8.js","async":true}]
-6:["$","script","script-1",{"src":"/_next/static/chunks/0bunxc50h_7pk.js","async":true}]
+이후에 React를 사용하여 이러한 SSR을 적용하는 방법에 대하여 글을 작성해보겠습니다!0:{"rsc":["$","$1","c",{"children":[[["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@type\":\"CollectionPage\",\"@id\":\"https://geongyu09.github.io/posts/babel/\",\"url\":\"https://geongyu09.github.io/posts/babel/\",\"name\":\"#babel 글 목록\",\"description\":\"'babel' 태그가 달린 박건규의 기술 글 2편을 모았습니다.\",\"inLanguage\":\"ko-KR\",\"isPartOf\":{\"@id\":\"https://geongyu09.github.io/#website\"},\"about\":{\"@id\":\"https://geongyu09.github.io/#blog\"},\"mainEntity\":{\"@type\":\"ItemList\",\"numberOfItems\":2,\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"url\":\"https://geongyu09.github.io/post/jestImportMocking3/\",\"name\":\"Jest는 어떻게 import문을 mocking하는걸까? _3부\"},{\"@type\":\"ListItem\",\"position\":2,\"url\":\"https://geongyu09.github.io/post/withoutWebpack/\",\"name\":\"CRA 없이 React 프로젝트 구성하기: 웹팩과 바벨 설정부터 SSR 준비까지\"}]}}"}}],["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"홈\",\"item\":\"https://geongyu09.github.io/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"글 목록\",\"item\":\"https://geongyu09.github.io/posts/\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"#babel\",\"item\":\"https://geongyu09.github.io/posts/babel/\"}]}"}}],["$","$L2",null,{"posts":[{"data":{"title":"Jest는 어떻게 import문을 mocking하는걸까? _3부","date":"2026년 4월 1일","description":"ESM 환경에서는 import를 런타임에 가로챌 수 없습니다. Jest가 babel-jest와 babel-plugin-jest-hoist로 이 문제를 우회하는 과정을 내부 코드와 함께 따라가 보았습니다!","thumbnail":"/assets/blog/jestImportMocking3/thumbnail.webp","tags":"jest esm commonjs babel transpile hoisting mocking test","timeStamps":1774969200000},"slug":"jestImportMocking3","content":"$3"},{"data":{"title":"CRA 없이 React 프로젝트 구성하기: 웹팩과 바벨 설정부터 SSR 준비까지","thumbnail":"/assets/blog/withoutWebpack/cra.png","description":"해당 글은 CRA를 사용하지 않고 CSR 방식의 React 프로젝트를 구성하는 방법을 설명합니다.","date":"2025년 2월 2일","tags":"react webpack babel typescript SSR","timeStamps":1738454400000},"slug":"withoutWebpack","content":"$4"}],"totalCount":29,"allTags":["react","객체지향","컴포넌트설계","FACC","상태관리","회고","우아한테크코스","아키텍처","백엔드","추상화","송곳원정대","functional-programing","프론트엔드","RxJS","자바스크립트","Claude-Code","LLM","에이전트","하네스","기술분석","소프트스킬","AI","jest","esm","commonjs","babel","transpile","hoisting","mocking","test","node","vm","cjs","jest-runtime","node.js","module","test-code","TDD","페어프로그래밍","프롬프팅","webview","디버깅","devtools","CDP","react-native","project","2025","animation","next.js","library","SSR","webpack","typescript","2024","coding","concept","modal","개발일지","markdown","react-markdown","eeos","컴포넌트테스트","react-query","refactoring","cache"],"activeTag":"babel"}]],["$L5","$L6"],"$L7"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"aJXGovGFcHf__ENuhYpjG"}
+5:["$","script","script-0",{"src":"/_next/static/chunks/1iyg3v79sm5j1.js","async":true}]
+6:["$","script","script-1",{"src":"/_next/static/chunks/3nsm7w0603_62.js","async":true}]
 7:["$","$L8",null,{"children":["$","$9",null,{"name":"Next.MetadataOutlet","children":"$@a"}]}]
 a:null

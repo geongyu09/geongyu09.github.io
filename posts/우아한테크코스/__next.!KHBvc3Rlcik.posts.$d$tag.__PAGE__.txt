@@ -1,8 +1,8 @@
 1:"$Sreact.fragment"
-2:I[96052,["/_next/static/chunks/2_dsqurvo5pg_.js","/_next/static/chunks/3v30ib8ezgcz_.js","/_next/static/chunks/14mrh2-p_w84d.js","/_next/static/chunks/0-bo1z8dc7uf_.js","/_next/static/chunks/0d3cqhenwx-a8.js","/_next/static/chunks/0bunxc50h_7pk.js"],"default"]
-e:I[97367,["/_next/static/chunks/2_dsqurvo5pg_.js","/_next/static/chunks/3v30ib8ezgcz_.js","/_next/static/chunks/14mrh2-p_w84d.js","/_next/static/chunks/0-bo1z8dc7uf_.js"],"OutletBoundary"]
-f:"$Sreact.suspense"
-3:T599d,
+3:I[96052,["/_next/static/chunks/1bmrka0xo_314.js","/_next/static/chunks/0wt2uy4e851sz.js","/_next/static/chunks/14mrh2-p_w84d.js","/_next/static/chunks/0-bo1z8dc7uf_.js","/_next/static/chunks/1iyg3v79sm5j1.js","/_next/static/chunks/3nsm7w0603_62.js"],"default"]
+f:I[97367,["/_next/static/chunks/1bmrka0xo_314.js","/_next/static/chunks/0wt2uy4e851sz.js","/_next/static/chunks/14mrh2-p_w84d.js","/_next/static/chunks/0-bo1z8dc7uf_.js"],"OutletBoundary"]
+10:"$Sreact.suspense"
+2:T77e,{"@context":"https://schema.org","@type":"CollectionPage","@id":"https://geongyu09.github.io/posts/%EC%9A%B0%EC%95%84%ED%95%9C%ED%85%8C%ED%81%AC%EC%BD%94%EC%8A%A4/","url":"https://geongyu09.github.io/posts/%EC%9A%B0%EC%95%84%ED%95%9C%ED%85%8C%ED%81%AC%EC%BD%94%EC%8A%A4/","name":"#우아한테크코스 글 목록","description":"'우아한테크코스' 태그가 달린 박건규의 기술 글 8편을 모았습니다.","inLanguage":"ko-KR","isPartOf":{"@id":"https://geongyu09.github.io/#website"},"about":{"@id":"https://geongyu09.github.io/#blog"},"mainEntity":{"@type":"ItemList","numberOfItems":8,"itemListElement":[{"@type":"ListItem","position":1,"url":"https://geongyu09.github.io/post/wootecoLevel2SecondHalfReview/","name":"[회고] 우아한테크코스 Level 2 후반기 회고"},{"@type":"ListItem","position":2,"url":"https://geongyu09.github.io/post/wootecoLevel2Week1To4Review/","name":"[회고] 우아한테크코스 Level 2 1~4주차 회고"},{"@type":"ListItem","position":3,"url":"https://geongyu09.github.io/post/survivingWithFunctional/","name":"부수효과 가득한 프론트엔드에서 함수형으로 살아남기"},{"@type":"ListItem","position":4,"url":"https://geongyu09.github.io/post/wootecoWeek7And8Review/","name":"[회고] 우아한테크코스 7, 8주차 회고"},{"@type":"ListItem","position":5,"url":"https://geongyu09.github.io/post/wootecoWeek5And6Review/","name":"[회고] 우아한테크코스 5, 6주차 회고"},{"@type":"ListItem","position":6,"url":"https://geongyu09.github.io/post/wootecoWeek3And4Review/","name":"[회고] 우아한테크코스 3, 4주차 회고"},{"@type":"ListItem","position":7,"url":"https://geongyu09.github.io/post/wootecoWeek2Review/","name":"[회고] 우아한테크코스 2주차 회고"},{"@type":"ListItem","position":8,"url":"https://geongyu09.github.io/post/wootecoWeek1Review/","name":"[회고] 우아한테크코스 1주차 회고"}]}}4:T599d,
 # [회고] 우테코 레벨2 후반기 회고
 
 ## 프론트엔드 수업
@@ -174,7 +174,7 @@ Suspense 공유회는 준비한 자료 없이 시작했다가 인원이 많아�
 역시 많은 사람들이 관심을 가져줬고, 고맙기도 하면서 이런 자리가 결국 함께 성장하는 분위기를 만든다는 걸 알게 됐다. 이런 자리들이 가능했던 건 망한 발표에도 도움이 됐다고 말해주는 크루들 곁에서, 모르는 걸 드러내고 실수해도 괜찮다고 느꼈기 때문이라고 생각한다. **"잘해야만 한다"** 는 걱정에서 벗어나니 **"자라는 데 집중"** 할 수 있었다.
 
 이제는 전혀 준비되지 않은 미숙한 생각이라도 꺼내놓는 일이 두렵지 않다. 내가 하나를 꺼내면 다른 크루도 그걸 딛고 자기 것을 꺼내면서, 혼자서는 도달하지 못했을 깊이까지 함께 가는 순환을 직접 겪어봤기 때문이다. 이번 레벨2에서 내가 가장 크게 얻은 것은 이 순환을 직접 겪어봤다는 것, 그리고 함께 자라기 위해 어떤 마음을 가져야 하는지 알게 됐다는 것이다.
-4:T6d22,
+5:T6d22,
 # 우아한테크코스 Level 2 1~4주차 회고
 
 ## 방학 동안의 글쓰기
@@ -405,7 +405,7 @@ export default SwitchCase;
 너무 정신없고 할 일 처내기 바쁜 삶을 살아가다 보니, 언젠가는 길을 잃고 방황하며 기대하는 바를 얻지 못한 경우에는 지쳐 열정이 식을 수도 있을 것 같은 두려움도 없지 않아 있기도 하다.
 
 그래도 이 열정 잃지 않고, 남은 Level 2 일정을 잘 마무리하고 엄청나게 성장한 내 모습을 기대하면서 남은 기간도 잘 달려가보려고 한다!
-5:T6549,
+6:T6549,
 # 부수효과 가득한 프론트엔드에서 함수형으로 살아남기
 
 이번에 우아한테크코스 레벨 1을 진행하며 함수형 원정대에 합류했고, 그 과정에서 미션에 함수형적 사고를 적용해보다 마주한 고민들을 정리해보았다.
@@ -888,7 +888,7 @@ RxJS는 `pipe`로 연산자를 묶는 형태를 쓴다. 그리고 `debounce`, `d
 프론트엔드의 구조 자체가 "액션 → 계산 → 액션"이라는 골격을 가진다는 시각으로 바라보고, 양쪽 끝의 액션부를 얇게, 가운데 계산부를 두껍게 가져가는 것이 프론트엔드에서 함수형을 실천하는 하나의 방식이었다.
 
 그리고 액션을 격리하는 방식에는 다양한 관점과 답이 있다. 이번에 다뤄본 RxJS의 관점은 그중 하나다. 이벤트를 데이터의 흐름으로 바라보고, 변형을 메서드로 추상화하고, 액션을 가장 끝으로 모으는 방식. 이런 관점 또한 있다는 것을 알고, 그게 어떤 문제를 풀려는 것인지 알고 있다는 것만으로도 코드를 작성할 때 가져갈 수 있는 선택지가 늘어날 것이라고 생각한다.
-6:T4784,
+7:T4784,
 # 우아한테크코스 7, 8주차 회고
 
 역시나 열심히 달려왔던 2주였다. 특히나 이번 7, 8주차의 수업이 정말 인상이 깊었다.
@@ -1051,7 +1051,7 @@ AI가 발전하고, 앞으로도 우리의 삶 전반에 큰 변화를 가져올
 아, 이게 우아한테크코스구나. 사람을 만드는 교육.
 
 혼란스러운 세상 속에서 나만의 정답을 만들어 나간다. 이걸 결국 해나가는 모습을 스스로 볼 수 있어서, 앞으로 더 성장해 있을 내가 정말 기대되는 레벨 1이었다.
-7:T4de4,
+8:T4de4,
 # 우아한테크코스 5, 6주차 회고
 
 ## 테코톡 발표!
@@ -1188,7 +1188,7 @@ AI가 발전하고, 앞으로도 우리의 삶 전반에 큰 변화를 가져올
 돌이켜보니 나는 미션마다, 매 수업마다, 페어 프로그래밍이나 다른 사람들과 이야기를 나눌 수 있는 기회마다 얻어갈 목표점을 매번 명확히 설정하지 않았던 것 같다. 큰 틀에서 이번 레벨 1에서는 내 소프트 스킬을 괜찮은 수준으로 올릴 거야!라는 큰 목표만 잡았을 뿐, 이에 대한 세세한 목표는 잡지 않았다.
 
 앞으로 얼마 남지 않은 기간 동안 빠르게 목표를 정하고 의식적으로 노력해보는 것이 중요할 것 같다.
-8:T36a4,
+9:T36a4,
 # 우아한테크코스 3, 4주차 회고
 
 ## 송곳 원정대
@@ -1355,7 +1355,7 @@ TDD와 테스트 코드에 대한 이해, 더 나은 코드를 작성하기 위�
 이 모든 변화는 단순히 지식을 쌓는 것을 넘어, **함께 일하는 사람으로서의 나를 성장시켜준 경험**이었다.
 
 앞으로 남아 있는 과정들 속에서 또 어떤 경험을 하게 될지, 그리고 그 과정 속에서 내가 얼마나 더 성장하게 될지 기대된다.
-9:T54e2,
+a:T54e2,
 # [회고] 우아한테크코스 2주차 회고
 
 ## 연극 🕺
@@ -1577,7 +1577,7 @@ jest와 같은 사용하는 도구는 상황에 따라서, 시대에 따라서 �
 그런데 신기하게도 단 **한 주**밖에 지나지 않았는데, 마치 "나"라는 사람이 조금씩 만들어지고 있는 느낌이 들었다.
 
 앞으로도 계속 이런 시간을 통해, 더 멋진 나를 만들어가야겠다.
-a:T321a,
+b:T321a,
 # [회고] 우아한테크코스 1주차 회고
 
 ## 드디어 우아한테크코스 시작!
@@ -1740,8 +1740,8 @@ AI의 발전으로 개발자가 사라질 것이다라는 말이 많이 나오�
 이번 주보다 더 많은 사람을 만나고 더 많은 이야기를 하고 분위기를 이끌어 가보고자 한다. 무엇보다 더 익숙해진 환경, 아는 사람이 늘어난 상황에서 더 좋은 퍼포먼스를 기대하면서 글을 마무리하고자 한다!
 
 우아한테크코스에서 바라는 소프트 스킬 충만한 인재가 되어보도록 하겠다.
-0:{"rsc":["$","$1","c",{"children":[["$","$L2",null,{"posts":[{"data":{"title":"[회고] 우아한테크코스 Level 2 후반기 회고","date":"2026년 06월 28일","description":"객체지향의 진가를 체험하고, 풀스택 미션으로 시스템 전체를 설계하며, 함께 자라는 순환을 직접 겪은 레벨 2 후반기의 기록입니다.","thumbnail":"/assets/blog/wootecoLevel2SecondHalfReview/thumbnail.webp","tags":"회고 우아한테크코스 객체지향 아키텍처 백엔드","timeStamps":1782572400000},"slug":"wootecoLevel2SecondHalfReview","content":"$3"},{"data":{"title":"[회고] 우아한테크코스 Level 2 1~4주차 회고","date":"2026년 05월 28일","description":"우아한테크코스 Level 2의 첫 4주를 돌아보며, 방학 동안의 글쓰기부터 송곳 원정대, 미션, 워킹그룹까지의 기록을 남깁니다.","thumbnail":"/assets/blog/wootecoWeek2Review/thumbnail.webp","tags":"회고 우아한테크코스 react 추상화 송곳원정대","timeStamps":1779894000000},"slug":"wootecoLevel2Week1To4Review","content":"$4"},{"data":{"title":"부수효과 가득한 프론트엔드에서 함수형으로 살아남기","date":"2026년 04월 26일","description":"프론트엔드의 거의 모든 코드가 액션이라는 현실에서, 액션을 격리하고 계산을 넓혀가는 과정을 직접 도구를 만들어가며 정리해보았습니다.","thumbnail":"/assets/blog/survivingWithFunctional/thumbnail.webp","tags":"functional-programing 프론트엔드 RxJS 우아한테크코스 자바스크립트","timeStamps":1777129200000},"slug":"survivingWithFunctional","content":"$5"},{"data":{"title":"[회고] 우아한테크코스 7, 8주차 회고","date":"2026년 04월 15일","description":"비동기와 이벤트 루프를 다시 마주하고, 페어 프로그래밍과 AI 시대의 기본기를 고민하며 레벨 1을 마무리한 2주간의 기록입니다.","thumbnail":"/assets/blog/wootecoWeek2Review/thumbnail.webp","tags":"회고 우아한테크코스 소프트스킬 자바스크립트 AI","timeStamps":1776178800000},"slug":"wootecoWeek7And8Review","content":"$6"},{"data":{"title":"[회고] 우아한테크코스 5, 6주차 회고","date":"2026년 03월 29일","description":"테코톡 발표, 학습법을 다시 설계해본 미션, 그리고 페어와 부딪히며 소프트 스킬을 키워간 2주간의 기록입니다.","thumbnail":"/assets/blog/wootecoWeek2Review/thumbnail.webp","tags":"회고 우아한테크코스 소프트스킬","timeStamps":1774710000000},"slug":"wootecoWeek5And6Review","content":"$7"},{"data":{"title":"[회고] 우아한테크코스 3, 4주차 회고","date":"2026년 03월 22일","description":"함수형 원정대 활동과 공유회 준비를 통해 함수형 사고를 익히고, AI 기반 개발 도구를 직접 활용해본 한 달간의 성장 기록입니다.","thumbnail":"/assets/blog/wootecoWeek2Review/thumbnail.webp","tags":"회고 우아한테크코스 functional-programing","timeStamps":1774137600000},"slug":"wootecoWeek3And4Review","content":"$8"},{"data":{"title":"[회고] 우아한테크코스 2주차 회고","date":"2026년 3월 8일","description":"우아한 테크 코스의 두 번째 주를 돌아보며 연극, 첫 FE 수업, 페어 프로그래밍을 통해 배운 것들을 정리하였습니다.","thumbnail":"/assets/blog/wootecoWeek2Review/thumbnail.webp","tags":"회고 우아한테크코스 TDD 페어프로그래밍","timeStamps":1772928000000},"slug":"wootecoWeek2Review","content":"$9"},{"data":{"title":"[회고] 우아한테크코스 1주차 회고","date":"2026년 2월 28일","description":"우아한 테크 코스의 첫 주를 돌아보며 새로운 환경에서 마주한 도전과 배움을 정리하였습니다.","thumbnail":"/assets/blog/wootecoWeek1Review/thumbnail.webp","tags":"회고 우아한테크코스 AI 프롬프팅","timeStamps":1772259420000},"slug":"wootecoWeek1Review","content":"$a"}],"totalCount":29,"allTags":["react","객체지향","컴포넌트설계","FACC","상태관리","회고","우아한테크코스","아키텍처","백엔드","추상화","송곳원정대","functional-programing","프론트엔드","RxJS","자바스크립트","Claude-Code","LLM","에이전트","하네스","기술분석","소프트스킬","AI","jest","esm","commonjs","babel","transpile","hoisting","mocking","test","node","vm","cjs","jest-runtime","node.js","module","test-code","TDD","페어프로그래밍","프롬프팅","webview","animation","next.js","library","project","2025","react-native","SSR","webpack","typescript","2024","coding","concept","modal","개발일지","markdown","react-markdown","eeos","컴포넌트테스트","react-query","refactoring","cache"],"activeTag":"%EC%9A%B0%EC%95%84%ED%95%9C%ED%85%8C%ED%81%AC%EC%BD%94%EC%8A%A4"}],["$Lb","$Lc"],"$Ld"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"-ujchAIOpZtXO4IINM2x9"}
-b:["$","script","script-0",{"src":"/_next/static/chunks/0d3cqhenwx-a8.js","async":true}]
-c:["$","script","script-1",{"src":"/_next/static/chunks/0bunxc50h_7pk.js","async":true}]
-d:["$","$Le",null,{"children":["$","$f",null,{"name":"Next.MetadataOutlet","children":"$@10"}]}]
-10:null
+0:{"rsc":["$","$1","c",{"children":[[["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"$2"}}],["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"홈\",\"item\":\"https://geongyu09.github.io/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"글 목록\",\"item\":\"https://geongyu09.github.io/posts/\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"#우아한테크코스\",\"item\":\"https://geongyu09.github.io/posts/%EC%9A%B0%EC%95%84%ED%95%9C%ED%85%8C%ED%81%AC%EC%BD%94%EC%8A%A4/\"}]}"}}],["$","$L3",null,{"posts":[{"data":{"title":"[회고] 우아한테크코스 Level 2 후반기 회고","date":"2026년 06월 28일","description":"객체지향의 진가를 체험하고, 풀스택 미션으로 시스템 전체를 설계하며, 함께 자라는 순환을 직접 겪은 레벨 2 후반기의 기록입니다.","thumbnail":"/assets/blog/wootecoLevel2SecondHalfReview/thumbnail.webp","tags":"회고 우아한테크코스 객체지향 아키텍처 백엔드","timeStamps":1782572400000},"slug":"wootecoLevel2SecondHalfReview","content":"$4"},{"data":{"title":"[회고] 우아한테크코스 Level 2 1~4주차 회고","date":"2026년 05월 28일","description":"우아한테크코스 Level 2의 첫 4주를 돌아보며, 방학 동안의 글쓰기부터 송곳 원정대, 미션, 워킹그룹까지의 기록을 남깁니다.","thumbnail":"/assets/blog/wootecoWeek2Review/thumbnail.webp","tags":"회고 우아한테크코스 react 추상화 송곳원정대","timeStamps":1779894000000},"slug":"wootecoLevel2Week1To4Review","content":"$5"},{"data":{"title":"부수효과 가득한 프론트엔드에서 함수형으로 살아남기","date":"2026년 04월 26일","description":"프론트엔드의 거의 모든 코드가 액션이라는 현실에서, 액션을 격리하고 계산을 넓혀가는 과정을 직접 도구를 만들어가며 정리해보았습니다.","thumbnail":"/assets/blog/survivingWithFunctional/thumbnail.webp","tags":"functional-programing 프론트엔드 RxJS 우아한테크코스 자바스크립트","timeStamps":1777129200000},"slug":"survivingWithFunctional","content":"$6"},{"data":{"title":"[회고] 우아한테크코스 7, 8주차 회고","date":"2026년 04월 15일","description":"비동기와 이벤트 루프를 다시 마주하고, 페어 프로그래밍과 AI 시대의 기본기를 고민하며 레벨 1을 마무리한 2주간의 기록입니다.","thumbnail":"/assets/blog/wootecoWeek2Review/thumbnail.webp","tags":"회고 우아한테크코스 소프트스킬 자바스크립트 AI","timeStamps":1776178800000},"slug":"wootecoWeek7And8Review","content":"$7"},{"data":{"title":"[회고] 우아한테크코스 5, 6주차 회고","date":"2026년 03월 29일","description":"테코톡 발표, 학습법을 다시 설계해본 미션, 그리고 페어와 부딪히며 소프트 스킬을 키워간 2주간의 기록입니다.","thumbnail":"/assets/blog/wootecoWeek2Review/thumbnail.webp","tags":"회고 우아한테크코스 소프트스킬","timeStamps":1774710000000},"slug":"wootecoWeek5And6Review","content":"$8"},{"data":{"title":"[회고] 우아한테크코스 3, 4주차 회고","date":"2026년 03월 22일","description":"함수형 원정대 활동과 공유회 준비를 통해 함수형 사고를 익히고, AI 기반 개발 도구를 직접 활용해본 한 달간의 성장 기록입니다.","thumbnail":"/assets/blog/wootecoWeek2Review/thumbnail.webp","tags":"회고 우아한테크코스 functional-programing","timeStamps":1774137600000},"slug":"wootecoWeek3And4Review","content":"$9"},{"data":{"title":"[회고] 우아한테크코스 2주차 회고","date":"2026년 3월 8일","description":"우아한 테크 코스의 두 번째 주를 돌아보며 연극, 첫 FE 수업, 페어 프로그래밍을 통해 배운 것들을 정리하였습니다.","thumbnail":"/assets/blog/wootecoWeek2Review/thumbnail.webp","tags":"회고 우아한테크코스 TDD 페어프로그래밍","timeStamps":1772928000000},"slug":"wootecoWeek2Review","content":"$a"},{"data":{"title":"[회고] 우아한테크코스 1주차 회고","date":"2026년 2월 28일","description":"우아한 테크 코스의 첫 주를 돌아보며 새로운 환경에서 마주한 도전과 배움을 정리하였습니다.","thumbnail":"/assets/blog/wootecoWeek1Review/thumbnail.webp","tags":"회고 우아한테크코스 AI 프롬프팅","timeStamps":1772259420000},"slug":"wootecoWeek1Review","content":"$b"}],"totalCount":29,"allTags":["react","객체지향","컴포넌트설계","FACC","상태관리","회고","우아한테크코스","아키텍처","백엔드","추상화","송곳원정대","functional-programing","프론트엔드","RxJS","자바스크립트","Claude-Code","LLM","에이전트","하네스","기술분석","소프트스킬","AI","jest","esm","commonjs","babel","transpile","hoisting","mocking","test","node","vm","cjs","jest-runtime","node.js","module","test-code","TDD","페어프로그래밍","프롬프팅","webview","디버깅","devtools","CDP","react-native","project","2025","animation","next.js","library","SSR","webpack","typescript","2024","coding","concept","modal","개발일지","markdown","react-markdown","eeos","컴포넌트테스트","react-query","refactoring","cache"],"activeTag":"%EC%9A%B0%EC%95%84%ED%95%9C%ED%85%8C%ED%81%AC%EC%BD%94%EC%8A%A4"}]],["$Lc","$Ld"],"$Le"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"aJXGovGFcHf__ENuhYpjG"}
+c:["$","script","script-0",{"src":"/_next/static/chunks/1iyg3v79sm5j1.js","async":true}]
+d:["$","script","script-1",{"src":"/_next/static/chunks/3nsm7w0603_62.js","async":true}]
+e:["$","$Lf",null,{"children":["$","$10",null,{"name":"Next.MetadataOutlet","children":"$@11"}]}]
+11:null
