@@ -91,7 +91,7 @@ const PostCard = ({
       {tags && tags.length > 0 && (
         <div className="flex flex-wrap gap-s-3 md:gap-[14px] mt-[8px] md:mt-[10px] text-[14px] md:text-xs text-ink-500">
           {tags.map((t) => (
-            <span key={t}>#{t}</span>
+            <span key={t}>{t}</span>
           ))}
         </div>
       )}

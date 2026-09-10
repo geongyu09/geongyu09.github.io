@@ -110,7 +110,7 @@ export default async function Page({ params }: PageProps) {
           {primaryTag && (
             <>
               <span>·</span>
-              <span className="text-blue-600">#{primaryTag}</span>
+              <span className="text-blue-600">{primaryTag}</span>
             </>
           )}
         </div>

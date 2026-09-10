@@ -213,7 +213,7 @@ export default function PostListClient({
                           </h3>
                           <div className="flex flex-wrap gap-s-3 text-[14px] md:text-xs text-ink-500">
                             {tagList.map((t) => (
-                              <span key={t}>#{t}</span>
+                              <span key={t}>{t}</span>
                             ))}
                           </div>
                         </Link>
