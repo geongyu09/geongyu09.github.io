@@ -1,4 +1,4 @@
-const THEME_STORAGE_KEY = 'geongyu-theme';
+import { THEME_STORAGE_KEY } from '../constants';
 
 const themeScript = `
 (function () {
