@@ -42,3 +42,10 @@ export const formatDateInYear = (date: string, sectionYear: number) => {
     ? `${month}월 ${day}일`
     : `${year}년 ${month}월 ${day}일`;
 };
+
+/**
+ * 연도 구분이 없는 자리에서 쓰는 발표 날짜 표기입니다.
+ * 날짜를 반기 단위로만 아는 발표는 연도를 앞에 붙여 '2025 상반기'로 적습니다.
+ */
+export const formatPresentationDate = (date: string, displayDate?: string) =>
+  displayDate ? `${date.slice(0, 4)} ${displayDate}` : date.replace(/-/g, '.');

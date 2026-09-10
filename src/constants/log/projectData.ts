@@ -3,11 +3,12 @@ import { ProjectItem } from '@/types/log';
 /** 시작일 내림차순으로 둡니다. 종료일이 '현재'인 항목은 진행 중인 프로젝트입니다. */
 const PROJECT_DATA: ProjectItem[] = [
   {
+    id: 'knot',
     title: 'Knot',
     startDate: '2026-08-01',
     endDate: '현재',
     category: '팀 프로젝트',
-    org: '우아한테크코스 도넛 팀',
+    org: '우아한테크코스',
     role: 'FE',
     description:
       '팀 프로젝트에서 흩어진 문서를 뒤져 과거 결정을 다시 찾는 비용을 줄여 주는 문서 탐색 서비스입니다.',
@@ -22,6 +23,7 @@ const PROJECT_DATA: ProjectItem[] = [
     ],
   },
   {
+    id: 'suspensive-contribution',
     title: 'toss/suspensive 기여',
     startDate: '2026-08-01',
     endDate: '현재',
@@ -37,6 +39,7 @@ const PROJECT_DATA: ProjectItem[] = [
     links: [{ type: 'repo', href: 'https://github.com/toss/suspensive' }],
   },
   {
+    id: 'stack-link',
     title: 'stack-link',
     startDate: '2026-07-01',
     endDate: '2026-07-31',
@@ -46,10 +49,31 @@ const PROJECT_DATA: ProjectItem[] = [
     description:
       'View Transitions 기반 전환 엔진과 뒤로가기 인터랙티브 스크럽 제스처를 제공하는 React 스택 네비게이션 라이브러리입니다.',
     details: [
-      '웹에서 앱 같은 화면 전환을 하려고 당근 stackflow를 쓰려 했으나 Next.js에서 쓸 수 없어 직접 만들기 시작했습니다.',
-      'Provider로 범위를 감싸면 다음 페이지를 옆 iframe에 미리 띄워 prefetch하고, 클릭하면 오른쪽에서 왼쪽으로 슬라이드한 뒤 push하며, 현재와 다음과 이전 세 레이어를 CSS transform으로 움직여 iOS 왼쪽 가장자리 드래그 뒤로가기까지 재현했습니다.',
+      {
+        text: '웹에서 앱 같은 화면 전환을 하려고 당근 stackflow를 쓰려 했으나 Next.js에서 쓸 수 없어 직접 만들기 시작했습니다.',
+        image: {
+          src: '/assets/blog/appLikeWeb/image-285.png',
+          alt: 'stackflow가 Next.js를 지원하지 않는다고 적힌 이슈 화면',
+          caption: 'stackflow를 쓸 수 없던 이유',
+        },
+      },
+      {
+        text: 'Provider로 범위를 감싸면 다음 페이지를 옆 iframe에 미리 띄워 prefetch하고, 클릭하면 오른쪽에서 왼쪽으로 슬라이드한 뒤 push하며, 현재와 다음과 이전 세 레이어를 CSS transform으로 움직여 iOS 왼쪽 가장자리 드래그 뒤로가기까지 재현했습니다.',
+        image: {
+          src: '/assets/blog/appLikeWeb/slide.gif',
+          alt: '오른쪽에서 왼쪽으로 화면이 밀려 들어오는 슬라이드 전환 시연',
+          caption: '구현한 슬라이드 전환',
+        },
+      },
       'iframe이 별도 브라우징 컨텍스트라 queryClient와 스토리지를 공유하지 못하는 문제가 있었고, iframe 안에서 나가는 요청을 막는 유틸로 임시 대응했습니다.',
-      '산결 워크스페이스에서 독립 레포로 옮기며 View Transitions 기반 전환 엔진으로 다시 썼고, 1.0.0까지 올린 뒤 제스처 레이스와 플링 판정을 고친 프리릴리스를 마지막으로 종료했습니다.',
+      {
+        text: '산결 워크스페이스에서 독립 레포로 옮기며 View Transitions 기반 전환 엔진으로 다시 썼고, 1.0.0까지 올린 뒤 제스처 레이스와 플링 판정을 고친 프리릴리스를 마지막으로 종료했습니다.',
+        image: {
+          src: '/assets/blog/appLikeWeb/back.gif',
+          alt: '왼쪽 가장자리를 끌어 이전 화면으로 돌아가는 뒤로가기 제스처 시연',
+          caption: '드래그로 되돌아가는 뒤로가기',
+        },
+      },
     ],
     links: [
       { type: 'repo', href: 'https://github.com/geongyu09/stack-link' },
@@ -57,24 +81,7 @@ const PROJECT_DATA: ProjectItem[] = [
     ],
   },
   {
-    title: 'who-tech (iftype)',
-    startDate: '2026-05-01',
-    endDate: '현재',
-    category: '오픈소스 기여',
-    org: '오픈소스',
-    role: 'FE + BE 컬래버레이터',
-    description:
-      '산결과 EEOS에서 쌓은 웹뷰 앱 패턴을 외부 프로젝트에 적용한 사례입니다.',
-    details: [
-      '"모바일 버전 who-tech를 제안합니다" 이슈를 올리고 같은 날 웹뷰 기반 앱 코드를 구현한 PR을 머지했습니다.',
-      '피드 우선 진입과 블로그 웹뷰, 기수 탐색을 개선한 v0.0.3을 이어 머지하면서 FE에 이어 BE 컬래버레이터 권한까지 받았습니다.',
-      '웹뷰 통신에는 산결에서 만든 @geongyu/bridge를 그대로 가져다 썼습니다.',
-    ],
-    links: [
-      { type: 'repo', href: 'https://github.com/iftype/who-tech-frontend' },
-    ],
-  },
-  {
+    id: 'geongyu-bridge',
     title: '@geongyu/bridge',
     startDate: '2026-02-01',
     endDate: '현재',
@@ -84,11 +91,46 @@ const PROJECT_DATA: ProjectItem[] = [
     description:
       '이벤트 기반 단방향 브리지로는 응답을 확인할 수 없어서 요청과 응답을 짝지어 주고받도록 만든 웹뷰 브리지입니다.',
     details: [
-      '로그인 웹뷰를 띄우자마자 어떤 소셜 로그인인지 웹에 알려야 했는데, onLoad나 ref로 보내면 window와 이벤트 리스너가 준비되기 전이라 메시지가 유실됐습니다.',
-      '앱을 항상 대기하는 서버로, 웹을 간헐 접속 클라이언트로 보고 TCP 3-way handshake를 차용해 웹이 SYN을, 앱이 SYN/ACK를, 웹이 ACK를 보내게 했습니다. 타임아웃 1초는 리눅스 TCP 초기 RTO를 근거로 정했습니다.',
-      '받을 때는 컴포넌트, 보낼 때는 훅으로 나눈 첫 구조에서는 응답 처리가 WebView 이벤트 핸들러에 묶여 훅만으로 처리할 수 없었고, 요청과 응답 계층과 콜백 예약 계층의 2계층으로 나눠 풀었습니다.',
-      '메시지는 id와 ack, syn 플래그, body로 구성해 ack로 요청과 응답을 구분합니다. 보낸 id를 수신 윈도우 버퍼에 넣었다가 응답이 오면 제거하고 예약해 둔 콜백을 실행합니다.',
-      '산결에서 npm 배포 환경을 잡은 뒤 개인 레포로 분리했고 v0.2.1에서 웹뷰 핸드셰이크 재시도와 Inspector 디버그를 더했으며 EEOS 앱과 who-tech 웹뷰 앱에서 재사용했습니다.',
+      {
+        text: '로그인 웹뷰를 띄우자마자 어떤 소셜 로그인인지 웹에 알려야 했는데, onLoad나 ref로 보내면 window와 이벤트 리스너가 준비되기 전이라 메시지가 유실됐습니다.',
+        image: {
+          src: '/assets/blog/webviewThreeWayHandshake/appToWeb.png',
+          alt: '앱에서 웹으로 메시지를 보내는 경로를 그린 다이어그램',
+          caption: '앱에서 웹으로 보내는 경로',
+        },
+      },
+      {
+        text: '앱을 항상 대기하는 서버로, 웹을 간헐 접속 클라이언트로 보고 TCP 3-way handshake를 차용해 웹이 SYN을, 앱이 SYN/ACK를, 웹이 ACK를 보내게 했습니다. 타임아웃 1초는 리눅스 TCP 초기 RTO를 근거로 정했습니다.',
+        image: {
+          src: '/assets/blog/webviewThreeWayHandshake/handshake-process.png',
+          alt: '웹과 앱이 SYN, SYN/ACK, ACK를 주고받는 핸드셰이크 다이어그램',
+          caption: '3-way handshake를 차용한 연결 과정',
+        },
+      },
+      {
+        text: '받을 때는 컴포넌트, 보낼 때는 훅으로 나눈 첫 구조에서는 응답 처리가 WebView 이벤트 핸들러에 묶여 훅만으로 처리할 수 없었고, 요청과 응답 계층과 콜백 예약 계층의 2계층으로 나눠 풀었습니다.',
+        image: {
+          src: '/assets/blog/webviewThreeWayHandshake/webToApp.png',
+          alt: '웹에서 앱으로 메시지를 보내는 경로를 그린 다이어그램',
+          caption: '웹에서 앱으로 보내는 경로',
+        },
+      },
+      {
+        text: '메시지는 id와 ack, syn 플래그, body로 구성해 ack로 요청과 응답을 구분합니다. 보낸 id를 수신 윈도우 버퍼에 넣었다가 응답이 오면 제거하고 예약해 둔 콜백을 실행합니다.',
+        image: {
+          src: '/assets/blog/webviewThreeWayHandshake/improve-handshake.png',
+          alt: '요청과 응답을 짝지어 주고받는 전체 통신 다이어그램',
+          caption: '요청과 응답을 짝지은 통신 구조',
+        },
+      },
+      {
+        text: '산결에서 npm 배포 환경을 잡은 뒤 개인 레포로 분리했고 v0.2.1에서 웹뷰 핸드셰이크 재시도와 Inspector 디버그를 더했으며 EEOS 앱과 who-tech 웹뷰 앱에서 재사용했습니다.',
+        image: {
+          src: '/assets/blog/webviewThreeWayHandshake/handshake.gif',
+          alt: '웹뷰에서 핸드셰이크가 이뤄지는 화면 시연',
+          caption: '실제 웹뷰에서의 핸드셰이크 시연',
+        },
+      },
     ],
     links: [
       {
@@ -99,6 +141,7 @@ const PROJECT_DATA: ProjectItem[] = [
     ],
   },
   {
+    id: 'auth-econovation',
     title: 'Auth-Econovation',
     startDate: '2026-01-01',
     endDate: '2026-06-30',
@@ -123,6 +166,7 @@ const PROJECT_DATA: ProjectItem[] = [
     ],
   },
   {
+    id: 'unified-debugger',
     title: 'Unified Debugger',
     startDate: '2025-11-01',
     endDate: '2026-07-31',
@@ -141,6 +185,7 @@ const PROJECT_DATA: ProjectItem[] = [
     ],
   },
   {
+    id: 'sangyeol',
     title: '산결 (Sangyeol)',
     startDate: '2025-04-01',
     endDate: '현재',
@@ -161,6 +206,7 @@ const PROJECT_DATA: ProjectItem[] = [
     links: [{ type: 'repo', href: 'https://github.com/san-gyeol/Sangyeol-FE' }],
   },
   {
+    id: 'csi-fall-detection',
     title: '캡스톤 · CSI 기반 낙상 감지',
     startDate: '2025-03-01',
     endDate: '2025-06-30',
@@ -176,6 +222,7 @@ const PROJECT_DATA: ProjectItem[] = [
     links: [{ type: 'repo', href: 'https://github.com/geongyu09/capstone' }],
   },
   {
+    id: 'abas-fe',
     title: 'ABAS-FE',
     startDate: '2025-01-01',
     endDate: '2025-05-31',
@@ -190,6 +237,7 @@ const PROJECT_DATA: ProjectItem[] = [
     ],
   },
   {
+    id: 'tech-blog',
     title: '개인 기술 블로그',
     startDate: '2024-08-01',
     endDate: '현재',
@@ -212,6 +260,7 @@ const PROJECT_DATA: ProjectItem[] = [
     ],
   },
   {
+    id: 'eeos',
     title: 'EEOS',
     startDate: '2024-02-01',
     endDate: '2026-06-30',
@@ -233,6 +282,7 @@ const PROJECT_DATA: ProjectItem[] = [
     ],
   },
   {
+    id: 'econovation-recruit',
     title: 'Econovation-recruit',
     startDate: '2024-02-01',
     endDate: '2025-03-31',
@@ -258,6 +308,7 @@ const PROJECT_DATA: ProjectItem[] = [
     ],
   },
   {
+    id: 'neowagreen',
     title: '너와그린기린그림',
     startDate: '2023-11-01',
     endDate: '2024-06-30',
@@ -279,6 +330,7 @@ const PROJECT_DATA: ProjectItem[] = [
     ],
   },
   {
+    id: 'cache-brain',
     title: 'Cache-Brain',
     startDate: '2023-09-01',
     endDate: '2023-11-30',

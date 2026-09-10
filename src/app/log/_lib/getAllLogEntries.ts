@@ -2,7 +2,10 @@ import EXPERIENCE_DATA from '@/constants/log/experienceData';
 import PRESENTATION_DATA from '@/constants/log/presentationData';
 import PROJECT_DATA from '@/constants/log/projectData';
 import STUDY_DATA from '@/constants/log/studyData';
-import { formatYearMonth } from '@/lib/log/formatLogDate';
+import {
+  formatPresentationDate,
+  formatYearMonth,
+} from '@/lib/log/formatLogDate';
 import { LogEntry } from '@/types/log';
 
 const formatDay = (date: string) => date.replace(/-/g, '.');
@@ -15,10 +18,6 @@ const formatSpan = (startDate: string, endDate: string) => {
   return start === end ? start : `${start} ~ ${end}`;
 };
 
-/** 발표 날짜를 반기 단위로만 아는 경우에는 연도를 붙여 '2025 상반기'로 적습니다. */
-const formatPresentationDate = (date: string, displayDate?: string) =>
-  displayDate ? `${date.slice(0, 4)} ${displayDate}` : formatDay(date);
-
 /** 네 갈래 기록을 한 목록으로 합쳐 최신순으로 돌려줍니다. */
 const getAllLogEntries = (): LogEntry[] => {
   const experiences: LogEntry[] = EXPERIENCE_DATA.map((experience) => ({
@@ -26,6 +25,8 @@ const getAllLogEntries = (): LogEntry[] => {
     title: experience.title,
     date: experience.startDate,
     displayDate: formatSpan(experience.startDate, experience.endDate),
+    meta: experience.org,
+    experience,
   }));
 
   const projects: LogEntry[] = PROJECT_DATA.map((project) => ({
@@ -47,6 +48,7 @@ const getAllLogEntries = (): LogEntry[] => {
     ),
     meta: presentation.place,
     href: presentation.href,
+    presentation,
   }));
 
   const studies: LogEntry[] = STUDY_DATA.map((study) => ({
