@@ -2,71 +2,50 @@
 
 import Eyebrow from '@/components/ds/Eyebrow';
 import { formatYearMonth } from '@/lib/log/formatLogDate';
-import { useModal } from '@/lib/modal';
-import { ProjectLinkType, ProjectItem } from '@/types/log';
-import Image from 'next/image';
-import Link from 'next/link';
-import { useEffect } from 'react';
-import {
-  FiArrowUpRight,
-  FiBookOpen,
-  FiGithub,
-  FiGlobe,
-  FiPackage,
-} from 'react-icons/fi';
+import ROUTE_PATH from '@/constants/path/routePath';
+import { useRouteModal } from '@/lib/modal';
+import { ProjectItem } from '@/types/log';
+import cn from '@/utils/cn';
+import { useMemo, useRef } from 'react';
 import { IoClose } from 'react-icons/io5';
-import { IconType } from 'react-icons';
+import DetailStage from './components/DetailStage';
+import DetailStepList from './components/DetailStepList';
+import ProjectLinkList from './components/ProjectLinkList';
+import useDetailStory from './hooks/useDetailStory';
+import { normalizeProjectDetails } from './utils';
 
 interface ProjectDetailModalProps {
   project: ProjectItem;
 }
 
-/** 주소 종류마다 붙는 아이콘과, 따로 적지 않았을 때 쓰는 문구입니다. */
-const LINK_PRESET: Record<ProjectLinkType, { icon: IconType; label: string }> =
-  {
-    repo: { icon: FiGithub, label: '레포지토리' },
-    npm: { icon: FiPackage, label: 'npm 패키지' },
-    site: { icon: FiGlobe, label: '서비스 바로가기' },
-    docs: { icon: FiBookOpen, label: '문서' },
-  };
-
-/** 왼쪽 열에 세로로 쌓는 메타데이터 한 줄입니다. */
-function MetaRow({ label, value }: { label: string; value: string }) {
-  return (
-    <div className="flex gap-s-4 border-t border-ink-200 py-s-3">
-      <dt className="w-[56px] shrink-0 font-mono text-[12px] uppercase tracking-[0.06em] text-ink-500">
-        {label}
-      </dt>
-      <dd className="m-0 flex-1 text-[15px] leading-[1.6] text-ink-800">
-        {value}
-      </dd>
-    </div>
-  );
-}
-
 export default function ProjectDetailModal({
   project,
 }: ProjectDetailModalProps) {
-  const { closeModal } = useModal();
+  const { closeModal, isClosing, isOpen } = useRouteModal({
+    fallbackHref: ROUTE_PATH.LOG,
+  });
+  const panelRef = useRef<HTMLDivElement>(null);
+
+  const details = useMemo(
+    () => normalizeProjectDetails(project.details),
+    [project.details],
+  );
+  const { activeIndex, progress, setStepRef } = useDetailStory(
+    panelRef,
+    details.length,
+  );
 
   // 모달은 연도 섹션 밖에 뜨므로 시작과 끝 모두 연도를 붙여 적습니다.
   const period = `${formatYearMonth(project.startDate)} ~ ${formatYearMonth(
     project.endDate,
   )}`;
   const status = project.endDate === '현재' ? '진행 중' : '마무리';
+  const cover = project.thumbnail
+    ? { src: project.thumbnail, alt: `${project.title} 대표 이미지` }
+    : undefined;
 
-  useEffect(() => {
-    const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') closeModal();
-    };
-    window.addEventListener('keydown', handleKeyDown);
-    const { overflow } = document.body.style;
-    document.body.style.overflow = 'hidden';
-    return () => {
-      window.removeEventListener('keydown', handleKeyDown);
-      document.body.style.overflow = overflow;
-    };
-  }, [closeModal]);
+  // 주소가 이 모달의 것이 아니게 되면 슬롯에 남아 있더라도 그리지 않습니다.
+  if (!isOpen) return null;
 
   return (
     <div
@@ -79,10 +58,23 @@ export default function ProjectDetailModal({
         type="button"
         aria-label="상세 닫기"
         onClick={() => closeModal()}
-        className="absolute inset-0 w-full h-full bg-black/60 backdrop-blur-sm"
+        className={cn(
+          'absolute inset-0 w-full h-full bg-black/60 backdrop-blur-sm',
+          isClosing
+            ? 'animate-modal-backdrop-out'
+            : 'animate-modal-backdrop-in',
+        )}
       />
 
-      <div className="relative flex h-[96vh] w-full max-w-[1600px] flex-col overflow-hidden rounded-t-2xl bg-ink-0 sm:h-[94vh] sm:rounded-2xl">
+      <div
+        ref={panelRef}
+        className={cn(
+          'relative flex h-[96vh] w-full max-w-[1600px] flex-col overflow-hidden rounded-t-2xl bg-ink-0 sm:h-[94vh] sm:rounded-2xl',
+          isClosing
+            ? 'animate-modal-sheet-out sm:animate-modal-panel-out'
+            : 'animate-modal-sheet-in sm:animate-modal-panel-in',
+        )}
+      >
         <button
           type="button"
           aria-label="닫기"
@@ -93,89 +85,62 @@ export default function ProjectDetailModal({
         </button>
 
         <div className="flex min-h-0 flex-1 flex-col overflow-y-auto lg:flex-row lg:overflow-hidden">
-          <aside className="shrink-0 border-b border-ink-200 px-s-5 py-s-5 lg:w-[420px] lg:overflow-y-auto lg:border-b-0 lg:border-r lg:px-s-6 lg:py-s-7 xl:w-[480px] xl:px-s-7">
-            <div className="relative aspect-[16/10] w-full overflow-hidden rounded-r-2 border border-ink-200 bg-ink-50">
-              {project.thumbnail ? (
-                <Image
-                  src={project.thumbnail}
-                  alt={`${project.title} 대표 이미지`}
-                  fill
-                  sizes="(min-width: 1280px) 480px, (min-width: 1024px) 420px, 100vw"
-                  className="object-cover"
-                  unoptimized
-                />
-              ) : (
-                <div
-                  className="flex h-full w-full items-center justify-center bg-[radial-gradient(var(--ink-200)_1px,transparent_1px)] [background-size:10px_10px]"
-                  aria-hidden
-                >
-                  <span className="rounded-pill bg-ink-0/80 px-s-3 py-s-1 font-mono text-[12px] uppercase tracking-[0.08em] text-ink-500">
-                    {project.category}
-                  </span>
-                </div>
-              )}
+          <aside className="flex shrink-0 flex-col border-b border-ink-200 px-s-5 py-s-5 lg:w-[54%] lg:min-h-0 lg:border-b-0 lg:border-r lg:px-s-7 lg:py-s-7 xl:px-s-8">
+            <div className="shrink-0 pr-s-8 lg:pr-0">
+              <div className="flex flex-wrap items-center gap-s-3">
+                <Eyebrow className="text-[13px] text-ink-900">
+                  {project.category}
+                </Eyebrow>
+                <span className="rounded-pill border border-ink-200 px-s-3 py-[3px] font-mono text-[11px] text-ink-500">
+                  {status}
+                </span>
+              </div>
+              <h2 className="m-0 mt-s-2 text-[32px] font-semibold leading-[1.2] tracking-[-0.03em] text-ink-950">
+                {project.title}
+              </h2>
+              <p className="m-0 mt-s-3 font-mono text-[13px] leading-[1.6] text-ink-500">
+                {period} · {project.org} · {project.role}
+              </p>
             </div>
 
-            <Eyebrow className="mt-s-6 text-[13px] text-ink-900">
-              {project.category}
-            </Eyebrow>
-            <h2 className="m-0 mt-s-2 text-[32px] font-semibold leading-[1.2] tracking-[-0.03em] text-ink-950">
-              {project.title}
-            </h2>
-
-            <dl className="m-0 mt-s-6 flex flex-col">
-              <MetaRow label="기간" value={period} />
-              <MetaRow label="소속" value={project.org} />
-              <MetaRow label="역할" value={project.role} />
-              <MetaRow label="상태" value={status} />
-            </dl>
-
-            {project.links && project.links.length > 0 && (
-              <ul className="mt-s-6 flex flex-col gap-s-2">
-                {project.links.map((link) => {
-                  const { icon: Icon, label } = LINK_PRESET[link.type];
-
-                  return (
-                    <li key={link.href}>
-                      <Link
-                        href={link.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex w-full items-center gap-s-3 rounded-pill border border-ink-200 px-s-4 py-s-3 font-mono text-[13px] text-ink-700 transition-colors hover:border-ink-950 hover:text-ink-950"
-                      >
-                        <Icon size={15} className="shrink-0" />
-                        <span className="flex-1 truncate text-left">
-                          {link.label ?? label}
-                        </span>
-                        <FiArrowUpRight size={14} className="shrink-0" />
-                      </Link>
-                    </li>
-                  );
-                })}
-              </ul>
-            )}
+            <DetailStage
+              className="mt-s-6 hidden lg:flex"
+              details={details}
+              cover={cover}
+              activeIndex={activeIndex}
+              progress={progress}
+              label={project.category}
+            />
           </aside>
 
-          <div className="min-w-0 flex-1 px-s-5 py-s-5 lg:overflow-y-auto lg:px-s-8 lg:py-s-7 lg:pr-s-9 xl:px-s-9 xl:pr-s-10">
-            <div className="max-w-[820px]">
+          {/* 키보드만 쓰는 경우에도 방향키로 내려 읽을 수 있도록 포커스를 받게 둡니다. */}
+          <div
+            role="region"
+            aria-label={`${project.title} 상세 내용`}
+            // 스크롤이 생기는 영역은 포커스를 받아야 방향키로 읽을 수 있습니다.
+            // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
+            tabIndex={0}
+            className="min-w-0 flex-1 px-s-5 py-s-5 outline-none focus-visible:ring-1 focus-visible:ring-inset focus-visible:ring-ink-400 lg:overflow-y-auto lg:px-s-8 lg:py-s-7 xl:px-s-9"
+          >
+            <div className="max-w-[640px]">
               <Eyebrow className="text-[13px] text-ink-900">소개</Eyebrow>
               <p className="m-0 mt-s-3 text-[20px] leading-[1.7] tracking-[-0.01em] text-ink-950">
                 {project.description}
               </p>
 
+              {project.links && project.links.length > 0 && (
+                <ProjectLinkList links={project.links} />
+              )}
+
               <Eyebrow className="mt-s-7 text-[13px] text-ink-900">
                 상세
               </Eyebrow>
-              <ul className="mt-s-4 flex flex-col gap-s-5">
-                {project.details.map((detail) => (
-                  <li
-                    key={detail}
-                    className="relative pl-s-4 text-[17px] leading-[1.85] text-ink-700 before:absolute before:left-0 before:top-[12px] before:h-[3px] before:w-[3px] before:rounded-full before:bg-ink-400"
-                  >
-                    {detail}
-                  </li>
-                ))}
-              </ul>
+              <DetailStepList
+                details={details}
+                activeIndex={activeIndex}
+                label={project.category}
+                setStepRef={setStepRef}
+              />
             </div>
           </div>
         </div>

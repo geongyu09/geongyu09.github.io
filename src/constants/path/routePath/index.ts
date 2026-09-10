@@ -6,6 +6,10 @@
 const ROUTE_PATH = {
   HOME: '/',
   LOG: '/log/',
+  /** 로그 상세는 /log 위에 병렬 경로로 얹히는 모달이라 주소도 /log 아래에 둡니다. */
+  LOG_PROJECT: ({ id }: { id: string }) => `/log/project/${id}/`,
+  LOG_EXPERIENCE: ({ id }: { id: string }) => `/log/experience/${id}/`,
+  LOG_PRESENTATION: ({ id }: { id: string }) => `/log/presentation/${id}/`,
   POSTS: (prop?: { tag?: string }) =>
     `/posts/${prop?.tag ? `${encodeURIComponent(prop.tag)}/` : ''}`,
   POST_DETAIL: ({ slug }: { slug: string }) => `/post/${slug}/`,

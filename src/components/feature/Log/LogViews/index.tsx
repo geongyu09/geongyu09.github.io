@@ -59,7 +59,7 @@ export default function LogViews({ years, entries, yearView }: Props) {
         <div className="flex gap-s-2">
           {VIEW_TABS.map(({ key, label }) => (
             <button key={key} type="button" onClick={() => setView(key)}>
-              <Chip active={view === key} className="text-[13px]">
+              <Chip active={view === key} className="text-[14px]">
                 {label}
               </Chip>
             </button>
@@ -78,7 +78,7 @@ export default function LogViews({ years, entries, yearView }: Props) {
           >
             {years.map((year) => (
               <a key={year} href={`#year-${year}`} className="font-mono">
-                <Chip className="text-[13px]">{year}</Chip>
+                <Chip className="text-[14px]">{year}</Chip>
               </a>
             ))}
           </nav>
@@ -86,7 +86,7 @@ export default function LogViews({ years, entries, yearView }: Props) {
           <div className="flex flex-wrap items-center gap-s-2">
             {TYPE_FILTERS.map(({ key, label }) => (
               <button key={key} type="button" onClick={() => setFilter(key)}>
-                <Chip active={filter === key} className="text-[13px]">
+                <Chip active={filter === key} className="text-[14px]">
                   {label} {countByFilter[key] ?? 0}
                 </Chip>
               </button>

@@ -1,9 +1,11 @@
 import Chip from '@/components/ds/Chip';
 import Eyebrow from '@/components/ds/Eyebrow';
+import ROUTE_PATH from '@/constants/path/routePath';
 import { formatDateInYear } from '@/lib/log/formatLogDate';
 import { PresentationItem } from '@/types/log';
 import cn from '@/utils/cn';
 import Link from 'next/link';
+import { FiPlus } from 'react-icons/fi';
 
 interface Props {
   presentations: PresentationItem[];
@@ -14,7 +16,7 @@ interface Props {
 export default function PresentationSection({ presentations, year }: Props) {
   return (
     <div>
-      <Eyebrow className="mb-s-3 text-[13px] text-ink-900">
+      <Eyebrow className="mb-s-3 text-[14px] text-ink-900">
         Presentation
       </Eyebrow>
       <ul className="flex flex-col">
@@ -22,16 +24,22 @@ export default function PresentationSection({ presentations, year }: Props) {
           const body = (
             <div className="flex flex-col gap-s-2 sm:flex-row sm:justify-between sm:items-baseline sm:gap-s-4">
               <div className="flex flex-wrap items-baseline gap-s-2">
-                <p className="text-[16px] text-ink-950 font-medium">
+                <p className="text-[18px] text-ink-950 font-medium">
                   {presentation.title}
+                  {presentation.href && (
+                    <FiPlus
+                      className="inline-block ml-[3px] align-[-1px] text-ink-400 transition-transform group-hover:rotate-90"
+                      size={14}
+                    />
+                  )}
                 </p>
                 {presentation.place && (
-                  <Chip interactive={false} className="text-[13px]">
+                  <Chip interactive={false} className="text-[14px]">
                     {presentation.place}
                   </Chip>
                 )}
               </div>
-              <span className="font-mono text-[13px] text-ink-500 shrink-0">
+              <span className="font-mono text-[14px] text-ink-500 shrink-0">
                 {presentation.displayDate ??
                   formatDateInYear(presentation.date, year)}
               </span>
@@ -45,10 +53,10 @@ export default function PresentationSection({ presentations, year }: Props) {
             >
               {presentation.href ? (
                 <Link
-                  href={presentation.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block py-s-3 hover:opacity-70 transition-opacity"
+                  href={ROUTE_PATH.LOG_PRESENTATION({ id: presentation.id })}
+                  scroll={false}
+                  aria-label={`${presentation.title} 발표 자료 보기`}
+                  className="group block w-full py-s-3 text-left transition-opacity hover:opacity-70"
                 >
                   {body}
                 </Link>

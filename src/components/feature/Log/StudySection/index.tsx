@@ -38,15 +38,15 @@ export default function StudySection({ studies, year }: Props) {
             'text-ink-400 transition-transform duration-200 shrink-0',
             isOpen && 'rotate-180',
           )}
-          size={14}
+          size={16}
         />
-        <Eyebrow className="text-[13px] text-ink-900">Study</Eyebrow>
+        <Eyebrow className="text-[14px] text-ink-900">Study</Eyebrow>
       </button>
 
       {!isOpen && uniqueTags.length > 0 && (
         <div className="mt-s-3 flex flex-wrap gap-s-2">
           {uniqueTags.map((tag) => (
-            <Chip key={tag} interactive={false} className="text-[13px]">
+            <Chip key={tag} interactive={false} className="text-[14px]">
               {tag}
             </Chip>
           ))}
@@ -65,10 +65,10 @@ export default function StudySection({ studies, year }: Props) {
               const body = (
                 <div className="flex flex-col gap-s-2 sm:flex-row sm:justify-between sm:items-baseline sm:gap-s-4">
                   <div>
-                    <p className="text-[17px] text-ink-950 font-medium">
+                    <p className="text-[19px] text-ink-950 font-medium">
                       {study.title}
                     </p>
-                    <span className="font-mono text-[13px] text-ink-500 mt-[2px] block">
+                    <span className="font-mono text-[14px] text-ink-500 mt-[2px] block">
                       {formatDateInYear(study.date, year)}
                     </span>
                   </div>
@@ -78,7 +78,7 @@ export default function StudySection({ studies, year }: Props) {
                         <Chip
                           key={tag}
                           interactive={false}
-                          className="text-[13px]"
+                          className="text-[14px]"
                         >
                           {tag}
                         </Chip>
