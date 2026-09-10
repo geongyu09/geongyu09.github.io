@@ -43,6 +43,7 @@ const config: Config = {
       fontFamily: {
         sans: ['var(--font-sans)'],
         mono: ['var(--font-mono)'],
+        code: ['var(--font-code)'],
         serif: ['var(--font-serif)'],
       },
       fontSize: {

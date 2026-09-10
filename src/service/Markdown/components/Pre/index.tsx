@@ -11,7 +11,7 @@ export default function Pre({ children, className = '', ...rest }: PreProps) {
     <pre
       className={cn(
         'my-s-5 overflow-x-auto rounded-r-1 border border-ink-200',
-        'bg-ink-50 text-code font-mono leading-[1.6]',
+        'bg-ink-50 text-code font-code leading-[1.6]',
         'py-s-4',
         className,
       )}
