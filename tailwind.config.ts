@@ -94,6 +94,49 @@ const config: Config = {
       minHeight: {
         'fit-to-screen': `calc(100vh - ${LAYOUT.HEADER.height}px - ${LAYOUT.FOOTER.height}px)`,
       },
+      /**
+       * 모달 등장·퇴장 모션
+       * backdrop 은 불투명도만, panel 은 살짝 떠오르며, sheet 는 모바일에서 아래에서 올라옵니다.
+       * out 계열은 in 보다 짧게 잡아 닫을 때 답답한 느낌이 남지 않도록 합니다.
+       */
+      keyframes: {
+        'modal-backdrop-in': {
+          from: { opacity: '0' },
+          to: { opacity: '1' },
+        },
+        'modal-backdrop-out': {
+          from: { opacity: '1' },
+          to: { opacity: '0' },
+        },
+        'modal-panel-in': {
+          from: { opacity: '0', transform: 'translateY(8px) scale(0.98)' },
+          to: { opacity: '1', transform: 'translateY(0) scale(1)' },
+        },
+        'modal-panel-out': {
+          from: { opacity: '1', transform: 'translateY(0) scale(1)' },
+          to: { opacity: '0', transform: 'translateY(8px) scale(0.98)' },
+        },
+        'modal-sheet-in': {
+          from: { transform: 'translateY(100%)' },
+          to: { transform: 'translateY(0)' },
+        },
+        'modal-sheet-out': {
+          from: { transform: 'translateY(0)' },
+          to: { transform: 'translateY(100%)' },
+        },
+      },
+      animation: {
+        'modal-backdrop-in': 'modal-backdrop-in 200ms ease-out both',
+        'modal-backdrop-out': 'modal-backdrop-out 180ms ease-in both',
+        'modal-panel-in':
+          'modal-panel-in 220ms cubic-bezier(0.22, 1, 0.36, 1) both',
+        'modal-panel-out':
+          'modal-panel-out 180ms cubic-bezier(0.4, 0, 1, 1) both',
+        'modal-sheet-in':
+          'modal-sheet-in 260ms cubic-bezier(0.22, 1, 0.36, 1) both',
+        'modal-sheet-out':
+          'modal-sheet-out 200ms cubic-bezier(0.4, 0, 1, 1) both',
+      },
     },
   },
   plugins: [],

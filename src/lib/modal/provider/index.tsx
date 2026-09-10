@@ -4,10 +4,16 @@
 // 이 값은 모달이 닫힐 때 초기화 되어야한다.
 // 모달이 닫힐 때 callback도 받아서 실행되도록 해야할듯? (열 때 실행할 콜백은 나중에)
 
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import PortalCreator from '@/components/common/lib/modal/PortalCreator';
 import { Modal, ModalContextValue, PushModal } from '../types';
 import ModalContext from '../context';
+
+/**
+ * 닫기를 누른 뒤 모달을 트리에서 지우기까지 기다리는 시간입니다.
+ * tailwind.config.ts 의 modal-*-out 애니메이션 중 가장 긴 길이(200ms)에 맞춰 둡니다.
+ */
+const CLOSE_ANIMATION_DURATION = 210;
 
 interface ModalQueueItem {
   key: string;
@@ -21,7 +27,8 @@ interface ModalProviderProps {
 
 export default function ModalProvider({ children }: ModalProviderProps) {
   const [modalQueue, setModalQueue] = useState<ModalQueueItem[]>([]);
-  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [isClosing, setIsClosing] = useState<boolean>(false);
+  const closeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   // in modal state
   const [modalInternalDataState, setModalInternalDataState] = useState<
@@ -32,10 +39,15 @@ export default function ModalProvider({ children }: ModalProviderProps) {
 
   useEffect(() => {
     if (modalQueue.length > 0) {
-      setIsOpen(true);
       setModalInternalDataState(null);
     }
-  }, [modalQueue, setIsOpen]);
+  }, [modalQueue]);
+
+  useEffect(() => {
+    return () => {
+      if (closeTimerRef.current) clearTimeout(closeTimerRef.current);
+    };
+  }, []);
 
   const pushModal = useCallback(({ modal, onClose = () => {} }: PushModal) => {
     const key = Date.now().toString();
@@ -66,16 +78,24 @@ export default function ModalProvider({ children }: ModalProviderProps) {
 
   /**
    * 모달을 닫는 함수
-   * ModalQueue에서 첫번째 모달을 제거하고, isOpen을 false로 변경한다.
+   * onClose와 콜백은 곧바로 실행하고, 퇴장 애니메이션이 끝난 뒤에 ModalQueue에서 첫번째 모달을 제거한다.
+   * 애니메이션이 도는 동안 다시 호출되면 무시해서 닫기 동작이 겹치지 않도록 한다.
    */
   const closeModal = useCallback(
     (callback?: (response: boolean | string | null) => void) => {
+      if (!currentModal || isClosing) return;
+
       currentModal.onClose();
       callback?.(modalInternalDataState);
-      setModalQueue((prev) => prev.slice(1));
-      setIsOpen(false);
+      setIsClosing(true);
+
+      closeTimerRef.current = setTimeout(() => {
+        setModalQueue((prev) => prev.slice(1));
+        setIsClosing(false);
+        closeTimerRef.current = null;
+      }, CLOSE_ANIMATION_DURATION);
     },
-    [currentModal, modalInternalDataState],
+    [currentModal, isClosing, modalInternalDataState],
   );
 
   const value: ModalContextValue = useMemo(
@@ -84,14 +104,19 @@ export default function ModalProvider({ children }: ModalProviderProps) {
       setResponse,
       getResponse,
       closeModal,
+      isClosing,
     }),
-    [pushModal, setResponse, getResponse, closeModal],
+    [pushModal, setResponse, getResponse, closeModal, isClosing],
   );
 
   return (
     <ModalContext.Provider value={value}>
       {children}
-      {isOpen && <PortalCreator>{modalQueue[0].modal}</PortalCreator>}
+      {currentModal && (
+        <PortalCreator key={currentModal.key}>
+          {currentModal.modal}
+        </PortalCreator>
+      )}
     </ModalContext.Provider>
   );
 }

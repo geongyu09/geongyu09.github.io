@@ -8,6 +8,7 @@ export interface ModalContextValue {
   setResponse: (response: boolean | string) => void;
   getResponse: () => string | boolean | null;
   closeModal: (callback?: (response: boolean | string | null) => void) => void;
+  isClosing: boolean; // 퇴장 애니메이션이 도는 동안 true
 }
 
 export type Modal = React.ReactNode;
