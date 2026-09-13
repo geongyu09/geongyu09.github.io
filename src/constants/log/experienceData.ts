@@ -246,39 +246,6 @@ const EXPERIENCE_DATA: ActivityItem[] = [
         label: '프로젝트',
         items: [
           {
-            title: '너와그린기린그림',
-            meta: '2023.11 ~ 2024.06',
-            paragraphs: [
-              '기존 펀딩 사이트는 상업적이고 이미 완성형인 프로젝트가 대부분이라, 동아리 활동처럼 소소한 프로젝트를 여는 대학생은 인지도와 완성도에 밀려 투자를 받지 못하고 접는 경우가 많았습니다. 그래서 대학생들을 위한 펀딩을 열고 후원받을 수 있는 플랫폼을 만들기로 했습니다.',
-            ],
-            links: [
-              { href: '/log/project/neowagreen/', label: '프로젝트 상세' },
-            ],
-          },
-          {
-            title: 'Econovation-recruit와 econo-homepage',
-            meta: '2024.02 ~ 2025.03',
-            paragraphs: [
-              '신입모집 플랫폼 개발팀에 합류해 27기 실모집 대응, 28기의 Cypress E2E와 합불 상태관리 페이지, 29기의 지원서 네비게이션 개편과 실모집 버그 대응을 하였습니다.',
-              '홈페이지 레포에서는 기수마다 모집 일정과 포트폴리오를 갱신했습니다.',
-            ],
-            links: [
-              {
-                href: '/log/project/econovation-recruit/',
-                label: '프로젝트 상세',
-              },
-            ],
-          },
-          {
-            title: 'EEOS',
-            meta: '2024.02 ~ 2026.06',
-            paragraphs: [
-              'EEOS는 Econovation Event Operation System의 준말로 동아리 내에서의 행사 등록, 출석, 수요조사를 관리하는 서비스입니다.',
-              '동아리 회원이 아닌 인원이 확인할 수 있는 게스트 모드와 슬랙 알림의 release 2.2, 주간발표 집중 개편의 3.0, 마이페이지와 얼리버드의 3.1, 캘린더와 출석 통계의 3.2, 모노레포 전환을 거친 React Native 웹뷰 앱 v4.0과 SSO 연동 v4.0.5까지 진행하였습니다.',
-            ],
-            links: [{ href: '/log/project/eeos/', label: '프로젝트 상세' }],
-          },
-          {
             title: 'Auth-Econovation',
             meta: '2026.01 ~ 2026.06',
             paragraphs: [
@@ -299,6 +266,39 @@ const EXPERIENCE_DATA: ActivityItem[] = [
               '20대 대상 산행 안내 앱을 맡았고, 앱 개발 경험이 없는 상태에서 익숙한 React 문법을 쓰는 React Native를 고른 뒤 빠른 사용자 테스트를 위해 화면 대부분을 Next.js 웹뷰로 띄우는 방향을 택했습니다.',
             ],
             links: [{ href: '/log/project/sangyeol/', label: '프로젝트 상세' }],
+          },
+          {
+            title: 'EEOS',
+            meta: '2024.02 ~ 2026.06',
+            paragraphs: [
+              'EEOS는 Econovation Event Operation System의 준말로 동아리 내에서의 행사 등록, 출석, 수요조사를 관리하는 서비스입니다.',
+              '동아리 회원이 아닌 인원이 확인할 수 있는 게스트 모드와 슬랙 알림의 release 2.2, 주간발표 집중 개편의 3.0, 마이페이지와 얼리버드의 3.1, 캘린더와 출석 통계의 3.2, 모노레포 전환을 거친 React Native 웹뷰 앱 v4.0과 SSO 연동 v4.0.5까지 진행하였습니다.',
+            ],
+            links: [{ href: '/log/project/eeos/', label: '프로젝트 상세' }],
+          },
+          {
+            title: 'Econovation-recruit와 econo-homepage',
+            meta: '2024.02 ~ 2025.03',
+            paragraphs: [
+              '신입모집 플랫폼 개발팀에 합류해 27기 실모집 대응, 28기의 Cypress E2E와 합불 상태관리 페이지, 29기의 지원서 네비게이션 개편과 실모집 버그 대응을 하였습니다.',
+              '홈페이지 레포에서는 기수마다 모집 일정과 포트폴리오를 갱신했습니다.',
+            ],
+            links: [
+              {
+                href: '/log/project/econovation-recruit/',
+                label: '프로젝트 상세',
+              },
+            ],
+          },
+          {
+            title: '너와그린기린그림',
+            meta: '2023.11 ~ 2024.06',
+            paragraphs: [
+              '기존 펀딩 사이트는 상업적이고 이미 완성형인 프로젝트가 대부분이라, 동아리 활동처럼 소소한 프로젝트를 여는 대학생은 인지도와 완성도에 밀려 투자를 받지 못하고 접는 경우가 많았습니다. 그래서 대학생들을 위한 펀딩을 열고 후원받을 수 있는 플랫폼을 만들기로 했습니다.',
+            ],
+            links: [
+              { href: '/log/project/neowagreen/', label: '프로젝트 상세' },
+            ],
           },
         ],
       },
@@ -412,33 +412,33 @@ const EXPERIENCE_DATA: ActivityItem[] = [
         label: '기술 발표',
         items: [
           {
-            title: 'props drilling 문제와 해결방법',
-            meta: '2023.12.01 · 주간발표 3차 (*23# 팀)',
+            title: '안전한 앱과 웹 통신을 위한 프로토콜 설계',
+            meta: '2025.07.25 · 2025 Summer DEV (4! 팀)',
             paragraphs: [
-              '컴포넌트 트리와 리프팅 업에서 생기는 불필요한 의존과 리렌더링, Context의 한계, 상태관리 라이브러리 권장을 다뤘습니다.',
-            ],
-            links: [
-              { href: '/log/presentation/props-drilling/', label: '발표 자료' },
-            ],
-          },
-          {
-            title: 'React의 비동기 업데이트와 디바운스',
-            meta: '2024.01.25 · 2024 Winter DEV',
-            paragraphs: [
-              'girin-grim의 S3 업로드 상태 문제와 대학 검색 디바운스 트러블슈팅을 다뤘습니다.',
+              '기존 단방향 이벤트 기반 통신이 실제 프로덕트를 만들 때 겪게 되는 문제 상황들을 정리하고, 이를 해결하기 위해 안전한 웹-앱 통신 프로토콜을 설계한 과정을 발표했습니다.',
             ],
             links: [
               {
-                href: '/log/presentation/react-async-update-debounce/',
+                href: '/log/presentation/webview-protocol-design/',
                 label: '발표 영상',
               },
+            ],
+          },
+          {
+            title: '웹 프론트엔드 개발자의 앱 개발기',
+            meta: '2025.04.11 · 주간발표 2차 (4! 팀)',
+            paragraphs: [
+              '짧은 기간 안에 앱을 만들어야 하는 상황에서 웹뷰가 어떤 기술 스택인지 설명하고, 웹 프론트엔드 개발자가 웹뷰를 선택했을 때 얻는 장점을 정리해 발표했습니다.',
+            ],
+            links: [
+              { href: '/log/presentation/webview-intro/', label: '발표 자료' },
             ],
           },
           {
             title: '빠른 변경사항 반영을 위한 Headless Pattern',
             meta: '2024.07.26 · 2024 Summer DEV (Black-company 팀)',
             paragraphs: [
-              '실사용자 피드백으로 요구사항이 계속 바뀌는 EEOS에서 컴포넌트를 외부 데이터와 내부 데이터와 UI로 나누고, 멤버 테이블 탭의 상태 끌어올리기 문제부터 FaCC와 compound까지 단계별로 설명했습니다.',
+              '실사용자 피드백으로 요구사항이 빠르고 예측 불가능하게 바뀌는 프로젝트에서 변경 비용을 줄이기 위하여 어떤 고민을 했으며, 컴포넌트를 외부 데이터와 내부 데이터와 UI로 나누고, 멤버 테이블 탭의 상태 끌어올리기 문제부터 FaCC와 compound까지 단계별로 설명했습니다.',
             ],
             links: [
               {
@@ -448,62 +448,26 @@ const EXPERIENCE_DATA: ActivityItem[] = [
             ],
           },
           {
-            title: '웹 프론트엔드 개발자의 앱 개발기',
-            meta: '2025.04.11 · 주간발표 2차 (4! 팀)',
+            title: 'React의 비동기 업데이트와 디바운스',
+            meta: '2024.01.25 · 2024 Winter DEV',
             paragraphs: [
-              '인액터스 협업의 네이티브 요구와 짧은 기간, RN을 고른 이유, 공식 문서와 커뮤니티의 한계, 스프린트 전 기술 검증을 다뤘습니다.',
-            ],
-            links: [
-              { href: '/log/presentation/webview-intro/', label: '발표 자료' },
-            ],
-          },
-          {
-            title: '안전한 앱과 웹 통신을 위한 프로토콜 설계',
-            meta: '2025.07.25 · 2025 Summer DEV (4! 팀)',
-            paragraphs: [
-              'postMessage 방식의 문제 네 가지와 TCP 개념 차용, 메시지 타입과 RWnd, 3-way handshake 코드를 다뤘습니다.',
+              'S3 업로드 로직 작성 중 비동기 상태 업데이트 문제와 검색 디바운스 트러블슈팅을 다뤘습니다.',
             ],
             links: [
               {
-                href: '/log/presentation/webview-protocol-design/',
+                href: '/log/presentation/react-async-update-debounce/',
                 label: '발표 영상',
               },
             ],
           },
-        ],
-      },
-      {
-        label: '기술 글',
-        paragraphs: [
-          '동아리 기술 블로그에 프로젝트를 하면서 붙잡고 있던 문제와 그 해결 과정을 글로 남겼습니다.',
-        ],
-        items: [
           {
-            title: 'React Query에서 캐시와 서버 상태',
-            meta: '2024.07.31 · 동아리 기술 블로그',
+            title: 'props drilling 문제와 해결방법',
+            meta: '2023.12.01 · 주간발표 3차 (*23# 팀)',
             paragraphs: [
-              'CPU와 메모리 사이에 캐시를 두는 컴퓨터 구조를 서버와 브라우저 사이의 네트워크에 대입해, 클라이언트 상태와 서버 상태를 나눠 정의하고 React Query가 왜 서버 상태를 따로 맡는 라이브러리인지를 적었습니다.',
-              'fetch와 useState, useEffect로 직접 캐싱까지 구현하면 어떤 비용이 드는지 코드로 보인 뒤, 캐싱된 값이 fresh일 때와 stale일 때 React Query가 각각 어떻게 움직이는지 정리했습니다.',
+              '컴포넌트 트리와 리프팅 업에서 생기는 불필요한 의존과 리렌더링, Context의 한계, 상태관리 라이브러리 권장을 다뤘습니다.',
             ],
             links: [
-              {
-                href: 'https://jnu-econovation.github.io/tech/2024/07/31/React-Query%EC%97%90%EC%84%9C-%EC%BA%90%EC%8B%9C%EC%99%80-%EC%84%9C%EB%B2%84-%EC%83%81%ED%83%9C.html',
-                label: '글 읽기',
-              },
-            ],
-          },
-          {
-            title: '웹뷰 브리지 라이브러리 개발 기록',
-            meta: '2025.09.16 · 동아리 기술 블로그',
-            paragraphs: [
-              '산결에서 React Native 웹뷰와 네이티브 앱이 postMessage만으로 메시지를 주고받을 때 메시지 형식을 정하기 어렵고, 이벤트 기반 코드가 리액트 생명주기와 맞지 않으며, 웹이 로드되기 전에 보낸 메시지가 사라지고, 응답이 없어 전달과 에러를 알 수 없다는 네 가지 문제를 겪은 과정을 적었습니다.',
-              '이미 나와 있는 라이브러리 대신 필요한 기능만 가진 가벼운 코드를 직접 만들기로 하고, TCP의 3-way handshake를 빌려 통신이 가능해지는 시점을 잡는 방법과 메시지 타입 정의, 리액트 훅 API, 응답과 에러 처리를 갖춰 나간 설계를 정리했습니다.',
-            ],
-            links: [
-              {
-                href: 'https://jnu-econovation.github.io/tech/2025/09/16/%EC%9B%B9%EB%B7%B0-%EB%B8%8C%EB%A6%AC%EC%A7%80-%EB%9D%BC%EC%9D%B4%EB%B8%8C%EB%9F%AC%EB%A6%AC-%EA%B0%9C%EB%B0%9C-%EA%B8%B0%EB%A1%9D.html',
-                label: '글 읽기',
-              },
+              { href: '/log/presentation/props-drilling/', label: '발표 자료' },
             ],
           },
         ],
@@ -528,6 +492,14 @@ const EXPERIENCE_DATA: ActivityItem[] = [
       {
         href: 'https://econovation.kr/',
         label: '에코노베이션 소개',
+      },
+      {
+        href: 'https://jnu-econovation.github.io/tech/2024/07/31/React-Query%EC%97%90%EC%84%9C-%EC%BA%90%EC%8B%9C%EC%99%80-%EC%84%9C%EB%B2%84-%EC%83%81%ED%83%9C.html',
+        label: '기술 글 · React Query에서 캐시와 서버 상태',
+      },
+      {
+        href: 'https://jnu-econovation.github.io/tech/2025/09/16/%EC%9B%B9%EB%B7%B0-%EB%B8%8C%EB%A6%AC%EC%A7%80-%EB%9D%BC%EC%9D%B4%EB%B8%8C%EB%9F%AC%EB%A6%AC-%EA%B0%9C%EB%B0%9C-%EA%B8%B0%EB%A1%9D.html',
+        label: '기술 글 · 웹뷰 브리지 라이브러리 개발 기록',
       },
     ],
   },
