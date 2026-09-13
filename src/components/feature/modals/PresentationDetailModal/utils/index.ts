@@ -1,4 +1,4 @@
-export type PresentationEmbedKind = 'youtube' | 'figma';
+export type PresentationEmbedKind = 'youtube' | 'figma' | 'pdf';
 
 export interface PresentationEmbed {
   kind: PresentationEmbedKind;
@@ -63,13 +63,25 @@ const toFigmaEmbed = (url: URL): PresentationEmbed | null => {
 };
 
 /**
+ * 발표 자료를 pdf 파일로만 남긴 발표는 그 파일을 public에 두고 주소를 그대로 적으므로 주소를 그대로 씁니다.
+ * 뷰어 위쪽 도구 막대가 자리를 차지해 가로를 기준으로 맞추면 장표 아래가 잘리므로, 한 장이 통째로 들어오는 view=Fit을 붙입니다.
+ */
+const toPdfEmbed = (href: string): PresentationEmbed => ({
+  kind: 'pdf',
+  src: `${href}#view=Fit`,
+});
+
+/**
  * 발표 주소를 모달 안에서 바로 띄울 수 있는 임베드 주소로 바꿉니다.
- * 유튜브와 피그마가 아니거나 주소 모양을 알아볼 수 없으면 null을 돌려주고, 모달은 원문 링크만 안내합니다.
+ * 유튜브와 피그마와 pdf가 아니거나 주소 모양을 알아볼 수 없으면 null을 돌려주고, 모달은 원문 링크만 안내합니다.
  */
 export const getPresentationEmbed = (
   href?: string,
 ): PresentationEmbed | null => {
   if (!href) return null;
+
+  // pdf는 이 블로그가 들고 있는 파일이라 '/assets/...'처럼 도메인 없이 적히므로 URL로 읽기 전에 먼저 가려냅니다.
+  if (/\.pdf$/i.test(href.split(/[?#]/)[0])) return toPdfEmbed(href);
 
   let url: URL;
   try {

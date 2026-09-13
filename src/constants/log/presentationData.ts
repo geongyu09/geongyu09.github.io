@@ -9,6 +9,13 @@ const PRESENTATION_DATA: PresentationItem[] = [
     place: '10분 테코톡',
   },
   {
+    id: 'functional-programming-intro',
+    title: '함수형 프로그래밍 맛보기',
+    date: '2026-03-20',
+    href: '/assets/log/presentation/functional-programming-intro.pdf',
+    place: '송곳 원정대 공유회',
+  },
+  {
     id: 'webview-protocol-design',
     title: '안전한 앱과 웹 통신을 위한 프로토콜 설계',
     date: '2025-07-25',

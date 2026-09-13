@@ -6,6 +6,7 @@ import { PresentationEmbed } from '../../utils';
 const SOURCE_LABEL: Record<PresentationEmbed['kind'], string> = {
   youtube: 'YouTube',
   figma: 'Figma',
+  pdf: 'PDF',
 };
 
 interface Props {

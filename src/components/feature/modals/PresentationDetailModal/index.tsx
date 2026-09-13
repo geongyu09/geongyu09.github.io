@@ -12,7 +12,14 @@ import { useMemo } from 'react';
 import { FiArrowUpRight } from 'react-icons/fi';
 import { IoClose } from 'react-icons/io5';
 import EmbedFrame from './components/EmbedFrame';
-import { getPresentationEmbed } from './utils';
+import { getPresentationEmbed, PresentationEmbedKind } from './utils';
+
+/** 임베드 아래에 거는 바깥으로 나가는 길의 문구입니다. pdf는 이 블로그가 들고 있는 파일이라 원문이라고 부르지 않습니다. */
+const OPEN_LABEL: Record<PresentationEmbedKind, string> = {
+  youtube: '원문에서 보기',
+  figma: '원문에서 보기',
+  pdf: '새 탭에서 보기',
+};
 
 interface PresentationDetailModalProps {
   presentation: PresentationItem;
@@ -106,7 +113,7 @@ export default function PresentationDetailModal({
               rel="noopener noreferrer"
               className="mt-s-4 flex w-full shrink-0 items-center justify-center gap-s-2 rounded-pill border border-ink-200 px-s-4 py-s-3 font-mono text-[13px] text-ink-700 transition-colors hover:border-ink-950 hover:text-ink-950"
             >
-              <span>원문에서 보기</span>
+              <span>{OPEN_LABEL[embed.kind]}</span>
               <FiArrowUpRight size={14} className="shrink-0" />
             </Link>
           )}
