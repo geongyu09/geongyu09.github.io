@@ -169,7 +169,7 @@ const PROJECT_DATA: ProjectItem[] = [
     id: 'unified-debugger',
     title: 'Unified Debugger',
     startDate: '2025-11-01',
-    endDate: '2026-07-31',
+    endDate: '2025-11-30',
     category: '개발 도구',
     org: '개인',
     role: '단독',
@@ -205,60 +205,37 @@ const PROJECT_DATA: ProjectItem[] = [
     ],
     links: [{ type: 'repo', href: 'https://github.com/san-gyeol/Sangyeol-FE' }],
   },
-  {
-    id: 'csi-fall-detection',
-    title: '캡스톤 · CSI 기반 낙상 감지',
-    startDate: '2025-03-01',
-    endDate: '2025-06-30',
-    category: '인턴 · 학교',
-    org: '전남대 소프트웨어공학과',
-    role: '팀원',
-    description:
-      '박태준 교수님 지도로 멘토링을 받으며 중간 발표와 최종 발표를 마쳤습니다.',
-    details: [
-      '전남대 소프트웨어공학과 캡스톤 디자인 과제로 진행했고 박태준 교수님이 지도하셨습니다.',
-      '"데이터셋 및 전처리" 발표자료를 만들어 맡았고 코드는 capstone 레포에 남아 있습니다.',
-    ],
-    links: [{ type: 'repo', href: 'https://github.com/geongyu09/capstone' }],
-  },
-  {
-    id: 'abas-fe',
-    title: 'ABAS-FE',
-    startDate: '2025-01-01',
-    endDate: '2025-05-31',
-    category: '인턴 · 학교',
-    org: 'bigdata-insight',
-    role: '인턴 FE',
-    description:
-      '농업 빅데이터 연구실 인턴으로 데이터 처리와 업로드 페이지의 요구사항 대응을 맡았습니다.',
-    details: [
-      '매주 인턴 미팅에 참석하면서 데이터 처리 페이지와 업로드 페이지의 요구사항 대응을 담당했습니다.',
-      '파일 종류 선택 에러 수정, 옵셔널 체이닝 누락, 비밀번호 정책 regex 변경, 데이터 처리 페이지 요구사항 반영, 업로드와 병합 변경사항 반영을 작업했습니다.',
-    ],
-  },
-  {
-    id: 'tech-blog',
-    title: '개인 기술 블로그',
-    startDate: '2024-08-01',
-    endDate: '현재',
-    category: '개인 프로젝트',
-    org: '개인',
-    role: '단독',
-    description:
-      'Next.js와 GitHub Pages 배포 파이프라인을 직접 구축해 단독 운영하는 기술 블로그입니다.',
-    details: [
-      'Next.js와 GitHub Pages 배포 파이프라인을 구축한 뒤 전체 기능 구현과 로그 페이지 추가, v2 디자인 시스템 적용과 Next 메이저 업데이트, 블로그 개편과 SEO 메타데이터를 거쳐 RSS까지 정비했습니다.',
-      '_posts 디렉토리의 마크다운 파일로 글을 관리하는 파일 시스템 기반 CMS를 씁니다.',
-      '주요 글로 「웹뷰 개발을 하면서 고민했던 성능 문제들」, 「부수효과 가득한 프론트엔드에서 함수형으로 살아남기」, 「LLM은 어떻게 개발자가 되는가, Claude Code 해부해보기」, 「Jest는 어떻게 import문을 mocking하는걸까?」 1 ~ 3부, 「상태 끌어올리기의 역설」을 썼습니다.',
-    ],
-    links: [
-      {
-        type: 'repo',
-        href: 'https://github.com/geongyu09/geongyu09.github.io',
-      },
-      { type: 'site', href: 'https://geongyu09.github.io' },
-    ],
-  },
+  // {
+  //   id: 'csi-fall-detection',
+  //   title: '캡스톤 · CSI 기반 낙상 감지',
+  //   startDate: '2025-03-01',
+  //   endDate: '2025-06-30',
+  //   category: '인턴 · 학교',
+  //   org: '전남대 소프트웨어공학과',
+  //   role: '팀원',
+  //   description:
+  //     '박태준 교수님 지도로 멘토링을 받으며 중간 발표와 최종 발표를 마쳤습니다.',
+  //   details: [
+  //     '전남대 소프트웨어공학과 캡스톤 디자인 과제로 진행했고 박태준 교수님이 지도하셨습니다.',
+  //     '"데이터셋 및 전처리" 발표자료를 만들어 맡았고 코드는 capstone 레포에 남아 있습니다.',
+  //   ],
+  //   links: [{ type: 'repo', href: 'https://github.com/geongyu09/capstone' }],
+  // },
+  // {
+  //   id: 'abas-fe',
+  //   title: 'ABAS-FE',
+  //   startDate: '2025-01-01',
+  //   endDate: '2025-05-31',
+  //   category: '인턴 · 학교',
+  //   org: 'bigdata-insight',
+  //   role: '인턴 FE',
+  //   description:
+  //     '농업 빅데이터 연구실 인턴으로 데이터 처리와 업로드 페이지의 요구사항 대응을 맡았습니다.',
+  //   details: [
+  //     '매주 인턴 미팅에 참석하면서 데이터 처리 페이지와 업로드 페이지의 요구사항 대응을 담당했습니다.',
+  //     '파일 종류 선택 에러 수정, 옵셔널 체이닝 누락, 비밀번호 정책 regex 변경, 데이터 처리 페이지 요구사항 반영, 업로드와 병합 변경사항 반영을 작업했습니다.',
+  //   ],
+  // },
   {
     id: 'eeos',
     title: 'EEOS',
