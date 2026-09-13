@@ -254,7 +254,7 @@ export default function DesignSystemPage() {
             href="#"
             date="2026.03.08"
             title="[회고] 우테코 2주차 회고"
-            excerpt="우아한 테크 코스의 두 번째 주를 돌아보며 연극, 첫 FE 수업, 페어 프로그래밍을 통해 배운 것들을 정리하였습니다."
+            excerpt="우아한테크코스의 두 번째 주를 돌아보며 연극, 첫 FE 수업, 페어 프로그래밍을 통해 배운 것들을 정리하였습니다."
             tags={['우테코', '회고']}
             readingTime="7분"
           />
