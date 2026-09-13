@@ -24,9 +24,8 @@ const PRESENTATION_DATA: PresentationItem[] = [
   },
   {
     id: 'webview-intro',
-    title: 'webview 기술 소개',
-    date: '2025-01-01',
-    displayDate: '상반기',
+    title: '웹 프론트엔드 개발자의 앱 개발기',
+    date: '2025-04-11',
     href: 'https://www.figma.com/proto/U7mVhK7yGUndsmRMd0jUif/%EC%A3%BC%EA%B0%84%EB%B0%9C%ED%91%9C%EC%9E%90%EB%A3%8C-foru-factorial-?node-id=1-1617&t=B1dPofvDYFcHO3Gr-1&page-id=',
     place: '에코노베이션',
   },
@@ -46,9 +45,8 @@ const PRESENTATION_DATA: PresentationItem[] = [
   },
   {
     id: 'props-drilling',
-    title: 'props-drilling 문제와 해결방법',
-    date: '2023-07-01',
-    displayDate: '하반기',
+    title: 'props drilling 문제와 해결방법',
+    date: '2023-12-01',
     href: 'https://www.figma.com/proto/HL5Wdd5hfq3ku2IcuERX0P/12.01--23-?type=design&node-id=34-661&t=EM8eW04IiiC4Ftsl-1&scaling=scale-down&page-id=33%3A661',
     place: '에코노베이션',
   },
