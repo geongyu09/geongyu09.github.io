@@ -12,7 +12,13 @@ type LogTag =
   | '모던 JavaScript 튜토리얼'
   //
   | '타입스크립트 스터디'
-  | '한 입 크기로 잘라먹는 타입스크립트';
+  | '한 입 크기로 잘라먹는 타입스크립트'
+  //
+  | 'Object 스터디'
+  | 'Object'
+  //
+  | '함수형 원정대'
+  | '쏙쏙 들어오는 함수형 코딩';
 export interface LogListItem {
   title: string;
   date: string; // YYYY-MM-DD 형식
