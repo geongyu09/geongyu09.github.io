@@ -104,3 +104,59 @@ export function groupActivitiesByYear<
     }))
     .sort((a, b) => b.year - a.year);
 }
+
+const ONGOING = '현재';
+
+/**
+ * Lists every year a period covers, from its start year to its end year
+ * @param startDate - YYYY-MM-DD
+ * @param endDate - YYYY-MM-DD or '현재' (ongoing, counted up to the current year)
+ * @returns Array of years in ascending order
+ */
+function getSpannedYears(startDate: string, endDate: string): number[] {
+  const startYear = Number(startDate.slice(0, 4));
+  const endYear =
+    endDate === ONGOING
+      ? new Date().getFullYear()
+      : Number(endDate.slice(0, 4));
+  const lastYear = Math.max(startYear, endYear);
+
+  return Array.from(
+    { length: lastYear - startYear + 1 },
+    (_, i) => startYear + i,
+  );
+}
+
+/**
+ * Groups items spanning a period into every year they cover
+ * @param items - Array of items with startDate and endDate ('현재' means ongoing)
+ * @returns Array of YearGroup objects sorted by year descending, where an item
+ *          spanning multiple years appears in each of those years
+ */
+export function groupActivitiesBySpannedYears<
+  T extends { title: string; startDate: string; endDate: string },
+>(items: T[]): YearGroup<T>[] {
+  const grouped = items.reduce(
+    (acc, item) => {
+      getSpannedYears(item.startDate, item.endDate).forEach((year) => {
+        if (!acc[year]) {
+          acc[year] = [];
+        }
+        acc[year].push(item);
+      });
+
+      return acc;
+    },
+    {} as Record<number, T[]>,
+  );
+
+  return Object.entries(grouped)
+    .map(([year, yearItems]) => ({
+      year: parseInt(year, 10),
+      items: yearItems.sort(
+        (a, b) =>
+          new Date(b.startDate).getTime() - new Date(a.startDate).getTime(),
+      ),
+    }))
+    .sort((a, b) => b.year - a.year);
+}

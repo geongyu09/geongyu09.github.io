@@ -3,6 +3,7 @@ import PRESENTATION_DATA from '@/constants/log/presentationData';
 import PROJECT_DATA from '@/constants/log/projectData';
 import STUDY_DATA from '@/constants/log/studyData';
 import {
+  groupActivitiesBySpannedYears,
   groupActivitiesByYear,
   groupByYear,
   groupStudiesByYear,
@@ -20,7 +21,8 @@ const getAllLogWithinYears = () => {
   const allPosts = getAllPosts();
   const postsByYear = groupByYear(allPosts);
   const studiesByYear = groupStudiesByYear(STUDY_DATA);
-  const experiencesByYear = groupActivitiesByYear(EXPERIENCE_DATA);
+  // 여러 해에 걸친 활동은 시작 연도뿐 아니라 지나온 모든 연도 섹션에 함께 적습니다
+  const experiencesByYear = groupActivitiesBySpannedYears(EXPERIENCE_DATA);
   const projectsByYear = groupActivitiesByYear(PROJECT_DATA);
   const presentationsByYear = groupStudiesByYear(PRESENTATION_DATA);
 
