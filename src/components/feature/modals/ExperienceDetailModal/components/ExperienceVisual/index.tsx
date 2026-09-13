@@ -1,7 +1,8 @@
 import Image from 'next/image';
 
 /** 사진을 내려받을 크기를 브라우저에 알려 줍니다. 넓은 화면에서는 모달 윗줄의 왼쪽 칸만 차지합니다. */
-const VISUAL_SIZES = '(min-width: 1024px) 400px, 100vw';
+const VISUAL_SIZES =
+  '(min-width: 1280px) 300px, (min-width: 1024px) 260px, 100vw';
 
 interface Props {
   /** 활동 사진입니다. 걸어 두지 않았으면 소속을 적은 자리를 대신 그립니다. */
@@ -18,14 +19,15 @@ interface Props {
  */
 export default function ExperienceVisual({ src, alt, label }: Props) {
   return (
-    <div className="relative aspect-[4/3] w-full overflow-hidden rounded-r-2 border border-ink-200 bg-ink-50 lg:aspect-auto lg:h-full lg:min-h-[240px]">
+    <div className="relative aspect-[4/3] w-full overflow-hidden rounded-r-2 border border-ink-200 bg-ink-50 lg:aspect-auto lg:h-full lg:min-h-[200px]">
       {src ? (
         <Image
           src={src}
           alt={alt}
           fill
           sizes={VISUAL_SIZES}
-          className="object-cover"
+          // 사진과 로고를 함께 걸 수 있는 자리라 잘라내지 않고 안쪽에 맞춰 넣습니다.
+          className="object-contain p-s-5"
           priority
           unoptimized
         />

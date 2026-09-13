@@ -32,9 +32,94 @@ export interface ActivityLink {
   label: string;
 }
 
+/** 보여준 모습을 뒷받침하는 활동 한 줄입니다. 그 활동을 적어 둔 글이 있으면 주소를 답니다. */
+export interface ExperienceEvidence {
+  text: string;
+  href?: string; // 회고 글의 해당 문단처럼 그 활동이 적힌 자리로 바로 보냅니다
+}
+
+/**
+ * 활동에서 보여준 모습 한 갈래입니다.
+ * 한 일이나 배운 것처럼 한 줄씩 늘어놓는 대신, 어떤 태도를 가졌는지 문단으로 적고 그 근거가 된 활동을 아래에 답니다.
+ */
+export interface ExperienceTrait {
+  title: string;
+  paragraphs: string[]; // 먼저 읽히고 싶은 자리는 `**이렇게**` 감싸 적으면 굵기와 밑줄이 함께 입혀집니다
+  evidenceLabel?: string; // 근거 목록 위에 붙일 문구. 적지 않으면 '근거 활동'으로 채웁니다
+  evidences: ExperienceEvidence[];
+}
+
+/** 레벨별 정리에서 미션 하나가 남긴 주소입니다. 아직 주소를 알지 못하는 제출물은 문구만 적습니다. */
+export interface ExperienceMissionLink {
+  label: string;
+  href?: string; // 적지 않으면 누를 수 없는 표시로만 남습니다
+}
+
+/** 미션을 수행하던 기간을 적어 둔 회고 글 주소입니다. 블로그 안의 글이라 '/post/[slug]/' 형태로 적습니다. */
+export interface ExperienceReviewLink {
+  href: string;
+  label: string;
+}
+
+/** 레벨 안에서 수행한 미션 하나입니다. 단계마다 남긴 주소와 그 미션에서 겪은 일을 함께 담습니다. */
+export interface ExperienceMission {
+  title: string;
+  links?: ExperienceMissionLink[]; // 단계별 제출 PR과 배포 주소를 적습니다
+  reviewLabel?: string; // 회고 글 앞에 붙일 문구. 적지 않으면 '회고 글'로 채웁니다
+  reviews?: ExperienceReviewLink[]; // 그 미션을 수행하던 기간의 회고 글. 아직 글이 없는 미션은 비워 둡니다
+  paragraphs: string[];
+}
+
+/**
+ * 교육 과정을 레벨 단위로 끊어 적은 한 덩어리입니다.
+ * 레벨에서 무엇을 목표로 삼았는지 문단으로 먼저 적고, 그 아래에 그 레벨에서 수행한 미션을 답니다.
+ */
+export interface ExperienceLevel {
+  label: string; // 'Level 1'처럼 레벨 번호까지 적습니다
+  paragraphs: string[];
+  missionLabel?: string; // 미션 목록 위에 붙일 문구. 적지 않으면 '미션'으로 채웁니다
+  missions?: ExperienceMission[];
+}
+
+/** 활동 갈래 안에 문구를 달아 늘어놓는 목록입니다. 한 일과 러닝 포인트처럼 성격이 다른 줄을 한 목록에 섞지 않으려고 묶음마다 문구를 답니다. */
+export interface ExperienceSectionList {
+  label: string;
+  items: string[];
+}
+
+/** 갈래와 항목이 남긴 공개된 주소입니다. '/log/project/[id]/' 처럼 블로그 안의 주소를 적으면 같은 창에서 엽니다. */
+export interface ExperienceSectionLink {
+  href: string;
+  label: string;
+}
+
+/**
+ * 활동 갈래에 들어가는 항목 하나입니다.
+ * 프로젝트 하나, 스터디 하나, 발표 하나가 여기에 해당합니다.
+ */
+export interface ExperienceSectionItem {
+  title: string;
+  meta?: string; // 제목 옆에 작게 다는 한 줄. 기간이나 발표한 자리처럼 제목만으로는 알기 어려운 것을 적습니다
+  paragraphs?: string[];
+  lists?: ExperienceSectionList[]; // 한 일과 러닝 포인트처럼 문구를 단 목록
+  links?: ExperienceSectionLink[]; // 프로젝트 상세와 발표 자료처럼 그 항목이 남긴 주소
+}
+
+/**
+ * 활동을 갈래로 끊어 적은 한 덩어리입니다.
+ * 프로젝트와 부서 활동과 스터디처럼 성격이 다른 일을 한 목록에 몰아 적지 않고, 갈래마다 제목을 달아 나눕니다.
+ */
+export interface ExperienceSection {
+  label: string;
+  meta?: string; // 갈래 전체를 아우르는 기간처럼 제목 옆에 작게 달 한 줄
+  paragraphs?: string[]; // 항목을 늘어놓기 전에 갈래 전체를 두고 적는 문단
+  lists?: ExperienceSectionList[];
+  items?: ExperienceSectionItem[];
+}
+
 /**
  * 프로젝트 하나로 묶기 어려운, 소속 단위의 활동입니다.
- * 눌렀을 때 띄울 상세 모달의 재료라서 한 일과 배운 것, 남긴 것을 함께 담습니다.
+ * 눌렀을 때 띄울 상세 모달의 재료라서 보여준 모습과 레벨별 정리, 갈래별 정리, 한 일과 배운 것, 남긴 것을 함께 담습니다.
  */
 export interface ActivityItem {
   /** 상세 모달 주소에 들어가는 값입니다. /log/experience/[id] 로 열리므로 영문 소문자와 하이픈으로만 적습니다. */
@@ -44,10 +129,15 @@ export interface ActivityItem {
   endDate: string; // YYYY-MM-DD 또는 '현재'
   org: string; // 소속 (동아리, 학교, 교육 과정 등)
   role: string; // 그 안에서 맡은 자리
+  roleLabel?: string; // role 줄에 붙일 문구. 맡은 자리가 아닌 교육 과정에는 '구분'처럼 다른 말을 답니다. 적지 않으면 '역할'로 채웁니다
   description: string; // 모달 첫머리에 적는 한두 문장 소개
   thumbnail?: string; // 모달 윗줄 왼쪽에 거는 활동 사진. public 기준 절대 경로로 적습니다
   thumbnailAlt?: string; // 사진을 설명하는 문구. 적지 않으면 소속과 제목으로 대신 채웁니다
-  activities: string[]; // 그 기간에 한 일
+  paragraphs?: string[]; // 한 일과 배운 것으로 나누기 어려운 활동은 제목 없는 문단으로만 이어 적습니다
+  traits?: ExperienceTrait[]; // 활동에서 보여준 모습. 소주제마다 담는 내용과 형식이 달라서 한 일과 따로 둡니다
+  levels?: ExperienceLevel[]; // 레벨로 기간을 끊어 적는 교육 과정만 채웁니다. 레벨별 정리를 적으면 한 일과 배운 것은 비워 둡니다
+  sections?: ExperienceSection[]; // 활동을 갈래로 끊어 적습니다. 한 일로 묶기에는 갈래마다 성격이 다른 활동만 채웁니다
+  activities?: string[]; // 그 기간에 한 일
   learnings?: string[]; // 하면서 알게 된 것
   outcomes?: string[]; // 활동이 남긴 것. 발표와 스터디, 이어진 프로젝트를 적습니다
   links?: ActivityLink[]; // 회고 글과 발표 영상처럼 공개된 주소만 답니다

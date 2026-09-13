@@ -9,7 +9,7 @@ interface Props {
 /** 활동 상세 한 갈래를 순번과 함께 늘어놓습니다. */
 export default function DetailSection({ label, items }: Props) {
   return (
-    <section className="mt-s-7">
+    <section className="mt-s-7 border-t border-ink-200 pt-s-7">
       <Eyebrow className="text-[13px] text-ink-900">{label}</Eyebrow>
       <ol className="m-0 mt-s-4 flex list-none flex-col gap-s-5 p-0">
         {items.map((item, index) => (

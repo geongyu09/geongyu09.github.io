@@ -9,7 +9,12 @@ import cn from '@/utils/cn';
 import { IoClose } from 'react-icons/io5';
 import ActivityLinkList from './components/ActivityLinkList';
 import DetailSection from './components/DetailSection';
+import ExperienceMeta from './components/ExperienceMeta';
 import ExperienceVisual from './components/ExperienceVisual';
+import LevelSection from './components/LevelSection';
+import NarrativeSection from './components/NarrativeSection';
+import SectionList from './components/SectionList';
+import TraitSection from './components/TraitSection';
 
 interface ExperienceDetailModalProps {
   experience: ActivityItem;
@@ -82,7 +87,8 @@ export default function ExperienceDetailModal({
 
           {/* 윗줄입니다. 넓은 화면에서는 왼쪽에 사진을, 오른쪽에 소속과 소개와 링크를 나눠 둡니다. */}
           <div className="mt-s-5 flex flex-col gap-s-5 lg:flex-row lg:items-stretch lg:gap-s-7">
-            <div className="w-full shrink-0 lg:w-[38%]">
+            {/* 사진이 넓으면 오른쪽 글이 좁은 칸에 갇히므로 너비를 고정해 둡니다. */}
+            <div className="w-full shrink-0 lg:w-[260px] xl:w-[300px]">
               <ExperienceVisual
                 src={experience.thumbnail}
                 alt={
@@ -94,12 +100,18 @@ export default function ExperienceDetailModal({
             </div>
 
             <div className="min-w-0 flex-1">
-              <p className="m-0 font-mono text-[13px] leading-[1.6] text-ink-500">
-                {period} · {experience.org} · {experience.role}
-              </p>
-              <p className="m-0 mt-s-3 text-[20px] leading-[1.7] tracking-[-0.01em] text-ink-950">
+              <p className="m-0 text-[20px] leading-[1.7] tracking-[-0.01em] text-ink-950">
                 {experience.description}
               </p>
+
+              <div className="mt-s-5">
+                <ExperienceMeta
+                  period={period}
+                  org={experience.org}
+                  role={experience.role}
+                  roleLabel={experience.roleLabel}
+                />
+              </div>
 
               {experience.links && experience.links.length > 0 && (
                 <ActivityLinkList links={experience.links} />
@@ -107,7 +119,25 @@ export default function ExperienceDetailModal({
             </div>
           </div>
 
-          <DetailSection label="한 일" items={experience.activities} />
+          {experience.paragraphs && experience.paragraphs.length > 0 && (
+            <NarrativeSection paragraphs={experience.paragraphs} />
+          )}
+
+          {experience.traits && experience.traits.length > 0 && (
+            <TraitSection traits={experience.traits} />
+          )}
+
+          {experience.levels && experience.levels.length > 0 && (
+            <LevelSection levels={experience.levels} />
+          )}
+
+          {experience.sections && experience.sections.length > 0 && (
+            <SectionList sections={experience.sections} />
+          )}
+
+          {experience.activities && experience.activities.length > 0 && (
+            <DetailSection label="한 일" items={experience.activities} />
+          )}
 
           {experience.learnings && experience.learnings.length > 0 && (
             <DetailSection label="배운 것" items={experience.learnings} />
