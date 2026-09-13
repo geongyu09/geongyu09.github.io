@@ -1,0 +1,43 @@
+/* shiki는 토큰마다 --shiki-light / --shiki-dark 변수만 붙여 주므로
+   실제 color 속성으로 바꿔 주어야 글자에 색이 들어갑니다.
+   codeToHtml은 rehype-pretty-code와 달리 code에 data-theme를 붙이지 않고
+   pre.shiki 아래에 변수를 심으므로 선택자도 .shiki 로 잡습니다. */
+.detail-code .shiki span,
+.detail-code .shiki {
+  color: var(--shiki-light);
+}
+html.dark .detail-code .shiki span,
+html.dark .detail-code .shiki {
+  color: var(--shiki-dark);
+}
+
+/* min-light 테마의 주석 색(#c2c3c5)은 밝은 배경에서 대비가 모자라 진하게 보정합니다. */
+.detail-code .shiki span[style*='#c2c3c5' i] {
+  /* 인라인 style로 박힌 --shiki-light 변수를 이기려면 !important가 필요합니다. */
+  --shiki-light: #5f6368 !important;
+}
+
+/* Tailwind preflight가 pre와 code의 font-family를 직접 잡아 바깥에서 건 글꼴이 덮이므로
+   코드용 글꼴을 여기에서 다시 지정합니다. */
+.detail-code pre,
+.detail-code code {
+  font-family: var(--font-code);
+}
+
+.detail-code pre {
+  margin: 0;
+  background-color: transparent;
+}
+/* shiki는 줄 사이에 줄바꿈 문자를 그대로 남기므로, 줄을 블록으로 세우고
+   바깥의 공백은 접히게 두어야 줄 간격이 두 배로 벌어지지 않습니다. */
+.detail-code code {
+  display: block;
+  width: fit-content;
+  min-width: 100%;
+  white-space: normal;
+}
+.detail-code .line {
+  display: block;
+  min-height: 1em;
+  white-space: pre;
+}

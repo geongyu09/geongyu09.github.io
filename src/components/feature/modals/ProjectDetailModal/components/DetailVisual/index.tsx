@@ -1,6 +1,6 @@
 import { ProjectDetailImage } from '@/types/log';
 import Image from 'next/image';
-import { padOrder } from '../../utils';
+import padOrder from '../../utils';
 
 interface Props {
   /** 문단에 걸어 둔 이미지입니다. 걸지 않았으면 순번과 분류를 적은 자리를 대신 그립니다. */

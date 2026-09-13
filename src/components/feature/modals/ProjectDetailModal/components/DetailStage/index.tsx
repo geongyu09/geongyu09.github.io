@@ -1,15 +1,15 @@
 'use client';
 
-import { ProjectDetailBlock, ProjectDetailImage } from '@/types/log';
+import { ProjectDetailImage, ProjectDetailStep } from '@/types/log';
 import cn from '@/utils/cn';
 import { ReactNode } from 'react';
 import DetailVisual from '../DetailVisual';
-import { padOrder } from '../../utils';
+import padOrder from '../../utils';
 
 const STAGE_SIZES = '(min-width: 1280px) 800px, 54vw';
 
 interface Props {
-  details: ProjectDetailBlock[];
+  details: ProjectDetailStep[];
   /** 소개를 읽는 동안 띄워 두는 대표 이미지입니다. */
   cover?: ProjectDetailImage;
   /** 지금 읽고 있는 상세 문단의 순번입니다. 소개를 읽는 동안에는 -1 입니다. */

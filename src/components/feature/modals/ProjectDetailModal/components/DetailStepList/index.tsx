@@ -1,13 +1,15 @@
 'use client';
 
 import ScrollFadeIn from '@/components/common/ScrollFadeIn';
-import { ProjectDetailBlock } from '@/types/log';
+import { ProjectDetailStep } from '@/types/log';
 import cn from '@/utils/cn';
+import DetailCode from '../DetailCode';
+import DetailLinkList from '../DetailLinkList';
 import DetailVisual from '../DetailVisual';
-import { padOrder } from '../../utils';
+import padOrder from '../../utils';
 
 interface Props {
-  details: ProjectDetailBlock[];
+  details: ProjectDetailStep[];
   /** 지금 읽고 있는 상세 문단의 순번입니다. 소개를 읽는 동안에는 -1 입니다. */
   activeIndex: number;
   /** 이미지를 걸지 않은 문단의 자리에 대신 적는 프로젝트 분류입니다. */
@@ -18,6 +20,7 @@ interface Props {
 /**
  * 한 화면에 한 문단씩 읽어 내려가는 목록입니다.
  * 지금 읽는 문단만 진하게 두고, 좁은 화면에서는 문단마다 그림을 바로 위에 답니다.
+ * 코드는 그림과 달리 글과 나란히 읽어야 하므로 넓은 화면에서도 문단 아래에 그대로 답니다.
  */
 export default function DetailStepList({
   details,
@@ -77,6 +80,18 @@ export default function DetailStepList({
               >
                 {detail.text}
               </p>
+
+              {detail.code && (
+                <DetailCode
+                  className="mt-s-4"
+                  html={detail.code.html}
+                  caption={detail.code.caption}
+                />
+              )}
+
+              {detail.links && detail.links.length > 0 && (
+                <DetailLinkList className="mt-s-4" links={detail.links} />
+              )}
             </ScrollFadeIn>
           </li>
         );

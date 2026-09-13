@@ -1,5 +1,6 @@
 import ProjectDetailModal from '@/components/feature/modals/ProjectDetailModal';
 import ROUTE_PATH from '@/constants/path/routePath';
+import renderProjectDetails from '@/lib/log/renderProjectDetails';
 import SITE from '@/constants/site';
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
@@ -47,5 +48,8 @@ export default async function ProjectDetailModalPage({ params }: PageProps) {
 
   if (!project) notFound();
 
-  return <ProjectDetailModal project={project} />;
+  // 코드를 걸어 둔 문단은 여기에서 미리 색칠해 두고 모달에는 마크업만 넘깁니다.
+  const details = await renderProjectDetails(project.details);
+
+  return <ProjectDetailModal project={project} details={details} />;
 }

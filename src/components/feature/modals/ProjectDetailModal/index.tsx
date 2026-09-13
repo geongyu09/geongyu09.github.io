@@ -4,32 +4,30 @@ import Eyebrow from '@/components/ds/Eyebrow';
 import { formatYearMonth } from '@/lib/log/formatLogDate';
 import ROUTE_PATH from '@/constants/path/routePath';
 import { useRouteModal } from '@/lib/modal';
-import { ProjectItem } from '@/types/log';
+import { ProjectDetailStep, ProjectItem } from '@/types/log';
 import cn from '@/utils/cn';
-import { useMemo, useRef } from 'react';
+import { useRef } from 'react';
 import { IoClose } from 'react-icons/io5';
 import DetailStage from './components/DetailStage';
 import DetailStepList from './components/DetailStepList';
 import ProjectLinkList from './components/ProjectLinkList';
 import useDetailStory from './hooks/useDetailStory';
-import { normalizeProjectDetails } from './utils';
 
 interface ProjectDetailModalProps {
   project: ProjectItem;
+  /** 코드까지 색칠해 둔 상세 문단입니다. 서버에서 만들어 넘겨 받습니다. */
+  details: ProjectDetailStep[];
 }
 
 export default function ProjectDetailModal({
   project,
+  details,
 }: ProjectDetailModalProps) {
   const { closeModal, isClosing, isOpen } = useRouteModal({
     fallbackHref: ROUTE_PATH.LOG,
   });
   const panelRef = useRef<HTMLDivElement>(null);
 
-  const details = useMemo(
-    () => normalizeProjectDetails(project.details),
-    [project.details],
-  );
   const { activeIndex, progress, setStepRef } = useDetailStory(
     panelRef,
     details.length,

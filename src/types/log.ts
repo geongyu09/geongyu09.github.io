@@ -180,10 +180,33 @@ export interface ProjectDetailImage {
   caption?: string; // 이미지 아래에 붙이는 짧은 설명
 }
 
-/** 모달에서 펼쳐 보여 주는 상세 문단입니다. 이미지를 걸지 않을 문단은 문자열로만 적습니다. */
+/** 상세 문단 하나에 짝지어 거는 코드 조각입니다. 글에 실린 코드를 읽을 만한 길이로 줄여 적습니다. */
+export interface ProjectDetailCode {
+  code: string;
+  lang: string; // shiki가 아는 언어 이름
+  caption?: string; // 코드 위에 붙이는 짧은 설명
+}
+
+/** 상세 문단 하나에 다는 주소입니다. 그 문단에서 말한 코드가 놓인 레포의 파일처럼 바로 열어 볼 곳을 적습니다. */
+export interface ProjectDetailLink {
+  href: string;
+  label: string;
+}
+
+/** 모달에서 펼쳐 보여 주는 상세 문단입니다. 이미지도 코드도 걸지 않을 문단은 문자열로만 적습니다. */
 export interface ProjectDetailBlock {
   text: string;
   image?: ProjectDetailImage;
+  code?: ProjectDetailCode;
+  links?: ProjectDetailLink[]; // 그 문단을 읽다가 바로 열어 볼 레포 파일과 문서 주소
+}
+
+/** 코드를 미리 색칠해 둔 채로 화면에 넘기는 상세 문단입니다. 색칠은 빌드 때 서버에서 끝냅니다. */
+export interface ProjectDetailStep extends Omit<ProjectDetailBlock, 'code'> {
+  code?: {
+    html: string;
+    caption?: string;
+  };
 }
 
 export type ProjectDetail = string | ProjectDetailBlock;
