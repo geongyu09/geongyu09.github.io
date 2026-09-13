@@ -36,6 +36,10 @@ bun run deploy                                 # 빌드 후 GitHub Pages 배포
 
 `./.claude/context/deploy.md`
 
+## 브라우저 작업
+
+브라우저가 필요한 작업(로컬 개발 서버 화면 확인, 배포된 페이지 점검, 로그인이 필요한 사이트 조작 등)을 할 때는 `aside-browser` 스킬을 먼저 사용하세요.
+
 ## 브랜치 전략
 
 - **메인 브랜치**: `main` (프로덕션)
