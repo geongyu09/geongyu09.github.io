@@ -135,6 +135,7 @@ export default function LogPageView() {
                         <ProjectSection
                           key={key}
                           label={label}
+                          sectionKey={key}
                           projects={items}
                           year={year}
                         />
