@@ -1,8 +1,8 @@
 1:"$Sreact.fragment"
-2:I[96052,["/_next/static/chunks/1bmrka0xo_314.js","/_next/static/chunks/3v30ib8ezgcz_.js","/_next/static/chunks/14mrh2-p_w84d.js","/_next/static/chunks/0-bo1z8dc7uf_.js","/_next/static/chunks/1iyg3v79sm5j1.js","/_next/static/chunks/3nsm7w0603_62.js"],"default"]
-7:I[97367,["/_next/static/chunks/1bmrka0xo_314.js","/_next/static/chunks/3v30ib8ezgcz_.js","/_next/static/chunks/14mrh2-p_w84d.js","/_next/static/chunks/0-bo1z8dc7uf_.js"],"OutletBoundary"]
+2:I[96052,["/_next/static/chunks/2b39pi_nri-9h.js","/_next/static/chunks/2xsf6gaad33p2.js","/_next/static/chunks/14mrh2-p_w84d.js","/_next/static/chunks/0-bo1z8dc7uf_.js","/_next/static/chunks/0th6pf_hj8dk1.js","/_next/static/chunks/0pzwfv7w-fy3a.js"],"default"]
+7:I[97367,["/_next/static/chunks/2b39pi_nri-9h.js","/_next/static/chunks/2xsf6gaad33p2.js","/_next/static/chunks/14mrh2-p_w84d.js","/_next/static/chunks/0-bo1z8dc7uf_.js"],"OutletBoundary"]
 8:"$Sreact.suspense"
-3:T9847,
+3:T9837,
 # 잘가라 파이썬의 해
 
 2025년 파이썬(푸른 뱀)의 해가 갔다. 
@@ -155,24 +155,24 @@ os가 크게 2개이고 그 위에서 앱과 웹이 돌아가고 있다.
 어쩌면 좁은 개발 세상 속에서 다시 만날 면접관들에게 달라진 모습을 보여주고 싶기도 하다. 
 그럴 수 있을 날을 기약하면서 다시 차근차근 성장해 나가야 겠다
 
-# 우아한 테크 코스 지원
+# 우아한테크코스 지원
 
-당근을 준비함과 동시에 우아한 테크 코스도 함께 준비했었다.
+당근을 준비함과 동시에 우아한테크코스도 함께 준비했었다.
 
 현재 내 위치에서 나를 급속도로 성장시켜 줄 동력이 필요하다고 느꼈다. 학교에만 남아 있는 것으로는 더 이상 많이 얻을 수 없는 상태라고 생각하고 있었다.
 하루하루를 정말 열심히 공부하고 성장하려 노력하며 살아가고 있었지만, 언제부턴가 학교와 동아리는 나에게 너무나 익숙한, 컴포트존이 되어버렸다. 열심히 성장 거리를 찾으려 해도 정체된 느낌을 지울 수가 없었다.
 
 분명한 건 환경을 바꿔야 한다는 생각이었다. 나에게 온전히 집중할 수 있고, 너무 편안하기만 한 곳이 아닌, 여러 긴장감과 스트레스를 받으며 나를 성장시킬 수 있는 곳에 가고 싶었다.
-이를 할 수 있는 다양한 선택지가 있겠지만, 그중에서도 다른 무엇보다 우아한 테크 코스에 가고 싶다는 생각이 가장 컸다.
+이를 할 수 있는 다양한 선택지가 있겠지만, 그중에서도 다른 무엇보다 우아한테크코스에 가고 싶다는 생각이 가장 컸다.
 
-우아한 테크 코스는 단순히 개발 기술만을 배우는 곳이 아니라, 문제를 바라보는 태도, 말하기와 글쓰기, 협업 등 다양한 소프트 스킬을 함께 배울 수 있다는 점에서 정말 매력적으로 느껴졌다. 만약 내가 우아한테크코스에 가게 된다면, 지금과는 비교할 수 없을 만큼 성장할 수 있을 것이라고 생각했다.
+우아한테크코스는 단순히 개발 기술만을 배우는 곳이 아니라, 문제를 바라보는 태도, 말하기와 글쓰기, 협업 등 다양한 소프트 스킬을 함께 배울 수 있다는 점에서 정말 매력적으로 느껴졌다. 만약 내가 우아한테크코스에 가게 된다면, 지금과는 비교할 수 없을 만큼 성장할 수 있을 것이라고 생각했다.
 
 요 몇 년 동안 여러 대회, 자격증 시험, 부트캠프 등 다양한 활동에 도전해 보고 싶었지만, 당시 내가 맡고 있던 일들로 인한 바쁨과 책임감 때문에 타의적으로 모두 포기한 상태였다. 
-우아한 테크 코스 지원 역시 크게 다르지 않았다.
+우아한테크코스 지원 역시 크게 다르지 않았다.
 쏟아지는 학교 과제와 부가 일정들, 무엇보다도 진행 중이던 프로젝트의 말도 안 되는 일정으로 인해 몇 달 동안 제대로 잠을 잔 기억이 없었다. 
 
 그 당시에도 거의 3일 가까이 무수면 상태로 버티며 겨우 프로젝트 개발 일정을 맞추고 있었고, 우아한테크코스 지원서 제출까지는 3시간도 남지 않은 상황이었다.
-그럼에도 불구하고 이번 우아한 테크 코스 지원마저 현실의 벽에 굴복해 버린다면, 지금까지의 내가 이룬 것이 아무것도 없는 것이 될까봐 너무 슬펐다. 그래서 일단 지원만이라도 하기로 했다.
+그럼에도 불구하고 이번 우아한테크코스 지원마저 현실의 벽에 굴복해 버린다면, 지금까지의 내가 이룬 것이 아무것도 없는 것이 될까봐 너무 슬펐다. 그래서 일단 지원만이라도 하기로 했다.
 좋지 않은 몸 상태를 버티며, 잠을 제대로 자지 못해 제대로 돌아가지도 않는 머리를 쥐어짜 가며 지원서를 작성했다. 솔직히 만족스러운 글은 아니었다. 어쩔 수 없었다. 그럼에도 주어진 상황 속에서 내가 할 수 있는 최선은 다했다는 사실만으로도 정말 후련했었다.
 
 ![우아한테크코스 지원](/assets/blog/remind2025/image7.png)
@@ -232,7 +232,7 @@ os가 크게 2개이고 그 위에서 앱과 웹이 돌아가고 있다.
 시험은 정말 운이 좋게도 자기 직전에 마지막으로 풀어봤던 로또 문제가 나왔다.
 문제를 보자마자, 저번 프리코스 때 나왔던 문제라서 모두들 복사·붙여넣기하고 추가 미션을 풀지 않을까 하는 생각이 들었다.
 나 역시 그렇게 할 수도 있었지만 그러지 않으려고 했다.
-지금까지 우아한 테크 코스 프리코스를 하면서 내가 가장 크게 성장했다고 느낀 지점은 문제를 바라보는 방법과 해결해 나가는 태도라고 생각했다. 최종 코딩 테스트를 준비하면서 계속 가져가고자 했던 것도 바로 이것이었기에, 단순히 코드를 복사/붙여넣기하는 대신 직접 요구사항을 분석하고, 테스트 코드를 먼저 작성한 뒤, 중간중간 TODO를 최신화하며 개발을 이어나갔다.
+지금까지 우아한테크코스 프리코스를 하면서 내가 가장 크게 성장했다고 느낀 지점은 문제를 바라보는 방법과 해결해 나가는 태도라고 생각했다. 최종 코딩 테스트를 준비하면서 계속 가져가고자 했던 것도 바로 이것이었기에, 단순히 코드를 복사/붙여넣기하는 대신 직접 요구사항을 분석하고, 테스트 코드를 먼저 작성한 뒤, 중간중간 TODO를 최신화하며 개발을 이어나갔다.
 
 중간중간 시간이 부족하다고 느낄 때마다, 그냥 전체 코드를 복사/붙여넣기할지 말지 수없이 고민했다. 하지만 결과가 어떻게 되든, 내가 스스로 설정한 목표만큼은 꼭 지키고 싶었다. 그래야 나 자신에게 떳떳할 수 있을 것 같았다.
 
@@ -243,7 +243,7 @@ os가 크게 2개이고 그 위에서 앱과 웹이 돌아가고 있다.
 어쩌면 우아한테크코스에서는 치팅 시트를 허용하고 이전 프리코스 문제를 다시 출제함으로써, 과거의 미션과 비교해 얼마나 성장했는지, 그리고 더 나은 코드를 짜기 위해 무엇을 고민했는지를 보고자 했던 것일지도 모른다. 그런 관점에서 보면, 나는 문제를 푸는 방식보다는 문제를 대하는 태도를 보여주려고 했으니, 어쩌면 우아한테크코스에서 기대한 방향과는 다소 다른 방식으로 시험을 치렀을 수도 있겠다는 생각이 들었다. 그래서 결과가 좋지 않을 것 같다는 불안도 남아 있다.
 그럼에도 불구하고, 짧은 시간이었지만 가장 바꾸기 어렵다고 생각했던 태도, 혹은 습관을 바꿀 수 있었다는 점은 나에게 굉장히 크게 다가왔다. 정말 많은 것을 얻어간 기회였다고 느낀다.
 
-우아한 테크 코스에 들어가 더 가파르게 성장해 보고 싶다. 
+우아한테크코스에 들어가 더 가파르게 성장해 보고 싶다. 
 설령 그렇지 않더라도, 지속 가능한 개발자로서의 업무 태도를 배웠다는 사실만으로도, 앞으로의 내 성장이 너무나 기대되는 하루였다.
 
 ---
@@ -352,8 +352,8 @@ EEOS는 동아리 내부 서비스다 보니 회원 정보도 전부 우리가 �
 
 올 한해도 정말 고생했고, 힘들었던 25년도 잘 버텨줘서 너무 고맙다. 
 이 열정 잃지 말고 잘 나아가보자
-0:{"rsc":["$","$1","c",{"children":[[["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@type\":\"CollectionPage\",\"@id\":\"https://geongyu09.github.io/posts/2025/\",\"url\":\"https://geongyu09.github.io/posts/2025/\",\"name\":\"#2025 글 목록\",\"description\":\"'2025' 태그가 달린 박건규의 기술 글 1편을 모았습니다.\",\"inLanguage\":\"ko-KR\",\"isPartOf\":{\"@id\":\"https://geongyu09.github.io/#website\"},\"about\":{\"@id\":\"https://geongyu09.github.io/#blog\"},\"mainEntity\":{\"@type\":\"ItemList\",\"numberOfItems\":1,\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"url\":\"https://geongyu09.github.io/post/remind2025/\",\"name\":\"[회고] 2025 회고\"}]}}"}}],["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"홈\",\"item\":\"https://geongyu09.github.io/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"글 목록\",\"item\":\"https://geongyu09.github.io/posts/\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"#2025\",\"item\":\"https://geongyu09.github.io/posts/2025/\"}]}"}}],["$","$L2",null,{"posts":[{"data":{"title":"[회고] 2025 회고","thumbnail":"/assets/blog/remind2025/thumbnail.webp","description":"2025년도를 되돌아보았습니다.","date":"2026년 1월 20일","tags":"회고 2025","timeStamps":1768867200000},"slug":"remind2025","content":"$3"}],"totalCount":29,"allTags":["react","객체지향","컴포넌트설계","FACC","상태관리","회고","우아한테크코스","아키텍처","백엔드","추상화","송곳원정대","functional-programing","프론트엔드","RxJS","자바스크립트","Claude-Code","LLM","에이전트","하네스","기술분석","소프트스킬","AI","jest","esm","commonjs","babel","transpile","hoisting","mocking","test","node","vm","cjs","jest-runtime","node.js","module","test-code","TDD","페어프로그래밍","프롬프팅","webview","디버깅","devtools","CDP","react-native","project","2025","animation","next.js","library","SSR","webpack","typescript","2024","coding","concept","modal","개발일지","markdown","react-markdown","eeos","컴포넌트테스트","react-query","refactoring","cache"],"activeTag":"2025"}]],["$L4","$L5"],"$L6"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"3HJzLjvW5sjjVr0OnTrRZ"}
-4:["$","script","script-0",{"src":"/_next/static/chunks/1iyg3v79sm5j1.js","async":true}]
-5:["$","script","script-1",{"src":"/_next/static/chunks/3nsm7w0603_62.js","async":true}]
+0:{"rsc":["$","$1","c",{"children":[[["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@type\":\"CollectionPage\",\"@id\":\"https://geongyu09.github.io/posts/2025/\",\"url\":\"https://geongyu09.github.io/posts/2025/\",\"name\":\"#2025 글 목록\",\"description\":\"'2025' 태그가 달린 박건규의 기술 글 1편을 모았습니다.\",\"inLanguage\":\"ko-KR\",\"isPartOf\":{\"@id\":\"https://geongyu09.github.io/#website\"},\"about\":{\"@id\":\"https://geongyu09.github.io/#blog\"},\"mainEntity\":{\"@type\":\"ItemList\",\"numberOfItems\":1,\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"url\":\"https://geongyu09.github.io/post/remind2025/\",\"name\":\"[회고] 2025 회고\"}]}}"}}],["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"홈\",\"item\":\"https://geongyu09.github.io/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"글 목록\",\"item\":\"https://geongyu09.github.io/posts/\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"#2025\",\"item\":\"https://geongyu09.github.io/posts/2025/\"}]}"}}],["$","$L2",null,{"posts":[{"data":{"title":"[회고] 2025 회고","thumbnail":"/assets/blog/remind2025/thumbnail.webp","description":"2025년도를 되돌아보았습니다.","date":"2026년 1월 20일","tags":"회고 2025","timeStamps":1768867200000},"slug":"remind2025","content":"$3"}],"totalCount":29,"allTags":["react","객체지향","컴포넌트설계","FACC","상태관리","회고","우아한테크코스","아키텍처","백엔드","추상화","송곳원정대","functional-programing","프론트엔드","RxJS","자바스크립트","Claude-Code","LLM","에이전트","하네스","기술분석","소프트스킬","AI","jest","esm","commonjs","babel","transpile","hoisting","mocking","test","node","vm","cjs","jest-runtime","node.js","module","test-code","TDD","페어프로그래밍","프롬프팅","webview","디버깅","devtools","CDP","react-native","project","2025","animation","next.js","library","SSR","webpack","typescript","2024","coding","concept","modal","개발일지","markdown","react-markdown","eeos","컴포넌트테스트","react-query","refactoring","cache"],"activeTag":"2025"}]],["$L4","$L5"],"$L6"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"5gPUdf0OlR6lQaYFFBd51"}
+4:["$","script","script-0",{"src":"/_next/static/chunks/0th6pf_hj8dk1.js","async":true}]
+5:["$","script","script-1",{"src":"/_next/static/chunks/0pzwfv7w-fy3a.js","async":true}]
 6:["$","$L7",null,{"children":["$","$8",null,{"name":"Next.MetadataOutlet","children":"$@9"}]}]
 9:null
