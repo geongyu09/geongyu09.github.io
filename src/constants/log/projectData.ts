@@ -22,22 +22,22 @@ const PROJECT_DATA: ProjectItem[] = [
       { type: 'repo', href: 'https://github.com/woowacourse-teams/2026-Knot' },
     ],
   },
-  {
-    id: 'suspensive-contribution',
-    title: 'toss/suspensive 기여',
-    startDate: '2026-08-01',
-    endDate: '현재',
-    category: '오픈소스 기여',
-    org: '오픈소스',
-    role: '외부 기여자',
-    description:
-      '산결에서 실제로 쓰는 라이브러리에 낸 첫 외부 기여입니다. @suspensive/react의 with로 만든 컴포넌트가 key 속성을 받도록 고치는 PR을 올렸습니다.',
-    details: [
-      '@suspensive/react의 with로 감싼 컴포넌트에 key를 넘겨도 전달되지 않던 문제를 고치는 PR을 올렸고 메인테이너 리뷰를 기다리고 있습니다.',
-      '산결에서 매일 쓰던 라이브러리라 문제를 사용 중에 발견했고, 남이 만든 코드에 직접 고쳐 넣은 첫 사례가 됐습니다.',
-    ],
-    links: [{ type: 'repo', href: 'https://github.com/toss/suspensive' }],
-  },
+  // {
+  //   id: 'suspensive-contribution',
+  //   title: 'toss/suspensive 기여',
+  //   startDate: '2026-08-01',
+  //   endDate: '현재',
+  //   category: '오픈소스 기여',
+  //   org: '오픈소스',
+  //   role: '외부 기여자',
+  //   description:
+  //     '산결에서 실제로 쓰는 라이브러리에 낸 첫 외부 기여입니다. @suspensive/react의 with로 만든 컴포넌트가 key 속성을 받도록 고치는 PR을 올렸습니다.',
+  //   details: [
+  //     '@suspensive/react의 with로 감싼 컴포넌트에 key를 넘겨도 전달되지 않던 문제를 고치는 PR을 올렸고 메인테이너 리뷰를 기다리고 있습니다.',
+  //     '산결에서 매일 쓰던 라이브러리라 문제를 사용 중에 발견했고, 남이 만든 코드에 직접 고쳐 넣은 첫 사례가 됐습니다.',
+  //   ],
+  //   links: [{ type: 'repo', href: 'https://github.com/toss/suspensive' }],
+  // },
   {
     id: 'stack-link',
     title: 'stack-link',
