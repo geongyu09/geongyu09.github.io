@@ -23,8 +23,10 @@ export default function ProjectSection({
   projects,
   year,
 }: Props) {
-  /** Contribution은 기간과 설명을 적지 않고 상세 모달도 열지 않습니다. */
+  /** Contribution은 기간과 설명을 적지 않습니다. */
   const isTitleOnly = sectionKey === 'contribution';
+  /** 상세 모달은 Library · Tool만 엽니다. Project와 Contribution은 목록에서 끝납니다. */
+  const hasDetail = sectionKey === 'library';
 
   return (
     <div>
@@ -36,7 +38,7 @@ export default function ProjectSection({
               <div className="flex flex-col gap-s-2 sm:flex-row sm:justify-between sm:items-baseline sm:gap-s-4">
                 <p className="m-0 text-[18px] text-ink-950 font-medium">
                   {project.title}
-                  {!isTitleOnly && (
+                  {hasDetail && (
                     <FiPlus
                       className="inline-block ml-[3px] align-[-1px] text-ink-400 transition-transform group-hover:rotate-90"
                       size={14}
@@ -45,7 +47,11 @@ export default function ProjectSection({
                 </p>
                 {!isTitleOnly && (
                   <span className="font-mono text-[14px] text-ink-500 shrink-0">
-                    {formatRangeInYear(project.startDate, project.endDate, year)}
+                    {formatRangeInYear(
+                      project.startDate,
+                      project.endDate,
+                      year,
+                    )}
                   </span>
                 )}
               </div>
@@ -65,9 +71,7 @@ export default function ProjectSection({
               key={`${project.title}-${project.startDate}`}
               className={cn(i > 0 && 'border-t border-ink-200')}
             >
-              {isTitleOnly ? (
-                <div className="block w-full py-s-3 text-left">{body}</div>
-              ) : (
+              {hasDetail ? (
                 <Link
                   href={ROUTE_PATH.LOG_PROJECT({ id: project.id })}
                   scroll={false}
@@ -76,6 +80,8 @@ export default function ProjectSection({
                 >
                   {body}
                 </Link>
+              ) : (
+                <div className="block w-full py-s-3 text-left">{body}</div>
               )}
             </li>
           );
