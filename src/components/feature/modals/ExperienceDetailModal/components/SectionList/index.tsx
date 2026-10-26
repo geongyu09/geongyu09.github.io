@@ -1,6 +1,7 @@
 import Eyebrow from '@/components/ds/Eyebrow';
 import { ExperienceSection } from '@/types/log';
 import LabeledList from './components/LabeledList';
+import SectionIcon from './components/SectionIcon';
 import SectionItemList from './components/SectionItemList';
 
 interface Props {
@@ -19,7 +20,8 @@ export default function SectionList({ sections }: Props) {
           key={section.label}
           className="mt-s-7 border-t border-ink-200 pt-s-7"
         >
-          <div className="flex flex-wrap items-baseline gap-s-3">
+          <div className="flex flex-wrap items-center gap-s-3">
+            {section.icon && <SectionIcon name={section.icon} />}
             <Eyebrow className="text-[13px] text-ink-900">
               {section.label}
             </Eyebrow>

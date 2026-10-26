@@ -107,12 +107,22 @@ export interface ExperienceSectionItem {
   links?: ExperienceSectionLink[]; // 프로젝트 상세와 발표 자료처럼 그 항목이 남긴 주소
 }
 
+/** 갈래 제목 앞에 붙는 아이콘의 종류입니다. 부서 일, 프로젝트, 스터디, 발표, 모집, 기타 활동을 나눕니다. */
+export type ExperienceSectionIcon =
+  | 'manage'
+  | 'project'
+  | 'study'
+  | 'talk'
+  | 'recruit'
+  | 'etc';
+
 /**
  * 활동을 갈래로 끊어 적은 한 덩어리입니다.
  * 프로젝트와 부서 활동과 스터디처럼 성격이 다른 일을 한 목록에 몰아 적지 않고, 갈래마다 제목을 달아 나눕니다.
  */
 export interface ExperienceSection {
   label: string;
+  icon?: ExperienceSectionIcon; // 적지 않으면 제목만 보여 줍니다
   meta?: string; // 갈래 전체를 아우르는 기간처럼 제목 옆에 작게 달 한 줄
   paragraphs?: string[]; // 항목을 늘어놓기 전에 갈래 전체를 두고 적는 문단
   lists?: ExperienceSectionList[];
