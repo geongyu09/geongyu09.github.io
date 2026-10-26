@@ -18,7 +18,9 @@ type LogTag =
   | 'Object'
   //
   | '함수형 원정대'
-  | '쏙쏙 들어오는 함수형 코딩';
+  | '쏙쏙 들어오는 함수형 코딩'
+  //
+  | '도스마스';
 export interface LogListItem {
   title: string;
   date: string; // YYYY-MM-DD 형식

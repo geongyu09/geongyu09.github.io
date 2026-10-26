@@ -6,6 +6,7 @@ import MODERN_JS_STUDY from './study-list/MODERN_JS_STUDY';
 import TS_STUDY from './study-list/TS_STUDY';
 import OBJECT_STUDY from './study-list/OBJECT_STUDY';
 import FP_STUDY from './study-list/FP_STUDY';
+import DOSMAS_STUDY from './study-list/DOSMAS_STUDY';
 
 const STUDY_DATA: LogListItem[] = [
   ...JAASSTUDY,
@@ -15,6 +16,7 @@ const STUDY_DATA: LogListItem[] = [
   ...TS_STUDY,
   ...OBJECT_STUDY,
   ...FP_STUDY,
+  ...DOSMAS_STUDY,
 ];
 
 export default STUDY_DATA;
