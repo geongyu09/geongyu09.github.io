@@ -13,12 +13,12 @@ const TYPE_LABEL: Record<LogEntryType, string> = {
 };
 
 /**
- * Library · Tool과 활동, 자료가 있는 발표는 상세 모달 주소로 이어집니다.
+ * Contribution을 뺀 프로젝트와 활동, 자료가 있는 발표는 상세 모달 주소로 이어집니다.
  * 나머지는 원문 링크로 나가고, 둘 다 없으면 링크 없이 한 줄만 남습니다.
  */
 const getDetailHref = ({ project, presentation, experience }: LogEntry) => {
   if (project)
-    return getProjectSectionKey(project) === 'library'
+    return getProjectSectionKey(project) !== 'contribution'
       ? ROUTE_PATH.LOG_PROJECT({ id: project.id })
       : null;
   if (experience) return ROUTE_PATH.LOG_EXPERIENCE({ id: experience.id });

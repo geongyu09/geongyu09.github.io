@@ -25,8 +25,8 @@ export default function ProjectSection({
 }: Props) {
   /** Contribution은 기간과 설명을 적지 않습니다. */
   const isTitleOnly = sectionKey === 'contribution';
-  /** 상세 모달은 Library · Tool만 엽니다. Project와 Contribution은 목록에서 끝납니다. */
-  const hasDetail = sectionKey === 'library';
+  /** Contribution은 상세 모달을 열지 않고 목록에서 끝납니다. */
+  const hasDetail = !isTitleOnly;
 
   return (
     <div>
