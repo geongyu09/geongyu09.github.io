@@ -205,8 +205,14 @@ export interface ProjectDetailLink {
   label: string;
 }
 
-/** 모달에서 펼쳐 보여 주는 상세 문단입니다. 이미지도 코드도 걸지 않을 문단은 문자열로만 적습니다. */
+/**
+ * 모달 오른쪽에 박스 하나로 놓이는 상세 문단입니다. 이미지도 코드도 걸지 않을 문단은 문자열로만 적습니다.
+ * 박스를 누르면 href가 있을 때는 그 주소로 이동하고, 없을 때는 모달 안에서 이 문단의 내용으로 바뀝니다.
+ */
 export interface ProjectDetailBlock {
+  tag?: string; // 박스 위에 작게 적는 갈래. '문제 정의', '고민', '기여'처럼 적고, 비우면 순번을 적습니다
+  title?: string; // 박스에 크게 적는 이름. 비우면 본문 앞부분이 대신 보입니다
+  href?: string; // 모달 안에서 펼치지 않고 바로 이동할 주소. 내 글의 한 단락이라면 '/post/글-주소/#제목-id'처럼 적습니다
   text: string;
   image?: ProjectDetailImage;
   code?: ProjectDetailCode;
@@ -233,8 +239,9 @@ export interface ProjectItem {
   org: string; // 소속 (동아리, 학교, 회사, 개인 등)
   role: string; // 그 안에서 맡은 역할
   description: string; // 목록에 적는 한두 문장 소개
-  details: ProjectDetail[]; // 모달에서 펼쳐 보여 주는 상세 내용. 문단마다 이미지를 하나씩 걸 수 있습니다
+  details: ProjectDetail[]; // 모달 오른쪽에 박스로 늘어놓는 상세 내용. 문단마다 이미지를 하나씩 걸 수 있습니다
   thumbnail?: string; // 모달 왼쪽 열에 거는 대표 이미지. public 기준 절대 경로로 적습니다
+  preview?: string; // 그림이 없을 때 모달 왼쪽 열에 iframe으로 띄워 둘 페이지 주소. 보기만 하고 조작은 막습니다
   links?: ProjectLink[]; // 레포와 npm, 배포 주소처럼 공개된 주소만 답니다
 }
 

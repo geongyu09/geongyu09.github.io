@@ -2,14 +2,12 @@ import { ProjectDetailLink } from '@/types/log';
 import cn from '@/utils/cn';
 import Link from 'next/link';
 import { FiArrowUpRight } from 'react-icons/fi';
+import { isInternalHref } from '../../utils';
 
 interface Props {
   links: ProjectDetailLink[];
   className?: string;
 }
-
-/** 블로그 안의 주소는 슬래시로 시작하므로, 새 창을 띄울 바깥 주소인지 이것으로 가릅니다. */
-const isInternalHref = (href: string) => href.startsWith('/');
 
 /**
  * 상세 문단 아래에 다는 주소 목록입니다.
