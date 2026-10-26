@@ -47,7 +47,7 @@ export interface ExperienceEvidence {
 export interface ExperienceTrait {
   title: string;
   paragraphs: string[]; // 먼저 읽히고 싶은 자리는 `**이렇게**` 감싸 적으면 굵기와 밑줄이 함께 입혀집니다
-  evidenceLabel?: string; // 근거 목록 위에 붙일 문구. 적지 않으면 '근거 활동'으로 채웁니다
+  evidenceLabel?: string; // 근거 목록 위에 붙일 문구. 적지 않으면 '관련 활동'으로 채웁니다
   evidences: ExperienceEvidence[];
 }
 

@@ -15,14 +15,14 @@ export default function LevelSection({ levels }: Props) {
     <section className="mt-s-7 border-t border-ink-200 pt-s-7">
       <Eyebrow className="text-[13px] text-ink-900">레벨별 정리</Eyebrow>
       {/* 레벨 사이에는 선을 두지 않습니다. 레벨별 정리 전체가 한 섹션으로 읽혀야 합니다. */}
-      <div className="mt-s-5 flex flex-col gap-s-7">
+      <div className="mt-s-5 flex flex-col gap-s-8">
         {levels.map((level) => (
           <div key={level.label}>
             <h3 className="m-0 font-mono text-[19px] font-semibold leading-[1.45] tracking-[-0.02em] text-ink-950 sm:text-[21px]">
               {level.label}
             </h3>
 
-            <div className="mt-s-4 flex flex-col gap-s-4">
+            <div className="mt-s-4 flex flex-col gap-s-5">
               {level.paragraphs.map((paragraph) => (
                 <p
                   key={paragraph}

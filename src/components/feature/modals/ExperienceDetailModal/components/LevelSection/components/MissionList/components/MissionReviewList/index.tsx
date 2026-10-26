@@ -18,7 +18,7 @@ export default function MissionReviewList({
 }: Props) {
   return (
     <div className="mt-s-2 flex flex-wrap items-center gap-s-2">
-      <span className="font-mono text-[12px] tracking-[0.06em] text-ink-400">
+      <span className="font-mono text-[12px] tracking-[0.06em] text-ink-500">
         {label}
       </span>
       <ul className="m-0 flex list-none flex-wrap gap-s-2 p-0">

@@ -16,7 +16,7 @@ export default function TraitSection({ traits }: Props) {
     <section className="mt-s-7 border-t border-ink-200 pt-s-7">
       <Eyebrow className="text-[13px] text-ink-900">보여준 모습</Eyebrow>
       {/* 소주제 사이에는 선을 두지 않습니다. 보여준 모습 전체가 한 섹션으로 읽혀야 합니다. */}
-      <div className="mt-s-5 flex flex-col gap-s-7">
+      <div className="mt-s-5 flex flex-col gap-s-8">
         {traits.map((trait, index) => (
           <div key={trait.title}>
             <div className="flex items-baseline gap-s-3">
@@ -31,7 +31,7 @@ export default function TraitSection({ traits }: Props) {
               </h3>
             </div>
 
-            <div className="mt-s-4 flex flex-col gap-s-4">
+            <div className="mt-s-4 flex flex-col gap-s-5">
               {trait.paragraphs.map((paragraph) => (
                 <TraitParagraph key={paragraph} text={paragraph} />
               ))}

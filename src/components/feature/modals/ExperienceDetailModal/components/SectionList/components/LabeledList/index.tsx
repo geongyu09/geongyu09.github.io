@@ -8,7 +8,7 @@ interface Props {
 export default function LabeledList({ label, items }: Props) {
   return (
     <div className="mt-s-5">
-      <span className="font-mono text-[12px] tracking-[0.06em] text-ink-400">
+      <span className="font-mono text-[12px] tracking-[0.06em] text-ink-500">
         {label}
       </span>
       <ul className="m-0 mt-s-3 list-disc space-y-s-3 pl-s-4 marker:text-ink-300">

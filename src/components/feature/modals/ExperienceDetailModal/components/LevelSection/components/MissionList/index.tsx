@@ -11,11 +11,11 @@ interface Props {
 /** 한 레벨에서 수행한 미션을 순번과 함께 늘어놓습니다. 제목 아래에 제출 주소와 그 기간의 회고 글을 달고 그 아래에 겪은 일을 적습니다. */
 export default function MissionList({ label = '미션', missions }: Props) {
   return (
-    <div className="mt-s-5">
-      <span className="font-mono text-[12px] tracking-[0.06em] text-ink-400">
+    <div className="mt-s-5 border-l border-ink-200 pl-s-5">
+      <span className="font-mono text-[12px] tracking-[0.06em] text-ink-500">
         {label}
       </span>
-      <ol className="m-0 mt-s-3 flex list-none flex-col gap-s-5 p-0">
+      <ol className="m-0 mt-s-3 flex list-none flex-col gap-s-7 p-0">
         {missions.map((mission, index) => (
           <li key={mission.title} className="flex gap-s-4">
             <span
@@ -41,7 +41,7 @@ export default function MissionList({ label = '미션', missions }: Props) {
                 />
               )}
 
-              <div className="mt-s-3 flex flex-col gap-s-3">
+              <div className="mt-s-4 flex flex-col gap-s-4">
                 {mission.paragraphs.map((paragraph) => (
                   <p
                     key={paragraph}
