@@ -4,7 +4,7 @@
         <title>건규의 블로그</title>
         <link>https://geongyu09.github.io</link>
         <description>프론트엔드 개발자 박건규가 React, 테스트 코드, 함수형 프로그래밍, 웹뷰를 공부하며 남긴 기록입니다.</description>
-        <lastBuildDate>Sat, 12 Sep 2026 15:43:18 GMT</lastBuildDate>
+        <lastBuildDate>Tue, 27 Oct 2026 03:59:03 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>ko</language>
@@ -67,7 +67,7 @@
             <enclosure url="https://geongyu09.github.io/assets/blog/survivingWithFunctional/thumbnail.webp" length="0" type="image/webp"/>
         </item>
         <item>
-            <title><![CDATA[LLM은 어떻게 개발자가 되는가 — Claude Code라는 하네스의 해부]]></title>
+            <title><![CDATA[LLM은 어떻게 개발자가 되는가, Claude Code라는 하네스의 해부]]></title>
             <link>https://geongyu09.github.io/post/claudeCodeHarness/</link>
             <guid isPermaLink="false">https://geongyu09.github.io/post/claudeCodeHarness/</guid>
             <pubDate>Thu, 23 Apr 2026 00:00:00 GMT</pubDate>
