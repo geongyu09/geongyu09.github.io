@@ -2,6 +2,7 @@ import FadeEffectWrapper from '@/components/common/FadeEffectWrapper';
 import ScrollFadeIn from '@/components/common/ScrollFadeIn';
 import Eyebrow from '@/components/ds/Eyebrow';
 import ExperienceSection from '@/components/feature/Log/ExperienceSection';
+import LogTopicIcon from '@/components/feature/Log/LogTopicIcon';
 import GitHubActivityGraph from '@/components/feature/Log/GitHubActivityGraph';
 import LogSummary from '@/components/feature/Log/LogSummary';
 import LogViews from '@/components/feature/Log/LogViews';
@@ -115,7 +116,8 @@ export default function LogPageView() {
                     <div className="flex flex-col min-w-0 divide-y divide-ink-200 [&>*]:py-s-5 [&>*:first-child]:pt-0 [&>*:last-child]:pb-0">
                       {hasGitHub && (
                         <div className="min-w-0">
-                          <Eyebrow className="mb-s-3 text-[14px] text-ink-900">
+                          <Eyebrow className="mb-s-3 flex items-center gap-s-2 text-[14px] text-ink-900">
+                            <LogTopicIcon name="github" />
                             Github · contributions
                           </Eyebrow>
                           <div className="overflow-x-auto">

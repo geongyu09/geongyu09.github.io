@@ -1,4 +1,5 @@
 import Eyebrow from '@/components/ds/Eyebrow';
+import LogTopicIcon from '@/components/feature/Log/LogTopicIcon';
 import ROUTE_PATH from '@/constants/path/routePath';
 import { formatRangeInYear } from '@/lib/log/formatLogDate';
 import { ActivityItem } from '@/types/log';
@@ -15,7 +16,10 @@ interface Props {
 export default function ExperienceSection({ experiences, year }: Props) {
   return (
     <div>
-      <Eyebrow className="mb-s-3 text-[14px] text-ink-900">Experience</Eyebrow>
+      <Eyebrow className="mb-s-3 flex items-center gap-s-2 text-[14px] text-ink-900">
+        <LogTopicIcon name="experience" />
+        Experience
+      </Eyebrow>
       <ul className="flex flex-col">
         {experiences.map((experience, i) => (
           <li

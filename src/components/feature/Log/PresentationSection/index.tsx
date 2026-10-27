@@ -1,5 +1,6 @@
 import Chip from '@/components/ds/Chip';
 import Eyebrow from '@/components/ds/Eyebrow';
+import LogTopicIcon from '@/components/feature/Log/LogTopicIcon';
 import ROUTE_PATH from '@/constants/path/routePath';
 import { formatDateInYear } from '@/lib/log/formatLogDate';
 import { PresentationItem } from '@/types/log';
@@ -16,7 +17,8 @@ interface Props {
 export default function PresentationSection({ presentations, year }: Props) {
   return (
     <div>
-      <Eyebrow className="mb-s-3 text-[14px] text-ink-900">
+      <Eyebrow className="mb-s-3 flex items-center gap-s-2 text-[14px] text-ink-900">
+        <LogTopicIcon name="presentation" />
         Presentation
       </Eyebrow>
       <ul className="flex flex-col">

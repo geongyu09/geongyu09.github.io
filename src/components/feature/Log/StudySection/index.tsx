@@ -2,6 +2,7 @@
 
 import Chip from '@/components/ds/Chip';
 import Eyebrow from '@/components/ds/Eyebrow';
+import LogTopicIcon from '@/components/feature/Log/LogTopicIcon';
 import { formatDateInYear } from '@/lib/log/formatLogDate';
 import { LogListItem } from '@/types/log';
 import cn from '@/utils/cn';
@@ -40,7 +41,10 @@ export default function StudySection({ studies, year }: Props) {
           )}
           size={16}
         />
-        <Eyebrow className="text-[14px] text-ink-900">Study</Eyebrow>
+        <Eyebrow className="flex items-center gap-s-2 text-[14px] text-ink-900">
+          <LogTopicIcon name="study" />
+          Study
+        </Eyebrow>
       </button>
 
       {!isOpen && uniqueTags.length > 0 && (
