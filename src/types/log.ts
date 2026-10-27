@@ -239,6 +239,8 @@ export interface ProjectItem {
   org: string; // 소속 (동아리, 학교, 회사, 개인 등)
   role: string; // 그 안에서 맡은 역할
   description: string; // 목록에 적는 한두 문장 소개
+  quote?: string; // 모달 소개 칸 맨 위에 기울여 적는 문제 정의 한 줄
+  intro?: string[]; // 모달 소개 칸에 description 대신 한 줄씩 적는 문단. 목록에는 계속 description이 보입니다
   details: ProjectDetail[]; // 모달 오른쪽에 박스로 늘어놓는 상세 내용. 문단마다 이미지를 하나씩 걸 수 있습니다
   thumbnail?: string; // 모달 왼쪽 열에 거는 대표 이미지. public 기준 절대 경로로 적습니다
   preview?: string; // 그림이 없을 때 모달 왼쪽 열에 iframe으로 띄워 둘 페이지 주소. 보기만 하고 조작은 막습니다

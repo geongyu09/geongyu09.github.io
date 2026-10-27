@@ -69,7 +69,7 @@ export default function DetailBoxList({
   }, []);
 
   return (
-    <ul className="m-0 mt-s-4 grid list-none grid-cols-1 gap-s-3 p-0 sm:grid-cols-2">
+    <ul className="m-0 mt-s-4 grid list-none grid-cols-1 gap-s-3 p-0">
       {details.map((detail, index) => {
         const order = index + 1;
 
