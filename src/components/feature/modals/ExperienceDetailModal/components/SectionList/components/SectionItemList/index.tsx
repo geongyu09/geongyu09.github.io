@@ -12,11 +12,11 @@ interface Props {
  */
 export default function SectionItemList({ items }: Props) {
   return (
-    <ol className="m-0 mt-s-5 flex list-none flex-col gap-s-5 p-0">
+    <ol className="m-0 mt-s-5 flex list-none flex-col gap-s-7 p-0">
       {items.map((item, index) => (
         <li key={item.title} className="flex gap-s-4">
           <span
-            className="mt-[6px] shrink-0 font-mono text-[12px] tracking-[0.06em] text-ink-400"
+            className="mt-[6px] w-s-5 shrink-0 font-mono text-[12px] tracking-[0.06em] text-ink-400"
             aria-hidden
           >
             {(index + 1).toString().padStart(2, '0')}
