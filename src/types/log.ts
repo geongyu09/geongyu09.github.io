@@ -210,7 +210,7 @@ export interface ProjectDetailLink {
  * 박스를 누르면 href가 있을 때는 그 주소로 이동하고, 없을 때는 모달 안에서 이 문단의 내용으로 바뀝니다.
  */
 export interface ProjectDetailBlock {
-  tag?: string; // 박스 위에 작게 적는 갈래. '문제 정의', '고민', '기여'처럼 적고, 비우면 순번을 적습니다
+  tag?: string; // 박스 위에 작게 적는 갈래. 기여는 'Product', 'Platform', 'Soft Skill' 중 하나로 적고, 비우면 순번을 적습니다
   title?: string; // 박스에 크게 적는 이름. 비우면 본문 앞부분이 대신 보입니다
   href?: string; // 모달 안에서 펼치지 않고 바로 이동할 주소. 내 글의 한 단락이라면 '/post/글-주소/#제목-id'처럼 적습니다
   text: string;
