@@ -1,2 +1,2 @@
 1:"$Sreact.fragment"
-0:{"rsc":["$","$1","c",{"children":[null,null,null]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"3hGzl4JitlScRDba6OVXg"}
+0:{"rsc":["$","$1","c",{"children":[null,null,null]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"0eUBcsm8ooIPfWPwPfLBZ"}
