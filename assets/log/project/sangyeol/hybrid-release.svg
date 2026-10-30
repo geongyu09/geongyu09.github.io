@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" width="1200" height="750" font-family="Pretendard, -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#9a968c"/>
+    </marker>
+  </defs>
+  <rect width="1200" height="750" fill="#f8f7f3"/>
+
+  <text x="64" y="92" font-size="38" font-weight="700" fill="#1f2420">고친 내용이 사용자에게 닿기까지</text>
+  <text x="64" y="134" font-size="22" fill="#6b6f69">화면 대부분을 웹뷰로 띄운 뒤의 배포 경로</text>
+
+  <!-- 핵심 지표 -->
+  <rect x="64" y="176" width="360" height="384" rx="20" fill="#ffffff" stroke="#e4e1d9" stroke-width="2"/>
+  <text x="96" y="226" font-size="24" font-weight="600" fill="#6b6f69">버그 수정 · 기능 개선 반영</text>
+  <text x="96" y="300" font-size="30" font-weight="600" fill="#1f2420">평균</text>
+  <text x="90" y="416" font-size="128" font-weight="800" fill="#2f5d3f" letter-spacing="-4">1일</text>
+  <text x="300" y="416" font-size="36" font-weight="700" fill="#1f2420">이내</text>
+  <text x="96" y="486" font-size="22" fill="#6b6f69">스토어 심사 없이</text>
+  <text x="96" y="518" font-size="22" fill="#6b6f69">웹 배포만으로 반영</text>
+
+  <!-- 네이티브로 고칠 때 -->
+  <text x="456" y="214" font-size="24" font-weight="700" fill="#6b6f69">네이티브 화면을 고칠 때</text>
+  <g font-size="22" font-weight="600" fill="#1f2420" text-anchor="middle">
+    <rect x="456" y="234" width="120" height="60" rx="12" fill="#ffffff" stroke="#d6d2c8" stroke-width="2"/>
+    <text x="516" y="272">코드 수정</text>
+    <rect x="618" y="234" width="110" height="60" rx="12" fill="#ffffff" stroke="#d6d2c8" stroke-width="2"/>
+    <text x="673" y="272">앱 빌드</text>
+    <rect x="770" y="234" width="140" height="60" rx="12" fill="#efede7" stroke="#9a968c" stroke-width="2" stroke-dasharray="7 6"/>
+    <text x="840" y="272">스토어 심사</text>
+    <rect x="952" y="234" width="184" height="60" rx="12" fill="#ffffff" stroke="#d6d2c8" stroke-width="2"/>
+    <text x="1044" y="272">사용자 업데이트</text>
+  </g>
+  <g stroke="#9a968c" stroke-width="2.5" marker-end="url(#arrow)">
+    <line x1="580" y1="264" x2="612" y2="264"/>
+    <line x1="732" y1="264" x2="764" y2="264"/>
+    <line x1="914" y1="264" x2="946" y2="264"/>
+  </g>
+  <text x="840" y="330" font-size="20" fill="#6b6f69" text-anchor="middle">심사가 끝나야 사용자에게 닿음</text>
+
+  <!-- 웹뷰로 고칠 때 -->
+  <text x="456" y="404" font-size="24" font-weight="700" fill="#2f5d3f">웹뷰 화면을 고칠 때</text>
+  <g font-size="22" font-weight="600" text-anchor="middle">
+    <rect x="456" y="424" width="120" height="60" rx="12" fill="#ffffff" stroke="#d6d2c8" stroke-width="2"/>
+    <text x="516" y="462" fill="#1f2420">코드 수정</text>
+    <rect x="618" y="424" width="110" height="60" rx="12" fill="#ffffff" stroke="#d6d2c8" stroke-width="2"/>
+    <text x="673" y="462" fill="#1f2420">웹 배포</text>
+    <rect x="770" y="424" width="366" height="60" rx="12" fill="#2f5d3f"/>
+    <text x="953" y="462" fill="#ffffff">사용자에게 바로 반영</text>
+  </g>
+  <g stroke="#9a968c" stroke-width="2.5" marker-end="url(#arrow)">
+    <line x1="580" y1="454" x2="612" y2="454"/>
+    <line x1="732" y1="454" x2="764" y2="454"/>
+  </g>
+
+  <!-- 렌더링 나누기 -->
+  <rect x="64" y="592" width="1072" height="112" rx="20" fill="#ffffff" stroke="#e4e1d9" stroke-width="2"/>
+  <text x="96" y="640" font-size="24" font-weight="700" fill="#1f2420">페이지마다 렌더링 나누기</text>
+  <text x="96" y="676" font-size="20" fill="#6b6f69">초기 로딩(FCP)을 줄이려고</text>
+  <rect x="456" y="610" width="320" height="76" rx="14" fill="#e3ede5"/>
+  <text x="480" y="642" font-size="22" font-weight="700" fill="#1f2420">코스 탐색 페이지</text>
+  <text x="480" y="672" font-size="20" fill="#2f5d3f">SSG · 빌드 때 미리 생성</text>
+  <rect x="800" y="610" width="312" height="76" rx="14" fill="#efede7"/>
+  <text x="824" y="642" font-size="22" font-weight="700" fill="#1f2420">마이페이지</text>
+  <text x="824" y="672" font-size="20" fill="#4d514b">SSR · 요청마다 생성</text>
+</svg>
