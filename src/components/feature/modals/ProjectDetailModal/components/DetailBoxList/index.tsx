@@ -47,7 +47,7 @@ function BoxFace({
           detail.title ? 'text-ink-500' : 'text-ink-900',
         )}
       >
-        {detail.text}
+        {detail.summary ?? detail.text}
       </p>
     </>
   );

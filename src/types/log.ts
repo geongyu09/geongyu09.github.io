@@ -212,6 +212,7 @@ export interface ProjectDetailLink {
 export interface ProjectDetailBlock {
   tag?: string; // 박스 위에 작게 적는 갈래. 기여는 'Product', 'Platform', 'Soft Skill' 중 하나로 적고, 비우면 순번을 적습니다
   title?: string; // 박스에 크게 적는 이름. 비우면 본문 앞부분이 대신 보입니다
+  summary?: string; // 박스에서 본문 대신 보여 줄 짧은 요약. 비우면 본문 앞부분이 보입니다
   href?: string; // 모달 안에서 펼치지 않고 바로 이동할 주소. 내 글의 한 단락이라면 '/post/글-주소/#제목-id'처럼 적습니다
   text: string;
   image?: ProjectDetailImage;
