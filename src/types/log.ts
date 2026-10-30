@@ -215,6 +215,7 @@ export interface ProjectDetailBlock {
   href?: string; // 모달 안에서 펼치지 않고 바로 이동할 주소. 내 글의 한 단락이라면 '/post/글-주소/#제목-id'처럼 적습니다
   text: string;
   image?: ProjectDetailImage;
+  images?: ProjectDetailImage[]; // 뒷받침할 자료가 여러 장이면 image 대신 적고, 모달 왼쪽에서 옆으로 넘겨 봅니다. Library · Tool의 스크롤 보기는 image만 씁니다
   code?: ProjectDetailCode;
   links?: ProjectDetailLink[]; // 그 문단을 읽다가 바로 열어 볼 레포 파일과 문서 주소
 }

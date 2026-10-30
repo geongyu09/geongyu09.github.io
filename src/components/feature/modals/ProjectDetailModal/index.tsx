@@ -14,9 +14,9 @@ import cn from '@/utils/cn';
 import { useState } from 'react';
 import { IoClose } from 'react-icons/io5';
 import DetailBoxList from './components/DetailBoxList';
+import DetailGallery from './components/DetailGallery';
 import DetailStory from './components/DetailStory';
 import DetailView from './components/DetailView';
-import DetailVisual from './components/DetailVisual';
 import ProjectLinkList from './components/ProjectLinkList';
 
 interface ProjectDetailModalProps {
@@ -47,6 +47,7 @@ export default function ProjectDetailModal({
   const activeDetail =
     isDetailOpen && activeIndex !== null ? details[activeIndex] : undefined;
   const visual = activeDetail ? activeDetail.image : cover;
+  const visuals = activeDetail?.images ?? (visual ? [visual] : []);
 
   const openDetail = (index: number) => {
     setActiveIndex(index);
@@ -105,19 +106,16 @@ export default function ProjectDetailModal({
           // 넓은 화면에서는 한 화면에 다 담기고, 좁은 화면에서만 위아래로 쌓여 패널째 스크롤합니다.
           <div className="flex min-h-0 flex-1 flex-col overflow-y-auto lg:flex-row lg:overflow-hidden">
             <aside className="flex shrink-0 flex-col gap-s-3 border-b border-ink-200 p-s-5 lg:w-[54%] lg:border-b-0 lg:border-r lg:p-s-7 xl:p-s-8">
-              <div className="relative aspect-[16/10] w-full overflow-hidden rounded-r-2 border border-ink-200 bg-ink-50 lg:aspect-auto lg:min-h-0 lg:flex-1">
-                <DetailVisual
-                  image={visual}
-                  order={activeDetail ? (activeIndex ?? 0) + 1 : undefined}
-                  label={project.category}
-                  preview={project.preview}
-                  sizes="(min-width: 1024px) 54vw, 100vw"
-                  priority
-                />
-              </div>
-              <p className="m-0 min-h-[18px] shrink-0 text-right text-[13px] leading-[1.4] text-ink-500">
-                {visual?.caption}
-              </p>
+              {/* 박스를 바꿀 때마다 다시 그려 첫 장부터 보여 줍니다. */}
+              <DetailGallery
+                key={activeDetail ? activeIndex : 'overview'}
+                images={visuals}
+                order={activeDetail ? (activeIndex ?? 0) + 1 : undefined}
+                label={project.category}
+                preview={project.preview}
+                sizes="(min-width: 1024px) 54vw, 100vw"
+                priority
+              />
             </aside>
 
             {/* 박스를 누를 때마다 다시 그려 앞서 내려 둔 스크롤 위치를 남기지 않습니다. */}
