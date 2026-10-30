@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" width="1200" height="750" font-family="Pretendard, -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#4d514b"/>
+    </marker>
+  </defs>
+  <rect width="1200" height="750" fill="#f8f7f3"/>
+
+  <text x="64" y="92" font-size="38" font-weight="700" fill="#1f2420">브리지 실수로 생기던 런타임 에러</text>
+  <text x="64" y="134" font-size="22" fill="#6b6f69">요청-응답 브리지와 Custom Hook을 도입하기 전을 100으로 둘 때</text>
+
+  <!-- 핵심 지표 -->
+  <rect x="64" y="176" width="496" height="292" rx="20" fill="#ffffff" stroke="#e4e1d9" stroke-width="2"/>
+  <text x="96" y="224" font-size="24" font-weight="600" fill="#6b6f69">런타임 에러</text>
+  <text x="90" y="324" font-size="104" font-weight="800" fill="#2f5d3f" letter-spacing="-3">90%</text>
+  <text x="326" y="324" font-size="32" font-weight="700" fill="#1f2420">이상 감소</text>
+  <text x="96" y="384" font-size="22" fill="#4d514b">도입 전</text>
+  <rect x="192" y="362" width="280" height="30" rx="4" fill="#b5b0a4"/>
+  <text x="484" y="385" font-size="22" font-weight="700" fill="#1f2420">100</text>
+  <text x="96" y="434" font-size="22" fill="#4d514b">도입 후</text>
+  <rect x="192" y="412" width="28" height="30" rx="4" fill="#2f5d3f"/>
+  <text x="232" y="435" font-size="22" font-weight="700" fill="#1f2420">10 이하</text>
+
+  <!-- 요청-응답 흐름 -->
+  <rect x="592" y="176" width="544" height="292" rx="20" fill="#ffffff" stroke="#e4e1d9" stroke-width="2"/>
+  <text x="624" y="224" font-size="24" font-weight="700" fill="#1f2420">메시지마다 id를 붙이고 ACK로 확인</text>
+  <text x="680" y="264" font-size="22" font-weight="700" fill="#1f2420" text-anchor="middle">웹</text>
+  <text x="1056" y="264" font-size="22" font-weight="700" fill="#1f2420" text-anchor="middle">네이티브</text>
+  <g stroke="#d6d2c8" stroke-width="3">
+    <line x1="680" y1="278" x2="680" y2="414"/>
+    <line x1="1056" y1="278" x2="1056" y2="414"/>
+  </g>
+  <g stroke="#4d514b" stroke-width="2.5" marker-end="url(#arrow)">
+    <line x1="684" y1="310" x2="1050" y2="310"/>
+    <line x1="1052" y1="354" x2="686" y2="354"/>
+    <line x1="1052" y1="398" x2="686" y2="398"/>
+  </g>
+  <g font-size="20" fill="#1f2420" text-anchor="middle">
+    <text x="868" y="300">요청 · id 123</text>
+    <text x="868" y="344">ACK 123</text>
+    <text x="868" y="388" fill="#2f5d3f" font-weight="700">응답 · id 123</text>
+  </g>
+  <text x="624" y="446" font-size="20" fill="#6b6f69">ACK가 오지 않으면 같은 id로 다시 보냄</text>
+
+  <!-- 쓰는 쪽 인터페이스 -->
+  <rect x="64" y="500" width="1072" height="204" rx="20" fill="#ffffff" stroke="#e4e1d9" stroke-width="2"/>
+  <text x="96" y="546" font-size="24" font-weight="700" fill="#1f2420">브리지를 쓰는 쪽에 드러나는 것</text>
+  <rect x="96" y="568" width="328" height="108" rx="14" fill="#e3ede5"/>
+  <text x="120" y="612" font-size="22" font-weight="700" fill="#1f2420">TypeScript 제네릭</text>
+  <text x="120" y="648" font-size="20" fill="#2f5d3f">요청과 응답 타입을 함께 지정</text>
+  <rect x="436" y="568" width="328" height="108" rx="14" fill="#e3ede5"/>
+  <text x="460" y="612" font-size="22" font-weight="700" fill="#1f2420">Promise 인터페이스</text>
+  <text x="460" y="648" font-size="20" fill="#2f5d3f">await로 응답을 기다림</text>
+  <rect x="776" y="568" width="328" height="108" rx="14" fill="#e3ede5"/>
+  <text x="800" y="612" font-size="22" font-weight="700" fill="#1f2420">Custom Hook</text>
+  <text x="800" y="648" font-size="20" fill="#2f5d3f">id · ACK · 재시도는 안에서 처리</text>
+</svg>

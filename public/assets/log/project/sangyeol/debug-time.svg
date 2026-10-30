@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" width="1200" height="750" font-family="Pretendard, -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif">
+  <rect width="1200" height="750" fill="#f8f7f3"/>
+
+  <text x="64" y="92" font-size="38" font-weight="700" fill="#1f2420">디버깅 환경을 갖추는 데 드는 시간</text>
+  <text x="64" y="134" font-size="22" fill="#6b6f69">Safari · Chrome · Expo DevTools를 오가던 방식을 100으로 둘 때</text>
+
+  <!-- 핵심 지표 -->
+  <rect x="64" y="176" width="496" height="300" rx="20" fill="#ffffff" stroke="#e4e1d9" stroke-width="2"/>
+  <text x="96" y="224" font-size="24" font-weight="600" fill="#6b6f69">환경을 갖추는 시간</text>
+  <text x="90" y="324" font-size="104" font-weight="800" fill="#2f5d3f" letter-spacing="-3">33%</text>
+  <text x="326" y="324" font-size="32" font-weight="700" fill="#1f2420">감소</text>
+  <text x="96" y="386" font-size="22" fill="#4d514b">기존</text>
+  <rect x="210" y="364" width="270" height="30" rx="4" fill="#b5b0a4"/>
+  <text x="492" y="387" font-size="22" font-weight="700" fill="#1f2420">100</text>
+  <text x="96" y="438" font-size="22" fill="#4d514b">통합 도구</text>
+  <rect x="210" y="416" width="181" height="30" rx="4" fill="#2f5d3f"/>
+  <text x="403" y="439" font-size="22" font-weight="700" fill="#1f2420">67</text>
+
+  <!-- 기존 방식 -->
+  <rect x="592" y="176" width="544" height="300" rx="20" fill="#ffffff" stroke="#e4e1d9" stroke-width="2"/>
+  <text x="624" y="224" font-size="24" font-weight="700" fill="#1f2420">기존: 화면마다 다른 도구</text>
+  <g font-size="20">
+    <rect x="624" y="244" width="480" height="44" rx="10" fill="#efede7"/>
+    <text x="644" y="273" font-weight="700" fill="#1f2420">Expo DevTools</text>
+    <text x="1084" y="273" fill="#4d514b" text-anchor="end">네이티브 화면</text>
+    <rect x="624" y="296" width="480" height="44" rx="10" fill="#efede7"/>
+    <text x="644" y="325" font-weight="700" fill="#1f2420">Safari</text>
+    <text x="1084" y="325" fill="#4d514b" text-anchor="end">iOS 웹뷰</text>
+    <rect x="624" y="348" width="480" height="44" rx="10" fill="#efede7"/>
+    <text x="644" y="377" font-weight="700" fill="#1f2420">Chrome 개발자 도구</text>
+    <text x="1084" y="377" fill="#4d514b" text-anchor="end">Android 웹뷰</text>
+  </g>
+  <g font-size="20" fill="#4d514b">
+    <text x="624" y="426">· 렌더링 전에 나간 첫 화면 요청은 볼 수 없음</text>
+    <text x="624" y="456">· 화면이 바뀌면 연결이 끊겨 도구를 다시 엶</text>
+  </g>
+
+  <!-- 통합 도구 -->
+  <rect x="64" y="508" width="1072" height="196" rx="20" fill="#ffffff" stroke="#e4e1d9" stroke-width="2"/>
+  <text x="96" y="552" font-size="24" font-weight="700" fill="#1f2420">지금: 앱과 웹뷰의 DevTools를 한 화면에</text>
+  <rect x="96" y="568" width="1008" height="112" rx="12" fill="#f8f7f3" stroke="#d6d2c8" stroke-width="2"/>
+  <g fill="#d6d2c8">
+    <circle cx="116" cy="586" r="5"/>
+    <circle cx="134" cy="586" r="5"/>
+    <circle cx="152" cy="586" r="5"/>
+  </g>
+  <rect x="112" y="600" width="480" height="68" rx="8" fill="#ffffff" stroke="#d6d2c8" stroke-width="1.5"/>
+  <text x="132" y="628" font-size="20" font-weight="700" fill="#1f2420">앱 · React Native DevTools</text>
+  <text x="132" y="656" font-size="18" fill="#4d514b">Metro /json에서 주소를 찾아 연결</text>
+  <rect x="608" y="600" width="480" height="68" rx="8" fill="#e3ede5" stroke="#2f5d3f" stroke-width="1.5"/>
+  <text x="628" y="628" font-size="20" font-weight="700" fill="#1f2420">웹뷰 · Chrome DevTools Frontend</text>
+  <text x="628" y="656" font-size="18" fill="#2f5d3f">console · fetch · XHR을 CDP 메시지로 전달</text>
+</svg>
