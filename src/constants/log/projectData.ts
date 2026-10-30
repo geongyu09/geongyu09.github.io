@@ -192,7 +192,7 @@ const PROJECT_DATA: ProjectItem[] = [
         text: '앱은 버튼을 누르면 전환 애니메이션과 함께 이미 그려진 다음 화면이 들어오는데, 웹뷰로 띄운 웹은 이전 화면이 잠깐 남아 있다가 흰 화면을 거쳐 콘텐츠가 하나씩 나타났고, 뒤로가기 버튼이 없는 iOS에서는 화면을 쓸어 되돌아갈 방법조차 없었습니다.',
         image: {
           src: '/assets/blog/appLikeWeb/webAppComp.gif',
-          alt: '웹과 앱의 화면 전환을 나란히 놓고 비교한 영상',
+          alt: '웹과 앱의 화면 전환을 함께 띄워 비교한 영상',
           caption: '웹과 앱의 화면 전환 비교',
         },
       },
@@ -279,7 +279,7 @@ const PROJECT_DATA: ProjectItem[] = [
                     {children}
                   </div>
 
-                  {/* 다음 화면이 들어올 자리 */}
+                  {/* 다음 화면이 들어올 레이어 */}
                   <div id="stack-root" />
                 </StackContext.Provider>
               );
@@ -334,7 +334,7 @@ const PROJECT_DATA: ProjectItem[] = [
               preloadFrameRef.current.style.transition = \`transform \${animDuration}ms ease-in-out\`;
               preloadFrameRef.current.style.transform = 'translateX(-100%)';
 
-              // 애니메이션이 끝나는 시점에 실제 주소를 옮깁니다.
+              // 애니메이션이 끝나는 시점에 실제 주소로 이동합니다.
               timerRef.current = setTimeout(() => {
                 main.style.transition = '';
                 main.style.transform = 'translateX(0)';
@@ -622,7 +622,7 @@ const PROJECT_DATA: ProjectItem[] = [
         text: '앱은 웹에서 syn이 서 있고 ack이 비어 있는 메시지를 받으면 두 값을 모두 세워 돌려주고, 뒤이어 ack만 담긴 메시지를 받으면 그때 웹뷰가 준비됐다고 표시해 onReadyToMessage를 부릅니다.',
         code: {
           lang: 'tsx',
-          caption: '앱에서 SYN을 받고 SYN/ACK로 답하는 자리',
+          caption: '앱에서 SYN을 받고 SYN/ACK로 답하는 부분',
           code: `
             const handleMessage = (event: WebViewMessageEvent) => {
               const { data } = event.nativeEvent;
@@ -650,7 +650,7 @@ const PROJECT_DATA: ProjectItem[] = [
         text: '웹은 마운트되자마자 syn을 보내고 1초 뒤에 한 번 더 보낼 타이머를 걸어 두었다가, syn/ack를 받으면 ack를 보낸 뒤 타이머와 리스너를 정리해서 핸드셰이크용 메시지가 일반 메시지 처리에 섞이지 않게 했습니다.',
         code: {
           lang: 'tsx',
-          caption: '웹이 먼저 SYN을 보내고 ACK로 마무리하는 자리',
+          caption: '웹이 먼저 SYN을 보내고 ACK로 마무리하는 부분',
           code: `
             useEffect(() => {
               const handshake = (syn: Flag, ack: Flag) =>
@@ -703,7 +703,7 @@ const PROJECT_DATA: ProjectItem[] = [
             interface WebviewBridgeMessage<Body = unknown> {
               _id: string; // 메시지마다 새로 만드는 식별자
               ack: string | null; // 요청이면 null, 응답이면 원 _id
-              flag: { syn: 0 | 1 }; // 연결 요청인지 표시하는 자리
+              flag: { syn: 0 | 1 }; // 연결 요청인지 표시하는 값
               body?: Body; // 위에서 넘겨준 메시지 본문
             }
           `,
@@ -750,7 +750,7 @@ const PROJECT_DATA: ProjectItem[] = [
         text: '메시지를 만들어 보내고 콜백을 예약하는 일은 Message 클래스가 맡고, 버퍼를 들고 있다가 응답이 왔을 때 예약해 둔 콜백을 찾아 실행하는 일은 WebViewBridge 클래스가 맡도록 나눠서, 앱과 웹이 같은 형식으로 요청과 응답을 주고받게 했습니다.',
         code: {
           lang: 'typescript',
-          caption: '메시지를 만드는 자리와 콜백을 되찾는 자리',
+          caption: '메시지를 만드는 클래스와 콜백을 되찾는 클래스',
           code: `
             class WebViewBridge {
               private R_WND = new RWindow();
@@ -1078,7 +1078,7 @@ const PROJECT_DATA: ProjectItem[] = [
             const originalLog = console.log;
 
             console.log = function (...args: any[]) {
-              // 원래 출력은 그대로 남깁니다
+              // 원래 출력은 그대로 둡니다
               originalLog.apply(console, args);
 
               const message: ConsoleMessage = {
@@ -1119,7 +1119,7 @@ const PROJECT_DATA: ProjectItem[] = [
         text: 'Expo에서 j를 누르면 열리는 디버거도 CDP 위에서 동작하고 있었습니다. 그 개발자 도구의 개발자 도구를 열어 주소를 확인한 뒤 다른 브라우저에 그대로 넣어 보니 같은 화면이 열렸고, Metro의 /json 엔드포인트에 devtoolsFrontendUrl이 들어 있어서 그 주소로 리다이렉트하는 Express 서버를 만들어 앱 쪽은 해결했습니다.',
         code: {
           lang: 'javascript',
-          caption: 'Metro가 알려 준 주소로 앱 개발자 도구를 여는 서버',
+          caption: 'Metro가 알려 준 주소로 앱 개발자 도구를 띄우는 서버',
           code: `
             app.get("/", async (req, res) => {
               // Metro가 들고 있는 디버깅 대상 목록을 가져옵니다
@@ -1216,7 +1216,7 @@ const PROJECT_DATA: ProjectItem[] = [
         text: '서빙 서버는 프록시 서버의 /api/pages로 등록된 페이지 목록을 받아 화면에 그리고, Inspect를 누르면 그 페이지의 id를 ws 파라미터에 담아 inspector.html을 새 창으로 엽니다. 누른 뒤부터는 개발자 도구가 프록시 서버를 거쳐 주입한 스크립트와 CDP로 대화하게 됩니다.',
         code: {
           lang: 'html',
-          caption: '목록에서 개발자 도구를 여는 버튼',
+          caption: '목록에서 개발자 도구를 띄우는 버튼',
           code: `
             <a
               href="/inspector.html?ws=localhost:3002/devtools/page/\${page.id}"
