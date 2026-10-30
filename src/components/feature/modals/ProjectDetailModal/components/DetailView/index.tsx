@@ -47,7 +47,7 @@ export default function DetailView({ detail, order, onBack }: Props) {
           {detail.title}
         </h3>
       )}
-      <p className="m-0 mt-s-4 text-[17px] leading-[1.85] text-ink-900">
+      <p className="m-0 mt-s-4 whitespace-pre-line text-[17px] leading-[1.85] text-ink-900">
         {detail.text}
       </p>
 

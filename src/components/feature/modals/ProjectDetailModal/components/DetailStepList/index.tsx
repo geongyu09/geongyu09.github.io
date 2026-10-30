@@ -74,7 +74,7 @@ export default function DetailStepList({
 
               <p
                 className={cn(
-                  'm-0 mt-s-4 text-[17px] leading-[1.85] transition-colors duration-300 motion-reduce:transition-none',
+                  'm-0 mt-s-4 whitespace-pre-line text-[17px] leading-[1.85] transition-colors duration-300 motion-reduce:transition-none',
                   isActive ? 'text-ink-900' : 'text-ink-500',
                 )}
               >
