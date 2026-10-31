@@ -4,7 +4,7 @@
         <title>건규의 블로그</title>
         <link>https://geongyu09.github.io</link>
         <description>프론트엔드 개발자 박건규가 React, 테스트 코드, 함수형 프로그래밍, 웹뷰를 공부하며 남긴 기록입니다.</description>
-        <lastBuildDate>Tue, 27 Oct 2026 03:59:03 GMT</lastBuildDate>
+        <lastBuildDate>Sat, 31 Oct 2026 10:43:50 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>ko</language>
@@ -14,6 +14,34 @@
             <link>https://geongyu09.github.io</link>
         </image>
         <copyright>All rights reserved 2026, 박건규</copyright>
+        <item>
+            <title><![CDATA[[Yarn PnP] 2편. Node.js는 모듈을 어떻게 찾는가]]></title>
+            <link>https://geongyu09.github.io/post/yarnBerryPnpPart2/</link>
+            <guid isPermaLink="false">https://geongyu09.github.io/post/yarnBerryPnpPart2/</guid>
+            <pubDate>Sat, 24 Oct 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[Yarn Berry의 PnP가 node_modules 없이 모듈을 불러오는 방식을 이해하기 위해, Node.js의 require가 경로 계산, 캐시 확인, 파일 읽기와 실행, 결과 반환 순서로 모듈을 찾고 실행하는 과정을 Node 소스 코드를 따라가며 정리하였습니다.]]></description>
+            <category>yarn-berry</category>
+            <category>pnp</category>
+            <category>node.js</category>
+            <category>commonjs</category>
+            <category>require</category>
+            <category>모듈시스템</category>
+            <enclosure url="https://geongyu09.github.io/assets/blog/yarnBerryPnpPart2/thumbnail.webp" length="0" type="image/webp"/>
+        </item>
+        <item>
+            <title><![CDATA[[Yarn PnP] 1편. 패키지 매니저와 Yarn Berry]]></title>
+            <link>https://geongyu09.github.io/post/yarnBerryPnpPart1/</link>
+            <guid isPermaLink="false">https://geongyu09.github.io/post/yarnBerryPnpPart1/</guid>
+            <pubDate>Sat, 17 Oct 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[TypeScript 7이 Yarn Berry의 PnP 환경에서만 동작하지 않았던 경험을 계기로, 패키지 매니저가 하는 일과 lock 파일의 역할, 그리고 Yarn Berry가 node_modules 대신 PnP를 택한 이유를 정리하였습니다.]]></description>
+            <category>yarn-berry</category>
+            <category>pnp</category>
+            <category>패키지매니저</category>
+            <category>npm</category>
+            <category>node_modules</category>
+            <category>lockfile</category>
+            <enclosure url="https://geongyu09.github.io/assets/blog/yarnBerryPnpPart1/thumbnail.webp" length="0" type="image/webp"/>
+        </item>
         <item>
             <title><![CDATA[상태 끌어올리기의 역설]]></title>
             <link>https://geongyu09.github.io/post/liftingStateUpParadox/</link>
