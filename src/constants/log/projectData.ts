@@ -1513,7 +1513,7 @@ const PROJECT_DATA: ProjectItem[] = [
     org: '에코노베이션 Black-company',
     role: 'FE 전담',
     description:
-      '동아리 행사의 등록과 출석, 수요조사를 관리하는 서비스입니다. Next.js 웹과 Expo 네이티브를 모노레포로 묶어 FE를 사실상 전담했습니다.',
+      '동아리 행사의 등록과 출석, 수요조사를 관리하는 서비스로, Next.js 웹과 Expo 앱을 하나의 모노레포에서 함께 운영했습니다.',
     quote: '“동아리 내에서 일어나는 모든 행사를 아카이빙하고 관리하자!”',
     details: [
       {
