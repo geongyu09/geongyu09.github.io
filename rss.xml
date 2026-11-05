@@ -4,7 +4,7 @@
         <title>건규의 블로그</title>
         <link>https://geongyu09.github.io</link>
         <description>프론트엔드 개발자 박건규가 React, 테스트 코드, 함수형 프로그래밍, 웹뷰를 공부하며 남긴 기록입니다.</description>
-        <lastBuildDate>Sat, 31 Oct 2026 10:43:50 GMT</lastBuildDate>
+        <lastBuildDate>Thu, 05 Nov 2026 13:59:13 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>ko</language>
@@ -14,6 +14,20 @@
             <link>https://geongyu09.github.io</link>
         </image>
         <copyright>All rights reserved 2026, 박건규</copyright>
+        <item>
+            <title><![CDATA[[knot] Workers로 CSR의 한계를 넘어보자]]></title>
+            <link>https://geongyu09.github.io/post/workersUserFeedback/</link>
+            <guid isPermaLink="false">https://geongyu09.github.io/post/workersUserFeedback/</guid>
+            <pubDate>Thu, 05 Nov 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[CSR로 동작하는 React 앱에서 Notion 토큰을 브라우저에 노출하지 않고 사용자 피드백을 모으기 위해, 기존 백엔드를 변경하지 않고 Cloudflare Workers로 서버 로직을 추가한 과정과 수집한 피드백을 팀이 판단하기 편하게 정리한 과정을 기록하였습니다.]]></description>
+            <category>cloudflare-workers</category>
+            <category>notion</category>
+            <category>react</category>
+            <category>csr</category>
+            <category>사용자피드백</category>
+            <category>project</category>
+            <enclosure url="https://geongyu09.github.io/assets/blog/workersUserFeedback/thumbnail.webp" length="0" type="image/webp"/>
+        </item>
         <item>
             <title><![CDATA[[Yarn PnP] 2편. Node.js는 모듈을 어떻게 찾는가]]></title>
             <link>https://geongyu09.github.io/post/yarnBerryPnpPart2/</link>

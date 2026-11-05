@@ -1,0 +1,364 @@
+1:"$Sreact.fragment"
+2:I[96052,["/_next/static/chunks/2b39pi_nri-9h.js","/_next/static/chunks/2xsf6gaad33p2.js","/_next/static/chunks/14mrh2-p_w84d.js","/_next/static/chunks/0-bo1z8dc7uf_.js","/_next/static/chunks/0th6pf_hj8dk1.js","/_next/static/chunks/1erofsd2o29uh.js"],"default"]
+7:I[97367,["/_next/static/chunks/2b39pi_nri-9h.js","/_next/static/chunks/2xsf6gaad33p2.js","/_next/static/chunks/14mrh2-p_w84d.js","/_next/static/chunks/0-bo1z8dc7uf_.js"],"OutletBoundary"]
+8:"$Sreact.suspense"
+3:T649b,
+![Knot 서비스 소개 페이지의 첫 화면](/assets/blog/workersUserFeedback/knot.webp)
+
+# 팀원들이 사용자 피드백을 쉽게 확인할 수 있도록 하고 싶었다
+
+나는 우아한테크코스 팀 프로젝트에서 [Knot](https://knoted.kr/)의 프론트엔드 개발을 맡고 있었다. Knot은 회의를 녹음하면 내용을 글로 옮겨 주제별 문서로 정리해 주는 서비스로, 팀 프로젝트에서 흩어진 문서를 뒤져 과거 결정을 다시 찾는 비용을 줄이려고 만들었다.
+
+우리 팀은 프론트엔드와 백엔드 담당자가 함께 기획부터 개발과 배포까지 자율적으로 맡는 사일로 방식으로 일하고 있었다. 각자가 문제를 발견하고 해결 방향을 정해 개발까지 맡았기 때문에, 판단에 필요한 정보를 팀원들이 쉽게 접할 수 있도록 돕고 싶었다.
+
+먼저 앱 안에 피드백 기능을 만드는 방법을 생각했다. 사용자들이 어떤 맥락에서 불편을 겪었는지, 비슷한 의견이 얼마나 반복되는지 정리해 전달하고 필요하면 원문까지 확인할 수 있게 하려 했다.
+
+팀원들이 피드백을 확인하려고 새로운 도구를 찾아가기보다 평소 협업에 사용하는 Notion에서 읽을 수 있으면 편하겠다고 생각했다. 사용자에게 피드백을 받으면 각 팀이 논의할 때 참고할 수 있도록 매일 아침 데일리 전에 모인 의견을 정리하려 했다.
+
+필요한 동작만 나열하면 피드백을 받을 폼을 만들고 제출한 내용을 Notion에 기록한 뒤 정리하면 됐다. 하지만 개발과 배포가 계속되는 서비스에 기능을 추가하려니, 입력 화면 외에도 준비할 내용이 있었다.
+
+# 작은 기능 하나를 추가하는 데 다른 담당자의 일정까지 조정해야 할까?
+
+사용자가 의견을 입력할 화면만 만들어서는 피드백 기능을 완성할 수 없었다. 제출한 내용을 팀에서 확인하려면 어딘가에 저장해야 했고 Notion에 기록하려면 인증 토큰을 사용해 Notion API를 호출해야 했다.
+
+우리 팀의 React 앱은 브라우저에서 화면을 렌더링하는 CSR(Client-Side Rendering) 방식으로 동작했고 빌드한 정적 파일을 Cloudflare Pages로 배포하고 있었다. 브라우저에 전달되는 JavaScript에 인증 토큰을 넣으면 사용자가 토큰 값을 확인할 수 있으므로, 비밀로 관리해야 하는 Notion 토큰을 클라이언트 코드에 포함할 수는 없었다. 토큰을 보관하고 Notion API를 호출할 서버 로직이 필요했다.
+
+기존 서비스의 서버와 데이터베이스를 활용하려면 백엔드에 피드백을 받는 API와 저장 처리를 추가하고 Notion 연동도 구현해야 했으므로 백엔드 담당자와 요청 형식을 협의하고 구현과 배포 일정도 맞춰야 했다.
+
+당시 팀은 막 MVP를 출시한 뒤 잠깐 들어왔다 나가는 사용자들이 계속 서비스를 쓸 수 있도록 기획과 기능 개발, 인터뷰, UT를 병행하고 있었다. 그러다 보니 내가 제안한 작은 기능에 함께할 담당자를 구하는 것도 쉽지 않았다.
+
+## 기존 백엔드에 기능을 추가하지 않고도 완성할 수 있을까?
+
+사용자가 앱에서 제출한 피드백을 팀원들이 평소 확인하는 Notion 페이지에 기록하는 것을 목표로 삼았다. Notion 토큰을 브라우저에 노출하지 않으면서 요청을 보낼 수 있도록, 필요한 서버 로직을 내가 직접 추가할 방법을 찾아봤다.
+
+### Workers의 fetch 처리기로 피드백 요청을 받는다
+
+우리 팀 프론트엔드는 비용과 배포 편의성을 고려해 Cloudflare Pages를 사용하고 있어서 같은 Cloudflare에서 JavaScript나 TypeScript로 서버 코드를 실행할 수 있는 Workers를 살펴봤다. 요청을 받았을 때 실행할 처리기를 작성해 배포하면 Cloudflare가 실행을 맡으므로, 서버 프로세스를 직접 실행하고 관리할 필요가 없었다. [Workers 실행 방식](https://developers.cloudflare.com/workers/reference/how-workers-works/)
+
+Workers는 Cloudflare 네트워크에서 V8 isolate를 사용해 코드를 실행한다. V8은 Chrome과 Node.js에서도 사용하는 JavaScript 엔진이며 Workers 런타임은 한 프로세스 안에서 여러 isolate를 실행할 수 있다.
+
+> **isolate란?** V8이 코드 실행에 사용하는 격리된 환경으로, isolate마다 별도의 메모리 공간을 사용한다. 같은 런타임 프로세스에서 실행되더라도 다른 isolate의 JavaScript 객체나 변수에 직접 접근할 수 없으며 함수를 실행하기 위해 별도의 가상 머신을 만들 필요가 없다.
+
+![전통적인 실행 방식과 Workers의 V8 isolate 실행 방식을 비교한 그림](/assets/blog/workersUserFeedback/0.webp)
+
+그림에서 중괄호(`{}`)는 사용자 코드, 회전 화살표는 프로세스 오버헤드를 나타낸다. 왼쪽의 전통적인 실행 방식에서는 코드마다 프로세스 오버헤드가 반복되지만, 오른쪽의 Workers는 한 프로세스 안에서 여러 isolate를 실행해 더 많은 코드를 처리하면서 프로세스 오버헤드를 나눠 쓴다. [Cloudflare 공식 문서](https://developers.cloudflare.com/workers/reference/how-workers-works/#isolates)
+
+Workers에는 HTTP 요청을 받는 `fetch` 외에도 정해진 시각에 실행하는 `scheduled`, 큐의 메시지를 받는 `queue` 등의 처리기가 있다. 피드백 기능에서는 브라우저가 보낸 HTTP 요청을 받아 Notion에 저장한 뒤 결과를 응답해야 하므로 `fetch` 처리기에 집중해보았다. [Workers 처리기 목록](https://developers.cloudflare.com/workers/runtime-apis/handlers/)
+
+HTTP 요청이 들어오면 Workers 런타임은 모듈의 `fetch` 처리기를 호출한다. 첫 번째 인자인 `request`에서 요청의 URL과 메서드, 헤더, 본문을 읽고 두 번째 인자인 `env`에서 런타임이 제공하는 값과 서비스 연결을 사용한다. 처리를 마친 뒤에는 `Response`를 반환해 브라우저에 응답한다. [Fetch Handler](https://developers.cloudflare.com/workers/runtime-apis/handlers/fetch/)
+
+만약 사용자가 보낸 이름에 인사말을 붙여 응답하는 기능을 만들고 싶다면, `POST /hello` 요청을 처리하도록 아래처럼 작성할 수 있다.
+
+```ts
+interface Env {
+  GREETING: string;
+}
+
+export default {
+  async fetch(request: Request, env: Env) {
+    const { pathname } = new URL(request.url);
+
+    // POST /hello 요청인지 확인한다.
+    if (request.method !== "POST" || pathname !== "/hello") {
+      return new Response("Not Found", { status: 404 });
+    }
+
+    // 브라우저가 본문에 담아 보낸 이름을 읽는다.
+    const name = await request.text();
+
+    // Worker에 등록한 인사말과 이름을 조합해 응답한다.
+    return new Response(`${env.GREETING}, ${name}`);
+  },
+};
+```
+
+배포 설정의 `GREETING`에 `안녕하세요`를 등록해 두고 본문에 `Knot`을 담아 요청하면, `안녕하세요, Knot`이 본문인 `Response`가 브라우저에 전달된다.
+
+내가 개발하려는 피드백 기능에서도 필요한 분기는 요청의 메서드와 경로 정도였으므로 Hono 같은 서버 프레임워크를 추가하지 않고 `fetch` 처리기를 직접 작성했다.
+
+다만 피드백을 Worker의 전역 변수에 저장해도 다음 요청이 같은 isolate에서 실행된다는 보장이 없고 같은 isolate에서 실행되더라도 종료되면 메모리의 데이터가 사라진다. 따라서 전역 배열 등에 피드백을 모아두지 않고 요청마다 Notion에 저장한 뒤 저장 결과를 기다려 응답하도록 구현했다. [isolate의 수명과 전역 상태](https://developers.cloudflare.com/workers/reference/how-workers-works/#distributed-execution)
+
+### 정적 React 앱에 피드백 API 경로를 추가한다
+
+피드백 폼의 제출 주소를 같은 서비스 도메인의 `/relay/f`로 정하고 해당 경로의 POST 요청을 Worker에서 처리하도록 했다. 화면이나 JavaScript, CSS를 요청할 때는 React 빌드 파일을 제공해야 하므로 피드백 API 요청과 정적 파일 요청을 구분하도록 배포 설정을 작성했다. [피드백 기능 PR](https://github.com/woowacourse-teams/2026-knot/pull/931)
+
+Workers의 Static Assets 기능을 사용하면 React 빌드 파일과 Worker 코드를 함께 배포할 수 있다. Wrangler는 Workers의 개발과 배포에 사용하는 CLI이며 `wrangler.jsonc`에서 배포할 코드와 정적 파일의 위치를 지정할 수 있다. 두 대상은 같은 배포에 포함되지만 React 번들은 브라우저에서 실행되고 Worker 코드는 Cloudflare에서 실행된다.
+
+```jsonc
+{
+  // Cloudflare에 배포할 Worker의 이름이다.
+  "name": "knot-frontend",
+  // HTTP 요청을 처리할 서버 코드의 진입 파일을 지정한다.
+  "main": "src/worker/index.ts",
+  // 이 날짜를 기준으로 런타임의 호환성 동작을 적용한다.
+  "compatibility_date": "2026-08-01",
+  "assets": {
+    // React 앱을 빌드한 정적 파일을 함께 배포한다.
+    "directory": "./dist",
+    // Worker에서 env.ASSETS.fetch(request)로 정적 파일을 요청할 수 있게 한다.
+    "binding": "ASSETS",
+    // 일치하는 정적 파일이 없는 화면 주소에는 index.html을 제공한다.
+    "not_found_handling": "single-page-application",
+    // /relay/ 아래 요청은 정적 파일보다 Worker 코드가 먼저 처리한다.
+    "run_worker_first": ["/relay/*"]
+  }
+}
+```
+
+피드백 폼에서 `POST /relay/f` 요청을 보내면 `/relay/*` 패턴과 일치하므로 `main`에 지정한 파일의 `fetch` 처리기가 호출된다. 반면 `/relay/*`에 해당하지 않는 요청에는 정적 파일을 우선 제공한다. JavaScript나 CSS 파일을 요청하면 `dist`의 해당 파일을 반환하고 파일이 없는 화면 주소를 요청하면 `index.html`을 반환해 브라우저에서 클라이언트 라우터가 URL에 맞는 화면을 렌더링한다. [Worker 라우팅](https://developers.cloudflare.com/workers/static-assets/routing/worker-script/), [SPA 라우팅](https://developers.cloudflare.com/workers/static-assets/routing/single-page-application/), [실제 Wrangler 설정](https://github.com/woowacourse-teams/2026-knot/blob/694454488900e0d7cb4aadedac9989a039e8dd4f/frontend/wrangler.jsonc)
+
+진입 파일에서 `export default { fetch: handleRequest }`로 처리기를 등록하면 Worker가 받은 요청은 `handleRequest()`에 전달된다. 요청 경로가 `/relay/f`이면 `relayToNotion()`을 호출하고 등록되지 않은 `/relay` 하위 경로이면 404를 반환하도록 분기했다. [실제 Worker 진입점](https://github.com/woowacourse-teams/2026-knot/blob/694454488900e0d7cb4aadedac9989a039e8dd4f/frontend/src/worker/index.ts)
+
+```ts
+const RELAY_PATH = "/relay";
+const FEEDBACK_RELAY_PATH = `${RELAY_PATH}/f`;
+
+export const handleRequest = (request: Request, env: Env) => {
+  const { pathname } = new URL(request.url);
+
+  // 피드백 요청은 Notion에 저장하는 함수로 전달한다.
+  if (pathname === FEEDBACK_RELAY_PATH) return relayToNotion(request, env);
+
+  // 등록하지 않은 중계 경로에는 화면 HTML 대신 404를 반환한다.
+  if (pathname === RELAY_PATH || pathname.startsWith(`${RELAY_PATH}/`)) {
+    return new Response("Not Found", { status: 404 });
+  }
+
+  // 중계 요청에 해당하지 않으면 정적 파일 처리에 전달한다.
+  return env.ASSETS.fetch(request);
+};
+```
+
+### Notion 토큰을 Worker에서 관리하고 피드백을 저장한다
+
+요청을 받을 경로를 연결한 다음에는 Worker에서 Notion 토큰을 읽을 방법이 필요했다. Workers의 binding은 런타임이 코드에 제공하는 값이나 서비스 연결을 가리킨다. 앞에서 사용한 `ASSETS`가 정적 파일에 접근할 바인딩이었다면, `NOTION_FEEDBACK_TOKEN`은 Notion 인증에 사용할 비밀값의 바인딩으로 등록했다. [Workers Secrets](https://developers.cloudflare.com/workers/configuration/secrets/)
+
+피드백은 팀원들이 평소 업무를 논의하는 Notion의 「사용자 피드백 접수함」 데이터베이스에 기록했다. 제출할 때마다 데이터베이스 안에 페이지를 만들면 테이블 보기에서 피드백 한 건을 한 행으로 확인할 수 있었으며 접수 상태와 개선 작업도 Notion에서 관리할 수 있었다.
+
+![의견 유형과 내용을 입력하는 Knot 피드백 패널](/assets/blog/workersUserFeedback/1.png)
+
+사용자는 화면 오른쪽 위 버튼에서 피드백 패널을 열어 의견 유형을 고른 뒤 필요하면 내용을 입력해 제출한다. 패널의 안내 문구대로 화면 주소와 최근 사용 기록도 함께 전달되며, 코드에서는 각각 `pageUrl`과 `replayUrl`로 보낸다.
+
+브라우저가 피드백 유형과 내용을 Worker에 보내면 Worker에서 토큰을 붙여 Notion의 `POST /v1/pages`를 호출한다. 브라우저에서 검사한 값이라도 요청을 직접 만들어 보낼 수 있으므로 Worker에서도 입력을 검사했다. 아래는 요청 검사부터 저장 결과 응답까지 발췌한 코드다.
+
+```ts
+export const relayToNotion = async (request: Request, env: Env) => {
+  if (request.method !== "POST") {
+    return new Response("Method Not Allowed", { status: 405 });
+  }
+
+  // 서비스 화면에서 보낸 요청인지 확인한다.
+  const { origin } = new URL(request.url);
+  if (request.headers.get("Origin") !== origin) {
+    return new Response("Forbidden", { status: 403 });
+  }
+
+  // 본문 길이를 제한한 뒤 유형과 내용이 올바른지 검사한다.
+  const text = await request.text();
+  if (text.length > MAX_FEEDBACK_BODY_LENGTH) {
+    return new Response("Payload Too Large", { status: 413 });
+  }
+
+  const feedback = readFeedback(text, origin);
+  if (!feedback) return new Response("Bad Request", { status: 400 });
+
+  // 비밀값을 등록하지 않은 환경에서는 Notion을 호출하지 않는다.
+  if (!env.NOTION_FEEDBACK_TOKEN) {
+    return new Response("Service Unavailable", { status: 503 });
+  }
+
+  // 토큰을 인증 헤더에 넣어 Notion에 페이지 생성을 요청한다.
+  const notionResponse = await fetch(NOTION_PAGES_URL, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${env.NOTION_FEEDBACK_TOKEN}`,
+      "Notion-Version": NOTION_VERSION,
+      "Content-Type": "application/json",
+    },
+    // 피드백을 Notion 페이지 생성 형식으로 변환하고 JSON 문자열로 보낸다.
+    body: JSON.stringify(toNotionPage(feedback)),
+  });
+
+  // Notion의 응답 본문은 전달하지 않고 저장 결과를 상태 코드로 응답한다.
+  return new Response(null, {
+    status: notionResponse.ok ? 201 : notionResponse.status,
+  });
+};
+```
+
+`toNotionPage()`는 검사를 통과한 `{ type, content, pageUrl, replayUrl }`를 받아 Notion의 페이지 생성 API가 요구하는 `{ parent, properties }` 객체를 만든다.
+
+```ts
+const FEEDBACK_KIND = {
+  bug: "버그",
+  inconvenience: "불편",
+  idea: "요청",
+  praise: "칭찬",
+} as const;
+
+const MAX_FEEDBACK_TITLE_LENGTH = 60;
+const KST_OFFSET_MS = 9 * 60 * 60 * 1000;
+
+// Notion의 title과 rich_text 속성에 넣을 텍스트 배열을 만든다.
+const toRichText = (content: string) =>
+  content ? [{ text: { content } }] : [];
+
+const toNotionPage = ({ type, content, pageUrl, replayUrl }: Feedback) => {
+  // 첫 줄의 앞부분을 제목으로 사용하고 빈 내용에는 기본 제목을 붙인다.
+  const title =
+    content.trim().split("\n")[0].slice(0, MAX_FEEDBACK_TITLE_LENGTH) ||
+    "(내용 없음)";
+  const receivedOn = new Date(Date.now() + KST_OFFSET_MS)
+    .toISOString()
+    .slice(0, 10);
+
+  return {
+    // 피드백을 기록할 데이터베이스를 부모로 지정한다.
+    parent: { database_id: NOTION_FEEDBACK_DATABASE_ID },
+    properties: {
+      // 데이터베이스의 필드 이름과 속성 타입에 맞춰 값을 구성한다.
+      피드백: { title: toRichText(title) },
+      종류: { select: { name: FEEDBACK_KIND[type] } },
+      내용: { rich_text: toRichText(content) },
+      "사용 상황": { rich_text: toRichText(pageUrl) },
+      "원문 링크": { url: replayUrl ?? null },
+      "접수 경로": { select: { name: "앱 내" } },
+      "출처 유형": { select: { name: "사용자 제보" } },
+      "접수 상태": { select: { name: "신규" } },
+      접수일: { date: { start: receivedOn } },
+    },
+  };
+};
+```
+
+`parent.database_id`에는 피드백을 기록할 데이터베이스 ID를 넣고 `properties`에는 데이터베이스의 필드 이름과 속성 타입에 맞춰 값을 넣는다. 예를 들어 「피드백」 필드는 `title`, 「내용」 필드는 `rich_text`, 「종류」 필드는 `select` 형식으로 작성해야 하므로 브라우저에서 받은 객체를 바로 전송하지 않고 변환 함수를 작성했다.
+
+제목에는 `content`의 첫 줄에서 최대 60자를 사용하고 「내용」에는 전체 입력을 넣으며 `type`이 `bug`라면 「종류」를 「버그」로 지정한다. `pageUrl`은 「사용 상황」에 기록하고 `replayUrl`이 있으면 「원문 링크」에 넣는다. 접수 상태는 「신규」, 접수일은 한국 시간 기준 날짜로 지정해 팀원이 테이블에서 접수 현황을 확인할 수 있도록 했다. 함수가 반환한 객체는 `JSON.stringify()`로 문자열로 만든 뒤 앞의 `fetch()` 호출에서 요청 본문으로 보낸다. [Worker의 저장 처리](https://github.com/woowacourse-teams/2026-knot/blob/694454488900e0d7cb4aadedac9989a039e8dd4f/frontend/src/worker/relay/index.ts)
+
+클라이언트에서 호출하는 API는 기존 서비스 서버와 독립적이므로 서비스 API의 공통 클라이언트와 로그인 갱신 처리를 거치지 않고 `axios.post`로 `/relay/f`에 요청을 보낸다.
+
+```ts
+// src/shared/api/fetch/relay/f/index.ts
+export const sendFeedbackApi = async (body: PostFeedbackRequestDto) => {
+  // Notion 저장 결과를 기다리며 최대 10초까지 응답을 기다린다.
+  await axios.post("/relay/f", body, { timeout: 10_000 });
+};
+
+// src/shared/api/mutations/useSendFeedbackMutation/index.ts
+const useSendFeedbackMutation = () => {
+  return useMutation({
+    mutationKey: feedbackMutationKeys.send(),
+    // 요청이 실패하면 Promise가 거부되어 성공 콜백이 실행되지 않는다.
+    mutationFn: (input: PostFeedbackRequestInput) =>
+      sendFeedbackApi(new PostFeedbackRequestDto(input)),
+  });
+};
+```
+폼은 성공 응답을 받은 뒤에 `sessionStorage`에 보관하던 초안을 지우고 성공 토스트를 표시하므로, 저장이 끝나기 전에 사용자에게 제출이 끝났다고 알리지 않는다.
+Notion이 실패하면 해당 응답의 상태 코드를 반환하고 폼은 입력값을 보존해 사용자가 다시 보낼 수 있도록 했다.
+
+```ts
+// src/shared/utils/feedbackDraft/index.ts
+const FEEDBACK_DRAFT_KEY = "knot.feedback.draft";
+
+export const clearFeedbackDraft = () => {
+  try {
+    sessionStorage.removeItem(FEEDBACK_DRAFT_KEY);
+  } catch {
+    // 저장소 접근이 차단돼도 성공 안내는 계속한다.
+  }
+};
+
+// useFeedbackForm.ts 내부의 제출 처리에서 관련 부분만 발췌했다.
+const { mutate, isError } = useSendFeedbackMutation();
+
+const send = () => {
+  const option = FEEDBACK_TYPE_OPTIONS.find(
+    ({ type }) => type === draft.type,
+  );
+  if (!option) return;
+
+  mutate(
+    {
+      type: option.type,
+      content: draft.content.trim(),
+      pageUrl: window.location.href,
+      replayUrl: getAnalyticsReplayUrl(),
+    },
+    {
+      onSuccess: () => {
+        // Worker가 저장 성공을 응답한 다음에만 초안을 삭제한다.
+        clearFeedbackDraft();
+        // ...
+        show(TOAST_MESSAGES.FEEDBACK_SENT);
+        onSent();
+      },
+    },
+  );
+};
+
+// 실패하면 isError가 true가 되며 초안을 삭제하는 콜백은 실행되지 않는다.
+```
+
+입력한 내용을 제외한 상태 코드는 Sentry에 기록해 401은 토큰 오류, 404는 Notion 연결 누락, 400은 필드 이름 불일치를 조사할 단서로 사용할 수 있게 했다. [클라이언트 요청](https://github.com/woowacourse-teams/2026-knot/blob/694454488900e0d7cb4aadedac9989a039e8dd4f/frontend/src/shared/api/fetch/relay/f/index.ts), [폼의 성공과 실패 처리](https://github.com/woowacourse-teams/2026-knot/blob/694454488900e0d7cb4aadedac9989a039e8dd4f/frontend/src/modules/features/feedback/FeedbackPanel/model/useFeedbackForm.ts)
+
+```ts
+// src/shared/provider/queryClient/index.ts 중 오류 보고 설정
+export const queryClient = new QueryClient({
+  mutationCache: new MutationCache({
+    onError: (error, _variables, _onMutateResult, mutation) => {
+      if (mutation.meta?.errorReport === "caller") return;
+
+      // Axios 오류의 상태 코드를 포함한 요청 실패를 공통 함수로 보고한다.
+      captureRequestError({ error, source: "mutation" });
+    },
+  }),
+  // ...
+});
+
+// src/shared/provider/sentry/index.ts 중 요청 본문 수집 제외 설정
+Sentry.init({
+  // ...
+  dataCollection: {
+    // 피드백 내용이 들어 있는 HTTP 요청 본문은 수집하지 않는다.
+    httpBodies: [],
+    // ...
+  },
+  // 전송 직전에도 이벤트의 요청 본문과 민감한 값을 제거한다.
+  beforeSend,
+  // ...
+});
+```
+
+[공통 오류 보고 설정](https://github.com/woowacourse-teams/2026-knot/blob/694454488900e0d7cb4aadedac9989a039e8dd4f/frontend/src/shared/provider/queryClient/index.ts), [Sentry 전송 설정](https://github.com/woowacourse-teams/2026-knot/blob/694454488900e0d7cb4aadedac9989a039e8dd4f/frontend/src/shared/provider/sentry/index.ts)
+
+현재 구현에는 사용자 인증과 호출 횟수 제한, 자동 재시도, 중복 제출 방지가 없으며 `Origin` 검사도 스크립트로 직접 요청을 보내는 스팸까지 막지는 못한다. 또한 클라이언트가 10초를 기다리다 시간 초과로 실패하더라도 Notion 저장은 끝났을 수 있어 사용자가 다시 제출하면 같은 피드백이 두 건 기록될 수 있다.
+
+## 한걸음만 더 나아가서, 수집한 피드백을 팀이 판단하기 편하게 정리해보자
+
+피드백을 받은 뒤에는 처음에 목표했던 대로 팀원들이 읽기 편하게 정리했다. 불편이 발생한 맥락과 비슷한 의견의 반복 횟수를 함께 보여주고 요약을 읽다가 필요하면 원문을 확인할 수 있도록 했다. 이후에는 매일 오전 9시에 Notion의 피드백을 AI로 정리하는 후속 자동화도 운영했다.
+
+Notion 페이지 상단에는 전체 접수 현황과 함께 「치명적인 문제」, 「가장 많이 불편해하는 것」, 「주목할 피드백」, 「지킬 것」, 「방향 제안」을 정리했다. 예를 들어 녹음 유실 문제라면 업로드 도중 새로고침하거나 화면을 종료했다는 조건을 함께 적어, 어떤 행동에서 문제가 발생했는지 알 수 있게 했다.
+
+![접수 현황과 문제 유형, 개선 방향을 정리한 Notion 피드백 분석 요약](/assets/blog/workersUserFeedback/2.png)
+
+접수 현황과 문제 유형, 반복 횟수, 개선 방향을 정리한 [2026년 11월 5일 기준 화면](https://ajar-relish-001.notion.site/98224ba95fff4abe81a4a9ee67591523)이다.
+
+비슷한 의견은 묶어서 건수를 표시하되 각 제보는 별도 행으로 기록했다. 대표 피드백을 연결하면 대표 항목의 「요청 수」에 합산하고 요약에 적힌 근거 접수 번호에는 원문 페이지 링크를 붙였다. 팀원은 문제의 조건과 반복 횟수를 읽고 관련 제보까지 확인할 수 있었다.
+
+정기 요약은 피드백을 받는 Worker와 별도로 GitHub Actions와 Python 스크립트에서 실행한다. 오전 9시 실행을 예약해 두었지만 지난 갱신 이후 새 접수가 있을 때 Notion 페이지 설명란을 갱신하므로 매일 내용이 바뀌지는 않는다.
+
+![Knot 피드백 패널과 Notion 사용자 피드백 접수함을 나란히 띄운 화면](/assets/blog/workersUserFeedback/3.webp)
+
+# 결론: 직군의 경계를 넘어 문제를 해결해보면서
+
+Workers를 사용해 기존 서비스의 서버와 DB를 변경하지 않고 사용자 피드백을 Notion에 기록하는 기능을 완성했다. 덕분에 백엔드 담당자는 피드백 기능 때문에 진행 중이던 작업의 일정을 조정하지 않아도 됐고, 팀원들은 새로운 화면을 익힐 필요 없이 평소 사용하던 Notion에서 사용자 의견을 확인할 수 있었다.
+
+팀원들과 논의하고 일정을 맞추면서 내가 해결할 수 있는 범위도 넓히면 다른 팀원이 맡은 업무에 집중하도록 도울 수 있다고 생각했다. 팀원들이 각자 문제를 정의하고 해결 방향을 정하는 데 필요한 정보를 제공하고 싶어 피드백을 저장한 뒤 불편이 발생한 맥락과 반복 횟수, 원문을 함께 정리했다.
+
+프론트엔드 개발자로서 브라우저에서 실행할 코드를 작성해 왔지만, 이번에는 토큰을 보관하고 외부 API를 호출할 서버 로직까지 필요했다. Workers의 실행 방식과 요청 처리, 정적 파일 라우팅, 비밀값 관리를 배우면서 내가 알고 있던 JavaScript로 필요한 기능을 직접 구현할 수 있었다. 주어진 상황에서 팀의 문제를 해결하려면 직군의 경계 밖에 있는 기술도 배우고 적용할 수 있는 역량이 필요하다고 느꼈다.
+0:{"rsc":["$","$1","c",{"children":[[["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@type\":\"CollectionPage\",\"@id\":\"https://geongyu09.github.io/posts/cloudflare-workers/\",\"url\":\"https://geongyu09.github.io/posts/cloudflare-workers/\",\"name\":\"#cloudflare-workers 글 목록\",\"description\":\"'cloudflare-workers' 태그가 달린 박건규의 기술 글 1편을 모았습니다.\",\"inLanguage\":\"ko-KR\",\"isPartOf\":{\"@id\":\"https://geongyu09.github.io/#website\"},\"about\":{\"@id\":\"https://geongyu09.github.io/#blog\"},\"mainEntity\":{\"@type\":\"ItemList\",\"numberOfItems\":1,\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"url\":\"https://geongyu09.github.io/post/workersUserFeedback/\",\"name\":\"[knot] Workers로 CSR의 한계를 넘어보자\"}]}}"}}],["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"홈\",\"item\":\"https://geongyu09.github.io/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"글 목록\",\"item\":\"https://geongyu09.github.io/posts/\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"#cloudflare-workers\",\"item\":\"https://geongyu09.github.io/posts/cloudflare-workers/\"}]}"}}],["$","$L2",null,{"posts":[{"data":{"title":"[knot] Workers로 CSR의 한계를 넘어보자","date":"2026년 11월 05일","description":"CSR로 동작하는 React 앱에서 Notion 토큰을 브라우저에 노출하지 않고 사용자 피드백을 모으기 위해, 기존 백엔드를 변경하지 않고 Cloudflare Workers로 서버 로직을 추가한 과정과 수집한 피드백을 팀이 판단하기 편하게 정리한 과정을 기록하였습니다.","thumbnail":"/assets/blog/workersUserFeedback/thumbnail.webp","tags":"cloudflare-workers notion react csr 사용자피드백 project","timeStamps":1793836800000},"slug":"workersUserFeedback","content":"$3"}],"totalCount":32,"allTags":["cloudflare-workers","notion","react","csr","사용자피드백","project","yarn-berry","pnp","node.js","commonjs","require","모듈시스템","패키지매니저","npm","node_modules","lockfile","객체지향","컴포넌트설계","FACC","상태관리","회고","우아한테크코스","아키텍처","백엔드","추상화","송곳원정대","functional-programing","프론트엔드","RxJS","자바스크립트","Claude-Code","LLM","에이전트","하네스","기술분석","소프트스킬","AI","jest","esm","babel","transpile","hoisting","mocking","test","node","vm","cjs","jest-runtime","module","test-code","TDD","페어프로그래밍","프롬프팅","webview","디버깅","devtools","CDP","react-native","2025","animation","next.js","library","SSR","webpack","typescript","2024","coding","concept","modal","개발일지","markdown","react-markdown","eeos","컴포넌트테스트","react-query","refactoring","cache"],"activeTag":"cloudflare-workers"}]],["$L4","$L5"],"$L6"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"OB5lPbxqns0zqYIiEm6y4"}
+4:["$","script","script-0",{"src":"/_next/static/chunks/0th6pf_hj8dk1.js","async":true}]
+5:["$","script","script-1",{"src":"/_next/static/chunks/1erofsd2o29uh.js","async":true}]
+6:["$","$L7",null,{"children":["$","$8",null,{"name":"Next.MetadataOutlet","children":"$@9"}]}]
+9:null
