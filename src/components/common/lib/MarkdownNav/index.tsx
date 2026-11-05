@@ -43,6 +43,7 @@ export default function MarkdownNav({
                     'pl-3': level === 1,
                     'pl-6': level === 2,
                     'pl-9': level === 3,
+                    'pl-12': level >= 4,
                   },
                   isActive
                     ? 'border-ink-800 text-ink-800 font-semibold'
