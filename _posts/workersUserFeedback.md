@@ -352,7 +352,7 @@ Notion 페이지 상단에는 전체 접수 현황과 함께 「치명적인 문
 
 정기 요약은 피드백을 받는 Worker와 별도로 GitHub Actions와 Python 스크립트에서 실행한다. 오전 9시 실행을 예약해 두었지만 지난 갱신 이후 새 접수가 있을 때 Notion 페이지 설명란을 갱신하므로 매일 내용이 바뀌지는 않는다.
 
-![Knot 피드백 패널과 Notion 사용자 피드백 접수함을 나란히 띄운 화면](/assets/blog/workersUserFeedback/3.webp)
+![Knot 피드백 패널과 Notion 사용자 피드백 접수함을 나란히 띄운 화면](/assets/blog/workersUserFeedback/3.gif)
 
 # 결론: 직군의 경계를 넘어 문제를 해결해보면서
 
